@@ -1,0 +1,26 @@
+Para el login/registro:
+	- Super clase de usuario?
+		- Usuarios.
+		- Empresas.
+		- Administradores.
+	- Empresas en lista de espera.
+	- Tokens.
+
+Para la empresa:
+	- Productos.
+	- Inventario.
+	- Ventas.
+	- Ordenes de pago.
+
+
+Para los usuarios:
+	- Registro de compras.
+	- WishList.
+	- Configuración de los usuarios.
+
+Para el feed:
+	- Comentarios.
+	- Calificaciones.
+	- Reportes de la empresa.
+
+
