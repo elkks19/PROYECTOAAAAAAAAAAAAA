@@ -85,3 +85,12 @@ S:/Unifranz/Semestre 4/PROYECTO_FINAL/BuberBreakfast/BuberBreakfast/obj/Debug/ne
 /media/elkks/Share/Unifranz/Semestre 4/PROYECTO_FINAL/ProyectoEquisDe/API_PRUEBA/BuberBreakfast/BuberBreakfast/obj/Debug/net7.0/BuberBreakfast.pdb
 /media/elkks/Share/Unifranz/Semestre 4/PROYECTO_FINAL/ProyectoEquisDe/API_PRUEBA/BuberBreakfast/BuberBreakfast/obj/Debug/net7.0/BuberBreakfast.genruntimeconfig.cache
 /media/elkks/Share/Unifranz/Semestre 4/PROYECTO_FINAL/ProyectoEquisDe/API_PRUEBA/BuberBreakfast/BuberBreakfast/obj/Debug/net7.0/ref/BuberBreakfast.dll
+S:\Unifranz\Semestre 4\PROYECTO_FINAL\ProyectoEquisDe\API_PRUEBA\BuberBreakfast\BuberBreakfast\obj\Debug\net7.0\BuberBreakfast.csproj.AssemblyReference.cache
+S:\Unifranz\Semestre 4\PROYECTO_FINAL\ProyectoEquisDe\API_PRUEBA\BuberBreakfast\BuberBreakfast\obj\Debug\net7.0\BuberBreakfast.GeneratedMSBuildEditorConfig.editorconfig
+S:\Unifranz\Semestre 4\PROYECTO_FINAL\ProyectoEquisDe\API_PRUEBA\BuberBreakfast\BuberBreakfast\obj\Debug\net7.0\BuberBreakfast.AssemblyInfoInputs.cache
+S:\Unifranz\Semestre 4\PROYECTO_FINAL\ProyectoEquisDe\API_PRUEBA\BuberBreakfast\BuberBreakfast\obj\Debug\net7.0\BuberBreakfast.AssemblyInfo.cs
+S:\Unifranz\Semestre 4\PROYECTO_FINAL\ProyectoEquisDe\API_PRUEBA\BuberBreakfast\BuberBreakfast\obj\Debug\net7.0\BuberBreakfast.csproj.CoreCompileInputs.cache
+S:\Unifranz\Semestre 4\PROYECTO_FINAL\ProyectoEquisDe\API_PRUEBA\BuberBreakfast\BuberBreakfast\obj\Debug\net7.0\BuberBreakfast.MvcApplicationPartsAssemblyInfo.cache
+S:\Unifranz\Semestre 4\PROYECTO_FINAL\ProyectoEquisDe\API_PRUEBA\BuberBreakfast\BuberBreakfast\obj\Debug\net7.0\BuberBreakfast.dll
+S:\Unifranz\Semestre 4\PROYECTO_FINAL\ProyectoEquisDe\API_PRUEBA\BuberBreakfast\BuberBreakfast\obj\Debug\net7.0\refint\BuberBreakfast.dll
+S:\Unifranz\Semestre 4\PROYECTO_FINAL\ProyectoEquisDe\API_PRUEBA\BuberBreakfast\BuberBreakfast\obj\Debug\net7.0\BuberBreakfast.pdb
