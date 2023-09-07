@@ -45,7 +45,7 @@ CREATE TABLE Usuarios(
 	configuracionUsuario VARCHAR(200) NOT NULL --Esta parte es JSON pq es más fácil para el desarrollo
 );
 
-CREATE TABLE Personal_Empresas(
+CREATE TABLE PersonalEmpresas(
 	id INT IDENTITY(1, 1) NOT NULL,
 	codPersonalEmpresa VARCHAR(45) NOT NULL PRIMARY KEY,
 
