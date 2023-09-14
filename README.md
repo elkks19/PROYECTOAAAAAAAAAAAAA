@@ -5,4 +5,4 @@
 ## [Perfil Inge Eguivar](https://docs.google.com/document/d/1aJ8Jp3UjfUjBNL9vPg_W97aTWjcGRpw2rd-O_E10lIs/edit?usp=sharing)
 ## [Historias de Usuario](https://docs.google.com/document/d/1ekmLJRZCQsOzkeqzEUs8eu4oYL7qcgkL08RYag8B_H0/edit?usp=sharing)
 ## [Diagrama Entidad Relación de la base de datos](https://erdplus.com/edit-diagram/ac072e88-15cf-45b8-af0d-dcb63bf13e8a)
-## [Interfaces en Figma]([https://erdplus.com/edit-diagram/ac072e88-15cf-45b8-af0d-dcb63bf13e8a](https://www.figma.com/file/JNybuCasqqW07YNjyQWIC7/Pantallas?type=design&node-id=6%3A3&mode=design&t=9jLQPtxJNB9UCxwP-1)https://www.figma.com/file/JNybuCasqqW07YNjyQWIC7/Pantallas?type=design&node-id=6%3A3&mode=design&t=9jLQPtxJNB9UCxwP-1)
+## [Interfaces en Figma]([https://www.figma.com/file/JNybuCasqqW07YNjyQWIC7/Pantallas?type=design&node-id=6%3A3&mode=design&t=9jLQPtxJNB9UCxwP-1]
