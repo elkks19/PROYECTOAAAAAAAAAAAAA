@@ -10,11 +10,11 @@ using PruebaMVC.Models;
 
 namespace PruebaMVC.Controllers
 {
-    public class UsuariosController : Controller
+    public class Usuarios1Controller : Controller
     {
         private readonly PruebaMVCContext _context;
 
-        public UsuariosController(PruebaMVCContext context)
+        public Usuarios1Controller(PruebaMVCContext context)
         {
             _context = context;
         }
