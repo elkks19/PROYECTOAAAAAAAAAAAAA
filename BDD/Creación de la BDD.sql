@@ -125,7 +125,7 @@ CREATE TABLE Wishlists(
 --SACAR LA LISTA DE PRODUCTOS PQ IGUAL ANDA MEDIO PELE
 CREATE TABLE Detalle_Wishlist(
 	codWishList VARCHAR(45) NOT NULL
-	FOREIGN KEY REFERENCES UsuarioWishlist(codWishlist),
+	FOREIGN KEY REFERENCES Wishlists(codWishlist),
 
 	codProducto VARCHAR(45) NOT NULL
 	FOREIGN KEY REFERENCES Productos(codProducto),
