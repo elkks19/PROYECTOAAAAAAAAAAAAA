@@ -197,6 +197,18 @@ CREATE TABLE Reclamos_Empresas(
 
 	isRevisado BIT NOT NULL DEFAULT 0,
 
-	fechaCreacionReporte DATETIME NOT NULL,
-	fechaRevisionReporte DATETIME NULL,
+	fechaCreacionReclamo DATETIME NOT NULL,
+	fechaRevisionReclamo DATETIME NULL,
 );
+
+CREATE TABLE Lista_Espera_Empresas(
+	codEmpresa VARCHAR(45) NOT NULL
+	FOREIGN KEY REFERENCES Empresas(codEmpresa),
+
+	codAdmin VARCHAR(45) NULL
+	FOREIGN KEY REFERENCES Administradores(codAdmin),
+
+	isRevisado BIT NOT NULL DEFAULT 0,
+	fechaRevision DATETIME
+);
+
