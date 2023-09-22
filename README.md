@@ -9,6 +9,6 @@
 ## [Modelo lógico de datos](https://lucid.app/lucidchart/25189151-8dfe-4f12-9b7a-24a92265412d/edit?viewport_loc=803%2C-941%2C2219%2C1111%2C0_0&invitationId=inv_f78fd80e-809c-4021-b706-4d90725e5be2)
 ## [Modelo conceptual de datos](https://lucid.app/lucidchart/7a8c6074-7d3e-4eb6-883b-18dfe723a584/edit?viewport_loc=-1083%2C-695%2C4992%2C2499%2C0_0&invitationId=inv_7f402c22-f0a7-445a-9741-156bd8d6777b)
 
-## [Modelo de bajo nivel](https://lucid.app/lucidchart/c4218e9b-0424-4f00-9ad9-9275bf361620/edit?page=0_0&invitationId=inv_1685262d-a5d4-4682-939d-e7c50773e561#)
+## [Modelo de bajo nivelx](https://lucid.app/lucidchart/c4218e9b-0424-4f00-9ad9-9275bf361620/edit?page=0_0&invitationId=inv_1685262d-a5d4-4682-939d-e7c50773e561#)
 
-
+## [Modelo de bajo alto nivel](https://lucid.app/lucidchart/65e5afa7-a6eb-400c-86e2-9847068adfa9/edit?page=HWEp-vi-RSFO&invitationId=inv_b90681cd-5e3e-43c8-9928-2ec1dacfc04e#)
