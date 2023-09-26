@@ -24,11 +24,8 @@ namespace PruebaMVC.Migrations
 
             modelBuilder.Entity("PruebaMVC.Models.Usuarios", b =>
                 {
-                    b.Property<int>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int");
-
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
+                    b.Property<string>("codUsuario")
+                        .HasColumnType("nvarchar(450)");
 
                     b.Property<string>("Apellidos")
                         .HasColumnType("nvarchar(max)");
@@ -44,7 +41,7 @@ namespace PruebaMVC.Migrations
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
-                    b.HasKey("Id");
+                    b.HasKey("codUsuario");
 
                     b.ToTable("Usuarios");
                 });
