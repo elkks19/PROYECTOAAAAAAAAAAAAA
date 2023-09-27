@@ -22,28 +22,88 @@ namespace PruebaMVC.Migrations
 
             SqlServerModelBuilderExtensions.UseIdentityColumns(modelBuilder);
 
-            modelBuilder.Entity("PruebaMVC.Models.Usuarios", b =>
+            modelBuilder.Entity("PruebaMVC.Models.Personas", b =>
                 {
-                    b.Property<string>("codUsuario")
-                        .HasColumnType("nvarchar(450)");
+                    b.Property<string>("codPersona")
+                        .HasMaxLength(10)
+                        .HasColumnType("nvarchar(10)");
 
-                    b.Property<string>("Apellidos")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("Email")
+                    b.Property<string>("apMaternoPersona")
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<DateTime>("FechaNacimiento")
+                    b.Property<string>("apPaternoPersona")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("ciPersona")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("direccionPersona")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<DateTime>("fechaNacPewsona")
                         .HasColumnType("datetime2");
 
-                    b.Property<string>("Name")
+                    b.Property<bool>("isActivo")
+                        .HasColumnType("bit");
+
+                    b.Property<string>("mailPersona")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("nombrePersona")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("passwordPersona")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("userPersona")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.HasKey("codPersona");
+
+                    b.ToTable("Personas");
+                });
+
+            modelBuilder.Entity("PruebaMVC.Models.Usuarios", b =>
+                {
+                    b.Property<string>("codUsuario")
+                        .HasMaxLength(10)
+                        .HasColumnType("nvarchar(10)");
+
+                    b.Property<string>("PersonacodPersona")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(10)");
+
+                    b.Property<string>("codPersona")
+                        .IsRequired()
+                        .HasMaxLength(10)
+                        .HasColumnType("nvarchar(10)");
+
+                    b.Property<string>("configuracionUsuario")
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
                     b.HasKey("codUsuario");
 
+                    b.HasIndex("PersonacodPersona");
+
                     b.ToTable("Usuarios");
+                });
+
+            modelBuilder.Entity("PruebaMVC.Models.Usuarios", b =>
+                {
+                    b.HasOne("PruebaMVC.Models.Personas", "Persona")
+                        .WithMany()
+                        .HasForeignKey("PersonacodPersona")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("Persona");
                 });
 #pragma warning restore 612, 618
         }

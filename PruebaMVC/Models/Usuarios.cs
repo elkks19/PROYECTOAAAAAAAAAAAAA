@@ -5,13 +5,14 @@ namespace PruebaMVC.Models
 {
     public class Usuarios
     {
+        [MaxLength(10)]
         [Key]
         [DatabaseGenerated(DatabaseGeneratedOption.None)]
         public string codUsuario{ get; set; }
-        public string Name { get; set; }
-        public string? Apellidos { get; set; }
-        public string Email { get; set; }
-        [DataType(DataType.Date)]
-        public DateTime FechaNacimiento { get; set; }
+        public string configuracionUsuario { get; set; }
+        [MaxLength(10)]
+        [ForeignKey("codPersona")]
+        public string codPersona { get; set; }
+        public virtual Personas Persona { get; set; }
     }
 }

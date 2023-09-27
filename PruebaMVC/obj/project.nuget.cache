@@ -1,12 +1,11 @@
 {
   "version": 2,
-  "dgSpecHash": "FOJF44VqRtY2/c5Zs9IoJ/YMvsUvnyHSFQvXYofGTY3COOUqHh5pEfGppqVQ6JlGerKqFy9nImpw//9t9X9jLw==",
+  "dgSpecHash": "Mipm7yzYtc5MzL8pESVCPxXeKg07b8n5PUmsmQExfmVa/xF2dKD7sIWOOlPiEGClGxQIDds8BglxBE5AL7lM8g==",
   "success": true,
   "projectFilePath": "S:\\Unifranz\\Semestre 4\\PROYECTO_FINAL\\ProyectoEquisDe\\PruebaMVC\\PruebaMVC.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\rafaf\\.nuget\\packages\\azure.core\\1.24.0\\azure.core.1.24.0.nupkg.sha512",
     "C:\\Users\\rafaf\\.nuget\\packages\\azure.identity\\1.6.0\\azure.identity.1.6.0.nupkg.sha512",
-    "C:\\Users\\rafaf\\.nuget\\packages\\dapper\\2.0.151\\dapper.2.0.151.nupkg.sha512",
     "C:\\Users\\rafaf\\.nuget\\packages\\humanizer\\2.14.1\\humanizer.2.14.1.nupkg.sha512",
     "C:\\Users\\rafaf\\.nuget\\packages\\humanizer.core\\2.14.1\\humanizer.core.2.14.1.nupkg.sha512",
     "C:\\Users\\rafaf\\.nuget\\packages\\humanizer.core.af\\2.14.1\\humanizer.core.af.2.14.1.nupkg.sha512",
