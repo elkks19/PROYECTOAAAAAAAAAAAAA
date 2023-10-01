@@ -13,5 +13,5 @@
 
 ## [Modelo de bajo alto nivel](https://lucid.app/lucidchart/65e5afa7-a6eb-400c-86e2-9847068adfa9/edit?page=HWEp-vi-RSFO&invitationId=inv_b90681cd-5e3e-43c8-9928-2ec1dacfc04e#)
 
-## [link](## [Modelo de bajo alto nivel](https://docs.google.com/document/d/1d4PtTSX1LFTgpmVQElOSEVXqdU3iz6mbxb51d4XanhA/edit?usp=sharing))
+## [Modelo de bajo alto nivel](https://docs.google.com/document/d/1d4PtTSX1LFTgpmVQElOSEVXqdU3iz6mbxb51d4XanhA/edit?usp=sharing)
 
