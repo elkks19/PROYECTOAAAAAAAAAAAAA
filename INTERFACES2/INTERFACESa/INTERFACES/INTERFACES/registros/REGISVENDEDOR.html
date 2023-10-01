@@ -1,0 +1,68 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <title>REGÍSTRATE</title>
+    <script src="https://kit.fontawesome.com/7c61ac1c1a.js" crossorigin="anonymous"></script>
+    <script src="REGISVENDEDOR.js"></script>
+    <link href="../registrosCSS/REGISVENDEDOR.css" rel="stylesheet" />
+</head>
+<body>
+    <div class="wrapper">
+        <span></span>
+        <span></span>
+        <span></span>
+        <span></span>
+        <span></span>
+        <span></span>
+        <span></span>
+        <span></span>
+        <span></span>
+        <span></span>
+    </div>
+    <img src="../../RECURSOS/VIDEOGIF.gif" />
+    <form name="login" id="formulario_login" runat="server">
+
+
+
+        <div class="container">
+            <form action="/" method="post">
+                <p>Bienvenido</p>
+                <h1>La creación de tu cuenta empresarial, debe ser verificada previamente.Te enviaremos un correo de confirmación cuando esta se haya creado, esto será de 2 a 3 días.</h1>
+                <input type="text" placeholder="Ingresa tu nombre" value="" /><br>
+                <input type="text" placeholder="Ingresa tus apellidos" value="" /><br>
+                <input type="date" placeholder="Ingresa tu fecha de nacimiento" value="" /><br>
+                <input type="text" placeholder="Ingresa el nombre de la empresa" value="" /><br>
+                <input type="text" placeholder="Ingresa tu dirección de la empresa" value="" /><br>
+                <input type="email" placeholder="Ingresa tu correo" value="" /><br>
+                <input type="password" placeholder="Crea una contraseña" value="" id="myInput" />
+                <span class="eye" onclick="myFunction()">
+                    <i style="color: #F0E6DA;" id="hide1" class="fa-solid fa-eye"></i>
+                    <i style="color: #F0E6DA;" id="hide2" class="fa-solid fa-eye-slash"></i>
+                </span>
+                <h2 style="color: #F0E6DA;">Queremos comprobar que tu empresa es real</h2>
+                <ul style="color: #F0E6DA;">
+                    <li>Foto de carnet</li>
+                    <li>Foto de tus productos</li>
+                    <li>Foto de tienda(opcional)</li>
+                </ul>
+                <div id="drop-area">
+                    <input type="file" multiple>
+                </div>
+
+                <div class="button">
+                    <a style="font-family: 'Genera-grotesk-heavy'; text-decoration: none; color: #FFFCED; background-color: transparent; border: none;font-size:15px"
+                       href="#">
+                        Ingresa
+
+                    </a>
+                </div>
+
+
+            </form>
+
+
+        </div>
+    </form>
+</body>
+</html>
