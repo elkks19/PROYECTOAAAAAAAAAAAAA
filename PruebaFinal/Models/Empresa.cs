@@ -26,15 +26,9 @@ namespace PruebaFinal.Models
         [Required]
         [DataType(DataType.Date)]
         public DateTime lastUpdate { get; set; }
+        public ICollection<Personal_Empresa> Personal { get; set; }
+        public ICollection<Producto> Productos { get; set; }
         
-        public Empresa(string codEmpresa, string nombreEmpresa, string direccionEmpresa)
-        {
-            this.codEmpresa = codEmpresa;
-            this.nombreEmpresa = nombreEmpresa;
-            this.direccionEmpresa = direccionEmpresa;
-            this.createdAt = DateTime.Now;
-            this.Update();
-        }
         public void Update()
         {
             lastUpdate = DateTime.Now;

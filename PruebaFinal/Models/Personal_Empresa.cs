@@ -12,20 +12,16 @@ namespace PruebaFinal.Models
         public string codPersonalEmpresa { get; set; }
 
         [MaxLength(10)]
-        [ForeignKey("codEmpresa")]
         [Required]
         public string codEmpresa { get; set; }
+        [ForeignKey("codEmpresa")]
+        public Empresa Empresa { get; set; }
 
         [MaxLength(10)]
-        [ForeignKey("codPersona")]
         [Required]
         public string codPersona { get; set; }
+        [ForeignKey("codPersona")]
+        public Persona Persona { get; set; }
 
-        public Personal_Empresa(string codPersonalEmpresa, string codEmpresa, string codPersona)
-        {
-            this.codPersonalEmpresa = codPersonalEmpresa;
-            this.codEmpresa = codEmpresa;
-            this.codPersona = codPersona;
-        }
     }
 }

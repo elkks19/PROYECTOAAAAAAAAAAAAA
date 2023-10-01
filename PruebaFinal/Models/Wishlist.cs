@@ -5,19 +5,19 @@ namespace PruebaFinal.Models
 {
     public class Wishlist
     {
-        [ForeignKey("codWishlist")]
         [MaxLength(10)]
+        [Key]
+        [DatabaseGenerated(DatabaseGeneratedOption.None)]
         [Required]
         public string codWishlist { get; set; }
 
-        [ForeignKey("codUsuario")]
         [MaxLength(10)]
         [Required]
         public string codUsuario { get; set; }
-        public Wishlist(string codWishlist, string codUsuario)
-        {
-            this.codWishlist = codWishlist;
-            this.codUsuario = codUsuario;
-        }
+        [ForeignKey("codUsuario")]
+        public Usuario Usuario { get; set; }
+
+        public ICollection<Producto> Productos { get; set; } 
+
     }
 }

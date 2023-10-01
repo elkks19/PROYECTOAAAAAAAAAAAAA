@@ -15,21 +15,25 @@ namespace PruebaFinal.Models
         [MaxLength(10)]
         [Required]
         public string codEmpresa { get; set; }
+        [ForeignKey("codEmpresa")]
+        public Empresa Empresa { get; set; }
 
         [MaxLength(10)]
         [Required]
         public string codUsuario { get; set; }
+        [ForeignKey("codUsuario")]
+        public Usuario Usuario { get; set; }
 
         [Required]
         public string direccionEntregaOrden { get; set; }
 
         [Required]
         [DataType(DataType.Date)]
-        public DateOnly fechaEntregaOrden { get; set; }
+        public DateTime fechaEntregaOrden { get; set; }
 
         [Required]
         [DataType(DataType.Date)]
-        public DateOnly fechaPagoOrden { get; set; }
+        public DateTime fechaPagoOrden { get; set; }
 
         [Required]
         [DefaultValue(false)]
@@ -42,22 +46,7 @@ namespace PruebaFinal.Models
         [Required]
         [DataType(DataType.DateTime)]
         public DateTime lastUpdate { get; set; }
-        public Orden(string codOrden,
-                       string codEmpresa,
-                       string codUsuario,
-                       string direccion,
-                       DateOnly fechaEntrega,
-                       DateOnly fechaPago)
-        {
-            this.codOrden = codOrden;
-            this.codEmpresa = codEmpresa;
-            this.codUsuario = codUsuario;
-            this.direccionEntregaOrden = direccion;
-            this.fechaEntregaOrden = fechaEntrega;
-            this.fechaPagoOrden = fechaPago;
-            this.createdAt = DateTime.Now;
-            this.Update();
-        }
+        
         public void Cancelar()
         {
             this.isCancelada = true;
@@ -66,5 +55,6 @@ namespace PruebaFinal.Models
         {
             lastUpdate = DateTime.Now;
         }
+        public ICollection<Producto> Productos { get; set; }
     }
 }

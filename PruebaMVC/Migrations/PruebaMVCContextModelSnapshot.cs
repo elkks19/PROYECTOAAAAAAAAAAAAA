@@ -75,10 +75,6 @@ namespace PruebaMVC.Migrations
                         .HasMaxLength(10)
                         .HasColumnType("nvarchar(10)");
 
-                    b.Property<string>("PersonacodPersona")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(10)");
-
                     b.Property<string>("codPersona")
                         .IsRequired()
                         .HasMaxLength(10)
@@ -90,7 +86,7 @@ namespace PruebaMVC.Migrations
 
                     b.HasKey("codUsuario");
 
-                    b.HasIndex("PersonacodPersona");
+                    b.HasIndex("codPersona");
 
                     b.ToTable("Usuarios");
                 });
@@ -99,7 +95,7 @@ namespace PruebaMVC.Migrations
                 {
                     b.HasOne("PruebaMVC.Models.Personas", "Persona")
                         .WithMany()
-                        .HasForeignKey("PersonacodPersona")
+                        .HasForeignKey("codPersona")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 

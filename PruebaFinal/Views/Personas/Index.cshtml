@@ -1,0 +1,95 @@
+﻿@model IEnumerable<PruebaFinal.Models.Persona>
+
+@{
+    ViewData["Title"] = "Index";
+}
+
+<h1>Index</h1>
+
+<p>
+    <a asp-action="Create">Create New</a>
+</p>
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.nombrePersona)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.apPaternoPersona)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.apMaternoPersona)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.fechaNacPersona)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.mailPersona)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.ciPersona)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.direccionPersona)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.userPersona)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.passwordPersona)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.createdAt)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.lastUpdate)
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+@foreach (var item in Model) {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.nombrePersona)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.apPaternoPersona)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.apMaternoPersona)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.fechaNacPersona)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.mailPersona)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.ciPersona)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.direccionPersona)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.userPersona)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.passwordPersona)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.createdAt)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.lastUpdate)
+            </td>
+            <td>
+                <a asp-action="Edit" asp-route-id="@item.codPersona">Edit</a> |
+                <a asp-action="Details" asp-route-id="@item.codPersona">Details</a> |
+                <a asp-action="Delete" asp-route-id="@item.codPersona">Delete</a>
+            </td>
+        </tr>
+}
+    </tbody>
+</table>

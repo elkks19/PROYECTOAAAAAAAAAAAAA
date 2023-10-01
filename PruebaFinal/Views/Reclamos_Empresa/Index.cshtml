@@ -1,0 +1,77 @@
+﻿@model IEnumerable<PruebaFinal.Models.Reclamos_Empresa>
+
+@{
+    ViewData["Title"] = "Index";
+}
+
+<h1>Index</h1>
+
+<p>
+    <a asp-action="Create">Create New</a>
+</p>
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.Producto)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Usuario)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.contenidoReclamo)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.respuestaReclamo)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Administrador)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.isRevisado)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.fechaCreacionReclamo)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.fechaRevisionReclamo)
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+@foreach (var item in Model) {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.Producto.codProducto)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Usuario.codUsuario)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.contenidoReclamo)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.respuestaReclamo)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Administrador.codAdmin)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.isRevisado)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.fechaCreacionReclamo)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.fechaRevisionReclamo)
+            </td>
+            <td>
+                <a asp-action="Edit" asp-route-id="@item.codReclamo">Edit</a> |
+                <a asp-action="Details" asp-route-id="@item.codReclamo">Details</a> |
+                <a asp-action="Delete" asp-route-id="@item.codReclamo">Delete</a>
+            </td>
+        </tr>
+}
+    </tbody>
+</table>

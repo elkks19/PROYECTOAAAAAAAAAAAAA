@@ -13,24 +13,19 @@ namespace PruebaFinal.Models
 
         [MaxLength(10)]
         [Required]
-        [ForeignKey("codUsuario")]
         public string codUsuario { get; set; }
+        [ForeignKey("codUsuario")]
+        public Usuario Usuario { get; set; }
 
         [MaxLength(10)]
         [Required]
-        [ForeignKey("codProducto")]
         public string codProducto { get; set; }
+        [ForeignKey("codProducto")]
+        public Producto Producto { get; set; }
 
         [DataType(DataType.Date)]
         [Required]
         public DateTime fechaLike { get; set; }
 
-        public Like(string codLike, string codUsuario, string codProducto)
-        {
-            this.codLike = codLike;
-            this.codUsuario = codUsuario;
-            this.codProducto = codProducto;
-            this.fechaLike = DateTime.Now;
-        }
     }
 }

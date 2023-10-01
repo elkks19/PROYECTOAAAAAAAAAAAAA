@@ -1,4 +1,5 @@
-﻿using System.ComponentModel.DataAnnotations;
+﻿using Microsoft.AspNetCore.Authentication.Cookies;
+using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 
 namespace PruebaFinal.Models
@@ -14,6 +15,8 @@ namespace PruebaFinal.Models
         [MaxLength(10)]
         [Required]
         public string codEmpresa { get; set; }
+        [ForeignKey("codEmpresa")]
+        public Empresa Empresa { get; set; }
 
         [MaxLength(50)]
         [Required]
@@ -38,25 +41,13 @@ namespace PruebaFinal.Models
         [DataType(DataType.Date)]
         [Required]
         public DateTime lastUpdate { get; set; }
-        public virtual ICollection<Categoria> Categorias { get; set; } = new List<Categoria>();
-        public Producto(string codProducto,
-                         string codEmpresa,
-                         string nombre,
-                         string descripcion,
-                         float precio,
-                         float costoEnvio,
-                         string pathFoto)
-        {
-            this.codProducto = codProducto;
-            this.codEmpresa = codEmpresa;
-            this.nombreProducto = nombre;
-            this.descProducto = descripcion;
-            this.precioProducto = precio;
-            this.envioProducto = costoEnvio;
-            this.pathFotoProducto = pathFoto;
-            this.createdAt = DateTime.Now;
-            this.Update();
-        }
+
+        // RELACIONES
+        public ICollection<Reclamos_Empresa> Reclamos { get; set; }
+        public ICollection<Comentario> Comentarios { get; set; }
+        public ICollection<Like> Likes { get; set; }
+        public ICollection<Categorias_Por_Producto> CategoriasProductos { get; set; }
+
         public void Update()
         {
             lastUpdate = DateTime.Now;

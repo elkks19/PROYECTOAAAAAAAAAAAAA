@@ -1,6 +1,10 @@
-﻿using Microsoft.EntityFrameworkCore;
+﻿using Microsoft.AspNetCore.Components.Server.ProtectedBrowserStorage;
+using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.DependencyInjection;
 using PruebaFinal.Data;
+using System.Drawing.Text;
+
+
 var builder = WebApplication.CreateBuilder(args);
 builder.Services.AddDbContext<PruebaFinalContext>(options =>
     options.UseSqlServer(builder.Configuration.GetConnectionString("PruebaFinalContext") ?? throw new InvalidOperationException("Connection string 'PruebaFinalContext' not found.")));
@@ -23,6 +27,10 @@ app.UseAuthorization();
 
 app.MapControllerRoute(
     name: "default",
-    pattern: "{controller=Home}/{action=Index}/{id?}");
+    pattern: "{controller=Home}/{action=Index}/{id?}"
+    );
+app.MapControllerRoute(
+    name: "auth",
+    pattern: "auth/{action}=Login");
 
 app.Run();

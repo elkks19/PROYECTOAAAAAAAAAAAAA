@@ -8,23 +8,20 @@ namespace PruebaFinal.Models
     public class Detalle_Orden
     {
         [MaxLength(10)]
-        [ForeignKey("codOrden")]
         [Required]
         public string codOrden { get; set; }
+        [ForeignKey("codOrden")]
+        [Column("codOrden")]
+        public Orden Orden { get; set; }
 
         [MaxLength(10)]
-        [ForeignKey("codProducto")]
         [Required]
         public string codProducto { get; set; }
+        [ForeignKey("codProducto")]
+        [Column("codProducto")]
+        public Producto Producto { get; set; }
 
         public int cantidadProducto { get; set; }
         public float precioTotal { get; set; }
-        public Detalle_Orden(string codOrden, string codProducto, int cantidad, float total)
-        {
-            this.codOrden = codOrden;
-            this.codProducto = codProducto;
-            this.cantidadProducto = cantidad;
-            this.precioTotal = total;
-        }
     }
 }

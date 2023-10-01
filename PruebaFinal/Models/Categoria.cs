@@ -11,14 +11,11 @@ namespace PruebaFinal.Models
         [Required]
         public string codCategoria { get; set; }
 
-        [MaxLength(50)]
+        [MaxLength(30)]
         [Required]
         public string nombreCategoria { get; set; }
 
-        public Categoria(string codCategoria, string nombreCategoria)
-        {
-            this.codCategoria = codCategoria;
-            this.nombreCategoria = nombreCategoria;
-        }
+        public ICollection<Categorias_Por_Producto> CategoriasProductos { get; set; }
+
     }
 }

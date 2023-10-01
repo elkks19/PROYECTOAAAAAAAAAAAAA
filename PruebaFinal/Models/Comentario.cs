@@ -12,14 +12,16 @@ namespace PruebaFinal.Models
         public string codComentario { get; set; }
 
         [MaxLength(10)]
-        [ForeignKey("codPersona")]
         [Required]
         public string codPersona { get; set; }
+        [ForeignKey("codPersona")]
+        public Persona Persona { get; set; }
         
         [MaxLength(10)]
-        [ForeignKey("codProducto")]
         [Required]
         public string codProducto { get; set; }
+        [ForeignKey("codProducto")]
+        public Producto Producto { get; set; }
 
         public string contenidoComentario { get; set; }
 
@@ -31,15 +33,6 @@ namespace PruebaFinal.Models
         [Required]
         public DateTime lastUpdate { get; set; }
 
-        public Comentario(string codComentario, string codPersona, string codProducto, string contenidoComentario)
-        {
-            this.codComentario = codComentario;
-            this.codPersona = codPersona;
-            this.codProducto = codProducto;
-            this.contenidoComentario = contenidoComentario;
-            this.createdAt = DateTime.Now;
-            this.Update();
-        }
         public void Update()
         {
             lastUpdate = DateTime.Now;

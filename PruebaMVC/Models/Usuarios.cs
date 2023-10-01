@@ -11,8 +11,8 @@ namespace PruebaMVC.Models
         public string codUsuario{ get; set; }
         public string configuracionUsuario { get; set; }
         [MaxLength(10)]
-        [ForeignKey("codPersona")]
         public string codPersona { get; set; }
+        [ForeignKey("codPersona")]
         public virtual Personas Persona { get; set; }
     }
 }

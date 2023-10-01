@@ -8,15 +8,17 @@ namespace PruebaFinal.Models
     [Keyless]
     public class Detalle_Wishlist
     {
-        [ForeignKey("codWishlist")]
         [MaxLength(10)]
         [Required]
         public string codWishlist { get; set; }
+        [ForeignKey("codWishlist")]
+        public Wishlist Wishlist { get; set; }
 
-        [ForeignKey("codProducto")]
         [MaxLength(10)]
         [Required]
         public string codProducto { get; set; }
+        [ForeignKey("codProducto")]
+        public Producto Producto { get; set; }
 
         [DataType(DataType.Date)]
         [Required]
@@ -25,12 +27,6 @@ namespace PruebaFinal.Models
         [DefaultValue(false)]
         public bool isCarrito { get; set; }
 
-        public Detalle_Wishlist(string codWishlist, string codProducto)
-        {
-            this.codWishlist = codWishlist;
-            this.codProducto = codProducto;
-            this.fechaAnadido = DateTime.Now;
-        }
         public void Carrito()
         {
             this.isCarrito = true;

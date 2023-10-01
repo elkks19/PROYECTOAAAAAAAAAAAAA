@@ -11,18 +11,16 @@ namespace PruebaFinal.Models
         [Required]
         public string codUsuario { get; set; }
 
-        [ForeignKey("codPersona")]
         [MaxLength(10)]
         [Required]
         public string codPersona { get; set; }
+        [ForeignKey("codPersona")]
+        public Persona Persona { get; set; }
+        
+        public string configUsuario { get; set; } = string.Empty;
 
-        public string configUsuario { get; set; }
-
-        public Usuario(string codUsuario, string codPersona)
-        {
-            this.codUsuario = codUsuario;
-            this.codPersona = codPersona;
-            this.configUsuario = "";
-        }
+        public ICollection<Like> Likes { get; set; }
+        public ICollection<Orden> Ordenes { get; set; }
+        public ICollection<Reclamos_Empresa> Reclamos { get; set; }
     }
 }

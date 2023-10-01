@@ -38,11 +38,11 @@ namespace PruebaFinal.Models
         [MaxLength(50)]
         public string direccionPersona { get; set; }
 
-        [MaxLength(60)]
+        [MaxLength(50)]
         [Required]
         public string userPersona { get; set; }
 
-        [MaxLength(60)]
+        [MaxLength(50)]
         [Required]
         public string passwordPersona { get; set; }
 
@@ -53,30 +53,12 @@ namespace PruebaFinal.Models
         [Required]
         [DataType(DataType.Date)]
         public DateTime lastUpdate { get; set; }
-        public Persona(string codPersona,
-                        string nombre,
-                        string apPaterno,
-                        string apMaterno,
-                        DateTime fechaNac,
-                        string mail,
-                        string ci,
-                        string direccion,
-                        string user,
-                        string password)
-        {
-            this.codPersona = codPersona;
-            this.nombrePersona = nombre;
-            this.apPaternoPersona = apPaterno;
-            this.apMaternoPersona = apMaterno;
-            this.fechaNacPersona = fechaNac;
-            this.mailPersona = mail;
-            this.ciPersona = ci;
-            this.direccionPersona = direccion;
-            this.userPersona = user;
-            this.passwordPersona = password;
-            this.createdAt = DateTime.Now;
-            this.Update();
-        }
+        
+        public ICollection<Usuario> Usuarios { get; set; }
+        public ICollection<Administrador> Administradores{ get; set; }
+        public ICollection<Personal_Empresa> Personal_Empresas { get; set; }
+        public ICollection<Comentario> Comentarios { get; set; }
+
         public void Update()
         {
             lastUpdate = DateTime.Now;
