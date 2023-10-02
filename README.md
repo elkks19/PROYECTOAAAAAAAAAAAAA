@@ -6,7 +6,7 @@
 ## [Historias de Usuario](https://docs.google.com/document/d/1ekmLJRZCQsOzkeqzEUs8eu4oYL7qcgkL08RYag8B_H0/edit?usp=sharing)
 
 ## [Modelo conceptual de datos](https://lucid.app/lucidchart/65e5afa7-a6eb-400c-86e2-9847068adfa9/edit?page=HWEp-vi-RSFO&invitationId=inv_b90681cd-5e3e-43c8-9928-2ec1dacfc04e#)
-## [Modelo lógico de datos](https://lucid.app/lucidchart/7a8c6074-7d3e-4eb6-883b-18dfe723a584/edit?viewport_loc=-1083%2C-695%2C4992%2C2499%2C0_0&invitationId=inv_7f402c22-f0a7-445a-9741-156bd8d6777b)
+## [Modelo lógico de datos (bajo nivel)](https://lucid.app/lucidchart/7a8c6074-7d3e-4eb6-883b-18dfe723a584/edit?viewport_loc=-1083%2C-695%2C4992%2C2499%2C0_0&invitationId=inv_7f402c22-f0a7-445a-9741-156bd8d6777b)
 ## [Diagrama de clases (alto nivel)](https://lucid.app/lucidchart/c4218e9b-0424-4f00-9ad9-9275bf361620/edit?viewport_loc=-623%2C-529%2C3256%2C1630%2C0_0&invitationId=inv_1685262d-a5d4-4682-939d-e7c50773e561)
 
 ## [Reportes Figma](https://www.figma.com/file/xGxf2bBtiHFzaPcQs5KHhA/REPORTES?type=design&node-id=0%3A1&mode=design&t=dD7fDdxpeUDceuwZ-1)
