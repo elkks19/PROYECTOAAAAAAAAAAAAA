@@ -12,4 +12,4 @@
 ## [Modelo de bajo alto nivel](https://lucid.app/lucidchart/65e5afa7-a6eb-400c-86e2-9847068adfa9/edit?page=HWEp-vi-RSFO&invitationId=inv_b90681cd-5e3e-43c8-9928-2ec1dacfc04e#)
 ## [Modelo de bajo alto nivel](https://docs.google.com/document/d/1d4PtTSX1LFTgpmVQElOSEVXqdU3iz6mbxb51d4XanhA/edit?usp=sharing))
 ## [Modelo de bajo alto nivel](https://docs.google.com/document/d/1d4PtTSX1LFTgpmVQElOSEVXqdU3iz6mbxb51d4XanhA/edit?usp=sharing)
-## [REPORTES FIGMA](https://www.figma.com/file/xGxf2bBtiHFzaPcQs5KHhA/REPORTES?type=design&node-id=0%3A1&mode=design&t=dD7fDdxpeUDceuwZ-1)
+## [Reportes Figma](https://www.figma.com/file/xGxf2bBtiHFzaPcQs5KHhA/REPORTES?type=design&node-id=0%3A1&mode=design&t=dD7fDdxpeUDceuwZ-1)
