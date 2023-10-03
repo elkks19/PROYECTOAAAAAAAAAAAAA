@@ -14,3 +14,9 @@ function myFunction() {
         z.style.display = "block";
     }
 }
+
+function prueba() {
+    localStorage.setItem("a", "Usuario");
+    var a = localStorage.getItem("a");
+    console.log(a);
+}

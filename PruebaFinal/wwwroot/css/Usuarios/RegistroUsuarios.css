@@ -1,16 +1,16 @@
 ﻿@font-face {
     font-family: 'genera-grotesk-heavy';
-    src: url('fonts/genera-grotesk-heavy.ttf') format('truetype');
+    src: url('../fonts/genera-grotesk-heavy.ttf') format('truetype');
 }
 
 @font-face {
     font-family: 'hanken-book';
-    src: url('fonts/hanken-book.ttf') format('truetype');
+    src: url('../fonts/hanken-book.ttf') format('truetype');
 }
 
 @font-face {
     font-family: 'hanken-light';
-    src: url('fonts/hanken-light.ttf') format('truetype');
+    src: url('../fonts/hanken-light.ttf') format('truetype');
 }
 
 body {

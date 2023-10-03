@@ -1,6 +1,6 @@
 {
   "Version": 1,
-  "Hash": "w9ZqbNDdg9EG7gt+z/L8WFZz1NV41qWnGdvpsVhRJRs=",
+  "Hash": "4vAvA28qgttvzyxnyy8qudAaboq/xqR8bIxoDHDEquo=",
   "Source": "PruebaFinal",
   "BasePath": "_content/PruebaFinal",
   "Mode": "Default",
@@ -136,23 +136,6 @@
       "OriginalItemSpec": "wwwroot\\css\\Login.css"
     },
     {
-      "Identity": "S:\\Unifranz\\Semestre 4\\PROYECTO_FINAL\\ProyectoEquisDe\\PruebaFinal\\wwwroot\\css\\RegistroUsuarios.css",
-      "SourceId": "PruebaFinal",
-      "SourceType": "Discovered",
-      "ContentRoot": "S:\\Unifranz\\Semestre 4\\PROYECTO_FINAL\\ProyectoEquisDe\\PruebaFinal\\wwwroot\\",
-      "BasePath": "_content/PruebaFinal",
-      "RelativePath": "css/RegistroUsuarios.css",
-      "AssetKind": "All",
-      "AssetMode": "All",
-      "AssetRole": "Primary",
-      "RelatedAsset": "",
-      "AssetTraitName": "",
-      "AssetTraitValue": "",
-      "CopyToOutputDirectory": "Never",
-      "CopyToPublishDirectory": "PreserveNewest",
-      "OriginalItemSpec": "wwwroot\\css\\RegistroUsuarios.css"
-    },
-    {
       "Identity": "S:\\Unifranz\\Semestre 4\\PROYECTO_FINAL\\ProyectoEquisDe\\PruebaFinal\\wwwroot\\css\\site.css",
       "SourceId": "PruebaFinal",
       "SourceType": "Discovered",
@@ -168,6 +151,23 @@
       "CopyToOutputDirectory": "Never",
       "CopyToPublishDirectory": "PreserveNewest",
       "OriginalItemSpec": "wwwroot\\css\\site.css"
+    },
+    {
+      "Identity": "S:\\Unifranz\\Semestre 4\\PROYECTO_FINAL\\ProyectoEquisDe\\PruebaFinal\\wwwroot\\css\\Usuarios\\RegistroUsuarios.css",
+      "SourceId": "PruebaFinal",
+      "SourceType": "Discovered",
+      "ContentRoot": "S:\\Unifranz\\Semestre 4\\PROYECTO_FINAL\\ProyectoEquisDe\\PruebaFinal\\wwwroot\\",
+      "BasePath": "_content/PruebaFinal",
+      "RelativePath": "css/Usuarios/RegistroUsuarios.css",
+      "AssetKind": "All",
+      "AssetMode": "All",
+      "AssetRole": "Primary",
+      "RelatedAsset": "",
+      "AssetTraitName": "",
+      "AssetTraitValue": "",
+      "CopyToOutputDirectory": "Never",
+      "CopyToPublishDirectory": "PreserveNewest",
+      "OriginalItemSpec": "wwwroot\\css\\Usuarios\\RegistroUsuarios.css"
     },
     {
       "Identity": "S:\\Unifranz\\Semestre 4\\PROYECTO_FINAL\\ProyectoEquisDe\\PruebaFinal\\wwwroot\\favicon.ico",

@@ -10,7 +10,8 @@ namespace PruebaFinal.Controllers
 {
     public class AuthController : Controller
     {
-        private readonly PruebaFinalContext db;
+
+        public PruebaFinalContext db;
         public AuthController(PruebaFinalContext db)
         {
             this.db = db;
@@ -54,20 +55,28 @@ namespace PruebaFinal.Controllers
         }
 
         [HttpPost]
-        public IActionResult Login(string user, string password)
+        public string Login(string userPersona, string passwordPersona)
         {
-            var hPassword = Crypto.HashPassword(password);
-            var hUser = Crypto.HashPassword(user);
+            string hPassword = Crypto.HashPassword(passwordPersona);
+            string hUser = Crypto.HashPassword(userPersona);
 
-            var persona = db.Persona.FirstOrDefault(p => p.userPersona == hUser);
+            var persona = db.Persona.Single(b => b.userPersona == hUser);
 
-            bool userExists = Crypto.VerifyHashedPassword(hPassword, persona.passwordPersona);
-            
-            if(userExists)
+            if(persona != null)
             {
-                return View("Index");
+                if(persona.passwordPersona == hPassword)
+                {
+                    return "sis";
+                }
+                else
+                {
+                    return "non, pass";
+                }
             }
-            return View("Index");
+            else
+            {
+                return "non, null";
+            }
         }
 
 
