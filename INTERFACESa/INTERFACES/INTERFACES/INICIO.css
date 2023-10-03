@@ -60,6 +60,9 @@ header {
     align-items: center;
     justify-content: space-between;
 }
+.navbar:hover{
+    cursor: pointer;
+}
 
 .navbar .logo img {
     width: auto;

@@ -1,20 +1,76 @@
 ﻿using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
+using PruebaFinal.Models;
+using PruebaFinal.Data;
+using static System.Runtime.InteropServices.JavaScript.JSType;
+using System.ComponentModel;
+using System.Web.Helpers;
 
 namespace PruebaFinal.Controllers
 {
     public class AuthController : Controller
     {
-        // GET: AuthController
-        public ActionResult Login()
+        private readonly PruebaFinalContext db;
+        public AuthController(PruebaFinalContext db)
         {
-            return View("~/Views/Personas/Login.cshtml");
+            this.db = db;
         }
 
-        public string prueba()
+        [HttpGet]
+        public ActionResult RegistroUsuarios()
         {
-            return "prueba";
+            return View("~/Views/Auth/RegistroUsuarios.cshtml");
         }
+
+        [HttpPost]
+        public async Task<IActionResult> RegistroUsuarios(Persona model)
+        {
+            var cant = db.Persona.Count();
+            var persona = new Persona()
+            {
+                codPersona = "USU-" + (cant + 1).ToString("000"),
+                nombrePersona = model.nombrePersona,
+                apPaternoPersona = model.apPaternoPersona,
+                apMaternoPersona = model.apMaternoPersona,
+                fechaNacPersona = model.fechaNacPersona,
+                mailPersona = model.mailPersona,
+                ciPersona = model.ciPersona,
+                direccionPersona = model.direccionPersona,
+                userPersona = Crypto.HashPassword(model.userPersona),
+                passwordPersona = Crypto.HashPassword(model.passwordPersona),
+            };
+
+            await db.Persona.AddAsync(persona);
+            await db.SaveChangesAsync();
+            
+            return View("Login");
+        }
+
+
+        [HttpGet]
+        public ActionResult Login()
+        {
+            return View("~/Views/Auth/Login.cshtml");
+        }
+
+        [HttpPost]
+        public IActionResult Login(string user, string password)
+        {
+            var hPassword = Crypto.HashPassword(password);
+            var hUser = Crypto.HashPassword(user);
+
+            var persona = db.Persona.FirstOrDefault(p => p.userPersona == hUser);
+
+            bool userExists = Crypto.VerifyHashedPassword(hPassword, persona.passwordPersona);
+            
+            if(userExists)
+            {
+                return View("Index");
+            }
+            return View("Index");
+        }
+
+
 
         // GET: AuthController/Details/5
         public ActionResult Details(int id)
@@ -84,5 +140,6 @@ namespace PruebaFinal.Controllers
                 return View();
             }
         }
+
     }
 }

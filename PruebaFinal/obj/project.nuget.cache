@@ -1,6 +1,6 @@
 {
   "version": 2,
-  "dgSpecHash": "u+dpXUZAFPIWPdOCMiAHc6xy+piHR79FNfAU6LOmarJ5ioIgOMUMvVNqkTHH1fZL4kFvCK8iCPA7hi6M5DqtoA==",
+  "dgSpecHash": "Cp1vSD0Y0MsszxXCjGQVG6DPXtn9uMp9wheWM1kwmti4kSKlqsq7J2mxWSV6t2R9bdkgLRsHlGuatrGJr6ZX0Q==",
   "success": true,
   "projectFilePath": "S:\\Unifranz\\Semestre 4\\PROYECTO_FINAL\\ProyectoEquisDe\\PruebaFinal\\PruebaFinal.csproj",
   "expectedPackageFiles": [
@@ -224,9 +224,21 @@
     "C:\\Users\\rafaf\\.nuget\\packages\\system.threading.tasks.dataflow\\6.0.0\\system.threading.tasks.dataflow.6.0.0.nupkg.sha512",
     "C:\\Users\\rafaf\\.nuget\\packages\\system.threading.tasks.extensions\\4.5.4\\system.threading.tasks.extensions.4.5.4.nupkg.sha512",
     "C:\\Users\\rafaf\\.nuget\\packages\\system.threading.timer\\4.3.0\\system.threading.timer.4.3.0.nupkg.sha512",
+    "C:\\Users\\rafaf\\.nuget\\packages\\system.web.helpers.crypto\\3.2.3\\system.web.helpers.crypto.3.2.3.nupkg.sha512",
     "C:\\Users\\rafaf\\.nuget\\packages\\system.windows.extensions\\6.0.0\\system.windows.extensions.6.0.0.nupkg.sha512",
     "C:\\Users\\rafaf\\.nuget\\packages\\system.xml.readerwriter\\4.3.0\\system.xml.readerwriter.4.3.0.nupkg.sha512",
     "C:\\Users\\rafaf\\.nuget\\packages\\system.xml.xdocument\\4.3.0\\system.xml.xdocument.4.3.0.nupkg.sha512"
   ],
-  "logs": []
+  "logs": [
+    {
+      "code": "NU1701",
+      "level": "Warning",
+      "warningLevel": 1,
+      "message": "El paquete \"System.Web.Helpers.Crypto 3.2.3\" se restauró con \".NETFramework,Version=v4.6.1, .NETFramework,Version=v4.6.2, .NETFramework,Version=v4.7, .NETFramework,Version=v4.7.1, .NETFramework,Version=v4.7.2, .NETFramework,Version=v4.8, .NETFramework,Version=v4.8.1\" en lugar de la plataforma de destino del proyecto \"net7.0\". Puede que el paquete no sea totalmente compatible con el proyecto.",
+      "libraryId": "System.Web.Helpers.Crypto",
+      "targetGraphs": [
+        "net7.0"
+      ]
+    }
+  ]
 }

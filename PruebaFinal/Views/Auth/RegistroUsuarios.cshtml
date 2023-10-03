@@ -1,0 +1,73 @@
+﻿@model PruebaFinal.Models.Persona
+
+@{
+    ViewData["Title"] = "Registro";
+}
+
+<script src="~/js/RegistroUsuarios.js"></script>
+<script src="https://kit.fontawesome.com/7c61ac1c1a.js" crossorigin="anonymous"></script>
+
+<div class="wrapper">
+    <span></span>
+    <span></span>
+    <span></span>
+    <span></span>
+    <span></span>
+    <span></span>
+    <span></span>
+    <span></span>
+    <span></span>
+    <span></span>
+</div>
+
+<img src="~/media/registroGif.gif" />
+<form name="login" id="formulario_login" asp-action="RegistroUsuarios" method="post">
+    <div class="container">
+            <p>Bienvenido</p>
+            <h1>Ingresa tus datos</h1>
+
+            <div class="form-group">
+                <input type="text" placeholder="Ingresa tus nombres" asp-for="nombrePersona"/><br>
+            </div>
+            <div class="form-group">
+                <input type="text" placeholder="Ingresa tus apellido paterno" asp-for="apPaternoPersona"/><br>
+            </div>
+            <div class="form-group">
+                <input type="text" placeholder="Ingresa tus apellido materno" asp-for="apMaternoPersona"/><br>
+            </div>
+            <div class="form-group">
+                <input type="date" placeholder="Ingresa tu fecha de nacimiento" asp-for="fechaNacPersona"/><br>
+            </div>
+            <div class="form-group">
+                <input type="text" placeholder="Ingresa tu dirección" asp-for="direccionPersona"/><br>
+            </div>
+            <div class="form-group">
+                <input type="email" placeholder="Ingresa tu correo" asp-for="mailPersona"/><br>
+            </div>
+            <div class="form-group">
+                <input type="text" placeholder="Ingresa tu carnet de identidad" asp-for="ciPersona"/><br>
+            </div>
+            <div class="form-group">
+                <input type="password" placeholder="Crea una contraseña" asp-for="passwordPersona" id="myInput" />
+            </div>
+
+            <span class="eye" onclick="myFunction()">
+                <i style="color: #F0E6DA;" id="hide1" class="fa-solid fa-eye"></i>
+                <i style="color: #F0E6DA;" id="hide2" class="fa-solid fa-eye-slash"></i>
+            </span>
+
+            <div class="form-group">
+                <input type="text" placeholder="Crea un nombre de usuario" asp-for="userPersona" /><br>
+            </div>
+            <div class="form-group">
+                <div class="button">
+                    <input style="font-family: 'Genera-grotesk-heavy'; text-decoration: none; color: #FFFCED; background-color: transparent; border: none;font-size:15px"
+                     type="submit" value="Ingresa">
+                </div>
+            </div>
+    </div>
+</form>
+
+
+<link rel="stylesheet" href="~/css/RegistroUsuarios.css" asp-append-version="true" />
+

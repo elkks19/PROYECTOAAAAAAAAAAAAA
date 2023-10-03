@@ -36,6 +36,14 @@ build_metadata.AdditionalFiles.CssScope =
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQWRtaW5pc3RyYWRvcmVzXEluZGV4LmNzaHRtbA==
 build_metadata.AdditionalFiles.CssScope = 
 
+[S:/Unifranz/Semestre 4/PROYECTO_FINAL/ProyectoEquisDe/PruebaFinal/Views/Auth/Login.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQXV0aFxMb2dpbi5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[S:/Unifranz/Semestre 4/PROYECTO_FINAL/ProyectoEquisDe/PruebaFinal/Views/Auth/RegistroUsuarios.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQXV0aFxSZWdpc3Ryb1VzdWFyaW9zLmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
 [S:/Unifranz/Semestre 4/PROYECTO_FINAL/ProyectoEquisDe/PruebaFinal/Views/Categorias/Create.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQ2F0ZWdvcmlhc1xDcmVhdGUuY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 
@@ -262,10 +270,6 @@ build_metadata.AdditionalFiles.CssScope =
 
 [S:/Unifranz/Semestre 4/PROYECTO_FINAL/ProyectoEquisDe/PruebaFinal/Views/Personas/Index.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcUGVyc29uYXNcSW5kZXguY3NodG1s
-build_metadata.AdditionalFiles.CssScope = 
-
-[S:/Unifranz/Semestre 4/PROYECTO_FINAL/ProyectoEquisDe/PruebaFinal/Views/Personas/Login.cshtml]
-build_metadata.AdditionalFiles.TargetPath = Vmlld3NcUGVyc29uYXNcTG9naW4uY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 
 
 [S:/Unifranz/Semestre 4/PROYECTO_FINAL/ProyectoEquisDe/PruebaFinal/Views/Productos/Create.cshtml]

@@ -1,10 +1,13 @@
 ﻿using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
+using PruebaFinal.Data;
 
 namespace PruebaFinal.Models
 {
     public class Persona
     {
+        PruebaFinalContext db;
+
         [MaxLength(10)]
         [Key]
         [DatabaseGenerated(DatabaseGeneratedOption.None)]
@@ -38,11 +41,9 @@ namespace PruebaFinal.Models
         [MaxLength(50)]
         public string direccionPersona { get; set; }
 
-        [MaxLength(50)]
         [Required]
         public string userPersona { get; set; }
 
-        [MaxLength(50)]
         [Required]
         public string passwordPersona { get; set; }
 
@@ -58,6 +59,11 @@ namespace PruebaFinal.Models
         public ICollection<Administrador> Administradores{ get; set; }
         public ICollection<Personal_Empresa> Personal_Empresas { get; set; }
         public ICollection<Comentario> Comentarios { get; set; }
+        public Persona()
+        { 
+            this.createdAt = DateTime.Now;
+            this.Update();
+        }
 
         public void Update()
         {

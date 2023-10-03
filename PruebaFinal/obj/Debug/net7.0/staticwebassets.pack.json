@@ -5,12 +5,44 @@
       "PackagePath": "staticwebassets\\PruebaFinal.bundle.scp.css"
     },
     {
+      "Id": "S:\\Unifranz\\Semestre 4\\PROYECTO_FINAL\\ProyectoEquisDe\\PruebaFinal\\wwwroot\\css\\Login.css",
+      "PackagePath": "staticwebassets\\css\\Login.css"
+    },
+    {
+      "Id": "S:\\Unifranz\\Semestre 4\\PROYECTO_FINAL\\ProyectoEquisDe\\PruebaFinal\\wwwroot\\css\\RegistroUsuarios.css",
+      "PackagePath": "staticwebassets\\css\\RegistroUsuarios.css"
+    },
+    {
+      "Id": "S:\\Unifranz\\Semestre 4\\PROYECTO_FINAL\\ProyectoEquisDe\\PruebaFinal\\wwwroot\\css\\fonts\\Aurinda-BF64f981d899891.otf",
+      "PackagePath": "staticwebassets\\css\\fonts\\Aurinda-BF64f981d899891.otf"
+    },
+    {
+      "Id": "S:\\Unifranz\\Semestre 4\\PROYECTO_FINAL\\ProyectoEquisDe\\PruebaFinal\\wwwroot\\css\\fonts\\Hanken-Book.ttf",
+      "PackagePath": "staticwebassets\\css\\fonts\\Hanken-Book.ttf"
+    },
+    {
+      "Id": "S:\\Unifranz\\Semestre 4\\PROYECTO_FINAL\\ProyectoEquisDe\\PruebaFinal\\wwwroot\\css\\fonts\\Hanken-Light.ttf",
+      "PackagePath": "staticwebassets\\css\\fonts\\Hanken-Light.ttf"
+    },
+    {
+      "Id": "S:\\Unifranz\\Semestre 4\\PROYECTO_FINAL\\ProyectoEquisDe\\PruebaFinal\\wwwroot\\css\\fonts\\genera-grotesk-heavy.ttf",
+      "PackagePath": "staticwebassets\\css\\fonts\\genera-grotesk-heavy.ttf"
+    },
+    {
       "Id": "S:\\Unifranz\\Semestre 4\\PROYECTO_FINAL\\ProyectoEquisDe\\PruebaFinal\\wwwroot\\css\\site.css",
       "PackagePath": "staticwebassets\\css\\site.css"
     },
     {
       "Id": "S:\\Unifranz\\Semestre 4\\PROYECTO_FINAL\\ProyectoEquisDe\\PruebaFinal\\wwwroot\\favicon.ico",
       "PackagePath": "staticwebassets\\favicon.ico"
+    },
+    {
+      "Id": "S:\\Unifranz\\Semestre 4\\PROYECTO_FINAL\\ProyectoEquisDe\\PruebaFinal\\wwwroot\\js\\Login.js",
+      "PackagePath": "staticwebassets\\js\\Login.js"
+    },
+    {
+      "Id": "S:\\Unifranz\\Semestre 4\\PROYECTO_FINAL\\ProyectoEquisDe\\PruebaFinal\\wwwroot\\js\\RegistroUsuarios.js",
+      "PackagePath": "staticwebassets\\js\\RegistroUsuarios.js"
     },
     {
       "Id": "S:\\Unifranz\\Semestre 4\\PROYECTO_FINAL\\ProyectoEquisDe\\PruebaFinal\\wwwroot\\js\\site.js",
@@ -243,6 +275,14 @@
     {
       "Id": "S:\\Unifranz\\Semestre 4\\PROYECTO_FINAL\\ProyectoEquisDe\\PruebaFinal\\wwwroot\\lib\\jquery\\dist\\jquery.min.map",
       "PackagePath": "staticwebassets\\lib\\jquery\\dist\\jquery.min.map"
+    },
+    {
+      "Id": "S:\\Unifranz\\Semestre 4\\PROYECTO_FINAL\\ProyectoEquisDe\\PruebaFinal\\wwwroot\\media\\loginGif.gif",
+      "PackagePath": "staticwebassets\\media\\loginGif.gif"
+    },
+    {
+      "Id": "S:\\Unifranz\\Semestre 4\\PROYECTO_FINAL\\ProyectoEquisDe\\PruebaFinal\\wwwroot\\media\\registroGif.gif",
+      "PackagePath": "staticwebassets\\media\\registroGif.gif"
     },
     {
       "Id": "obj\\Debug\\net7.0\\staticwebassets\\msbuild.PruebaFinal.Microsoft.AspNetCore.StaticWebAssets.props",

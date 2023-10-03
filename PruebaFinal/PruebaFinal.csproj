@@ -13,6 +13,15 @@
       <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
     </PackageReference>
     <PackageReference Include="Microsoft.VisualStudio.Web.CodeGeneration.Design" Version="7.0.9" />
+    <PackageReference Include="System.Web.Helpers.Crypto" Version="3.2.3" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Folder Include="Views\Auth\styles\" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <None Include="wwwroot\css\Login.css" />
   </ItemGroup>
 
 </Project>
