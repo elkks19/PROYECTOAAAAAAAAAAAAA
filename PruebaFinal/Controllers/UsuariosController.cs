@@ -20,10 +20,19 @@ namespace PruebaFinal.Controllers
         }
 
         // GET: Usuarios
-        public async Task<IActionResult> Index()
+        public async Task<IActionResult> Index(HttpRequest request)
         {
-            var pruebaFinalContext = _context.Usuarios.Include(u => u.Persona);
-            return View(await pruebaFinalContext.ToListAsync());
+            foreach(var a in request.Headers)
+            {
+                if (a.Key == "Authorization")
+                {
+
+                }
+
+            }
+                    var pruebaFinalContext = _context.Usuarios.Include(u => u.Persona);
+                    return View(await pruebaFinalContext.ToListAsync());
+
         }
 
         // GET: Usuarios/Details/5

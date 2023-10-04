@@ -6,7 +6,6 @@ namespace PruebaFinal.Models
 {
     public class Persona
     {
-        PruebaFinalContext db;
 
         [MaxLength(10)]
         [Key]
@@ -59,6 +58,7 @@ namespace PruebaFinal.Models
         public ICollection<Administrador> Administradores{ get; set; }
         public ICollection<Personal_Empresa> Personal_Empresas { get; set; }
         public ICollection<Comentario> Comentarios { get; set; }
+        public TokenGuardado Token { get; set; }
         public Persona()
         { 
             this.createdAt = DateTime.Now;

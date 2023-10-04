@@ -102,7 +102,13 @@ namespace PruebaFinal.Data
                 .WithMany(x => x.Reclamos)
                 .OnDelete(DeleteBehavior.ClientSetNull);
 
+            modelBuilder.Entity<Persona>()
+                .HasOne(x => x.Token)
+                .WithOne(x => x.Persona);
+
         }
+
+        public DbSet<PruebaFinal.Models.TokenGuardado> TokenGuardado { get; set; } = default!;
 
     }
 }

@@ -34,3 +34,4 @@ app.MapControllerRoute(
     pattern: "auth/{action}=Login");
 
 app.Run();
+

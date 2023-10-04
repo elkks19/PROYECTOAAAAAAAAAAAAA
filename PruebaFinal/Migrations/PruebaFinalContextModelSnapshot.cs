@@ -464,6 +464,28 @@ namespace PruebaFinal.Migrations
                     b.ToTable("Reclamos_Empresa");
                 });
 
+            modelBuilder.Entity("PruebaFinal.Models.TokenGuardado", b =>
+                {
+                    b.Property<string>("codToken")
+                        .HasMaxLength(10)
+                        .HasColumnType("nvarchar(10)");
+
+                    b.Property<string>("codPersona")
+                        .IsRequired()
+                        .HasMaxLength(10)
+                        .HasColumnType("nvarchar(10)");
+
+                    b.Property<DateTime>("fechaCreacionToken")
+                        .HasColumnType("datetime2");
+
+                    b.HasKey("codToken");
+
+                    b.HasIndex("codPersona")
+                        .IsUnique();
+
+                    b.ToTable("TokenGuardado");
+                });
+
             modelBuilder.Entity("PruebaFinal.Models.Usuario", b =>
                 {
                     b.Property<string>("codUsuario")
@@ -712,6 +734,17 @@ namespace PruebaFinal.Migrations
                     b.Navigation("Usuario");
                 });
 
+            modelBuilder.Entity("PruebaFinal.Models.TokenGuardado", b =>
+                {
+                    b.HasOne("PruebaFinal.Models.Persona", "Persona")
+                        .WithOne("Token")
+                        .HasForeignKey("PruebaFinal.Models.TokenGuardado", "codPersona")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("Persona");
+                });
+
             modelBuilder.Entity("PruebaFinal.Models.Usuario", b =>
                 {
                     b.HasOne("PruebaFinal.Models.Persona", "Persona")
@@ -765,6 +798,9 @@ namespace PruebaFinal.Migrations
                     b.Navigation("Comentarios");
 
                     b.Navigation("Personal_Empresas");
+
+                    b.Navigation("Token")
+                        .IsRequired();
 
                     b.Navigation("Usuarios");
                 });

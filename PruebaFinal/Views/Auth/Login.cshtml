@@ -21,14 +21,14 @@
     </div>
     <img src="~/media/loginGif.gif" />
 
-        <form name="login" id="formulario_login" asp-action="Login" method="post">
+        <form id="login" method="post">
 
             <div class="container">
                     <p>HOLA!</p>
                     <h1>que bueno verte :)</h1>
-                        <input type="text" placeholder="Ingresa tu correo" asp-for="userPersona" /><br>
+                        <input id="user" type="text" placeholder="Ingresa tu nombre de usuario" name="userPersona"/><br>
 
-                        <input type="password" placeholder="Ingresa tu contraseña" id="myInput" asp-for="passwordPersona" />
+                        <input type="password" placeholder="Ingresa tu contraseña" id="myInput" name="passwordPersona"/>
 
                     <span class="eye" onclick="myFunction()">
                         <i style="color: #F0E6DA " id="hide1" class="fa-solid fa-eye"></i>
@@ -56,8 +56,6 @@
 
                     <p style="font-size:13px;font-family:Hanken;padding-bottom:15px;padding-top:20px;">¿No tienes cuenta?<a style="padding-right:5px" href="../Preregistro/preregistro.html">Regístrate</a></p>
 
-
-
                     <div class="button">
                         <input style="font-family: 'Genera-grotesk-heavy'; text-decoration: none; color: #FFFCED; background-color: transparent; border: none;font-size:15px"
                            href="#" type="submit" value="Ingresa">
@@ -68,4 +66,21 @@
 
 
     <link rel="stylesheet" href="~/css/Login.css" asp-append-version="true" />
+
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.7/jquery.js"></script>
+    <script src="https://malsup.github.io/jquery.form.js"></script>
+
+    <script>
+        $(document).ready(function(){
+            $('#login')
+            .ajaxForm({
+                url: './Login',
+                dataType: 'json',
+                success: function (response) {
+                    alert("token: " + response)
+                }
+            });
+
+        });
+    </script>
 

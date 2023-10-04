@@ -5,6 +5,9 @@ using PruebaFinal.Data;
 using static System.Runtime.InteropServices.JavaScript.JSType;
 using System.ComponentModel;
 using System.Web.Helpers;
+using System.Security.Claims;
+using Microsoft.IdentityModel.Tokens;
+using System.IdentityModel.Tokens.Jwt;
 
 namespace PruebaFinal.Controllers
 {
@@ -12,9 +15,11 @@ namespace PruebaFinal.Controllers
     {
 
         public PruebaFinalContext db;
-        public AuthController(PruebaFinalContext db)
+        private readonly IConfiguration config;
+        public AuthController(PruebaFinalContext db, IConfiguration configuration)
         {
             this.db = db;
+            this.config = configuration;
         }
 
         [HttpGet]
@@ -37,7 +42,7 @@ namespace PruebaFinal.Controllers
                 mailPersona = model.mailPersona,
                 ciPersona = model.ciPersona,
                 direccionPersona = model.direccionPersona,
-                userPersona = Crypto.HashPassword(model.userPersona),
+                userPersona = model.userPersona,
                 passwordPersona = Crypto.HashPassword(model.passwordPersona),
             };
 
@@ -55,100 +60,52 @@ namespace PruebaFinal.Controllers
         }
 
         [HttpPost]
-        public string Login(string userPersona, string passwordPersona)
+        public IActionResult Login(Persona persona)
         {
-            string hPassword = Crypto.HashPassword(passwordPersona);
-            string hUser = Crypto.HashPassword(userPersona);
+            var per = db.Persona.Single(b => b.userPersona == persona.userPersona);
 
-            var persona = db.Persona.Single(b => b.userPersona == hUser);
 
-            if(persona != null)
+            if(per != null)
             {
-                if(persona.passwordPersona == hPassword)
+                bool usuarioExists = Crypto.VerifyHashedPassword(per.passwordPersona, persona.passwordPersona);
+
+                if(usuarioExists)
                 {
-                    return "sis";
+                    string token = CrearToken(per);
+                    return Ok(token);
                 }
                 else
                 {
-                    return "non, pass";
+                    return BadRequest("Contraseña incorrecta");
                 }
             }
             else
             {
-                return "non, null";
+                return BadRequest("El usuario no existe");
             }
         }
-
-
-
-        // GET: AuthController/Details/5
-        public ActionResult Details(int id)
+        
+        private string CrearToken(Persona persona)
         {
-            return View();
-        }
-
-        // GET: AuthController/Create
-        public ActionResult Create()
-        {
-            return View();
-        }
-
-        // POST: AuthController/Create
-        [HttpPost]
-        [ValidateAntiForgeryToken]
-        public ActionResult Create(IFormCollection collection)
-        {
-            try
+            List<Claim> claims = new List<Claim>
             {
-                return RedirectToAction(nameof(Index));
-            }
-            catch
-            {
-                return View();
-            }
-        }
+                new Claim(ClaimTypes.Name, persona.userPersona)
+            };
 
-        // GET: AuthController/Edit/5
-        public ActionResult Edit(int id)
-        {
-            return View();
-        }
+            var key = new SymmetricSecurityKey(System.Text.Encoding.UTF8.GetBytes(
+                config.GetSection("AppSettings:Token").Value));
 
-        // POST: AuthController/Edit/5
-        [HttpPost]
-        [ValidateAntiForgeryToken]
-        public ActionResult Edit(int id, IFormCollection collection)
-        {
-            try
-            {
-                return RedirectToAction(nameof(Index));
-            }
-            catch
-            {
-                return View();
-            }
-        }
+            var creds = new SigningCredentials(key, SecurityAlgorithms.HmacSha512Signature);
 
-        // GET: AuthController/Delete/5
-        public ActionResult Delete(int id)
-        {
-            return View();
-        }
+            var token = new JwtSecurityToken(
+                claims: claims,
+                expires: DateTime.Now.AddDays(1),
+                signingCredentials: creds
+                );
 
-        // POST: AuthController/Delete/5
-        [HttpPost]
-        [ValidateAntiForgeryToken]
-        public ActionResult Delete(int id, IFormCollection collection)
-        {
-            try
-            {
-                return RedirectToAction(nameof(Index));
-            }
-            catch
-            {
-                return View();
-            }
-        }
+            var jwt = new JwtSecurityTokenHandler().WriteToken(token);
 
+            return jwt;
+        }
     }
 }
