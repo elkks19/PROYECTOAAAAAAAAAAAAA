@@ -1,5 +1,3 @@
 <template>
-	<h1>
-		prueba
-	</h1>
+	<button class="btn-danger btn">hisdifhsio</button>
 </template>
