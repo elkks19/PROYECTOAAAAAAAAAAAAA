@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "S:\\Unifranz\\Semestre 4\\PROYECTO_FINAL\\ProyectoEquisDe\\PruebaFinal\\PruebaFinal.csproj": {}
+    "S:\\Unifranz\\Semestre 4\\PROYECTO_FINAL\\final\\ProyectoEquisDe\\PruebaFinal\\PruebaFinal.csproj": {}
   },
   "projects": {
-    "S:\\Unifranz\\Semestre 4\\PROYECTO_FINAL\\ProyectoEquisDe\\PruebaFinal\\PruebaFinal.csproj": {
+    "S:\\Unifranz\\Semestre 4\\PROYECTO_FINAL\\final\\ProyectoEquisDe\\PruebaFinal\\PruebaFinal.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "S:\\Unifranz\\Semestre 4\\PROYECTO_FINAL\\ProyectoEquisDe\\PruebaFinal\\PruebaFinal.csproj",
+        "projectUniqueName": "S:\\Unifranz\\Semestre 4\\PROYECTO_FINAL\\final\\ProyectoEquisDe\\PruebaFinal\\PruebaFinal.csproj",
         "projectName": "PruebaFinal",
-        "projectPath": "S:\\Unifranz\\Semestre 4\\PROYECTO_FINAL\\ProyectoEquisDe\\PruebaFinal\\PruebaFinal.csproj",
+        "projectPath": "S:\\Unifranz\\Semestre 4\\PROYECTO_FINAL\\final\\ProyectoEquisDe\\PruebaFinal\\PruebaFinal.csproj",
         "packagesPath": "C:\\Users\\rafaf\\.nuget\\packages\\",
-        "outputPath": "S:\\Unifranz\\Semestre 4\\PROYECTO_FINAL\\ProyectoEquisDe\\PruebaFinal\\obj\\",
+        "outputPath": "S:\\Unifranz\\Semestre 4\\PROYECTO_FINAL\\final\\ProyectoEquisDe\\PruebaFinal\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
           "C:\\Users\\rafaf\\AppData\\Roaming\\NuGet\\NuGet.Config",

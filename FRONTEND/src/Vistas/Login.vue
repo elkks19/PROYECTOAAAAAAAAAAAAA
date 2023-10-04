@@ -64,23 +64,23 @@ import axios from 'axios';
 export default{
     data(){
         return {
-            user: '',
-            password: ''
+            userPersona: '',
+            passwordPersona: ''
         }
     },
     methods:{
         login(){
-            axios.post(
-                'http://localhost:5123/auth/login', 
-                {
-                    'userPersona': this.user,
-                    'passwordPersona': this.password
-                },
-                {
-                    headers: {
-                        'Content-Type': 'application/json'
-                    },
+            const url = new URL('http://localhost:5123/auth/login');
+            axios.post(url, 
+            {
+                userPersona: this.userPersona,
+                passwordPersona: this.passwordPersona
+            },
+            {
+                headers: {
+                    'Content-Type': 'application/json'
                 }
+            }
             ).then(response => {
                 console.log(response);
             }).catch(error => {
