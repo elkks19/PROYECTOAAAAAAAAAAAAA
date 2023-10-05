@@ -19,9 +19,9 @@
             <div class="container">
                     <p>HOLA!</p>
                     <h1>que bueno verte :)</h1>
-                    <input type="text" placeholder="Ingresa tu correo" v-model="this.user"/>
+                    <input type="text" placeholder="Ingresa tu correo" v-model="this.userPersona"/>
                     <br>
-                    <input type="password" placeholder="Ingresa tu contraseña" v-model="this.password"/>
+                    <input type="password" placeholder="Ingresa tu contraseña" v-model="this.passwordPersona"/>
 
                     <span class="eye" onclick="myFunction()">
                         <i style="color: #F0E6DA " id="hide1" class="fa-solid fa-eye"></i>
@@ -70,7 +70,9 @@ export default{
     },
     methods:{
         login(){
-            const url = new URL('http://localhost:5123/auth/login');
+            console.log(this.userPersona)
+            console.log(this.passwordPersona)
+            const url = new URL('http://localhost:5132/auth/login');
             axios.post(url, 
             {
                 userPersona: this.userPersona,
@@ -78,11 +80,11 @@ export default{
             },
             {
                 headers: {
-                    'Content-Type': 'application/json'
+                    'content-type': 'application/json'
                 }
             }
             ).then(response => {
-                console.log(response);
+                localStorage.setItem('token', response.data);
             }).catch(error => {
                 console.log(error);
             });
