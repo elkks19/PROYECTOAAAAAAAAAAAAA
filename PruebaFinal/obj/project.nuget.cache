@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "sQgXQfuySxjov3b1pbZVtOyVmkC0e4VoFL/BhN/BUJdJ7TxJJsJkmjmJFc5/j22V+cFI1KCC33gLp1mGGsTn/w==",
+  "dgSpecHash": "9Z+vT5t/ebigYz6kFX3+xK92WpXEPrPAxf0+T6zjqlXn3yQqSv3ZvZrS6q3cqSXuS0APjU3zYSLzu/jcHbRQIw==",
   "success": true,
-  "projectFilePath": "S:\\Unifranz\\Semestre 4\\PROYECTO_FINAL\\ProyectoEquisDe\\PruebaFinal\\PruebaFinal.csproj",
+  "projectFilePath": "S:\\Unifranz\\Semestre 4\\PROYECTO_FINAL\\final\\ProyectoEquisDe\\PruebaFinal\\PruebaFinal.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\rafaf\\.nuget\\packages\\azure.core\\1.24.0\\azure.core.1.24.0.nupkg.sha512",
     "C:\\Users\\rafaf\\.nuget\\packages\\azure.identity\\1.6.0\\azure.identity.1.6.0.nupkg.sha512",

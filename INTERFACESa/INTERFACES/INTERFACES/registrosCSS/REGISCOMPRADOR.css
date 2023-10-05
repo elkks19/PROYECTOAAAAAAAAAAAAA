@@ -19,6 +19,7 @@ body {
     height: 100vh;
     font-family: 'Hanken-Book',sans-serif;
 }
+
 /*scrollbar ESTILO INICIO*/
 ::-webkit-scrollbar {
     width: 5px;

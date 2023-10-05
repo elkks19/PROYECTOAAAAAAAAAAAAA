@@ -10,6 +10,7 @@
     font-family: 'hanken-light';
     src: url('../../tipografias/hanken-light.ttf') format('truetype');
 }
+
 body {
     background: #2A2A2A;
     
@@ -141,7 +142,7 @@ img {
 }
 
 form {
-    height: 380px;
+    height: 1000px;
     width: 250px;
     padding: 3em;
     border-radius: 20px;
@@ -296,6 +297,7 @@ a {
         transform: translate(-0.25rem,-0.25rem);
         background: var(--hover-bg);
         box-shadow: 0.25rem 0.25rem #2A2A2A;
+        cursor: pointer;
     }
 
  .button:active {
@@ -309,5 +311,6 @@ a {
         color: #FFFCED;
         background-color: transparent;
         border: none;
+        cursor: pointer;
     }
 /*BOTON DE INGRESA FIN*/
