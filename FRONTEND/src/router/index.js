@@ -3,6 +3,8 @@ import Home from '../Vistas/Home.vue'
 import RegistroEmpresa from '../Vistas/RegistroEmpresa.vue'
 import RegistroUsuario from '../Vistas/RegistroUsuario.vue'
 import Inicio from '../Vistas/Inicio.vue'
+import Paginaproducto from '../Vistas/Paginaproducto.vue'
+
 
 const router = createRouter({
   history: createWebHistory(import.meta.env.BASE_URL),
@@ -26,6 +28,11 @@ const router = createRouter({
       path: '/Inicio',
       name: 'Inicio',
       component: Inicio
+    },
+    {
+      path: '/paginaproducto',
+      name: 'Productos',
+      component: Paginaproducto
     },
   ]
 })
