@@ -1,5 +1,5 @@
 ﻿function myFunction() {
-    var x = document.getElementById("myInput");
+    var x = document.getElementById("password");
     var y = document.getElementById("hide1");
     var z = document.getElementById("hide2");
 
