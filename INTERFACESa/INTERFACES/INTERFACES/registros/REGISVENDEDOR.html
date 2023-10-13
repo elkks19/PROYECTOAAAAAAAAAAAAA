@@ -6,6 +6,7 @@
     <script src="https://kit.fontawesome.com/7c61ac1c1a.js" crossorigin="anonymous"></script>
     <script src="REGISVENDEDOR.js"></script>
     <link href="../registrosCSS/REGISVENDEDOR.css" rel="stylesheet" />
+    <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
 </head>
 <body>
     <div class="wrapper">
@@ -29,13 +30,10 @@
             <form action="/" method="post">
                 <p>Bienvenido</p>
                 <h1>La creación de tu cuenta empresarial, debe ser verificada previamente.Te enviaremos un correo de confirmación cuando esta se haya creado, esto será de 2 a 3 días.</h1>
-                <input type="text" placeholder="Ingresa tu nombre" value="" /><br>
-                <input type="text" placeholder="Ingresa tus apellidos" value="" /><br>
-                <input type="date" placeholder="Ingresa tu fecha de nacimiento" value="" /><br>
-                <input type="text" placeholder="Ingresa el nombre de la empresa" value="" /><br>
-                <input type="text" placeholder="Ingresa tu dirección de la empresa" value="" /><br>
-                <input type="email" placeholder="Ingresa tu correo" value="" /><br>
-                <input type="password" placeholder="Crea una contraseña" value="" id="myInput" />
+                <input type="text" placeholder="Ingresa el nombre" id="nombre"/><br>
+                <input type="text" placeholder="Ingresa la direccion" id="direccion"/><br>
+                <!-- <input type="email" placeholder="Ingresa tu correo" /><br>
+                <input type="password" placeholder="Crea una contraseña" id="myInput" /> -->
                 <span class="eye" onclick="myFunction()">
                     <i style="color: #F0E6DA;" id="hide1" class="fa-solid fa-eye"></i>
                     <i style="color: #F0E6DA;" id="hide2" class="fa-solid fa-eye-slash"></i>
@@ -47,14 +45,13 @@
                     <li>Foto de tienda(opcional)</li>
                 </ul>
                 <div id="drop-area">
-                    <input type="file" multiple>
+                    <input type="file" id="archivo">
                 </div>
 
                 <div class="button">
                     <a style="font-family: 'Genera-grotesk-heavy'; text-decoration: none; color: #FFFCED; background-color: transparent; border: none;font-size:15px"
-                       href="#">
+                       onclick="registroEmpresas()">
                         Ingresa
-
                     </a>
                 </div>
 

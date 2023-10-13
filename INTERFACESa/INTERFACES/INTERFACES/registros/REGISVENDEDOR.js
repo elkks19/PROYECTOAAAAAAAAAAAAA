@@ -22,23 +22,42 @@
 
 const dropArea = document.getElementById("drop-area");
 
-dropArea.addEventListener("dragenter", (e) => {
-    e.preventDefault();
-});
-dropArea.addEventListener("dragover", (e) => {
-    e.preventDefault();
-});
 
-dropArea.addEventListener("drop", (e) => {
-    e.preventDefault();
-    const files = e.dataTransfer.files;
+function registroEmpresas(){
+    let formData = new FormData();
+    let file = document.getElementById("archivo").files[0];
+    formData.append("archivoVerificacion", JSON.stringify(file));
+    axios.post("http://localhost:5132/Empresas/Create",
+    formData,
+    // {
+        // archivoVerificacion: formData
+        // nombreEmpresa : document.getElementById("nombre").value,
+        // direccionEmpresa : document.getElementById("direccion").value,
+        // nombreArchivo : document.getElementById("archivo").value,
+        // archivoVerificacion : document.getElementById("archivo")
+    // },
+    {
+        headers:{
+            "Content-Type": "multipart/form-data"
+        }
+    }
+    ).then((response)=>{
+        console.log(response.data);
+    }).catch((error)=>{
+        console.log(error);
+    });
+}
 
-});
+
+
+
+
+
 
 var user;
 var password;
 
-function prueba(){
+function registroUsuarios(){
     user = document.getElementById("user").value
     password = document.getElementById("password").value
     axios.post("http://localhost:5132/auth/registroUsuarios",
