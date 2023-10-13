@@ -5,6 +5,7 @@ using System.Threading.Tasks;
 using Microsoft.AspNetCore.Cors;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
+using System.Web.Helpers;
 using Microsoft.EntityFrameworkCore;
 using API.Data;
 using API.Models;
@@ -13,152 +14,68 @@ namespace API.Controllers
 {
     public class PersonasController : Controller
     {
-        private readonly APIContext _context;
+        private readonly APIContext db;
 
         public PersonasController(APIContext context)
         {
-            _context = context;
+            db = context;
         }
 
-        // GET: Personas
-        public async Task<IActionResult> Index()
+        [HttpPatch]
+        public async Task<IActionResult> Edit([FromBody] Persona request)
         {
-              return _context.Persona != null ? 
-                          View(await _context.Persona.ToListAsync()) :
-                          Problem("Entity set 'APIContext.Persona'  is null.");
-        }
-
-        // GET: Personas/Details/5
-        public async Task<IActionResult> Details(string id)
-        {
-            if (id == null || _context.Persona == null)
-            {
-                return NotFound();
-            }
-
-            var persona = await _context.Persona
-                .FirstOrDefaultAsync(m => m.codPersona == id);
-            if (persona == null)
-            {
-                return NotFound();
-            }
-
-            return View(persona);
-        }
-
-        // GET: Personas/Create
-        public IActionResult Create()
-        {
-            return View();
-        }
-
-        // POST: Personas/Create
-        // To protect from overposting attacks, enable the specific properties you want to bind to.
-        // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
-        [HttpPost]
-        [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create([Bind("codPersona,nombrePersona,apPaternoPersona,apMaternoPersona,fechaNacPersona,mailPersona,ciPersona,direccionPersona,userPersona,passwordPersona,createdAt,lastUpdate")] Persona persona)
-        {
-            if (ModelState.IsValid)
-            {
-                _context.Add(persona);
-                await _context.SaveChangesAsync();
-                return RedirectToAction(nameof(Index));
-            }
-            return View(persona);
-        }
-
-        // GET: Personas/Edit/5
-        public async Task<IActionResult> Edit(string id)
-        {
-            if (id == null || _context.Persona == null)
-            {
-                return NotFound();
-            }
-
-            var persona = await _context.Persona.FindAsync(id);
-            if (persona == null)
-            {
-                return NotFound();
-            }
-            return View(persona);
-        }
-
-        // POST: Personas/Edit/5
-        // To protect from overposting attacks, enable the specific properties you want to bind to.
-        // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
-        [HttpPost]
-        [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Edit(string id, [Bind("codPersona,nombrePersona,apPaternoPersona,apMaternoPersona,fechaNacPersona,mailPersona,ciPersona,direccionPersona,userPersona,passwordPersona,createdAt,lastUpdate")] Persona persona)
-        {
-            if (id != persona.codPersona)
-            {
-                return NotFound();
-            }
-
-            if (ModelState.IsValid)
-            {
-                try
-                {
-                    _context.Update(persona);
-                    await _context.SaveChangesAsync();
-                }
-                catch (DbUpdateConcurrencyException)
-                {
-                    if (!PersonaExists(persona.codPersona))
-                    {
-                        return NotFound();
-                    }
-                    else
-                    {
-                        throw;
-                    }
-                }
-                return RedirectToAction(nameof(Index));
-            }
-            return View(persona);
-        }
-
-        // GET: Personas/Delete/5
-        public async Task<IActionResult> Delete(string id)
-        {
-            if (id == null || _context.Persona == null)
-            {
-                return NotFound();
-            }
-
-            var persona = await _context.Persona
-                .FirstOrDefaultAsync(m => m.codPersona == id);
-            if (persona == null)
-            {
-                return NotFound();
-            }
-
-            return View(persona);
-        }
-
-        // POST: Personas/Delete/5
-        [HttpPost, ActionName("Delete")]
-        [ValidateAntiForgeryToken]
-        public async Task<IActionResult> DeleteConfirmed(string id)
-        {
-            if (_context.Persona == null)
-            {
-                return Problem("Entity set 'APIContext.Persona'  is null.");
-            }
-            var persona = await _context.Persona.FindAsync(id);
+            var persona = db.Persona.Where(x => x.codPersona.Equals(request.codPersona)).FirstOrDefault();
             if (persona != null)
             {
-                _context.Persona.Remove(persona);
+                if (request.nombrePersona != null) { persona.nombrePersona = request.nombrePersona; }
+                if (request.apPaternoPersona != null) { persona.apPaternoPersona = request.apPaternoPersona; }
+                if (request.apMaternoPersona != null) { persona.apMaternoPersona = request.apMaternoPersona; }
+                if (request.fechaNacPersona != null) { persona.fechaNacPersona = request.fechaNacPersona; }
+                if (request.mailPersona != null) { persona.mailPersona = request.mailPersona; }
+                if (request.ciPersona != null) { persona.ciPersona = request.ciPersona; }
+                if (request.direccionPersona != null) { persona.direccionPersona = request.direccionPersona; }
+                if (request.userPersona != null) { persona.userPersona = request.userPersona; }
+                db.Persona.Update(persona);
+                await db.SaveChangesAsync();
+                return Ok(persona);
             }
-            
-            await _context.SaveChangesAsync();
-            return RedirectToAction(nameof(Index));
+            return NotFound("nel");
         }
 
-        private bool PersonaExists(string id)
+
+        public class PasswordRequest
         {
-          return (_context.Persona?.Any(e => e.codPersona == id)).GetValueOrDefault();
+            public string codPersona { get; set; }
+            public string oldPassword { get; set; }
+            public string newPassword { get; set; }
+        }
+
+        [HttpPatch]
+        public async Task<IActionResult> ChangePassword([FromBody] PasswordRequest request)
+        {
+            if(request.oldPassword == null)
+            {
+                return BadRequest("Falta el password antiguo");
+            }
+            if(request.newPassword == null)
+            {
+                return BadRequest("Falta el password nuevo");
+            }
+            var persona = db.Persona.Where(x => x.codPersona.Equals(request.codPersona)).FirstOrDefault();
+            if (persona != null)
+            {
+                var a = Crypto.VerifyHashedPassword(persona.codPersona, request.oldPassword);
+                
+                if (true)
+                {
+                    //persona.passwordPersona = Crypto.HashPassword(request.newPassword);
+                    //await db.SaveChangesAsync();
+                    return Ok(a);
+
+                }
+                return BadRequest("Contraseña equivocada");
+            }
+            return BadRequest("No se encontro el usuario");
         }
     }
 }
