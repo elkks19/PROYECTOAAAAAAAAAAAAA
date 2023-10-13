@@ -74,7 +74,7 @@ function login(user, password){
     ).then((response)=>{
         localStorage.setItem("token", response.data);
         if(response.data != ""){
-            window.location.href = "../Inicio.html";
+            window.location.href = "../Feed/resultado-final/index.html";
         }
     }).catch((error)=>{
         console.log(error);

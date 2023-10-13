@@ -11812,19 +11812,19 @@
     ]
   },
   "packageFolders": {
-    "C:\\Users\\rafaf\\.nuget\\packages\\": {}
+    "C:\\Users\\Alejandra\\.nuget\\packages\\": {}
   },
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "S:\\Unifranz\\Semestre 4\\PROYECTO_FINAL\\final\\ProyectoEquisDe\\PruebaFinal\\PruebaFinal.csproj",
+      "projectUniqueName": "C:\\Users\\Alejandra\\Documents\\Proyecto\\ProyectoEquisDe\\PruebaFinal\\PruebaFinal.csproj",
       "projectName": "PruebaFinal",
-      "projectPath": "S:\\Unifranz\\Semestre 4\\PROYECTO_FINAL\\final\\ProyectoEquisDe\\PruebaFinal\\PruebaFinal.csproj",
-      "packagesPath": "C:\\Users\\rafaf\\.nuget\\packages\\",
-      "outputPath": "S:\\Unifranz\\Semestre 4\\PROYECTO_FINAL\\final\\ProyectoEquisDe\\PruebaFinal\\obj\\",
+      "projectPath": "C:\\Users\\Alejandra\\Documents\\Proyecto\\ProyectoEquisDe\\PruebaFinal\\PruebaFinal.csproj",
+      "packagesPath": "C:\\Users\\Alejandra\\.nuget\\packages\\",
+      "outputPath": "C:\\Users\\Alejandra\\Documents\\Proyecto\\ProyectoEquisDe\\PruebaFinal\\obj\\",
       "projectStyle": "PackageReference",
       "configFilePaths": [
-        "C:\\Users\\rafaf\\AppData\\Roaming\\NuGet\\NuGet.Config",
+        "C:\\Users\\Alejandra\\AppData\\Roaming\\NuGet\\NuGet.Config",
         "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
       ],
       "originalTargetFrameworks": [
@@ -11832,7 +11832,6 @@
       ],
       "sources": {
         "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
-        "C:\\Program Files\\dotnet\\sdk\\7.0.306\\Sdks\\Microsoft.NET.Sdk.Web\\library-packs": {},
         "https://api.nuget.org/v3/index.json": {}
       },
       "frameworks": {
@@ -11897,7 +11896,7 @@
             "privateAssets": "all"
           }
         },
-        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\7.0.306\\RuntimeIdentifierGraph.json"
+        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\7.0.401\\RuntimeIdentifierGraph.json"
       }
     }
   },
@@ -11906,7 +11905,7 @@
       "code": "NU1701",
       "level": "Warning",
       "warningLevel": 1,
-      "message": "El paquete \"Microsoft.AspNet.WebApi.Core 5.2.9\" se restauró con \".NETFramework,Version=v4.6.1, .NETFramework,Version=v4.6.2, .NETFramework,Version=v4.7, .NETFramework,Version=v4.7.1, .NETFramework,Version=v4.7.2, .NETFramework,Version=v4.8, .NETFramework,Version=v4.8.1\" en lugar de la plataforma de destino del proyecto \"net7.0\". Puede que el paquete no sea totalmente compatible con el proyecto.",
+      "message": "Package 'Microsoft.AspNet.WebApi.Core 5.2.9' was restored using '.NETFramework,Version=v4.6.1, .NETFramework,Version=v4.6.2, .NETFramework,Version=v4.7, .NETFramework,Version=v4.7.1, .NETFramework,Version=v4.7.2, .NETFramework,Version=v4.8, .NETFramework,Version=v4.8.1' instead of the project target framework 'net7.0'. This package may not be fully compatible with your project.",
       "libraryId": "Microsoft.AspNet.WebApi.Core",
       "targetGraphs": [
         "net7.0"
@@ -11916,7 +11915,7 @@
       "code": "NU1701",
       "level": "Warning",
       "warningLevel": 1,
-      "message": "El paquete \"System.Web.Helpers.Crypto 3.2.3\" se restauró con \".NETFramework,Version=v4.6.1, .NETFramework,Version=v4.6.2, .NETFramework,Version=v4.7, .NETFramework,Version=v4.7.1, .NETFramework,Version=v4.7.2, .NETFramework,Version=v4.8, .NETFramework,Version=v4.8.1\" en lugar de la plataforma de destino del proyecto \"net7.0\". Puede que el paquete no sea totalmente compatible con el proyecto.",
+      "message": "Package 'System.Web.Helpers.Crypto 3.2.3' was restored using '.NETFramework,Version=v4.6.1, .NETFramework,Version=v4.6.2, .NETFramework,Version=v4.7, .NETFramework,Version=v4.7.1, .NETFramework,Version=v4.7.2, .NETFramework,Version=v4.8, .NETFramework,Version=v4.8.1' instead of the project target framework 'net7.0'. This package may not be fully compatible with your project.",
       "libraryId": "System.Web.Helpers.Crypto",
       "targetGraphs": [
         "net7.0"

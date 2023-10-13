@@ -1,20 +1,20 @@
 {
   "format": 1,
   "restore": {
-    "S:\\Unifranz\\Semestre 4\\PROYECTO_FINAL\\final\\ProyectoEquisDe\\PruebaFinal\\PruebaFinal.csproj": {}
+    "C:\\Users\\Alejandra\\Documents\\Proyecto\\ProyectoEquisDe\\PruebaFinal\\PruebaFinal.csproj": {}
   },
   "projects": {
-    "S:\\Unifranz\\Semestre 4\\PROYECTO_FINAL\\final\\ProyectoEquisDe\\PruebaFinal\\PruebaFinal.csproj": {
+    "C:\\Users\\Alejandra\\Documents\\Proyecto\\ProyectoEquisDe\\PruebaFinal\\PruebaFinal.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "S:\\Unifranz\\Semestre 4\\PROYECTO_FINAL\\final\\ProyectoEquisDe\\PruebaFinal\\PruebaFinal.csproj",
+        "projectUniqueName": "C:\\Users\\Alejandra\\Documents\\Proyecto\\ProyectoEquisDe\\PruebaFinal\\PruebaFinal.csproj",
         "projectName": "PruebaFinal",
-        "projectPath": "S:\\Unifranz\\Semestre 4\\PROYECTO_FINAL\\final\\ProyectoEquisDe\\PruebaFinal\\PruebaFinal.csproj",
-        "packagesPath": "C:\\Users\\rafaf\\.nuget\\packages\\",
-        "outputPath": "S:\\Unifranz\\Semestre 4\\PROYECTO_FINAL\\final\\ProyectoEquisDe\\PruebaFinal\\obj\\",
+        "projectPath": "C:\\Users\\Alejandra\\Documents\\Proyecto\\ProyectoEquisDe\\PruebaFinal\\PruebaFinal.csproj",
+        "packagesPath": "C:\\Users\\Alejandra\\.nuget\\packages\\",
+        "outputPath": "C:\\Users\\Alejandra\\Documents\\Proyecto\\ProyectoEquisDe\\PruebaFinal\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
-          "C:\\Users\\rafaf\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Users\\Alejandra\\AppData\\Roaming\\NuGet\\NuGet.Config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
         ],
         "originalTargetFrameworks": [
@@ -22,7 +22,6 @@
         ],
         "sources": {
           "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
-          "C:\\Program Files\\dotnet\\sdk\\7.0.306\\Sdks\\Microsoft.NET.Sdk.Web\\library-packs": {},
           "https://api.nuget.org/v3/index.json": {}
         },
         "frameworks": {
@@ -87,7 +86,7 @@
               "privateAssets": "all"
             }
           },
-          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\7.0.306\\RuntimeIdentifierGraph.json"
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\7.0.401\\RuntimeIdentifierGraph.json"
         }
       }
     }

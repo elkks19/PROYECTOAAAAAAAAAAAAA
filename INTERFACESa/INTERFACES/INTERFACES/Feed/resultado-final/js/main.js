@@ -19,6 +19,25 @@ botonesCategorias.forEach(boton => boton.addEventListener("click", () => {
     aside.classList.remove("aside-visible");
 }))
 
+function logout(){
+    axios.post("http://localhost:5132/auth/logout",{
+        token: localStorage.getItem("token")
+    },
+    {
+        headers: {
+            "content-type": "application/json"
+        }
+    }).then((response) => {
+        localStorage.removeItem("token");
+        window.location.href = "../../INICIO.html";
+        console.log*(response.data);
+    }).catch((error) => {
+        console.log(error)
+    });
+        
+
+}
+
 
 function cargarProductos(productosElegidos) {
 
