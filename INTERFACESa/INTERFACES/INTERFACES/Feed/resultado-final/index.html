@@ -45,9 +45,24 @@
                         </a>
                     </li>
                     
-                      <button onclick="logout()" class="button"><i class="bi bi-sign-in"></i>Cerrar Sesión
+                      <button class="button" onclick="logout()"><i class="bi bi-sign-in"></i>Cerrar Sesión
                       
                       </button>
+                      <script>
+                        function logout(){
+                            axios.post("http://localhost:5132/auth/logout",
+                            {
+                                token: localStorage.getItem("token")
+                            }
+                            ).then((response)=>{
+                                localStorage.removeItem("token")
+                                console.log(response.data);
+                                window.location.href = "../../Inicio.html"
+                            }).catch((error)=>{
+                                console.log(error);
+                            });
+                        }
+                      </script>
                     
                 </ul>
             </nav>
