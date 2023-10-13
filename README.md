@@ -10,3 +10,5 @@
 ## [Diagrama de clases (bajo nivel)](https://lucid.app/lucidchart/c4218e9b-0424-4f00-9ad9-9275bf361620/edit?viewport_loc=-623%2C-529%2C3256%2C1630%2C0_0&invitationId=inv_1685262d-a5d4-4682-939d-e7c50773e561)
 
 ## [Reportes Figma](https://www.figma.com/file/xGxf2bBtiHFzaPcQs5KHhA/REPORTES?type=design&node-id=0%3A1&mode=design&t=dD7fDdxpeUDceuwZ-1)
+## [Casos de uso](https://docs.google.com/document/d/19jQuHtW-A0oEPxsDRa1Hf_PQLYzTS-4mqVmNm34J4hg/edit)
+## [Casos de uso diagramas](https://lucid.app/lucidchart/5d2c7d4a-b5d2-488d-8bba-95f20845a8f3/edit?viewport_loc=-618%2C-140%2C2524%2C1122%2C0_0&invitationId=inv_659fc06f-3b7e-4bd2-aa50-5d516810f3ca)
