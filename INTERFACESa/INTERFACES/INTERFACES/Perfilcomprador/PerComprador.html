@@ -6,6 +6,7 @@
     <link href="../registrosCSS/PerComprador.css" rel="stylesheet" />
     <script src="PerComprador.js"></script>
     <script src="https://kit.fontawesome.com/7c61ac1c1a.js" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@4.5.0/dist/css/bootstrap.min.css" rel="stylesheet">
 </head>
 <body style="background-color: #2A2A2A; ">
@@ -19,7 +20,6 @@
                 <a style="font-family: 'Genera-grotesk-heavy'; text-decoration: none; color: #FFFCED; background-color: transparent; border: none;"
                    href="#">
                     Regresar
-
                 </a>
             </div>
         </div>
@@ -37,19 +37,18 @@
                     <div class="col-md-3 pt-0">
                         <div class="list-group list-group-flush account-settings-links">
                             <a class="list-group-item list-group-item-action active" data-toggle="list"
-                               href="#account-general">General</a>
+                               href="#account-general" onclick="setToAccount()">General</a>
                             <a class="list-group-item list-group-item-action" data-toggle="list"
-                               href="#account-change-password">Cambiar contraseña</a>
+                               href="#account-change-password" onclick="setToPassword()">Cambiar contraseña</a>
                             <a class="list-group-item list-group-item-action" data-toggle="list"
-                               href="#account-info">Datos de recibo</a>
+                               href="#account-info" onclick="setToRecibo()">Datos de recibo</a>
                             <a class="list-group-item list-group-item-action" data-toggle="list"
-                               href="#account-social-links">Social Media</a>
-
+                               href="#account-social-links" onclick="setToSocialMedia()">Social Media</a>
                             <a class="list-group-item list-group-item-action" data-toggle="list"
-                               href="#account-notifications">Notificaciones</a>
+                               href="#account-notifications" onclick="setToNotifications()">Notificaciones</a>
                         </div>
                     </div>
-                    <!--oPCIONES FIN-->
+                    <!--OPCIONES FIN-->
 
                     <div class="col-md-9">
                         <div class="tab-content">
@@ -75,27 +74,27 @@
                                 <div class="card-body">
                                     <div class="form-group">
                                         <label style="font-family:'Genera Grotesk';color:#BF9004" class="form-label">Usuario</label>
-                                        <input type="text" class="form-control mb-1" value="Llajuas">
+                                        <input type="text" class="form-control mb-1" id="user">
                                     </div>
                                     <div class="form-group">
                                         <label style="font-family:'Genera Grotesk';color:#BF9004" class="form-label">Nombre</label>
-                                        <input type="text" class="form-control" value="Alejandra">
+                                        <input type="text" class="form-control" id="nombres">
                                     </div>
                                     <div class="form-group">
                                         <label style="font-family:'Genera Grotesk';color:#BF9004" class="form-label">Apellidos</label>
-                                        <input type="text" class="form-control" value="">
+                                        <input type="text" class="form-control" id="apellidos">
                                     </div>
                                     <div class="form-group">
                                         <label style="font-family:'Genera Grotesk';color:#BF9004" class="form-label">E-mail</label>
-                                        <input type="text" class="form-control mb-1" value="alejandraapazacor@gmail.com">
-                                        <div style="background:#F0E6DA; border:none;" class="alert alert-warning mt-3">
+                                        <input type="text" class="form-control mb-1" id="mail">
+                                        <!-- <div style="background:#F0E6DA; border:none;" class="alert alert-warning mt-3">
                                             Tu email no esta confirmado, por favor revisa tus mensajes.<br>
                                             <a style="color:#BF9004" href="javascript:void(0)">Reenviar confirmación</a>
-                                        </div>
+                                        </div> -->
                                     </div>
                                     <div class="form-group">
                                         <label style="font-family:'Genera Grotesk';color:#BF9004" class="form-label">Fecha de cumpleaños</label>
-                                        <input type="date" class="form-control" value="">
+                                        <input type="date" class="form-control" id="fechaNac">
                                     </div>
 
                                 </div>
@@ -129,7 +128,7 @@
 
                                     <div class="form-group">
                                         <label style="font-family:'Genera Grotesk';color:#BF9004" class="form-label">Dirección</label>
-                                        <input type="text" class="form-control" value="">
+                                        <input type="text" class="form-control" id="direccion">
                                     </div>
                                     <div class="form-group">
                                         <label style="font-family:'Genera Grotesk';color:#BF9004" class="form-label">Departamento</label>
@@ -212,7 +211,7 @@
                 </div>
             </div>
             <div class="text-right mt-3">
-                <button style="border-color: #F0E6DA; background: #BF9004; margin-bottom:20px" type="button" class="btn btn-primary">Guardar cambios</button>&nbsp;
+                <button style="border-color: #F0E6DA; background: #BF9004; margin-bottom:20px" type="button" class="btn btn-primary">Guardar cambios</button>;
                 <button type="button" style="color: #F0E6DA; margin-bottom: 20px" class="btn btn-default">Cancelar</button>
             </div>
         </div>

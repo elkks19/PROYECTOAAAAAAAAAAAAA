@@ -9,6 +9,7 @@ using System.Web.Helpers;
 using Microsoft.EntityFrameworkCore;
 using API.Data;
 using API.Models;
+using System.Globalization;
 
 namespace API.Controllers
 {
@@ -19,6 +20,25 @@ namespace API.Controllers
         public PersonasController(APIContext context)
         {
             db = context;
+        }
+
+        [HttpGet]
+        public async Task<IActionResult> Details(string cod)
+        {
+            var persona = db.Persona.Where(x => x.codPersona.Equals(cod)).FirstOrDefault();
+            if (persona != null)
+            {
+                return Ok(new
+                {
+                    user = persona.userPersona,
+                    nombres = persona.nombrePersona,
+                    apellidos = persona.apPaternoPersona + " " + persona.apMaternoPersona,
+                    mail = persona.mailPersona,
+                    fechaNac = persona.fechaNacPersona.ToString("yyyy-MM-dd"),
+                    direccion = persona.direccionPersona
+                });
+            }
+            return BadRequest("No se encontro al usuario");
         }
 
         [HttpPatch]
@@ -37,9 +57,9 @@ namespace API.Controllers
                 if (request.userPersona != null) { persona.userPersona = request.userPersona; }
                 db.Persona.Update(persona);
                 await db.SaveChangesAsync();
-                return Ok(persona);
+                return Ok("El usuario se edito correctamente");
             }
-            return NotFound("nel");
+            return NotFound("El usuario no se encontro");
         }
 
 
@@ -64,13 +84,13 @@ namespace API.Controllers
             var persona = db.Persona.Where(x => x.codPersona.Equals(request.codPersona)).FirstOrDefault();
             if (persona != null)
             {
-                var a = Crypto.VerifyHashedPassword(persona.codPersona, request.oldPassword);
+                var correctPassword = Crypto.VerifyHashedPassword(persona.passwordPersona, request.oldPassword);
                 
-                if (true)
+                if (correctPassword)
                 {
-                    //persona.passwordPersona = Crypto.HashPassword(request.newPassword);
-                    //await db.SaveChangesAsync();
-                    return Ok(a);
+                    persona.passwordPersona = Crypto.HashPassword(request.newPassword);
+                    await db.SaveChangesAsync();
+                    return Ok("Se cambio correctamente la contraseña");
 
                 }
                 return BadRequest("Contraseña equivocada");
