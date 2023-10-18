@@ -58,8 +58,8 @@ var user;
 var password;
 
 function registroUsuarios(){
-    user = document.getElementById("user").value
-    password = document.getElementById("password").value
+    user = document.getElementById("user").value;
+    password = document.getElementById("password").value;
     axios.post("http://localhost:5132/auth/registroUsuarios",
     {
         nombrePersona: document.getElementById("nombre").value,
@@ -70,7 +70,7 @@ function registroUsuarios(){
         ciPersona: document.getElementById("ci").value,
         direccionPersona: document.getElementById("direccion").value,
         userPersona: user,
-        passwordPersona: password
+        passwordPersona: password,
     },{
         headers:{
             "Content-Type": "application/json"

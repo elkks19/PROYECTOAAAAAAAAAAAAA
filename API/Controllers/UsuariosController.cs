@@ -7,171 +7,73 @@ using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
 using API.Data;
 using API.Models;
+using System.Text.Json;
+using System.Web.Helpers;
 
 namespace API.Controllers
 {
     public class UsuariosController : Controller
     {
-        private readonly APIContext _context;
-
+        private readonly APIContext db;
         public UsuariosController(APIContext context)
         {
-            _context = context;
+            db = context;
         }
 
-        // GET: Usuarios
-        public async Task<IActionResult> Index(HttpRequest request)
+        [HttpGet]
+        public async Task<IActionResult> Details(string cod)
         {
-            foreach(var a in request.Headers)
-            {
-                if (a.Key == "Authorization")
-                {
-
-                }
-
-            }
-                    var pruebaFinalContext = _context.Usuarios.Include(u => u.Persona);
-                    return View(await pruebaFinalContext.ToListAsync());
-
-        }
-
-        // GET: Usuarios/Details/5
-        public async Task<IActionResult> Details(string id)
-        {
-            if (id == null || _context.Usuarios == null)
-            {
-                return NotFound();
-            }
-
-            var usuario = await _context.Usuarios
-                .Include(u => u.Persona)
-                .FirstOrDefaultAsync(m => m.codUsuario == id);
-            if (usuario == null)
-            {
-                return NotFound();
-            }
-
-            return View(usuario);
-        }
-
-        // GET: Usuarios/Create
-        public IActionResult Create()
-        {
-            ViewData["codPersona"] = new SelectList(_context.Persona, "codPersona", "codPersona");
-            return View();
-        }
-
-        // POST: Usuarios/Create
-        // To protect from overposting attacks, enable the specific properties you want to bind to.
-        // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
-        [HttpPost]
-        [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create([Bind("codUsuario,codPersona,configUsuario")] Usuario usuario)
-        {
-            if (ModelState.IsValid)
-            {
-                _context.Add(usuario);
-                await _context.SaveChangesAsync();
-                return RedirectToAction(nameof(Index));
-            }
-            ViewData["codPersona"] = new SelectList(_context.Persona, "codPersona", "codPersona", usuario.codPersona);
-            return View(usuario);
-        }
-
-        // GET: Usuarios/Edit/5
-        public async Task<IActionResult> Edit(string id)
-        {
-            if (id == null || _context.Usuarios == null)
-            {
-                return NotFound();
-            }
-
-            var usuario = await _context.Usuarios.FindAsync(id);
-            if (usuario == null)
-            {
-                return NotFound();
-            }
-            ViewData["codPersona"] = new SelectList(_context.Persona, "codPersona", "codPersona", usuario.codPersona);
-            return View(usuario);
-        }
-
-        // POST: Usuarios/Edit/5
-        // To protect from overposting attacks, enable the specific properties you want to bind to.
-        // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
-        [HttpPost]
-        [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Edit(string id, [Bind("codUsuario,codPersona,configUsuario")] Usuario usuario)
-        {
-            if (id != usuario.codUsuario)
-            {
-                return NotFound();
-            }
-
-            if (ModelState.IsValid)
-            {
-                try
-                {
-                    _context.Update(usuario);
-                    await _context.SaveChangesAsync();
-                }
-                catch (DbUpdateConcurrencyException)
-                {
-                    if (!UsuarioExists(usuario.codUsuario))
-                    {
-                        return NotFound();
-                    }
-                    else
-                    {
-                        throw;
-                    }
-                }
-                return RedirectToAction(nameof(Index));
-            }
-            ViewData["codPersona"] = new SelectList(_context.Persona, "codPersona", "codPersona", usuario.codPersona);
-            return View(usuario);
-        }
-
-        // GET: Usuarios/Delete/5
-        public async Task<IActionResult> Delete(string id)
-        {
-            if (id == null || _context.Usuarios == null)
-            {
-                return NotFound();
-            }
-
-            var usuario = await _context.Usuarios
-                .Include(u => u.Persona)
-                .FirstOrDefaultAsync(m => m.codUsuario == id);
-            if (usuario == null)
-            {
-                return NotFound();
-            }
-
-            return View(usuario);
-        }
-
-        // POST: Usuarios/Delete/5
-        [HttpPost, ActionName("Delete")]
-        [ValidateAntiForgeryToken]
-        public async Task<IActionResult> DeleteConfirmed(string id)
-        {
-            if (_context.Usuarios == null)
-            {
-                return Problem("Entity set 'APIContext.Usuarios'  is null.");
-            }
-            var usuario = await _context.Usuarios.FindAsync(id);
+            var usuario = db.Usuarios.Include(x => x.Persona).FirstOrDefault(x => x.codUsuario.Equals(cod));
             if (usuario != null)
             {
-                _context.Usuarios.Remove(usuario);
+                var persona = usuario.Persona;
+                return Ok(new
+                {
+                    userPersona = persona.userPersona,
+                    nombrePersona = persona.nombrePersona,
+                    apellidosPersona = persona.apPaternoPersona + " " + persona.apMaternoPersona,
+                    mailPersona = persona.mailPersona,
+                    fechaNacPersona = persona.fechaNacPersona.ToString("yyyy-MM-dd"),
+                    direccionPersona = persona.direccionPersona
+                });
             }
-            
-            await _context.SaveChangesAsync();
-            return RedirectToAction(nameof(Index));
+            return BadRequest("No se encontro al usuario");
         }
 
-        private bool UsuarioExists(string id)
+
+        public class PasswordRequest
         {
-          return (_context.Usuarios?.Any(e => e.codUsuario == id)).GetValueOrDefault();
+            public string oldPassword { get; set; }
+            public string newPassword { get; set; }
+        }
+
+        [HttpPatch]
+        public async Task<IActionResult> ChangePassword([FromBody] PasswordRequest request, [FromRoute] string cod)
+        {
+            if(request.oldPassword == null)
+            {
+                return BadRequest("Falta el password antiguo");
+            }
+            if(request.newPassword == null)
+            {
+                return BadRequest("Falta el password nuevo");
+            }
+            var usuario = db.Usuarios.Include(x => x.Persona).FirstOrDefault(x => x.codUsuario.Equals(cod));
+            if (usuario != null)
+            {
+                var persona = usuario.Persona;
+                var correctPassword = Crypto.VerifyHashedPassword(persona.passwordPersona, request.oldPassword);
+                
+                if (correctPassword)
+                {
+                    persona.passwordPersona = Crypto.HashPassword(request.newPassword);
+                    await db.SaveChangesAsync();
+                    return Ok("Se cambio correctamente la contraseña");
+
+                }
+                return BadRequest("Contraseña equivocada");
+            }
+            return BadRequest("No se encontro el usuario");
         }
     }
 }

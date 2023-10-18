@@ -21,18 +21,6 @@ namespace API.Controllers
             this.config = configuration;
         }
 
-        //public class RegistroClass
-        //{
-        //    public string nombrePersona { get; set; }
-        //    public string apPaternoPersona { get; set; }
-        //    public string apMaternoPersona { get; set; }
-        //    public string fechaNacPersona { get; set; }
-        //    public string mailPersona { get; set; }
-        //    public string ciPersona { get; set; }
-        //    public string direccionPersona { get; set; }
-        //    public string userPersonaPersona { get; set; }
-        //    public string passwordPersona { get; set; }
-        //}
         [HttpPost]
         public async Task<IActionResult> RegistroUsuarios([FromBody] Persona model)
         {
@@ -55,7 +43,7 @@ namespace API.Controllers
                 var usuario = new Usuario()
                 {
                     codUsuario = "USU-" + (countUsu + 1).ToString("000"),
-                    codPersona = persona.codPersona,
+                    Persona = persona,
                     configUsuario = "prueba"
                 };
 

@@ -1,6 +1,6 @@
 ﻿using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
-using API.Data;
+using System.Text.Json.Serialization;
 
 namespace API.Models
 {
@@ -48,16 +48,23 @@ namespace API.Models
 
         [Required]
         [DataType(DataType.Date)]
+        [JsonIgnore]
         public DateTime createdAt { get; set; }
 
         [Required]
         [DataType(DataType.Date)]
+        [JsonIgnore]
         public DateTime lastUpdate { get; set; }
 
+        [JsonIgnore]
         public ICollection<Usuario> Usuarios { get; set; }
+        [JsonIgnore]
         public ICollection<Administrador> Administradores { get; set; }
+        [JsonIgnore]
         public ICollection<Personal_Empresa> Personal_Empresas { get; set; }
+        [JsonIgnore]
         public ICollection<Comentario> Comentarios { get; set; }
+        [JsonIgnore]
         public TokenGuardado Token { get; set; }
         public Persona()
         {

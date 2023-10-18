@@ -7,10 +7,22 @@ var builder = WebApplication.CreateBuilder(args);
 builder.Services.AddDbContext<APIContext>(options =>
     options.UseSqlServer(builder.Configuration.GetConnectionString("DBConnection") ?? throw new InvalidOperationException("Connection string 'DBConnection' not found.")));
 
+var misPoliticas = "misPoliticas";
+builder.Services.AddCors(options =>
+{
+    options.AddPolicy(name: misPoliticas,
+                      policy =>
+                      {
+                          policy.AllowAnyOrigin().
+                          AllowAnyMethod().
+                          AllowAnyHeader();
+                      });
+});
 
 builder.Services.AddControllers();
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
+
 
 var app = builder.Build();
 
@@ -21,20 +33,14 @@ if (app.Environment.IsDevelopment())
     app.UseSwaggerUI();
 }
 
-app.UseCors(
-    builder =>
-    {
-        builder.AllowAnyOrigin();
-        builder.AllowAnyMethod();
-        builder.AllowAnyHeader();
-    });
-
 
 app.UseHttpsRedirection();
 
 app.UseAuthorization();
 
 app.MapControllers();
+
+app.UseCors(misPoliticas);
 
 app.MapControllerRoute(
     name: "default",

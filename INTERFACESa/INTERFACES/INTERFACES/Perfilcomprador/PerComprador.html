@@ -86,7 +86,7 @@
                                     </div>
                                     <div class="form-group">
                                         <label style="font-family:'Genera Grotesk';color:#BF9004" class="form-label">E-mail</label>
-                                        <input type="text" class="form-control mb-1" id="mail">
+                                        <input type="email" class="form-control mb-1" id="mail">
                                         <!-- <div style="background:#F0E6DA; border:none;" class="alert alert-warning mt-3">
                                             Tu email no esta confirmado, por favor revisa tus mensajes.<br>
                                             <a style="color:#BF9004" href="javascript:void(0)">Reenviar confirmación</a>
@@ -105,15 +105,15 @@
                                 <div class="card-body pb-2">
                                     <div class="form-group">
                                         <label style="font-family:'Genera Grotesk';color:#BF9004" class="form-label">Contraseña actual</label>
-                                        <input type="password" class="form-control">
+                                        <input type="password" class="form-control" id="oldPassword">
                                     </div>
                                     <div class="form-group">
                                         <label style="font-family:'Genera Grotesk';color:#BF9004" class="form-label">Nueva contraseña</label>
-                                        <input type="password" class="form-control">
+                                        <input type="password" class="form-control" id="newPassword">
                                     </div>
                                     <div class="form-group">
                                         <label style="font-family:'Genera Grotesk';color:#BF9004" class="form-label">Repetir contraseña</label>
-                                        <input type="password" class="form-control">
+                                        <input type="password" class="form-control" id="newPassword2">
                                     </div>
                                 </div>
                             </div>
@@ -130,7 +130,7 @@
                                         <label style="font-family:'Genera Grotesk';color:#BF9004" class="form-label">Dirección</label>
                                         <input type="text" class="form-control" id="direccion">
                                     </div>
-                                    <div class="form-group">
+                                    <!-- <div class="form-group">
                                         <label style="font-family:'Genera Grotesk';color:#BF9004" class="form-label">Departamento</label>
                                         <select class="custom-select">
                                             <option selected>La Paz</option>
@@ -143,7 +143,7 @@
                                             <option>Beni</option>
                                             <option>Pando</option>
                                         </select>
-                                    </div>
+                                    </div> -->
                                 </div>
                                 <hr class="border-light m-0">
                                 <div class="card-body pb-2">
@@ -211,7 +211,7 @@
                 </div>
             </div>
             <div class="text-right mt-3">
-                <button style="border-color: #F0E6DA; background: #BF9004; margin-bottom:20px" type="button" class="btn btn-primary">Guardar cambios</button>;
+                <button type="submit" style="border-color: #F0E6DA; background: #BF9004; margin-bottom:20px" type="button" class="btn btn-primary" onclick="actualizarDatosUsuario()">Guardar cambios</button>;
                 <button type="button" style="color: #F0E6DA; margin-bottom: 20px" class="btn btn-default">Cancelar</button>
             </div>
         </div>

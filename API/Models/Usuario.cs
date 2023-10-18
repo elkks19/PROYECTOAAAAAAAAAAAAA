@@ -15,7 +15,7 @@ namespace API.Models
         [Required]
         public string codPersona { get; set; }
         [ForeignKey("codPersona")]
-        public Persona Persona { get; set; }
+        public virtual Persona Persona { get; set; }
 
         public string configUsuario { get; set; } = string.Empty;
 

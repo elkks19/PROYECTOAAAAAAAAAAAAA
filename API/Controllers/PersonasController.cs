@@ -13,6 +13,7 @@ using System.Globalization;
 
 namespace API.Controllers
 {
+    [EnableCors]
     public class PersonasController : Controller
     {
         private readonly APIContext db;
@@ -30,21 +31,21 @@ namespace API.Controllers
             {
                 return Ok(new
                 {
-                    user = persona.userPersona,
-                    nombres = persona.nombrePersona,
-                    apellidos = persona.apPaternoPersona + " " + persona.apMaternoPersona,
-                    mail = persona.mailPersona,
-                    fechaNac = persona.fechaNacPersona.ToString("yyyy-MM-dd"),
-                    direccion = persona.direccionPersona
+                    userPersona = persona.userPersona,
+                    nombrePersona = persona.nombrePersona,
+                    apellidosPersona = persona.apPaternoPersona + " " + persona.apMaternoPersona,
+                    mailPersona = persona.mailPersona,
+                    fechaNacPersona = persona.fechaNacPersona.ToString("yyyy-MM-dd"),
+                    direccionPersona = persona.direccionPersona
                 });
             }
             return BadRequest("No se encontro al usuario");
         }
 
         [HttpPatch]
-        public async Task<IActionResult> Edit([FromBody] Persona request)
+        public async Task<IActionResult> Edit([FromBody] Persona request, [FromRoute] string cod)
         {
-            var persona = db.Persona.Where(x => x.codPersona.Equals(request.codPersona)).FirstOrDefault();
+            var persona = db.Persona.Where(x => x.codPersona.Equals(cod)).FirstOrDefault();
             if (persona != null)
             {
                 if (request.nombrePersona != null) { persona.nombrePersona = request.nombrePersona; }
@@ -63,39 +64,6 @@ namespace API.Controllers
         }
 
 
-        public class PasswordRequest
-        {
-            public string codPersona { get; set; }
-            public string oldPassword { get; set; }
-            public string newPassword { get; set; }
-        }
 
-        [HttpPatch]
-        public async Task<IActionResult> ChangePassword([FromBody] PasswordRequest request)
-        {
-            if(request.oldPassword == null)
-            {
-                return BadRequest("Falta el password antiguo");
-            }
-            if(request.newPassword == null)
-            {
-                return BadRequest("Falta el password nuevo");
-            }
-            var persona = db.Persona.Where(x => x.codPersona.Equals(request.codPersona)).FirstOrDefault();
-            if (persona != null)
-            {
-                var correctPassword = Crypto.VerifyHashedPassword(persona.passwordPersona, request.oldPassword);
-                
-                if (correctPassword)
-                {
-                    persona.passwordPersona = Crypto.HashPassword(request.newPassword);
-                    await db.SaveChangesAsync();
-                    return Ok("Se cambio correctamente la contraseña");
-
-                }
-                return BadRequest("Contraseña equivocada");
-            }
-            return BadRequest("No se encontro el usuario");
-        }
     }
 }
