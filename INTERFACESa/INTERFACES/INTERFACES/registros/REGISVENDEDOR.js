@@ -1,101 +1,22 @@
-﻿function myFunction() {
-    var x = document.getElementById("password");
-    // var x2 = document.getElementById("myInput2");
-    var y = document.getElementById("hide1");
-    var z = document.getElementById("hide2");
-
-    if (x.type === 'password') {
-        x.type = "text";
-        // x2.type = "text";
-        y.style.display = "block";
-        z.style.display = "none";
-    }
-    else {
-        x.type = "password";
-        // x2.type = "password";
-        y.style.display = "none";
-        z.style.display = "block";
-    }
-}
-
-
-
-const dropArea = document.getElementById("drop-area");
-
-
 function registroEmpresas(){
-    let formData = new FormData();
-    let file = document.getElementById("archivo").files[0];
-    formData.append("archivoVerificacion", JSON.stringify(file));
-    axios.post("http://localhost:5132/Empresas/Create",
-    formData,
-    // {
-        // archivoVerificacion: formData
-        // nombreEmpresa : document.getElementById("nombre").value,
-        // direccionEmpresa : document.getElementById("direccion").value,
-        // nombreArchivo : document.getElementById("archivo").value,
-        // archivoVerificacion : document.getElementById("archivo")
-    // },
+    // console.log(document.getElementById("archivo").value.split('\\').pop());
+    // console.log(document.getElementById("archivo").files[0]);
+    axios.post  ('http://localhost:5132/Empresas/Create', {
+        nombre: document.getElementById("nombre").value,
+        direccion: document.getElementById("direccion").value,
+        nombreArchivo: document.getElementById("archivo").value.split('\\').pop(),
+        archivo: document.getElementById("archivo").files[0]
+    },
     {
-        headers:{
-            "Content-Type": "multipart/form-data"
+        headers: {
+            'Accept': 'application/json',
+            'Content-Type': 'multipart/form-data'
         }
-    }
-    ).then((response)=>{
-        console.log(response.data);
-    }).catch((error)=>{
+    })
+    .then(function (response) {
+        console.log(response);
+    }).catch(function (error) {
         console.log(error);
     });
-}
 
-
-
-
-
-
-
-var user;
-var password;
-
-function registroUsuarios(){
-    user = document.getElementById("user").value;
-    password = document.getElementById("password").value;
-    axios.post("http://localhost:5132/auth/registroUsuarios",
-    {
-        nombrePersona: document.getElementById("nombre").value,
-        apPaternoPersona: document.getElementById("apPaterno").value,
-        apMaternoPersona: document.getElementById("apMaterno").value,
-        fechaNacPersona: document.getElementById("fechaNac").value,
-        mailPersona: document.getElementById("mail").value,
-        ciPersona: document.getElementById("ci").value,
-        direccionPersona: document.getElementById("direccion").value,
-        userPersona: user,
-        passwordPersona: password,
-    },{
-        headers:{
-            "Content-Type": "application/json"
-        }
-    }
-    ).then((response)=>{
-        login(user, password)
-        console.log(response.data);
-    }).catch((error)=>{
-        console.log(error);
-    });
-}
-
-function login(user, password){
-    axios.post("http://localhost:5132/auth/login",
-    {
-        userPersona: user,
-        passwordPersona: password
-    }
-    ).then((response)=>{
-        localStorage.setItem("token", response.data);
-        if(response.data != ""){
-            window.location.href = "../Feed/resultado-final/index.html";
-        }
-    }).catch((error)=>{
-        console.log(error);
-    });
 }

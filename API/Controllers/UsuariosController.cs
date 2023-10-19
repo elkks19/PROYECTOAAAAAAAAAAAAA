@@ -50,11 +50,11 @@ namespace API.Controllers
         [HttpPatch]
         public async Task<IActionResult> ChangePassword([FromBody] PasswordRequest request, [FromRoute] string cod)
         {
-            if(request.oldPassword == null)
+            if (request.oldPassword == null)
             {
                 return BadRequest("Falta el password antiguo");
             }
-            if(request.newPassword == null)
+            if (request.newPassword == null)
             {
                 return BadRequest("Falta el password nuevo");
             }
@@ -63,7 +63,7 @@ namespace API.Controllers
             {
                 var persona = usuario.Persona;
                 var correctPassword = Crypto.VerifyHashedPassword(persona.passwordPersona, request.oldPassword);
-                
+
                 if (correctPassword)
                 {
                     persona.passwordPersona = Crypto.HashPassword(request.newPassword);
@@ -74,6 +74,29 @@ namespace API.Controllers
                 return BadRequest("Contraseña equivocada");
             }
             return BadRequest("No se encontro el usuario");
+        }
+
+
+        [HttpPatch]
+        public async Task<IActionResult> Edit([FromBody] Persona request, [FromRoute] string cod)
+        {
+            var usuario = db.Usuarios.Include(x => x.Persona).FirstOrDefault(x => x.codUsuario.Equals(cod));
+            if (usuario != null)
+            {
+                var persona = usuario.Persona;
+                if (request.nombrePersona != null) { persona.nombrePersona = request.nombrePersona; }
+                if (request.apPaternoPersona != null) { persona.apPaternoPersona = request.apPaternoPersona; }
+                if (request.apMaternoPersona != null) { persona.apMaternoPersona = request.apMaternoPersona; }
+                if (request.fechaNacPersona != null) { persona.fechaNacPersona = request.fechaNacPersona; }
+                if (request.mailPersona != null) { persona.mailPersona = request.mailPersona; }
+                if (request.ciPersona != null) { persona.ciPersona = request.ciPersona; }
+                if (request.direccionPersona != null) { persona.direccionPersona = request.direccionPersona; }
+                if (request.userPersona != null) { persona.userPersona = request.userPersona; }
+                db.Persona.Update(persona);
+                await db.SaveChangesAsync();
+                return Ok("El usuario se edito correctamente");
+            }
+            return NotFound("El usuario no se encontro");
         }
     }
 }

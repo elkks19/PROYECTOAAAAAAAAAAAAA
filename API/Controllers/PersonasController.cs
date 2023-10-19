@@ -23,45 +23,7 @@ namespace API.Controllers
             db = context;
         }
 
-        [HttpGet]
-        public async Task<IActionResult> Details(string cod)
-        {
-            var persona = db.Persona.Where(x => x.codPersona.Equals(cod)).FirstOrDefault();
-            if (persona != null)
-            {
-                return Ok(new
-                {
-                    userPersona = persona.userPersona,
-                    nombrePersona = persona.nombrePersona,
-                    apellidosPersona = persona.apPaternoPersona + " " + persona.apMaternoPersona,
-                    mailPersona = persona.mailPersona,
-                    fechaNacPersona = persona.fechaNacPersona.ToString("yyyy-MM-dd"),
-                    direccionPersona = persona.direccionPersona
-                });
-            }
-            return BadRequest("No se encontro al usuario");
-        }
 
-        [HttpPatch]
-        public async Task<IActionResult> Edit([FromBody] Persona request, [FromRoute] string cod)
-        {
-            var persona = db.Persona.Where(x => x.codPersona.Equals(cod)).FirstOrDefault();
-            if (persona != null)
-            {
-                if (request.nombrePersona != null) { persona.nombrePersona = request.nombrePersona; }
-                if (request.apPaternoPersona != null) { persona.apPaternoPersona = request.apPaternoPersona; }
-                if (request.apMaternoPersona != null) { persona.apMaternoPersona = request.apMaternoPersona; }
-                if (request.fechaNacPersona != null) { persona.fechaNacPersona = request.fechaNacPersona; }
-                if (request.mailPersona != null) { persona.mailPersona = request.mailPersona; }
-                if (request.ciPersona != null) { persona.ciPersona = request.ciPersona; }
-                if (request.direccionPersona != null) { persona.direccionPersona = request.direccionPersona; }
-                if (request.userPersona != null) { persona.userPersona = request.userPersona; }
-                db.Persona.Update(persona);
-                await db.SaveChangesAsync();
-                return Ok("El usuario se edito correctamente");
-            }
-            return NotFound("El usuario no se encontro");
-        }
 
 
 

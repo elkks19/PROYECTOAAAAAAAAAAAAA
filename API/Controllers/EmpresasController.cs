@@ -7,157 +7,71 @@ using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
 using API.Data;
 using API.Models;
+using Microsoft.AspNetCore.Cors;
 
 namespace API.Controllers
 {
     public class EmpresasController : Controller
     {
-        private readonly APIContext _context;
+        private readonly APIContext db;
+        private readonly IWebHostEnvironment env;
 
-        public EmpresasController(APIContext context)
+        public EmpresasController(APIContext context, IWebHostEnvironment environment)
         {
-            _context = context;
+            db = context;
+            env = environment;
         }
 
-        // GET: Empresas
-        public async Task<IActionResult> Index()
+        public class EmpresaRequest
         {
-              return _context.Empresa != null ? 
-                          View(await _context.Empresa.ToListAsync()) :
-                          Problem("Entity set 'APIContext.Empresa'  is null.");
+            public string nombre { get; set; }
+            public string direccion { get; set; }
+            public string nombreArchivo { get; set; }
         }
-
-        // GET: Empresas/Details/5
-        public async Task<IActionResult> Details(string id)
-        {
-            if (id == null || _context.Empresa == null)
-            {
-                return NotFound();
-            }
-
-            var empresa = await _context.Empresa
-                .FirstOrDefaultAsync(m => m.codEmpresa == id);
-            if (empresa == null)
-            {
-                return NotFound();
-            }
-
-            return View(empresa);
-        }
-
-        // GET: Empresas/Create
-        public IActionResult Create()
-        {
-            return View();
-        }
-
-        // POST: Empresas/Create
-        // To protect from overposting attacks, enable the specific properties you want to bind to.
-        // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
+        
         [HttpPost]
-        [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create([Bind("codEmpresa,nombreEmpresa,direccionEmpresa,createdAt,lastUpdate")] Empresa empresa)
+        public async Task<IActionResult> Create(EmpresaRequest request)
         {
-            if (ModelState.IsValid)
-            {
-                _context.Add(empresa);
-                await _context.SaveChangesAsync();
-                return RedirectToAction(nameof(Index));
-            }
-            return View(empresa);
-        }
+            IFormFile archivo = Request.Form.Files.FirstOrDefault();
 
-        // GET: Empresas/Edit/5
-        public async Task<IActionResult> Edit(string id)
-        {
-            if (id == null || _context.Empresa == null)
+            string dir = env.ContentRootPath + "/ArchivosVerificacion";
+
+            if(!Directory.Exists(dir))
             {
-                return NotFound();
+                Directory.CreateDirectory(dir);
             }
 
-            var empresa = await _context.Empresa.FindAsync(id);
-            if (empresa == null)
-            {
-                return NotFound();
-            }
-            return View(empresa);
-        }
+            string path = dir + "/" + request.nombre + "/" + archivo.FileName;
 
-        // POST: Empresas/Edit/5
-        // To protect from overposting attacks, enable the specific properties you want to bind to.
-        // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
-        [HttpPost]
-        [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Edit(string id, [Bind("codEmpresa,nombreEmpresa,direccionEmpresa,createdAt,lastUpdate")] Empresa empresa)
-        {
-            if (id != empresa.codEmpresa)
+            if(!Directory.Exists(dir + "/" + request.nombre))
             {
-                return NotFound();
-            }
-
-            if (ModelState.IsValid)
-            {
-                try
+                Directory.CreateDirectory(dir + "/" + request.nombre);
+                if(archivo.Length > 0)
                 {
-                    _context.Update(empresa);
-                    await _context.SaveChangesAsync();
-                }
-                catch (DbUpdateConcurrencyException)
-                {
-                    if (!EmpresaExists(empresa.codEmpresa))
+                    if (!System.IO.File.Exists(path))
                     {
-                        return NotFound();
+                        var diskFile = System.IO.File.Create(path);
+                        await archivo.CopyToAsync(diskFile);
+                        diskFile.Close();
                     }
                     else
                     {
-                        throw;
+                        return BadRequest("El archivo ya existe");
                     }
                 }
-                return RedirectToAction(nameof(Index));
             }
-            return View(empresa);
-        }
 
-        // GET: Empresas/Delete/5
-        public async Task<IActionResult> Delete(string id)
-        {
-            if (id == null || _context.Empresa == null)
+            var cantEmpresas = db.Empresa.Count() + 1;
+            Empresa empresa = new Empresa()
             {
-                return NotFound();
-            }
-
-            var empresa = await _context.Empresa
-                .FirstOrDefaultAsync(m => m.codEmpresa == id);
-            if (empresa == null)
-            {
-                return NotFound();
-            }
-
-            return View(empresa);
-        }
-
-        // POST: Empresas/Delete/5
-        [HttpPost, ActionName("Delete")]
-        [ValidateAntiForgeryToken]
-        public async Task<IActionResult> DeleteConfirmed(string id)
-        {
-            if (_context.Empresa == null)
-            {
-                return Problem("Entity set 'APIContext.Empresa'  is null.");
-            }
-            var empresa = await _context.Empresa.FindAsync(id);
-            if (empresa != null)
-            {
-                _context.Empresa.Remove(empresa);
-            }
-            
-            await _context.SaveChangesAsync();
-            return RedirectToAction(nameof(Index));
-        }
-
-        private bool EmpresaExists(string id)
-        {
-          return (_context.Empresa?.Any(e => e.codEmpresa == id)).GetValueOrDefault();
+                codEmpresa = "EMP-" + cantEmpresas.ToString("000"),
+                nombreEmpresa = request.nombre,
+                direccionEmpresa = request.direccion,
+                archivoVerificacionEmpresa = path
+            };
+            await db.Empresa.AddAsync(empresa);
+            await db.SaveChangesAsync();
+            return Ok("Empresa creada correctamente");
         }
     }
 }

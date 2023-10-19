@@ -58,6 +58,23 @@ function actualizarDatosUsuario(){
     }
 }
 
+function actualizarRecibo(){
+    axios.patch('http://localhost:5132/Usuarios/Edit/' + localStorage.getItem("codUsuario"),
+    {
+        direccionPersona: document.getElementById("direccion").value
+    },
+    {
+        headers:{
+            "Content-Type": "application/json"
+        }
+    }).then((response)=>{
+        console.log(response.data);
+        alert("Datos actualizados");
+    }).catch((error)=>{
+        console.log(error);
+    });
+}
+
 
 function actualizarCuenta(){
     axios.patch('http://localhost:5132/Usuarios/Edit/' + localStorage.getItem("codUsuario"),
@@ -92,7 +109,6 @@ function actualizarContrasena(){
     else{
         axios.patch('http://localhost:5132/Usuarios/ChangePassword/' + localStorage.getItem("codUsuario"),
         {
-            codPersona: localStorage.getItem("codUsuario"),
             oldPassword: oldPass,
             newPassword: newPass,
         },

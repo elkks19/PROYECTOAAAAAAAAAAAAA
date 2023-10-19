@@ -1,7 +1,6 @@
 ﻿using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 using System.Data;
-using System.Security.Cryptography.X509Certificates;
 
 namespace API.Models
 {
@@ -20,6 +19,9 @@ namespace API.Models
         [MaxLength(50)]
         [Required]
         public string direccionEmpresa { get; set; }
+
+        [Required]
+        public string archivoVerificacionEmpresa { get; set; }
         [Required]
         [DataType(DataType.Date)]
         public DateTime createdAt { get; set; }
@@ -28,6 +30,12 @@ namespace API.Models
         public DateTime lastUpdate { get; set; }
         public ICollection<Personal_Empresa> Personal { get; set; }
         public ICollection<Producto> Productos { get; set; }
+
+        public Empresa()
+        {
+            createdAt = DateTime.Now;
+            Update();
+        }
 
         public void Update()
         {
