@@ -1,5 +1,5 @@
 ﻿let methodNumber = "account";
-localStorage.setItem("codUsuario", "USU-004");
+localStorage.setItem("codUsuario", "USU-001");
 
 function setToAccount(){
     methodNumber = "account";
@@ -19,6 +19,16 @@ function setToNotifications(){
 }
 
 function cargarDatosUsuario(){
+    //descarga la foto
+    axios.get('http://localhost:5132/Usuarios/GetFoto/' + localStorage.getItem("codUsuario"),
+    ).then((response)=>{
+        console.log(response.data);
+        document.getElementById("foto").src = response.data;
+    }).catch((error)=>{
+        console.log(error);
+    });
+
+    //descarga el resto de datos y los pone en sus respectivos cuadritos
     axios.get('http://localhost:5132/Usuarios/Details/' + localStorage.getItem("codUsuario"),
     {
         headers:{

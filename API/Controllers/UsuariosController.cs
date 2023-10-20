@@ -15,9 +15,11 @@ namespace API.Controllers
     public class UsuariosController : Controller
     {
         private readonly APIContext db;
-        public UsuariosController(APIContext context)
+        private readonly IWebHostEnvironment env;
+        public UsuariosController(APIContext context, IWebHostEnvironment environment)
         {
             db = context;
+            env = environment;
         }
 
         [HttpGet]
@@ -27,6 +29,7 @@ namespace API.Controllers
             if (usuario != null)
             {
                 var persona = usuario.Persona;
+                //var uri = new Uri(Uri.EscapeUriString(usuario.pathFotoUsuario.Replace(Path.DirectorySeparatorChar, '/'))).AbsoluteUri;
                 return Ok(new
                 {
                     userPersona = persona.userPersona,
@@ -38,6 +41,20 @@ namespace API.Controllers
                 });
             }
             return BadRequest("No se encontro al usuario");
+        }
+
+        [HttpGet]
+        public async Task<IActionResult> GetFoto(string cod)
+        {
+            var usuario = await db.Usuarios.FirstOrDefaultAsync(x => x.codUsuario.Equals(cod));
+            if (usuario != null)
+            {
+                //var b = System.IO.File.ReadAllBytes(usuario.pathFotoUsuario);
+                //return Ok(Convert.ToBase64String(b));
+                //return File(b, "image/jpeg");
+                return Ok(usuario.pathFotoUsuario.ToString());
+            }
+            return BadRequest("Usuario no encontrado");
         }
 
 
@@ -80,6 +97,30 @@ namespace API.Controllers
         [HttpPatch]
         public async Task<IActionResult> Edit([FromBody] Persona request, [FromRoute] string cod)
         {
+            //IFormFile img = Request.Form.Files.FirstOrDefault();
+            //string dir = env.ContentRootPath + "/Imagenes";
+
+            //if (!Directory.Exists(dir))
+            //{
+            //    Directory.CreateDirectory(dir);
+            //}
+
+            //string path = dir + "/" + cod + "/" + img.FileName;
+            //if (!Directory.Exists($"{dir}\\{cod}"))
+            //{
+            //    Directory.CreateDirectory($"{dir}\\{img.FileName}");
+            //    if (img.Length > 0)
+            //    {
+            //        if (!System.IO.File.Exists(path))
+            //        {
+            //            var diskImg = System.IO.File.Create(path);
+            //            await img.CopyToAsync(diskImg);
+            //            diskImg.Close();
+            //        }
+            //    }
+            //}
+
+
             var usuario = db.Usuarios.Include(x => x.Persona).FirstOrDefault(x => x.codUsuario.Equals(cod));
             if (usuario != null)
             {
