@@ -64,17 +64,23 @@ namespace API.Controllers
         [HttpPost]
         public IActionResult Login([FromBody] PersonaLogin persona)
         {
-            var per = db.Persona.Where(b => b.userPersona.Equals(persona.userPersona)).FirstOrDefault();
+            var per = db.Persona.Include(x => x.Usuario).FirstOrDefault(b => b.userPersona.Equals(persona.userPersona));
 
             if (per != null)
             {
                 bool usuarioExists = Crypto.VerifyHashedPassword(per.passwordPersona, persona.passwordPersona);
 
+                var usuario = per.Usuario; 
+
                 if (usuarioExists)
                 {
-                    string token = CrearToken(per);
+                    string tok = CrearToken(per);
 
-                    return Ok(token);
+                    return Ok(new
+                    {
+                        token = tok,
+                        codUsu = usuario.codUsuario
+                    });
                 }
                 else
                 {

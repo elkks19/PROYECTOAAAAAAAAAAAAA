@@ -1,5 +1,4 @@
 ﻿let methodNumber = "account";
-localStorage.setItem("codUsuario", "USU-001");
 
 function setToAccount(){
     methodNumber = "account";

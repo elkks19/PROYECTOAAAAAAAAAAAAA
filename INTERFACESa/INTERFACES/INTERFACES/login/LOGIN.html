@@ -80,7 +80,8 @@
                                 passwordPersona: document.getElementById("password").value
                             }
                             ).then((response)=>{
-                                localStorage.setItem("token", response.data);
+                                localStorage.setItem("token", response.data.token);
+                                localStorage.setItem("codUsuario", response.data.codUsu);
                                 if(response.data != ""){
                                     window.location.href = "../Feed/resultado-final/index.html";
                                 }

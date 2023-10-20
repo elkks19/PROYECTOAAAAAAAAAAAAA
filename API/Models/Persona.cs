@@ -57,11 +57,11 @@ namespace API.Models
         public DateTime lastUpdate { get; set; }
 
         [JsonIgnore]
-        public ICollection<Usuario> Usuarios { get; set; }
+        public Usuario Usuario { get; set; }
         [JsonIgnore]
-        public ICollection<Administrador> Administradores { get; set; }
+        public Administrador Administrador { get; set; }
         [JsonIgnore]
-        public ICollection<Personal_Empresa> Personal_Empresas { get; set; }
+        public Personal_Empresa Personal_Empresa { get; set; }
         [JsonIgnore]
         public ICollection<Comentario> Comentarios { get; set; }
         [JsonIgnore]

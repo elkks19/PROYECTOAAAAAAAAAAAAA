@@ -60,8 +60,9 @@ function login(user, password){
         passwordPersona: password
     }
     ).then((response)=>{
-        localStorage.setItem("token", response.data);
-        if(response.data != ""){
+        if(response.data.token != "" && response.data.codUsu != ""){
+            localStorage.setItem("token", response.data.token);
+            localStorage.setItem("codUsuario", response.data.codUsu);
             window.location.href = "../Feed/resultado-final/index.html";
         }
     }).catch((error)=>{

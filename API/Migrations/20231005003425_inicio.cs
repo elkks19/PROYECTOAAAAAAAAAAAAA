@@ -30,6 +30,7 @@ namespace API.Migrations
                     codEmpresa = table.Column<string>(type: "nvarchar(10)", maxLength: 10, nullable: false),
                     nombreEmpresa = table.Column<string>(type: "nvarchar(50)", maxLength: 50, nullable: false),
                     direccionEmpresa = table.Column<string>(type: "nvarchar(50)", maxLength: 50, nullable: false),
+                    archivoVerificacionEmpresa = table.Column<string>(type: "nvarchar(max)",  nullable: false),
                     createdAt = table.Column<DateTime>(type: "datetime2", nullable: false),
                     lastUpdate = table.Column<DateTime>(type: "datetime2", nullable: false)
                 },
