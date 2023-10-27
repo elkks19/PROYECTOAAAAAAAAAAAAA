@@ -1,18 +1,18 @@
 ﻿function myFunction() {
     var x = document.getElementById("password");
-    // var x2 = document.getElementById("myInput2");
+    var x2 = document.getElementById("password2");
     var y = document.getElementById("hide1");
     var z = document.getElementById("hide2");
 
     if (x.type === 'password') {
         x.type = "text";
-        // x2.type = "text";
+        x2.type = "text";
         y.style.display = "block";
         z.style.display = "none";
     }
     else {
         x.type = "password";
-        // x2.type = "password";
+        x2.type = "password";
         y.style.display = "none";
         z.style.display = "block";
     }
@@ -32,11 +32,8 @@ function registroUsuarios(){
     axios.post("http://localhost:5132/auth/registroUsuarios",
     {
         nombrePersona: document.getElementById("nombre").value,
-        apPaternoPersona: document.getElementById("apPaterno").value,
-        apMaternoPersona: document.getElementById("apMaterno").value,
         fechaNacPersona: document.getElementById("fechaNac").value,
         mailPersona: document.getElementById("mail").value,
-        ciPersona: document.getElementById("ci").value,
         direccionPersona: document.getElementById("direccion").value,
         userPersona: user,
         passwordPersona: password,
@@ -47,7 +44,6 @@ function registroUsuarios(){
     }
     ).then((response)=>{
         login(user, password)
-        console.log(response.data);
     }).catch((error)=>{
         console.log(error);
     });
@@ -60,7 +56,7 @@ function login(user, password){
         passwordPersona: password
     }
     ).then((response)=>{
-        if(response.data.token != "" && response.data.codUsu != ""){
+        if(response.data.token != null && response.data.codUsu != null){
             localStorage.setItem("token", response.data.token);
             localStorage.setItem("codUsuario", response.data.codUsu);
             window.location.href = "../Feed/resultado-final/index.html";
@@ -69,3 +65,4 @@ function login(user, password){
         console.log(error);
     });
 }
+

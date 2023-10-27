@@ -73,5 +73,17 @@ namespace API.Controllers
             await db.SaveChangesAsync();
             return Ok("Empresa creada correctamente");
         }
+
+        [HttpGet]
+        public async Task<IActionResult> ReportePrueba()
+        {
+            var client = new HttpClient();
+            var uri = Environment.GetEnvironmentVariable("RUTA_REPORTES");
+            var response = await client.GetAsync($"{uri}/prueba/prueba");
+
+            Stream a = await response.Content.ReadAsStreamAsync();
+
+            return File(a, "application/pdf");
+        }
     }
 }

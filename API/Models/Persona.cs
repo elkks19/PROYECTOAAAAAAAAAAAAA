@@ -13,17 +13,15 @@ namespace API.Models
         [Required]
         public string codPersona { get; set; }
 
-        [MaxLength(20)]
+        [Required]
+        public string userPersona { get; set; }
+
+        [Required]
+        public string passwordPersona { get; set; }
+
+        [MaxLength(70)]
         [Required]
         public string nombrePersona { get; set; }
-
-        [MaxLength(20)]
-        [Required]
-        public string apPaternoPersona { get; set; }
-
-        [MaxLength(20)]
-        [Required]
-        public string apMaternoPersona { get; set; }
 
         [DataType(DataType.Date)]
         [Required]
@@ -33,18 +31,8 @@ namespace API.Models
         [Required]
         public string mailPersona { get; set; }
 
-        [MaxLength(10)]
-        [Required]
-        public string ciPersona { get; set; }
-
         [MaxLength(50)]
         public string direccionPersona { get; set; }
-
-        [Required]
-        public string userPersona { get; set; }
-
-        [Required]
-        public string passwordPersona { get; set; }
 
         [Required]
         [DataType(DataType.Date)]
@@ -64,6 +52,7 @@ namespace API.Models
         public Personal_Empresa Personal_Empresa { get; set; }
         [JsonIgnore]
         public ICollection<Comentario> Comentarios { get; set; }
+
         [JsonIgnore]
         public TokenGuardado Token { get; set; }
         public Persona()

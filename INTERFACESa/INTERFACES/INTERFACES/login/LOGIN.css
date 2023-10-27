@@ -11,13 +11,27 @@
     src: url('../../tipografias/hanken-light.ttf') format('truetype');
 }
 
+.loginInput{
+    display: grid;
+    height: 60px;
+    margin-bottom: 12px;
+    margin-top: 0px;
+}
+
+.loginInput .error{
+    color: #ad0209;
+    font-size: 12px;
+    margin-top: 2px;
+    visibility: hidden;
+}
+
 body {
     background: #2A2A2A;
-    
     display: flex;
     justify-content: center;
     align-items: center;
     height: 100vh;
+    margin: 0;
     font-family: 'Hanken-Book',sans-serif;
 }
 /*scrollbar ESTILO INICIO*/
@@ -142,7 +156,7 @@ img {
 }
 
 form {
-    height: 380px;
+    height: 400px;
     width: 250px;
     padding: 3em;
     border-radius: 20px;
@@ -171,12 +185,13 @@ h1 {
 }
 
 input {
+    height: 18px;
     background: transparent;
-    width: 220px;
-    font-size: 0.9rem;
+    width: 240px;
+    font-size: 1rem;
     color: #F0E6DA;
     padding: 1em;
-    margin-bottom: 0.5em;
+    margin-bottom: 0.1em;
     font-weight: 500;
     border: none;
     border-radius: 50px;
@@ -186,13 +201,7 @@ input {
     input::placeholder {
         color: #C1BCBC;
     }
-
-    input[type="email"]:focus {
-        box-shadow: 2px 2px 40px 5px #6E6B6B;
-        outline: none;
-    }
-
-    input[type="password"]:focus {
+    input:focus {
         box-shadow: 2px 2px 40px 5px #6E6B6B;
         outline: none;
     }
@@ -212,11 +221,9 @@ input {
     display: flex;
     flex-direction: row;
     align-items: flex-start;
-    gap: 70px;
+    gap: 80px;
     justify-content: stretch;
-    padding-right: 20px;
     padding-left: 20px;
-    margin-bottom: 0.5em;
 }
 
     .flex-row > div > label {

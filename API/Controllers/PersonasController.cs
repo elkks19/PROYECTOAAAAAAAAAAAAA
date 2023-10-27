@@ -22,10 +22,5 @@ namespace API.Controllers
         {
             db = context;
         }
-
-
-
-
-
     }
 }

@@ -35,7 +35,8 @@ namespace API.Migrations
 
                     b.HasKey("codAdmin");
 
-                    b.HasIndex("codPersona");
+                    b.HasIndex("codPersona")
+                        .IsUnique();
 
                     b.ToTable("Administradores");
                 });
@@ -289,21 +290,6 @@ namespace API.Migrations
                         .HasMaxLength(10)
                         .HasColumnType("nvarchar(10)");
 
-                    b.Property<string>("apMaternoPersona")
-                        .IsRequired()
-                        .HasMaxLength(20)
-                        .HasColumnType("nvarchar(20)");
-
-                    b.Property<string>("apPaternoPersona")
-                        .IsRequired()
-                        .HasMaxLength(20)
-                        .HasColumnType("nvarchar(20)");
-
-                    b.Property<string>("ciPersona")
-                        .IsRequired()
-                        .HasMaxLength(10)
-                        .HasColumnType("nvarchar(10)");
-
                     b.Property<DateTime>("createdAt")
                         .HasColumnType("datetime2");
 
@@ -324,8 +310,8 @@ namespace API.Migrations
 
                     b.Property<string>("nombrePersona")
                         .IsRequired()
-                        .HasMaxLength(20)
-                        .HasColumnType("nvarchar(20)");
+                        .HasMaxLength(70)
+                        .HasColumnType("nvarchar(70)");
 
                     b.Property<string>("passwordPersona")
                         .IsRequired()
@@ -360,7 +346,8 @@ namespace API.Migrations
 
                     b.HasIndex("codEmpresa");
 
-                    b.HasIndex("codPersona");
+                    b.HasIndex("codPersona")
+                        .IsUnique();
 
                     b.ToTable("Personal_Empresa");
                 });
@@ -515,7 +502,8 @@ namespace API.Migrations
 
                     b.HasKey("codUsuario");
 
-                    b.HasIndex("codPersona");
+                    b.HasIndex("codPersona")
+                        .IsUnique();
 
                     b.ToTable("Usuarios");
                 });
@@ -541,8 +529,8 @@ namespace API.Migrations
             modelBuilder.Entity("API.Models.Administrador", b =>
                 {
                     b.HasOne("API.Models.Persona", "Persona")
-                        .WithMany("Administradores")
-                        .HasForeignKey("codPersona")
+                        .WithOne("Administrador")
+                        .HasForeignKey("API.Models.Administrador", "codPersona")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
@@ -691,8 +679,8 @@ namespace API.Migrations
                         .IsRequired();
 
                     b.HasOne("API.Models.Persona", "Persona")
-                        .WithMany("Personal_Empresas")
-                        .HasForeignKey("codPersona")
+                        .WithOne("Personal_Empresa")
+                        .HasForeignKey("API.Models.Personal_Empresa", "codPersona")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
@@ -760,8 +748,8 @@ namespace API.Migrations
             modelBuilder.Entity("API.Models.Usuario", b =>
                 {
                     b.HasOne("API.Models.Persona", "Persona")
-                        .WithMany("Usuarios")
-                        .HasForeignKey("codPersona")
+                        .WithOne("Usuario")
+                        .HasForeignKey("API.Models.Usuario", "codPersona")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
@@ -805,16 +793,19 @@ namespace API.Migrations
 
             modelBuilder.Entity("API.Models.Persona", b =>
                 {
-                    b.Navigation("Administradores");
+                    b.Navigation("Administrador")
+                        .IsRequired();
 
                     b.Navigation("Comentarios");
 
-                    b.Navigation("Personal_Empresas");
+                    b.Navigation("Personal_Empresa")
+                        .IsRequired();
 
                     b.Navigation("Token")
                         .IsRequired();
 
-                    b.Navigation("Usuarios");
+                    b.Navigation("Usuario")
+                        .IsRequired();
                 });
 
             modelBuilder.Entity("API.Models.Producto", b =>

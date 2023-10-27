@@ -29,11 +29,8 @@ namespace API.Controllers
                 {
                     codPersona = "PER-" + (cant + 1).ToString("000"),
                     nombrePersona = model.nombrePersona,
-                    apPaternoPersona = model.apPaternoPersona,
-                    apMaternoPersona = model.apMaternoPersona,
                     fechaNacPersona = model.fechaNacPersona,
                     mailPersona = model.mailPersona,
-                    ciPersona = model.ciPersona,
                     direccionPersona = model.direccionPersona,
                     userPersona = model.userPersona,
                     passwordPersona = Crypto.HashPassword(model.passwordPersona),

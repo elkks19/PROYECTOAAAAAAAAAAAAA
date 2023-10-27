@@ -10,13 +10,16 @@
     font-family: 'hanken-light';
     src: url('../../tipografias/hanken-light.ttf') format('truetype');
 }
+
+.form-value{
+    height: 50px;
+}
+
 body {
     background: #2A2A2A;
-    
     display: flex;
     justify-content: center;
     align-items: center;
-    height: 100vh;
     font-family: 'Hanken-Book',sans-serif;
 }
 
@@ -142,9 +145,9 @@ img {
 }
 
 form {
-    height: 670px;
+    height: 750px;
     width: 280px;
-    margin-top: 200px;
+    margin-top: 35px;
     padding: 3em;
     border-radius: 20px;
     background: rgba(285,286,256,0.3);
@@ -174,6 +177,7 @@ h1 {
 input {
     background: transparent;
     width: 220px;
+    height: 18px;
     font-size: 0.9rem;
     color: #F0E6DA;
     padding: 1em;
@@ -188,12 +192,7 @@ input {
         color: #C1BCBC;
     }
 
-    input[type="email"]:focus {
-        box-shadow: 2px 2px 40px 5px #6E6B6B;
-        outline: none;
-    }
-
-    input[type="password"]:focus {
+    input:focus {
         box-shadow: 2px 2px 40px 5px #6E6B6B;
         outline: none;
     }
@@ -201,6 +200,11 @@ input {
 /*OJO INICIO*/
 .eye {
     padding-left: 190px;
+    height: 18px;
+}
+
+.eye:hover {
+    cursor: pointer;
 }
 
 #hide1 {
@@ -283,8 +287,6 @@ a {
 /*CHECKBOX FIN*/
 
 /*BOTON DE INGRESA INICIO*/
-
-
  .button {
     --bg: #FFFCED;
     --hover-bg: #D9A714;
@@ -298,6 +300,7 @@ a {
         transform: translate(-0.25rem,-0.25rem);
         background: var(--hover-bg);
         box-shadow: 0.25rem 0.25rem #2A2A2A;
+        cursor: pointer;
     }
 
  .button:active {
@@ -311,5 +314,8 @@ a {
         color: #FFFCED;
         background-color: transparent;
         border: none;
+    }
+    .button a:hover{
+        cursor: pointer;
     }
 /*BOTON DE INGRESA FIN*/

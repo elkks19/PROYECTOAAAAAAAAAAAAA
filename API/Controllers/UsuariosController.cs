@@ -34,7 +34,6 @@ namespace API.Controllers
                 {
                     userPersona = persona.userPersona,
                     nombrePersona = persona.nombrePersona,
-                    apellidosPersona = persona.apPaternoPersona + " " + persona.apMaternoPersona,
                     mailPersona = persona.mailPersona,
                     fechaNacPersona = persona.fechaNacPersona.ToString("yyyy-MM-dd"),
                     direccionPersona = persona.direccionPersona
@@ -49,10 +48,8 @@ namespace API.Controllers
             var usuario = await db.Usuarios.FirstOrDefaultAsync(x => x.codUsuario.Equals(cod));
             if (usuario != null)
             {
-                //var b = System.IO.File.ReadAllBytes(usuario.pathFotoUsuario);
-                //return Ok(Convert.ToBase64String(b));
-                //return File(b, "image/jpeg");
-                return Ok(usuario.pathFotoUsuario.ToString());
+                var b = System.IO.File.ReadAllBytes(usuario.pathFotoUsuario);
+                return File(b, "image/jpeg");
             }
             return BadRequest("Usuario no encontrado");
         }
@@ -95,42 +92,55 @@ namespace API.Controllers
 
 
         [HttpPatch]
-        public async Task<IActionResult> Edit([FromBody] Persona request, [FromRoute] string cod)
+        public async Task<IActionResult> Edit(Persona request, [FromRoute] string cod)
         {
-            //IFormFile img = Request.Form.Files.FirstOrDefault();
-            //string dir = env.ContentRootPath + "/Imagenes";
-
-            //if (!Directory.Exists(dir))
-            //{
-            //    Directory.CreateDirectory(dir);
-            //}
-
-            //string path = dir + "/" + cod + "/" + img.FileName;
-            //if (!Directory.Exists($"{dir}\\{cod}"))
-            //{
-            //    Directory.CreateDirectory($"{dir}\\{img.FileName}");
-            //    if (img.Length > 0)
-            //    {
-            //        if (!System.IO.File.Exists(path))
-            //        {
-            //            var diskImg = System.IO.File.Create(path);
-            //            await img.CopyToAsync(diskImg);
-            //            diskImg.Close();
-            //        }
-            //    }
-            //}
-
+            IFormFile img = Request.Form.Files.FirstOrDefault();
 
             var usuario = db.Usuarios.Include(x => x.Persona).FirstOrDefault(x => x.codUsuario.Equals(cod));
+
             if (usuario != null)
             {
                 var persona = usuario.Persona;
+
+                if (img != null)
+                {
+                    // CREA EL DIRECTORIO IMAGENES SI NO EXISTE
+                    string dir = env.ContentRootPath + "\\Imagenes";
+                    if (!Directory.Exists(dir))
+                    {
+                        Directory.CreateDirectory(dir);
+                    }
+
+
+                    // CREA EL DIRECTORIO CON EL NOMBRE DEL USUARIO Y LA FOTO DE PERFIL
+
+
+                    string path = dir + "\\" + cod + "\\" + img.FileName;  
+                    if (!Directory.Exists($"{dir}\\{cod}"))
+                    {
+                        Directory.CreateDirectory($"{dir}\\{cod}");
+                    }
+
+                    if (img.Length > 0)
+                    {
+                        if (!System.IO.File.Exists(path))
+                        {
+                            var diskImg = System.IO.File.Create(path);
+                            await img.CopyToAsync(diskImg);
+                            usuario.pathFotoUsuario = path;
+                            diskImg.Close();
+                        }
+                        else
+                        {
+                            var diskImg = System.IO.File.Open(path, FileMode.Open);
+                            await img.CopyToAsync(diskImg);
+                            diskImg.Close();
+                        }
+                    }
+                }
                 if (request.nombrePersona != null) { persona.nombrePersona = request.nombrePersona; }
-                if (request.apPaternoPersona != null) { persona.apPaternoPersona = request.apPaternoPersona; }
-                if (request.apMaternoPersona != null) { persona.apMaternoPersona = request.apMaternoPersona; }
                 if (request.fechaNacPersona != null) { persona.fechaNacPersona = request.fechaNacPersona; }
                 if (request.mailPersona != null) { persona.mailPersona = request.mailPersona; }
-                if (request.ciPersona != null) { persona.ciPersona = request.ciPersona; }
                 if (request.direccionPersona != null) { persona.direccionPersona = request.direccionPersona; }
                 if (request.userPersona != null) { persona.userPersona = request.userPersona; }
                 db.Persona.Update(persona);

@@ -20,9 +20,11 @@ function setToNotifications(){
 function cargarDatosUsuario(){
     //descarga la foto
     axios.get('http://localhost:5132/Usuarios/GetFoto/' + localStorage.getItem("codUsuario"),
+    {
+        responseType: 'blob',
+    }
     ).then((response)=>{
-        console.log(response.data);
-        document.getElementById("foto").src = response.data;
+        document.getElementById("foto").setAttribute("src", window.URL.createObjectURL(response.data));
     }).catch((error)=>{
         console.log(error);
     });
@@ -31,7 +33,7 @@ function cargarDatosUsuario(){
     axios.get('http://localhost:5132/Usuarios/Details/' + localStorage.getItem("codUsuario"),
     {
         headers:{
-            "Content-Type": "application/json"
+            'Content-Type': 'multipart/form-data'
         }
     }).then((response)=>{
         document.getElementById("user").value = response.data.userPersona;
@@ -74,11 +76,12 @@ function actualizarRecibo(){
     },
     {
         headers:{
-            "Content-Type": "application/json"
+            'Accept': 'application/json',
+            'Content-Type': 'multipart/form-data'
         }
     }).then((response)=>{
         console.log(response.data);
-        alert("Datos actualizados");
+        cargarDatosUsuario();
     }).catch((error)=>{
         console.log(error);
     });
@@ -93,15 +96,17 @@ function actualizarCuenta(){
         apPaternoPersona: document.getElementById("apellidos").value.split(" ")[0],
         apMaternoPersona: document.getElementById("apellidos").value.split(" ")[1],
         fechaNacPersona: document.getElementById("fechaNac").value,
-        mailPersona: document.getElementById("mail").value
+        mailPersona: document.getElementById("mail").value,
+        img: document.getElementById("imagen").files[0]
     },
     {
         headers:{
-            "Content-Type": "application/json"
+            "Accept": "application/json",
+            "Content-Type": "multipart/form-data"
         }
     }).then((response)=>{
         console.log(response.data);
-        alert("Datos actualizados");
+        cargarDatosUsuario();
     }).catch((error)=>{
         console.log(error);
     });
@@ -127,7 +132,7 @@ function actualizarContrasena(){
             }
         }).then((response)=>{
             console.log(response.data);
-            alert("Contraseña actualizada");
+            cargarDatosUsuario();
         }).catch((error)=>{
             console.log(error);
         });
