@@ -3,12 +3,10 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
-using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
 using API.Data;
-using API.Models;
-using System.Text.Json;
 using System.Web.Helpers;
+using API.Atributos;
 
 namespace API.Controllers
 {
@@ -23,6 +21,7 @@ namespace API.Controllers
         }
 
         [HttpGet]
+        [Autorizado]
         public async Task<IActionResult> Details(string cod)
         {
             var usuario = db.Usuarios.Include(x => x.Persona).FirstOrDefault(x => x.codUsuario.Equals(cod));
@@ -36,7 +35,9 @@ namespace API.Controllers
                     nombrePersona = persona.nombrePersona,
                     mailPersona = persona.mailPersona,
                     fechaNacPersona = persona.fechaNacPersona.ToString("yyyy-MM-dd"),
-                    direccionPersona = persona.direccionPersona
+                    direccionPersona = persona.direccionPersona,
+                    celularPersona = persona.celularPersona,
+                    configUsuario = usuario.configUsuario
                 });
             }
             return BadRequest("No se encontro al usuario");
@@ -90,9 +91,20 @@ namespace API.Controllers
             return BadRequest("No se encontro el usuario");
         }
 
+        public class UserEditRequest
+        {
+            public string nombrePersona { get; set; }
+            public DateTime fechaNacPersona { get; set; }
+            public string mailPersona { get; set; }
+            public string direccionPersona { get; set; }
+            public string userPersona { get; set; }
+            public string celularPersona { get; set; }
+            public string configUsuario { get; set; }
+
+        }
 
         [HttpPatch]
-        public async Task<IActionResult> Edit(Persona request, [FromRoute] string cod)
+        public async Task<IActionResult> Edit(UserEditRequest request, [FromRoute] string cod)
         {
             IFormFile img = Request.Form.Files.FirstOrDefault();
 
@@ -113,8 +125,6 @@ namespace API.Controllers
 
 
                     // CREA EL DIRECTORIO CON EL NOMBRE DEL USUARIO Y LA FOTO DE PERFIL
-
-
                     string path = dir + "\\" + cod + "\\" + img.FileName;  
                     if (!Directory.Exists($"{dir}\\{cod}"))
                     {
@@ -134,16 +144,20 @@ namespace API.Controllers
                         {
                             var diskImg = System.IO.File.Open(path, FileMode.Open);
                             await img.CopyToAsync(diskImg);
+                            usuario.pathFotoUsuario = path;
                             diskImg.Close();
                         }
                     }
                 }
                 if (request.nombrePersona != null) { persona.nombrePersona = request.nombrePersona; }
-                if (request.fechaNacPersona != null) { persona.fechaNacPersona = request.fechaNacPersona; }
+                if (request.fechaNacPersona != DateTime.MinValue) { persona.fechaNacPersona = request.fechaNacPersona; }
                 if (request.mailPersona != null) { persona.mailPersona = request.mailPersona; }
                 if (request.direccionPersona != null) { persona.direccionPersona = request.direccionPersona; }
                 if (request.userPersona != null) { persona.userPersona = request.userPersona; }
+                if (request.celularPersona != null) { persona.celularPersona = request.celularPersona; }
+                if (request.configUsuario != null) { usuario.configUsuario = request.configUsuario; }
                 db.Persona.Update(persona);
+                persona.Update();
                 await db.SaveChangesAsync();
                 return Ok("El usuario se edito correctamente");
             }

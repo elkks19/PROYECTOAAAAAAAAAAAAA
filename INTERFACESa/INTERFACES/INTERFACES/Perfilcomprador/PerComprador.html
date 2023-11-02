@@ -54,19 +54,18 @@
                         <div class="tab-content">
                             <div class="tab-pane fade active show" id="account-general">
                                 <!--FOTO DE PERFIL INICIO-->
-                                <div class="card-body media align-items-center">
+                                <div class="card-body media align-items-center d-inline-flex">
                                     <img class="d-block ui-w-80" id="foto" src="">
 
                                     <div class="media-body ml-4">
                                         <label style="border-color: #2A2A2A; background: #BF9004 " class="btn btn-outline">
                                             Cambia tu foto
-                                            <form>
-                                                <input type="file" class="account-settings-fileinput" id="imagen">
-                                            </form>
-                                        </label> &nbsp;
+                                                <input type="file" class="account-settings-fileinput" id="imagen" onchange="nombreArchivo()">
+                                        </label>
 
                                         <div class="text-dark small mt-1 text">Permite archivos JPG y PNG</div>
                                     </div>
+                                    <label id="nombreArchivo" class="ml-3"></label>
                                 </div>
                                 <!--FOTO DE PERFIL FIN-->
                                 <hr class="border-light m-0">
@@ -79,10 +78,6 @@
                                     <div class="form-group">
                                         <label style="font-family:'Genera Grotesk';color:#BF9004" class="form-label">Nombre</label>
                                         <input type="text" class="form-control" id="nombres">
-                                    </div>
-                                    <div class="form-group">
-                                        <label style="font-family:'Genera Grotesk';color:#BF9004" class="form-label">Apellidos</label>
-                                        <input type="text" class="form-control" id="apellidos">
                                     </div>
                                     <div class="form-group">
                                         <label style="font-family:'Genera Grotesk';color:#BF9004" class="form-label">E-mail</label>
@@ -150,7 +145,7 @@
                                     <h6 style="font-family:'Genera Grotesk';color:#2A2A2A; font-size:25px" class="mb-4">Contactos</h6>
                                     <div class="form-group">
                                         <label style="font-family:'Genera Grotesk';color:#BF9004" class="form-label">Celular</label>
-                                        <input type="text" class="form-control" value="+591 60577712">
+                                        <input id="celular" type="text" class="form-control" value="+591 60577712">
                                     </div>
 
                                 </div>
@@ -162,12 +157,17 @@
 
                                     <div class="form-group">
                                         <label style="font-family:'Genera Grotesk';color:#BF9004" class="form-label">Facebook</label>
-                                        <input type="text" class="form-control" value="https://www.facebook.com/user">
+                                        <input type="url" class="form-control" id="facebook">
                                     </div>
 
                                     <div class="form-group">
                                         <label style="font-family:'Genera Grotesk';color:#BF9004" class="form-label">Instagram</label>
-                                        <input type="text" class="form-control" value="https://www.instagram.com/user">
+                                        <input type="url" class="form-control" id="instagram">
+                                    </div>
+
+                                    <div class="form-group">
+                                        <label style="font-family:'Genera Grotesk';color:#BF9004" class="form-label">Twitter</label>
+                                        <input type="url" class="form-control" id="twitter">
                                     </div>
                                 </div>
                             </div>
@@ -175,26 +175,13 @@
                             <!--NOTIFICACIONES INICIO-->
                             <div class="tab-pane fade" id="account-notifications">
                                 <div class="card-body pb-2">
-                                    <h6 style="font-family:'Genera Grotesk';color:#BF9004" class="mb-4">Actividad</h6>
-                                    <div class="form-group">
-                                        <label class="switcher">
-                                            <input type="checkbox" class="switcher-input " checked>
-                                            <span class="switcher-indicator">
-                                                <span class="switcher-yes"></span>
-                                                <span class="switcher-no"></span>
-                                            </span>
-                                            <span class="switcher-label">Mándame un email cuando olvide mis articulos del carrito</span>
-                                        </label>
-                                    </div>
-
-
                                 </div>
                                 <hr class="border-light m-0">
                                 <div class="card-body pb-2">
                                     <h6 style="font-family:'Genera Grotesk';color:#BF9004" class="mb-4">De la web</h6>
                                     <div class="form-group">
                                         <label class="switcher">
-                                            <input type="checkbox" class="switcher-input" checked>
+                                            <input type="checkbox" class="switcher-input" id="notificaciones">
                                             <span class="switcher-indicator">
                                                 <span class="switcher-yes"></span>
                                                 <span class="switcher-no"></span>

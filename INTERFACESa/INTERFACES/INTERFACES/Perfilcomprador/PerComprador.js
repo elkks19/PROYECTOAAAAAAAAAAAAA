@@ -1,5 +1,9 @@
 ﻿let methodNumber = "account";
+window.onload = cargarDatosUsuario;
 
+function nombreArchivo(){
+    document.getElementById("nombreArchivo").innerHTML = document.getElementById("imagen").files[0].name;
+}
 function setToAccount(){
     methodNumber = "account";
 }
@@ -9,15 +13,21 @@ function setToPassword(){
 function setToRecibo(){
     methodNumber = "recibo";
     document.getElementById("direccion").value = localStorage.getItem("direccion");
+    document.getElementById("celular").value = localStorage.getItem("celular");
 }
 function setToSocialMedia(){
     methodNumber = "socialMedia";
+    document.getElementById("facebook").value = JSON.parse(localStorage.getItem("configUsuario")).facebook;
+    document.getElementById("instagram").value = JSON.parse(localStorage.getItem("configUsuario")).instagram;
+    document.getElementById("twitter").value = JSON.parse(localStorage.getItem("configUsuario")).twitter;
 }
 function setToNotifications(){
     methodNumber = "notifications";
+    document.getElementById("notificaciones").checked = JSON.parse(localStorage.getItem("configUsuario")).notificaciones;
 }
 
 function cargarDatosUsuario(){
+    document.getElementById("nombreArchivo").innerHTML = ""
     //descarga la foto
     axios.get('http://localhost:5132/Usuarios/GetFoto/' + localStorage.getItem("codUsuario"),
     {
@@ -38,10 +48,11 @@ function cargarDatosUsuario(){
     }).then((response)=>{
         document.getElementById("user").value = response.data.userPersona;
         document.getElementById("nombres").value = response.data.nombrePersona;
-        document.getElementById("apellidos").value = response.data.apellidosPersona;
         document.getElementById("mail").value = response.data.mailPersona;
         document.getElementById("fechaNac").value = response.data.fechaNacPersona;
         localStorage.setItem("direccion", response.data.direccionPersona);
+        localStorage.setItem("celular", response.data.celularPersona);
+        localStorage.setItem("configUsuario", JSON.parse(response.data.configUsuario));
         console.log(response.data);
     }).catch((error)=>{
         console.log(error);
@@ -64,7 +75,7 @@ function actualizarDatosUsuario(){
             actualizarSocialMedia();
             break;
         case "notifications":
-            actualizarNotificaciones();
+            actualizarSocialMedia();
             break;
     }
 }
@@ -72,7 +83,8 @@ function actualizarDatosUsuario(){
 function actualizarRecibo(){
     axios.patch('http://localhost:5132/Usuarios/Edit/' + localStorage.getItem("codUsuario"),
     {
-        direccionPersona: document.getElementById("direccion").value
+        direccionPersona: document.getElementById("direccion").value,
+        celularPersona: document.getElementById("celular").value
     },
     {
         headers:{
@@ -93,8 +105,6 @@ function actualizarCuenta(){
     {
         userPersona: document.getElementById("user").value,
         nombrePersona: document.getElementById("nombres").value,
-        apPaternoPersona: document.getElementById("apellidos").value.split(" ")[0],
-        apMaternoPersona: document.getElementById("apellidos").value.split(" ")[1],
         fechaNacPersona: document.getElementById("fechaNac").value,
         mailPersona: document.getElementById("mail").value,
         img: document.getElementById("imagen").files[0]
@@ -140,4 +150,30 @@ function actualizarContrasena(){
 }
 
 
-window.onload = cargarDatosUsuario;
+function actualizarSocialMedia(){
+    localStorage.setItem("configUsuario", JSON.stringify({
+        facebook: document.getElementById("facebook").value,
+        instagram: document.getElementById("instagram").value,
+        twitter: document.getElementById("twitter").value,
+        notificaciones: document.getElementById("notificaciones").checked ? 1 : 0
+    }));
+
+    axios.patch('http://localhost:5132/Usuarios/Edit/' + localStorage.getItem("codUsuario"),
+    {
+        configUsuario : JSON.stringify(localStorage.getItem("configUsuario")),
+    },
+    {
+        headers:{
+            'Accept': 'application/json',
+            'Content-Type': 'multipart/form-data'
+        }
+    }).then((response)=>{
+        console.log(response.data);
+        cargarDatosUsuario();
+    }).catch((error)=>{
+        console.log(error);
+    });
+}
+
+
+

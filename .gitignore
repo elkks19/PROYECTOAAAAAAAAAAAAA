@@ -1,1 +1,2 @@
-	*.vsidx
+*.vsidx
+API/Program.cs

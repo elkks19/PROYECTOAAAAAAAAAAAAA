@@ -34,6 +34,10 @@ namespace API.Models
         [MaxLength(50)]
         public string direccionPersona { get; set; }
 
+        [StringLength(8)]
+        [Required]
+        public string celularPersona { get; set; }
+
         [Required]
         [DataType(DataType.Date)]
         [JsonIgnore]
