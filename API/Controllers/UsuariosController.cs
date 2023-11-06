@@ -10,6 +10,7 @@ using API.Atributos;
 
 namespace API.Controllers
 {
+    [Autorizado]
     public class UsuariosController : Controller
     {
         private readonly APIContext db;
@@ -21,14 +22,12 @@ namespace API.Controllers
         }
 
         [HttpGet]
-        [Autorizado]
         public async Task<IActionResult> Details(string cod)
         {
             var usuario = db.Usuarios.Include(x => x.Persona).FirstOrDefault(x => x.codUsuario.Equals(cod));
             if (usuario != null)
             {
                 var persona = usuario.Persona;
-                //var uri = new Uri(Uri.EscapeUriString(usuario.pathFotoUsuario.Replace(Path.DirectorySeparatorChar, '/'))).AbsoluteUri;
                 return Ok(new
                 {
                     userPersona = persona.userPersona,

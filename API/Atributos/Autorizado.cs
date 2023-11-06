@@ -1,33 +1,42 @@
 ﻿using API.Data;
-using Microsoft.AspNetCore.Components.Server.ProtectedBrowserStorage;
+using API.Models;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Filters;
-using System.ComponentModel.DataAnnotations;
+using Microsoft.EntityFrameworkCore;
 
 namespace API.Atributos
 {
     public class Autorizado : Attribute, IAuthorizationFilter
     {
         public APIContext db;
-        public Autorizado()
-        {
-            
-        }
         public void OnAuthorization(AuthorizationFilterContext context)
         {
-            if (!context.HttpContext.Request.Headers.ContainsKey("Authorization") || !context.HttpContext.Request.Headers.ContainsKey("codUsu"))
+            var token = context.HttpContext.Request.Headers["Authorization"];
+            var cod = context.HttpContext.Request.RouteValues["cod"].ToString().ToUpper();
+            if (token == "" || cod == null)
             {
                 context.Result = new UnauthorizedResult();
-                db = (APIContext)context.HttpContext.RequestServices.GetService(typeof(APIContext));
             }
             else
             {
-                var token = context.HttpContext.Request.Headers["Authorization"];
-                var tokenExists = db.TokenGuardado.FirstOrDefault(x => x.Token.Equals(token));
-                if (tokenExists == null)
+                db = (APIContext)context.HttpContext.RequestServices.GetService(typeof(APIContext));
+                var tokenDB = db.TokenGuardado.Include(x => x.Persona.Usuario).FirstOrDefault(x => x.Token.Equals(token));
+                Usuario usuario = null;
+                if(tokenDB != null)
+                {
+                    usuario = tokenDB.Persona.Usuario;
+                }
+                if (tokenDB == null || usuario == null)
                 {
                     context.Result = new UnauthorizedResult();
+                    return;
                 }
+                if(!usuario.codUsuario.Equals(cod))
+                {
+                    context.Result = new UnauthorizedResult();
+                    return;
+                }
+                return;
             }
         }
     }

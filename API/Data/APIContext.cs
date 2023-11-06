@@ -108,7 +108,19 @@ namespace API.Data
             modelBuilder.Entity<Persona>()
                 .HasOne(x => x.Token)
                 .WithOne(x => x.Persona);
+            modelBuilder.Entity<Persona>()
+                .HasOne(x => x.Usuario)
+                .WithOne(x => x.Persona);
+            modelBuilder.Entity<Persona>()
+                .HasOne(x => x.Personal_Empresa)
+                .WithOne(x => x.Persona);
+            modelBuilder.Entity<Persona>()
+                .HasOne(x => x.Administrador)
+                .WithOne(x => x.Persona);
 
+            modelBuilder.Entity<Usuario>()
+                .HasOne(x => x.Persona)
+                .WithOne(x => x.Usuario);
         }
 
 
