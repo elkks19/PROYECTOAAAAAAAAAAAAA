@@ -69,8 +69,23 @@ namespace API.Controllers
                 direccionEmpresa = request.direccion,
                 archivoVerificacionEmpresa = path
             };
+
+            Random rnd = new Random();
+            var admins = db.Administradores.ToList();
+            int randomAdmin = rnd.Next(admins.Count);
+
+            Lista_Espera_Empresa listaEspera = new Lista_Espera_Empresa()
+            {
+                Empresa = empresa,
+                codAdmin = admins[randomAdmin].codAdmin
+            };
+
+
+
+            await db.Lista_Espera_Empresa.AddAsync(listaEspera);
             await db.Empresa.AddAsync(empresa);
             await db.SaveChangesAsync();
+
             return Ok("Empresa creada correctamente");
         }
 
@@ -85,5 +100,6 @@ namespace API.Controllers
 
             return File(a, "application/pdf");
         }
+
     }
 }

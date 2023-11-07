@@ -29,7 +29,11 @@ namespace API.Models
         public string codAdmin { get; set; }
         [ForeignKey("codAdmin")]
         public Administrador Administrador { get; set; }
-
+        public Lista_Espera_Empresa()
+        {
+            isRevisado = false;
+            fechaSolicitudRevision = DateTime.Now;
+        }
         public void Revisado()
         {
             isRevisado = true;

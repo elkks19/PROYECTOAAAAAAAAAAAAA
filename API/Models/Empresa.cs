@@ -30,6 +30,7 @@ namespace API.Models
         public DateTime lastUpdate { get; set; }
         public ICollection<Personal_Empresa> Personal { get; set; }
         public ICollection<Producto> Productos { get; set; }
+        public Lista_Espera_Empresa ListaEspera { get; set; }
 
         public Empresa()
         {

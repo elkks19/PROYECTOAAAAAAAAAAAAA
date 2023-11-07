@@ -51,6 +51,10 @@ namespace API.Data
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
+            modelBuilder.Entity<Empresa>()
+                .HasMany(x => x.Personal)
+                .WithOne(x => x.Empresa);
+
             modelBuilder.Entity<Categorias_Por_Producto>()
                 .HasKey(x => new { x.codCategoria, x.codProducto });
 
@@ -76,8 +80,6 @@ namespace API.Data
             modelBuilder.Entity<Detalle_Orden>()
                 .HasKey(x => new { x.codOrden, x.codProducto });
 
-
-
             modelBuilder.Entity<Detalle_Wishlist>()
                 .HasKey(x => new { x.codWishlist, x.codProducto });
 
@@ -94,6 +96,14 @@ namespace API.Data
 
             modelBuilder.Entity<Lista_Espera_Empresa>()
                 .HasKey(x => new { x.codEmpresa, x.codAdmin });
+
+            modelBuilder.Entity<Lista_Espera_Empresa>()
+                .HasOne(x => x.Empresa)
+                .WithOne(x => x.ListaEspera);
+
+            modelBuilder.Entity<Empresa>()
+                .HasOne(x => x.ListaEspera)
+                .WithOne(x => x.Empresa);
 
             modelBuilder.Entity<Administrador>()
                 .HasMany(x => x.Lista_Espera_Empresas)
