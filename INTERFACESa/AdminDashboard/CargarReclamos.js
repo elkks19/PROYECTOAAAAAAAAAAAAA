@@ -2,7 +2,7 @@ axios.get('http://localhost:5132/reclamos_empresa/getReclamos/ADM-001')
 .then((response) => {
     const tablaEmpresas = document.getElementById('reclamosEmpresas');
     var empresas = response.data;
-    let i = 1;
+    let i = 6;
     empresas.forEach(empresa => {
         tablaEmpresas.innerHTML += `
                 <tr class="empresaRow">
@@ -15,8 +15,8 @@ axios.get('http://localhost:5132/reclamos_empresa/getReclamos/ADM-001')
                         </label>
                         <p id="status"></p>
                     </td>
-                    <td><button class="btn-revisar" data-modal-target="#modal6">Revisar</button>
-                        <div class="modal" id="modal6">
+                    <td><button class="btn-revisar" data-modal-target="#modal${i}">Revisar</button>
+                        <div class="modal" id="modal${i}">
                             <div class="modal-header">
                             <div class="empresa"><img src="imagenes/Damaroli.jpg"><h1>${empresa.nombreEmpresa}</h1></div>
                             <button data-close-button class="close-button">&times;</button>

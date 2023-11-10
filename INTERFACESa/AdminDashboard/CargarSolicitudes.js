@@ -3,7 +3,7 @@ axios.get('http://localhost:5132/lista_espera_empresa/index/ADM-001')
     const tablaEmpresas = document.getElementById('solicitudesEmpresas');
     var empresas = response.data;
 	const tabla= document.getElementById('reclamosEmpresas');
-	var i = tabla.rows.length + 2;
+	var i = tabla.rows.length + 3;
 	console.log(i);
     empresas.forEach(empresa => {
 		if (empresa.isRevisado == true){
@@ -13,7 +13,7 @@ axios.get('http://localhost:5132/lista_espera_empresa/index/ADM-001')
 			checked = "";
 		}
         tablaEmpresas.innerHTML += `
-				<tr class="empresaRow">
+				<tr>
 					<td class="empresa"><a href="#">${empresa.nombreEmpresa}</a></td>
 					<td>
 						<label class="switch">
@@ -29,7 +29,7 @@ axios.get('http://localhost:5132/lista_espera_empresa/index/ADM-001')
 							<button data-close-button class="close-button">&times;</button>
 							</div>
 							<div class="modal-body">
-								<a  href="../USUcomentarios/index.html">Ver Documentos</a>
+								<a  onclick="getArchivo('${empresa.codEmpresa}')">Ver Documentos</a>
 								<form action="" class="caja-com">
 									<div class="usu">
 										<div class="img"><img src="imagenes/limonagrio.jpg"></div>
