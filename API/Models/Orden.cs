@@ -55,6 +55,6 @@ namespace API.Models
         {
             lastUpdate = DateTime.Now;
         }
-        public ICollection<Producto> Productos { get; set; }
+        public ICollection<Detalle_Orden> Productos { get; set; }
     }
 }

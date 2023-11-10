@@ -15,6 +15,7 @@ namespace API.Data
         }
 
         public DbSet<API.Models.Usuario> Usuarios { get; set; } = default!;
+        public DbSet<API.Models.Log_Auditoria> Logs_Auditoria { get; set; } = default!;
 
         public DbSet<API.Models.Administrador> Administradores { get; set; } = default!;
 
@@ -51,6 +52,10 @@ namespace API.Data
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
+            modelBuilder.Entity<Persona>()
+                .HasMany(x => x.Logs)
+                .WithOne(x => x.Persona);
+
             modelBuilder.Entity<Empresa>()
                 .HasMany(x => x.Personal)
                 .WithOne(x => x.Empresa);
@@ -92,7 +97,21 @@ namespace API.Data
                 .HasMany(x => x.Comentarios)
                 .WithOne(x => x.Producto);
 
+            modelBuilder.Entity<Producto>()
+                .HasMany(x => x.Ordenes)
+                .WithOne(x => x.Producto);
 
+            modelBuilder.Entity<Wishlist>()
+                .HasMany(x => x.Productos)
+                .WithOne(x => x.Wishlist);
+
+            modelBuilder.Entity<Producto>()
+                .HasMany(x => x.Wishlists)
+                .WithOne(x => x.Producto);
+
+            modelBuilder.Entity<Orden>()
+                .HasMany(x => x.Productos)
+                .WithOne(x => x.Orden);
 
             modelBuilder.Entity<Lista_Espera_Empresa>()
                 .HasKey(x => new { x.codEmpresa, x.codAdmin });
@@ -108,6 +127,10 @@ namespace API.Data
             modelBuilder.Entity<Administrador>()
                 .HasMany(x => x.Lista_Espera_Empresas)
                 .WithOne(x => x.Administrador);
+
+            modelBuilder.Entity<Lista_Espera_Empresa>()
+                .HasOne(x => x.Administrador)
+                .WithMany(x => x.Lista_Espera_Empresas);
 
 
             modelBuilder.Entity<Reclamos_Empresa>()

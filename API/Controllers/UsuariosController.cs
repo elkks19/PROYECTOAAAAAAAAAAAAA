@@ -10,7 +10,7 @@ using API.Atributos;
 
 namespace API.Controllers
 {
-    [Autorizado]
+    //[Autorizado]
     public class UsuariosController : Controller
     {
         private readonly APIContext db;

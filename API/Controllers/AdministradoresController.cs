@@ -13,13 +13,47 @@ namespace API.Controllers
         {
             db = context;
         }
-        //public async Task<IActionResult> RevisionesPendientes([FromRoute]string cod)
-        //{
-        //    var listaEspera = db.Administradores.Include(x => x.Lista_Espera_Empresas).ToList().Where(x => x.codAdmin.Equals(cod));
-        //    foreach(var item in listaEspera)
-        //    {
-        //    }
-        //}
+
+
+        class InfoEmpresas
+        {
+            public string cod { get; set; }
+            public string nombre { get; set; }
+            public string direccion { get; set; }
+            public string pathArchivo { get; set; }
+            public DateTime? fechaRevision { get; set; }
+            public string fechaSolicitud { get; set; }
+            public bool isRevisado { get; set; }
+        }
+
+
+        [HttpGet]
+        public async Task<IActionResult> RevisionesPendientes([FromRoute]string cod)
+        {
+            var listaEmpresas = db.Empresa.Where(x => x.ListaEspera.codAdmin.Equals(cod)).Include(x => x.ListaEspera).ToList();
+
+            if (listaEmpresas.Count > 0)
+            {
+                var response = new List<InfoEmpresas>();
+                foreach (var emp in listaEmpresas)
+                {
+                    var info = new InfoEmpresas()
+                    {
+                        cod = emp.codEmpresa,
+                        nombre = emp.nombreEmpresa,
+                        direccion = emp.direccionEmpresa,
+                        pathArchivo = emp.archivoVerificacionEmpresa,
+                        fechaRevision = emp.ListaEspera.fechaRevision,
+                        fechaSolicitud = emp.ListaEspera.fechaSolicitudRevision.ToString("dd-MM-yyyy"),
+                        isRevisado = emp.ListaEspera.isRevisado
+                    };
+                    response.Add(info);
+                }
+                return Ok(response);
+            }
+
+            return BadRequest("No hay ninguna empresa asignada a este usuario");
+        }
         //public async Task<IActionResult> Create(Administrador request)
         //{
 

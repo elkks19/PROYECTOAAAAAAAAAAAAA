@@ -31,5 +31,10 @@ namespace API.Models
         {
             isCarrito = true;
         }
+        public void NotCarrito()
+        {
+            isCarrito = false;
+        }
+
     }
 }

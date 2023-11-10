@@ -17,7 +17,7 @@ namespace API.Models
         [ForeignKey("codUsuario")]
         public Usuario Usuario { get; set; }
 
-        public ICollection<Producto> Productos { get; set; }
+        public ICollection<Detalle_Wishlist> Productos { get; set; }
 
     }
 }

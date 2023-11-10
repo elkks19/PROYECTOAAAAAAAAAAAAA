@@ -13,7 +13,6 @@ using System.Globalization;
 
 namespace API.Controllers
 {
-    [EnableCors]
     public class PersonasController : Controller
     {
         private readonly APIContext db;

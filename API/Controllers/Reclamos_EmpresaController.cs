@@ -12,169 +12,73 @@ namespace API.Controllers
 {
     public class Reclamos_EmpresaController : Controller
     {
-        private readonly APIContext _context;
+        private readonly APIContext db;
 
         public Reclamos_EmpresaController(APIContext context)
         {
-            _context = context;
+            db = context;
         }
 
-        // GET: Reclamos_Empresa
-        public async Task<IActionResult> Index()
-        {
-            var pruebaFinalContext = _context.Reclamos_Empresa.Include(r => r.Administrador).Include(r => r.Producto).Include(r => r.Usuario);
-            return View(await pruebaFinalContext.ToListAsync());
-        }
 
-        // GET: Reclamos_Empresa/Details/5
-        public async Task<IActionResult> Details(string id)
-        {
-            if (id == null || _context.Reclamos_Empresa == null)
-            {
-                return NotFound();
-            }
-
-            var reclamos_Empresa = await _context.Reclamos_Empresa
-                .Include(r => r.Administrador)
-                .Include(r => r.Producto)
-                .Include(r => r.Usuario)
-                .FirstOrDefaultAsync(m => m.codReclamo == id);
-            if (reclamos_Empresa == null)
-            {
-                return NotFound();
-            }
-
-            return View(reclamos_Empresa);
-        }
-
-        // GET: Reclamos_Empresa/Create
-        public IActionResult Create()
-        {
-            ViewData["codAdmin"] = new SelectList(_context.Administradores, "codAdmin", "codAdmin");
-            ViewData["codProducto"] = new SelectList(_context.Producto, "codProducto", "codProducto");
-            ViewData["codUsuario"] = new SelectList(_context.Usuarios, "codUsuario", "codUsuario");
-            return View();
-        }
-
-        // POST: Reclamos_Empresa/Create
-        // To protect from overposting attacks, enable the specific properties you want to bind to.
-        // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
-        [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create([Bind("codReclamo,codProducto,codUsuario,contenidoReclamo,respuestaReclamo,codAdmin,isRevisado,fechaCreacionReclamo,fechaRevisionReclamo")] Reclamos_Empresa reclamos_Empresa)
+        public async Task<IActionResult> Create([FromRoute]string cod, [FromBody]Reclamos_Empresa request)
         {
-            if (ModelState.IsValid)
+            var administradores = await db.Administradores.ToListAsync();
+            Random rng = new Random();
+
+            var cantReclamos = db.Reclamos_Empresa.Count() + 1;
+            var reclamo = new Reclamos_Empresa()
             {
-                _context.Add(reclamos_Empresa);
-                await _context.SaveChangesAsync();
-                return RedirectToAction(nameof(Index));
-            }
-            ViewData["codAdmin"] = new SelectList(_context.Administradores, "codAdmin", "codAdmin", reclamos_Empresa.codAdmin);
-            ViewData["codProducto"] = new SelectList(_context.Producto, "codProducto", "codProducto", reclamos_Empresa.codProducto);
-            ViewData["codUsuario"] = new SelectList(_context.Usuarios, "codUsuario", "codUsuario", reclamos_Empresa.codUsuario);
-            return View(reclamos_Empresa);
+                codReclamo = "REC-" + cantReclamos.ToString("000"),
+                codProducto = cod,
+                codUsuario = request.codUsuario,
+                codAdmin = administradores[rng.Next(administradores.Count)].codAdmin,
+                contenidoReclamo = request.contenidoReclamo,
+            };
+            await db.Reclamos_Empresa.AddAsync(reclamo);
+            await db.SaveChangesAsync();
+            return Ok(reclamo);
         }
 
-        // GET: Reclamos_Empresa/Edit/5
-        public async Task<IActionResult> Edit(string id)
-        {
-            if (id == null || _context.Reclamos_Empresa == null)
-            {
-                return NotFound();
-            }
 
-            var reclamos_Empresa = await _context.Reclamos_Empresa.FindAsync(id);
-            if (reclamos_Empresa == null)
-            {
-                return NotFound();
-            }
-            ViewData["codAdmin"] = new SelectList(_context.Administradores, "codAdmin", "codAdmin", reclamos_Empresa.codAdmin);
-            ViewData["codProducto"] = new SelectList(_context.Producto, "codProducto", "codProducto", reclamos_Empresa.codProducto);
-            ViewData["codUsuario"] = new SelectList(_context.Usuarios, "codUsuario", "codUsuario", reclamos_Empresa.codUsuario);
-            return View(reclamos_Empresa);
+        public class ReclamosResponse
+        {
+            public string codProducto { get; set; }
+            public string codEmpresa { get; set; }
+            public string codUsuario { get; set; }
+            public string nombreEmpresa { get; set; }
+            public string nombreUsuario { get; set; }
+            public string contenido { get; set; }
+            public string nombreProducto { get; set; }
+            public string nombreAdmin { get; set; }
+            public DateTime fechaReclamo { get; set; }
         }
-
-        // POST: Reclamos_Empresa/Edit/5
-        // To protect from overposting attacks, enable the specific properties you want to bind to.
-        // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
-        [HttpPost]
-        [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Edit(string id, [Bind("codReclamo,codProducto,codUsuario,contenidoReclamo,respuestaReclamo,codAdmin,isRevisado,fechaCreacionReclamo,fechaRevisionReclamo")] Reclamos_Empresa reclamos_Empresa)
+        [HttpGet]
+        public async Task<IActionResult> GetReclamos([FromRoute] string cod)
         {
-            if (id != reclamos_Empresa.codReclamo)
+            var reclamos = await db.Reclamos_Empresa.Include(x => x.Producto.Empresa).Include(x => x.Administrador.Persona).Include(x => x.Usuario.Persona).Include(x => x.Producto).Where(x => x.codAdmin.Equals(cod)).ToListAsync();
+            if (reclamos.Count > 0)
             {
-                return NotFound();
-            }
-
-            if (ModelState.IsValid)
-            {
-                try
+                List<ReclamosResponse> response = new List<ReclamosResponse>();
+                foreach (var reclamo in reclamos)
                 {
-                    _context.Update(reclamos_Empresa);
-                    await _context.SaveChangesAsync();
-                }
-                catch (DbUpdateConcurrencyException)
-                {
-                    if (!Reclamos_EmpresaExists(reclamos_Empresa.codReclamo))
+                    ReclamosResponse a = new ReclamosResponse()
                     {
-                        return NotFound();
-                    }
-                    else
-                    {
-                        throw;
-                    }
+                        codProducto = reclamo.codProducto,
+                        codEmpresa = reclamo.Producto.codEmpresa,
+                        codUsuario = reclamo.codUsuario,
+                        nombreEmpresa = reclamo.Producto.Empresa.nombreEmpresa,
+                        nombreUsuario = reclamo.Usuario.Persona.nombrePersona,
+                        contenido = reclamo.contenidoReclamo,
+                        nombreProducto = reclamo.Producto.nombreProducto,
+                        nombreAdmin = reclamo.Administrador.Persona.nombrePersona,
+                        fechaReclamo = reclamo.fechaCreacionReclamo
+                    };
+                    response.Add(a);
                 }
-                return RedirectToAction(nameof(Index));
+                return Ok(response);
             }
-            ViewData["codAdmin"] = new SelectList(_context.Administradores, "codAdmin", "codAdmin", reclamos_Empresa.codAdmin);
-            ViewData["codProducto"] = new SelectList(_context.Producto, "codProducto", "codProducto", reclamos_Empresa.codProducto);
-            ViewData["codUsuario"] = new SelectList(_context.Usuarios, "codUsuario", "codUsuario", reclamos_Empresa.codUsuario);
-            return View(reclamos_Empresa);
-        }
-
-        // GET: Reclamos_Empresa/Delete/5
-        public async Task<IActionResult> Delete(string id)
-        {
-            if (id == null || _context.Reclamos_Empresa == null)
-            {
-                return NotFound();
-            }
-
-            var reclamos_Empresa = await _context.Reclamos_Empresa
-                .Include(r => r.Administrador)
-                .Include(r => r.Producto)
-                .Include(r => r.Usuario)
-                .FirstOrDefaultAsync(m => m.codReclamo == id);
-            if (reclamos_Empresa == null)
-            {
-                return NotFound();
-            }
-
-            return View(reclamos_Empresa);
-        }
-
-        // POST: Reclamos_Empresa/Delete/5
-        [HttpPost, ActionName("Delete")]
-        [ValidateAntiForgeryToken]
-        public async Task<IActionResult> DeleteConfirmed(string id)
-        {
-            if (_context.Reclamos_Empresa == null)
-            {
-                return Problem("Entity set 'APIContext.Reclamos_Empresa'  is null.");
-            }
-            var reclamos_Empresa = await _context.Reclamos_Empresa.FindAsync(id);
-            if (reclamos_Empresa != null)
-            {
-                _context.Reclamos_Empresa.Remove(reclamos_Empresa);
-            }
-            
-            await _context.SaveChangesAsync();
-            return RedirectToAction(nameof(Index));
-        }
-
-        private bool Reclamos_EmpresaExists(string id)
-        {
-          return (_context.Reclamos_Empresa?.Any(e => e.codReclamo == id)).GetValueOrDefault();
+            return BadRequest("No se encontro ningun reclamo");
         }
     }
 }

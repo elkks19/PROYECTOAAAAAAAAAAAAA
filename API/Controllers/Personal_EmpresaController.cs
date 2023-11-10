@@ -33,12 +33,12 @@ namespace API.Controllers
         }
 
         [HttpPost]
-        public async Task<IActionResult> Add([FromBody]PersonalRequest request, [FromRoute] string cod)
+        public async Task<IActionResult> Add([FromBody]PersonalRequest request, [FromRoute]string cod)
         {
             var empresa = db.Empresa.Include(x => x.ListaEspera).Include(x => x.Personal).FirstOrDefault(x => x.codEmpresa.Equals(cod));
-            var listaEspera = empresa.ListaEspera;
             if(empresa != null)
             {
+                var listaEspera = empresa.ListaEspera;
                 if (listaEspera != null)
                 {
                     var listaPersonal = empresa.Personal.ToList();
@@ -64,11 +64,11 @@ namespace API.Controllers
                         codEmpresa = empresa.codEmpresa
                     };
 
-                    db.Persona.AddAsync(persona);
+                    await db.Persona.AddAsync(persona);
                     listaPersonal.Add(personal);
-                    db.Personal_Empresa.AddAsync(personal);
+                    await db.Personal_Empresa.AddAsync(personal);
 
-                    db.SaveChangesAsync();
+                    await db.SaveChangesAsync();
                     return Ok("Personal añadido correctamente");
                 }
                 return BadRequest("La empresa tiene que ser revisada primero");

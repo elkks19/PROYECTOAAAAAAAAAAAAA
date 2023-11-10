@@ -7,168 +7,73 @@ using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
 using API.Data;
 using API.Models;
+using Microsoft.AspNetCore.Mvc.Infrastructure;
 
 namespace API.Controllers
 {
     public class Lista_Espera_EmpresaController : Controller
     {
-        private readonly APIContext _context;
+        private readonly APIContext db;
 
         public Lista_Espera_EmpresaController(APIContext context)
         {
-            _context = context;
+            db = context;
         }
 
-        // GET: Lista_Espera_Empresa
-        public async Task<IActionResult> Index()
+
+        public class ResponseEmpresa
         {
-            var pruebaFinalContext = _context.Lista_Espera_Empresa.Include(l => l.Administrador).Include(l => l.Empresa);
-            return View(await pruebaFinalContext.ToListAsync());
+            public string codEmpresa { get; set; }
+            public string nombreEmpresa { get; set; }
+            public string nombreAdmin { get; set; }
+            public bool isRevisado { get; set; }
         }
 
-        // GET: Lista_Espera_Empresa/Details/5
-        public async Task<IActionResult> Details(string id)
+        public async Task<IActionResult> Index([FromRoute]string cod)
         {
-            if (id == null || _context.Lista_Espera_Empresa == null)
+            var empresas = await db.Lista_Espera_Empresa.Include(x => x.Empresa).Include(x => x.Administrador.Persona).Where(x => x.codAdmin.Equals(cod)).ToListAsync();
+            if (empresas != null)
             {
-                return NotFound();
-            }
-
-            var lista_Espera_Empresa = await _context.Lista_Espera_Empresa
-                .Include(l => l.Administrador)
-                .Include(l => l.Empresa)
-                .FirstOrDefaultAsync(m => m.codEmpresa == id);
-            if (lista_Espera_Empresa == null)
-            {
-                return NotFound();
-            }
-
-            return View(lista_Espera_Empresa);
-        }
-
-        // GET: Lista_Espera_Empresa/Create
-        public IActionResult Create()
-        {
-            ViewData["codAdmin"] = new SelectList(_context.Administradores, "codAdmin", "codAdmin");
-            ViewData["codEmpresa"] = new SelectList(_context.Empresa, "codEmpresa", "codEmpresa");
-            return View();
-        }
-
-        // POST: Lista_Espera_Empresa/Create
-        // To protect from overposting attacks, enable the specific properties you want to bind to.
-        // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
-        [HttpPost]
-        [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create([Bind("isRevisado,fechaRevision,fechaSolicitudRevision,codEmpresa,codAdmin")] Lista_Espera_Empresa lista_Espera_Empresa)
-        {
-            if (ModelState.IsValid)
-            {
-                _context.Add(lista_Espera_Empresa);
-                await _context.SaveChangesAsync();
-                return RedirectToAction(nameof(Index));
-            }
-            ViewData["codAdmin"] = new SelectList(_context.Administradores, "codAdmin", "codAdmin", lista_Espera_Empresa.codAdmin);
-            ViewData["codEmpresa"] = new SelectList(_context.Empresa, "codEmpresa", "codEmpresa", lista_Espera_Empresa.codEmpresa);
-            return View(lista_Espera_Empresa);
-        }
-
-        // GET: Lista_Espera_Empresa/Edit/5
-        public async Task<IActionResult> Edit(string id)
-        {
-            if (id == null || _context.Lista_Espera_Empresa == null)
-            {
-                return NotFound();
-            }
-
-            var lista_Espera_Empresa = await _context.Lista_Espera_Empresa.FindAsync(id);
-            if (lista_Espera_Empresa == null)
-            {
-                return NotFound();
-            }
-            ViewData["codAdmin"] = new SelectList(_context.Administradores, "codAdmin", "codAdmin", lista_Espera_Empresa.codAdmin);
-            ViewData["codEmpresa"] = new SelectList(_context.Empresa, "codEmpresa", "codEmpresa", lista_Espera_Empresa.codEmpresa);
-            return View(lista_Espera_Empresa);
-        }
-
-        // POST: Lista_Espera_Empresa/Edit/5
-        // To protect from overposting attacks, enable the specific properties you want to bind to.
-        // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
-        [HttpPost]
-        [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Edit(string id, [Bind("isRevisado,fechaRevision,fechaSolicitudRevision,codEmpresa,codAdmin")] Lista_Espera_Empresa lista_Espera_Empresa)
-        {
-            if (id != lista_Espera_Empresa.codEmpresa)
-            {
-                return NotFound();
-            }
-
-            if (ModelState.IsValid)
-            {
-                try
+                List<ResponseEmpresa> response = new List<ResponseEmpresa>();
+                foreach (var empresa in empresas)
                 {
-                    _context.Update(lista_Espera_Empresa);
-                    await _context.SaveChangesAsync();
+                    var a = new ResponseEmpresa()
+                    {
+                        codEmpresa = empresa.codEmpresa,
+                        nombreEmpresa = empresa.Empresa.nombreEmpresa,
+                        nombreAdmin = empresa.Administrador.Persona.nombrePersona,
+                        isRevisado = empresa.isRevisado
+                    };
+                    response.Add(a);
                 }
-                catch (DbUpdateConcurrencyException)
+                return Ok(response);
+            }
+            return BadRequest("No se encontro al administrador");
+        }
+
+        public async Task<IActionResult> GetArchivo([FromRoute]string cod)
+        {
+            var empresa = db.Empresa.FirstOrDefault(x => x.codEmpresa.Equals(cod));
+            if (empresa != null)
+            {
+                var b = System.IO.File.ReadAllBytes(empresa.archivoVerificacionEmpresa);
+                switch (empresa.archivoVerificacionEmpresa.Split(".").Last())
                 {
-                    if (!Lista_Espera_EmpresaExists(lista_Espera_Empresa.codEmpresa))
-                    {
-                        return NotFound();
-                    }
-                    else
-                    {
-                        throw;
-                    }
+                    case "pdf":
+                        return File(b, "application/pdf");
+
+                    case "jpg": case "jpeg":
+                        return File(b, "image/jpeg");
+
+                    case "png":
+                        return File(b, "image/png");
+
+                    default:
+                        return BadRequest("El formato de archivo es incompatible");
                 }
-                return RedirectToAction(nameof(Index));
             }
-            ViewData["codAdmin"] = new SelectList(_context.Administradores, "codAdmin", "codAdmin", lista_Espera_Empresa.codAdmin);
-            ViewData["codEmpresa"] = new SelectList(_context.Empresa, "codEmpresa", "codEmpresa", lista_Espera_Empresa.codEmpresa);
-            return View(lista_Espera_Empresa);
+            return BadRequest("No se encontro la empresa");
         }
-
-        // GET: Lista_Espera_Empresa/Delete/5
-        public async Task<IActionResult> Delete(string id)
-        {
-            if (id == null || _context.Lista_Espera_Empresa == null)
-            {
-                return NotFound();
-            }
-
-            var lista_Espera_Empresa = await _context.Lista_Espera_Empresa
-                .Include(l => l.Administrador)
-                .Include(l => l.Empresa)
-                .FirstOrDefaultAsync(m => m.codEmpresa == id);
-            if (lista_Espera_Empresa == null)
-            {
-                return NotFound();
-            }
-
-            return View(lista_Espera_Empresa);
-        }
-
-        // POST: Lista_Espera_Empresa/Delete/5
-        [HttpPost, ActionName("Delete")]
-        [ValidateAntiForgeryToken]
-        public async Task<IActionResult> DeleteConfirmed(string id)
-        {
-            if (_context.Lista_Espera_Empresa == null)
-            {
-                return Problem("Entity set 'APIContext.Lista_Espera_Empresa'  is null.");
-            }
-            var lista_Espera_Empresa = await _context.Lista_Espera_Empresa.FindAsync(id);
-            if (lista_Espera_Empresa != null)
-            {
-                _context.Lista_Espera_Empresa.Remove(lista_Espera_Empresa);
-            }
-            
-            await _context.SaveChangesAsync();
-            return RedirectToAction(nameof(Index));
-        }
-
-        private bool Lista_Espera_EmpresaExists(string id)
-        {
-          return (_context.Lista_Espera_Empresa?.Any(e => e.codEmpresa == id)).GetValueOrDefault();
-        }
+        
     }
 }

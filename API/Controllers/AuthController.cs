@@ -7,6 +7,7 @@ using System.Security.Claims;
 using Microsoft.IdentityModel.Tokens;
 using System.IdentityModel.Tokens.Jwt;
 using Microsoft.EntityFrameworkCore;
+using API.Atributos;
 
 namespace API.Controllers
 {
@@ -24,31 +25,40 @@ namespace API.Controllers
         [HttpPost]
         public async Task<IActionResult> RegistroUsuarios([FromBody] Persona model)
         {
-                var cant = db.Persona.Count();
-                var persona = new Persona()
-                {
-                    codPersona = "PER-" + (cant + 1).ToString("000"),
-                    nombrePersona = model.nombrePersona,
-                    fechaNacPersona = model.fechaNacPersona,
-                    mailPersona = model.mailPersona,
-                    direccionPersona = model.direccionPersona,
-                    userPersona = model.userPersona,
-                    passwordPersona = Crypto.HashPassword(model.passwordPersona),
-                };
+            var cant = db.Persona.Count();
+            var persona = new Persona()
+            {
+                codPersona = "PER-" + (cant + 1).ToString("000"),
+                nombrePersona = model.nombrePersona,
+                fechaNacPersona = model.fechaNacPersona,
+                mailPersona = model.mailPersona,
+                direccionPersona = model.direccionPersona,
+                userPersona = model.userPersona,
+                passwordPersona = Crypto.HashPassword(model.passwordPersona),
+            };
 
-                var countUsu = db.Usuarios.Count();
-                var usuario = new Usuario()
-                {
-                    codUsuario = "USU-" + (countUsu + 1).ToString("000"),
-                    Persona = persona,
-                    configUsuario = "prueba"
-                };
+            var countUsu = db.Usuarios.Count() + 1;
+            var usuario = new Usuario()
+            {
+                codUsuario = "USU-" + (countUsu).ToString("000"),
+                Persona = persona,
+                configUsuario = "prueba"
+            };
 
-                await db.Persona.AddAsync(persona);
-                await db.Usuarios.AddAsync(usuario);
-                await db.SaveChangesAsync();
+            var cantLogs = db.Logs_Auditoria.Count() + 1;
+            var log = new Log_Auditoria()
+            {
+                codLog = "LOG-" + cantLogs.ToString("000"),
+                Persona = persona,
+                accionLog = "Registro"
+            };
 
-                return Ok("Se registro el usuario correctamente");
+            await db.Logs_Auditoria.AddAsync(log);
+            await db.Persona.AddAsync(persona);
+            await db.Usuarios.AddAsync(usuario);
+            await db.SaveChangesAsync();
+
+            return Ok("Se registro el usuario correctamente");
         }
 
 
@@ -59,7 +69,7 @@ namespace API.Controllers
         }
 
         [HttpPost]
-        public IActionResult Login([FromBody] PersonaLogin persona)
+        public async Task<IActionResult> Login([FromBody] PersonaLogin persona)
         {
             var per = db.Persona.Include(x => x.Usuario).FirstOrDefault(b => b.userPersona.Equals(persona.userPersona));
 
@@ -72,6 +82,16 @@ namespace API.Controllers
                 if (usuarioExists)
                 {
                     string tok = CrearToken(per);
+
+                    var cantLog = db.Logs_Auditoria.Count() + 1;
+                    var log = new Log_Auditoria()
+                    {
+                        codLog = "LOG-" + cantLog.ToString("000"),
+                        Persona = per,
+                        accionLog = "Login"
+                    };
+                    await db.Logs_Auditoria.AddAsync(log);
+                    await db.SaveChangesAsync();
 
                     return Ok(new
                     {
@@ -125,18 +145,25 @@ namespace API.Controllers
         }
 
 
-        public class tokenRequest
-        {
-            public string token { get; set; }
-        }
         [HttpPost]
-        public IActionResult Logout([FromBody] tokenRequest req)
+        [Autorizado]
+        public async Task<IActionResult> Logout()
         {
-            var per = db.TokenGuardado.Where(b => b.Token.Equals(req.token)).FirstOrDefault();
-            if(per != null)
+            var tok = Request.Headers["Authorization"];
+            var token = db.TokenGuardado.Include(x => x.Persona).Where(b => b.Token.Equals(tok)).FirstOrDefault();
+
+            if(token != null)
             {
-                db.TokenGuardado.Remove(per);
-                db.SaveChanges();
+                var cantLog = db.Logs_Auditoria.Count() + 1;
+                var log = new Log_Auditoria()
+                {
+                    codLog = "LOG-" + cantLog.ToString("000"),
+                    Persona = token.Persona,
+                    accionLog = "Logout"
+                };
+                await db.Logs_Auditoria.AddAsync(log);
+                db.TokenGuardado.Remove(token);
+                await db.SaveChangesAsync();
 
                 return Ok("Se cerro correctamente la sesion");
             }

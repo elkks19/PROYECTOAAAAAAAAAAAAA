@@ -36,7 +36,7 @@ namespace API.Models
 
         [StringLength(8)]
         [Required]
-        public string celularPersona { get; set; }
+        public string celularPersona { get; set; } = "";
 
         [Required]
         [DataType(DataType.Date)]
@@ -56,6 +56,8 @@ namespace API.Models
         public Personal_Empresa Personal_Empresa { get; set; }
         [JsonIgnore]
         public ICollection<Comentario> Comentarios { get; set; }
+        [JsonIgnore]
+        public ICollection<Log_Auditoria> Logs { get; set; }
 
         [JsonIgnore]
         public TokenGuardado Token { get; set; }

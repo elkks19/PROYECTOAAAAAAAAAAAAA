@@ -28,6 +28,9 @@ namespace API.Controllers
             public string direccion { get; set; }
             public string nombreArchivo { get; set; }
         }
+
+
+
         
         [HttpPost]
         public async Task<IActionResult> Create(EmpresaRequest request)
@@ -43,21 +46,32 @@ namespace API.Controllers
 
             string path = dir + "/" + request.nombre + "/" + archivo.FileName;
 
-            if(!Directory.Exists(dir + "/" + request.nombre))
+            if (!Directory.Exists(dir + "/" + request.nombre))
             {
                 Directory.CreateDirectory(dir + "/" + request.nombre);
-                if(archivo.Length > 0)
+            }
+
+            string[] acceptedExtensions = {"pdf", "png", "jpg", "jpeg"};
+            var extension = archivo.FileName.Split(".").Last();
+            var ok = Array.Exists(acceptedExtensions, e => e == extension);
+            if(archivo.Length > 0)
+            {
+                if (!ok)
                 {
-                    if (!System.IO.File.Exists(path))
-                    {
-                        var diskFile = System.IO.File.Create(path);
-                        await archivo.CopyToAsync(diskFile);
-                        diskFile.Close();
-                    }
-                    else
-                    {
-                        return BadRequest("El archivo ya existe");
-                    }
+                    return BadRequest("Tipo de archivo invalido");
+                }
+
+                if (!System.IO.File.Exists(path))
+                {
+                    var diskFile = System.IO.File.Create(path);
+                    await archivo.CopyToAsync(diskFile);
+                    diskFile.Close();
+                }
+                else
+                {
+                    var diskFile = System.IO.File.Open(path, FileMode.Open);
+                    await archivo.CopyToAsync(diskFile);
+                    diskFile.Close();
                 }
             }
 

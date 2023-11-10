@@ -1,13 +1,40 @@
 let productos = [];
 document.onload = function(){
-    localStorage.setItem("productos-en-carrito", JSON.stringify(productos));
+    localStorage.removeItem("productos-en-carrito");
 }
-fetch("./js/productos.json")
-    .then(response => response.json())
-    .then(data => {
-        productos = data;
-        cargarProductos(productos);
-    })
+
+axios.get("http://localhost:5132/productos/details/EMP-001",{}).then((response) => {
+
+    response.data.forEach(p => {
+        axios.get("http://localhost:5132/productos/getfoto/" + p.codProducto, {
+            responseType: 'blob'
+        })
+        .then((response) => {
+            let prod = {
+                id : p.codProducto,
+                nombre : p.nombreProducto,
+                precio : p.precioProducto,
+                imagen : response.data
+            }
+            productos.push(prod);
+            console.log(prod);
+        }).catch((error) => {
+            console.log(error)
+        });
+    });
+
+    cargarProductos(productos);
+}).catch((error) => {
+    console.log(error)
+});
+
+
+// fetch("./js/productos.json")
+//     .then(response => response.json())
+//     .then(data => {
+//         productos = data;
+//         cargarProductos(productos);
+//     })
 
 
 const contenedorProductos = document.querySelector("#contenedor-productos");
@@ -32,7 +59,6 @@ function logout(){
     }).then((response) => {
         localStorage.removeItem("token");
         window.location.href = "../../INICIO.html";
-        console.log*(response.data);
     }).catch((error) => {
         console.log(error)
     });
@@ -42,17 +68,17 @@ function logout(){
 
 
 function cargarProductos(productosElegidos) {
-
     contenedorProductos.innerHTML = "";
 
     productosElegidos.forEach(producto => {
 
+        let img = window.URL.createObjectURL(producto.imagen);
         const div = document.createElement("div");
         div.classList.add("producto");
         div.innerHTML = `
-            <img class="producto-imagen" src="${producto.imagen}" alt="${producto.titulo}">
+            <img class="producto-imagen" src="${img}" alt="${producto.id}">
             <div class="producto-detalles">
-                <h3 class="producto-titulo">${producto.titulo}</h3>
+                <h3 class="producto-titulo">${producto.nombre}</h3>
                 <p class="producto-precio">${producto.precio} Bs</p>
                 <button class="producto-agregar" id="${producto.id}">Agregar</button>
             </div>
@@ -113,10 +139,12 @@ function agregarAlCarrito(e) {
         position: "right", // `left`, `center` or `right`
         stopOnFocus: true, // Prevents dismissing of toast on hover
         style: {
-          background: "linear-gradient(62deg, #FBAB7E 0%, #F7CE68 100%)",
+        //   background: "linear-gradient(62deg, #FBAB7E 0%, #F7CE68 100%)",
           borderRadius: "2rem",
           textTransform: "uppercase",
-          fontSize: ".75rem"
+          fontSize: ".75rem",
+          background: "rgb(94,77,0)",
+            background: "linear-gradient(90deg, rgba(94,77,0,0.665703781512605) 0%, rgba(237,156,9,1) 100%)"
         },
         offset: {
             x: '1.5rem', // horizontal axis - can be a number or a string indicating unity. eg: '2em'
