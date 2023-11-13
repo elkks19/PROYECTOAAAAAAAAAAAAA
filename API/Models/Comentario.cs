@@ -33,6 +33,12 @@ namespace API.Models
         [Required]
         public DateTime lastUpdate { get; set; }
 
+        public Comentario()
+        {
+            this.createdAt = DateTime.Now;
+            this.lastUpdate = DateTime.Now;
+        }
+
         public void Update()
         {
             lastUpdate = DateTime.Now;

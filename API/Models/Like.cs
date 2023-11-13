@@ -27,5 +27,9 @@ namespace API.Models
         [Required]
         public DateTime fechaLike { get; set; }
 
+        public Like()
+        {
+            fechaLike = DateTime.Now;
+        }
     }
 }

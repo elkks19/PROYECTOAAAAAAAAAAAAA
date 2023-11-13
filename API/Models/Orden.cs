@@ -1,6 +1,7 @@
 ﻿using System.ComponentModel;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
+using System.Text.Json.Serialization;
 
 namespace API.Models
 {
@@ -29,11 +30,11 @@ namespace API.Models
 
         [Required]
         [DataType(DataType.Date)]
-        public DateTime fechaEntregaOrden { get; set; }
+        public DateTime? fechaEntregaOrden { get; set; }
 
         [Required]
         [DataType(DataType.Date)]
-        public DateTime fechaPagoOrden { get; set; }
+        public DateTime? fechaPagoOrden { get; set; }
 
         [Required]
         [DefaultValue(false)]
@@ -47,6 +48,14 @@ namespace API.Models
         [DataType(DataType.DateTime)]
         public DateTime lastUpdate { get; set; }
 
+        [JsonIgnore]
+        public ICollection<DetalleOrden> Ordenes { get; set; }
+
+        public Orden()
+        {
+            createdAt = DateTime.Now;
+            Update();
+        }
         public void Cancelar()
         {
             isCancelada = true;
@@ -55,6 +64,5 @@ namespace API.Models
         {
             lastUpdate = DateTime.Now;
         }
-        public ICollection<Detalle_Orden> Productos { get; set; }
     }
 }

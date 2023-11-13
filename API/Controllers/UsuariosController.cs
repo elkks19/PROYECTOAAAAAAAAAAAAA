@@ -36,7 +36,6 @@ namespace API.Controllers
                     fechaNacPersona = persona.fechaNacPersona.ToString("yyyy-MM-dd"),
                     direccionPersona = persona.direccionPersona,
                     celularPersona = persona.celularPersona,
-                    configUsuario = usuario.configUsuario
                 });
             }
             return BadRequest("No se encontro al usuario");
@@ -48,8 +47,8 @@ namespace API.Controllers
             var usuario = await db.Usuarios.FirstOrDefaultAsync(x => x.codUsuario.Equals(cod));
             if (usuario != null)
             {
-                var b = System.IO.File.ReadAllBytes(usuario.pathFotoUsuario);
-                return File(b, "image/jpeg");
+                //var b = System.IO.File.ReadAllBytes();
+                //return File(b, "image/jpeg");
             }
             return BadRequest("Usuario no encontrado");
         }
@@ -136,14 +135,14 @@ namespace API.Controllers
                         {
                             var diskImg = System.IO.File.Create(path);
                             await img.CopyToAsync(diskImg);
-                            usuario.pathFotoUsuario = path;
+                            //usuario.pathFotoUsuario = path;
                             diskImg.Close();
                         }
                         else
                         {
                             var diskImg = System.IO.File.Open(path, FileMode.Open);
                             await img.CopyToAsync(diskImg);
-                            usuario.pathFotoUsuario = path;
+                            //usuario.pathFotoUsuario = path;
                             diskImg.Close();
                         }
                     }
@@ -154,7 +153,6 @@ namespace API.Controllers
                 if (request.direccionPersona != null) { persona.direccionPersona = request.direccionPersona; }
                 if (request.userPersona != null) { persona.userPersona = request.userPersona; }
                 if (request.celularPersona != null) { persona.celularPersona = request.celularPersona; }
-                if (request.configUsuario != null) { usuario.configUsuario = request.configUsuario; }
                 db.Persona.Update(persona);
                 persona.Update();
                 await db.SaveChangesAsync();

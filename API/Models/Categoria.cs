@@ -15,7 +15,7 @@ namespace API.Models
         [Required]
         public string nombreCategoria { get; set; }
 
-        public ICollection<Categorias_Por_Producto> CategoriasProductos { get; set; }
+        public ICollection<CategoriasPorProducto> CategoriasProductos { get; set; }
 
     }
 }

@@ -6,6 +6,18 @@ namespace API.Models
 {
     public class Persona
     {
+        public Persona()
+        {
+            createdAt = DateTime.Now;
+            celularPersona = String.Empty;
+            Update();
+        }
+
+        public void Update()
+        {
+            lastUpdate = DateTime.Now;
+        }
+
 
         [MaxLength(10)]
         [Key]
@@ -31,12 +43,15 @@ namespace API.Models
         [Required]
         public string mailPersona { get; set; }
 
-        [MaxLength(50)]
+        [MaxLength(70)]
         public string direccionPersona { get; set; }
 
         [StringLength(8)]
         [Required]
-        public string celularPersona { get; set; } = "";
+        public string celularPersona { get; set; }
+
+        [Required]
+        public string pathFotoPersona { get; set; }
 
         [Required]
         [DataType(DataType.Date)]
@@ -48,28 +63,19 @@ namespace API.Models
         [JsonIgnore]
         public DateTime lastUpdate { get; set; }
 
+
+        // MODELOS RELACIONADOS
         [JsonIgnore]
         public Usuario Usuario { get; set; }
         [JsonIgnore]
         public Administrador Administrador { get; set; }
         [JsonIgnore]
-        public Personal_Empresa Personal_Empresa { get; set; }
+        public PersonalEmpresa PersonalEmpresa { get; set; }
         [JsonIgnore]
         public ICollection<Comentario> Comentarios { get; set; }
         [JsonIgnore]
-        public ICollection<Log_Auditoria> Logs { get; set; }
-
+        public ICollection<LogAuditoria> Logs { get; set; }
         [JsonIgnore]
         public TokenGuardado Token { get; set; }
-        public Persona()
-        {
-            createdAt = DateTime.Now;
-            Update();
-        }
-
-        public void Update()
-        {
-            lastUpdate = DateTime.Now;
-        }
     }
 }

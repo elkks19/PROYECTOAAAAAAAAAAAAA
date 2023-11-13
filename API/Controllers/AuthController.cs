@@ -16,19 +16,20 @@ namespace API.Controllers
 
         public APIContext db;
         private readonly IConfiguration config;
-        public AuthController(APIContext db, IConfiguration configuration)
+        private IWebHostEnvironment env;
+        public AuthController(APIContext db, IConfiguration configuration, IWebHostEnvironment environment)
         {
             this.db = db;
             this.config = configuration;
+            this.env = environment;
         }
 
         [HttpPost]
         public async Task<IActionResult> RegistroUsuarios([FromBody] Persona model)
         {
-            var cant = db.Persona.Count();
+            var cantPersonas = db.Persona.Count();
             var persona = new Persona()
             {
-                codPersona = "PER-" + (cant + 1).ToString("000"),
                 nombrePersona = model.nombrePersona,
                 fechaNacPersona = model.fechaNacPersona,
                 mailPersona = model.mailPersona,
@@ -40,20 +41,18 @@ namespace API.Controllers
             var countUsu = db.Usuarios.Count() + 1;
             var usuario = new Usuario()
             {
-                codUsuario = "USU-" + (countUsu).ToString("000"),
                 Persona = persona,
-                configUsuario = "prueba"
             };
 
-            var cantLogs = db.Logs_Auditoria.Count() + 1;
-            var log = new Log_Auditoria()
+            var cantLogs = db.LogsAuditoria.Count() + 1;
+            var log = new LogAuditoria()
             {
                 codLog = "LOG-" + cantLogs.ToString("000"),
                 Persona = persona,
                 accionLog = "Registro"
             };
 
-            await db.Logs_Auditoria.AddAsync(log);
+            await db.LogsAuditoria.AddAsync(log);
             await db.Persona.AddAsync(persona);
             await db.Usuarios.AddAsync(usuario);
             await db.SaveChangesAsync();
@@ -83,14 +82,13 @@ namespace API.Controllers
                 {
                     string tok = CrearToken(per);
 
-                    var cantLog = db.Logs_Auditoria.Count() + 1;
-                    var log = new Log_Auditoria()
+                    var cantLogs = db.LogsAuditoria.Count() + 1;
+                    var log = new LogAuditoria()
                     {
-                        codLog = "LOG-" + cantLog.ToString("000"),
                         Persona = per,
                         accionLog = "Login"
                     };
-                    await db.Logs_Auditoria.AddAsync(log);
+                    await db.LogsAuditoria.AddAsync(log);
                     await db.SaveChangesAsync();
 
                     return Ok(new
@@ -133,7 +131,6 @@ namespace API.Controllers
             var cantTok = db.TokenGuardado.Count() + 1;
             var tokenGuardar = new TokenGuardado()
             {
-                codToken = "TOK-" + cantTok.ToString("000"),
                 codPersona = persona.codPersona,
                 Token = jwt
             };
@@ -154,14 +151,13 @@ namespace API.Controllers
 
             if(token != null)
             {
-                var cantLog = db.Logs_Auditoria.Count() + 1;
-                var log = new Log_Auditoria()
+                var cantLog = db.LogsAuditoria.Count() + 1;
+                var log = new LogAuditoria()
                 {
-                    codLog = "LOG-" + cantLog.ToString("000"),
                     Persona = token.Persona,
                     accionLog = "Logout"
                 };
-                await db.Logs_Auditoria.AddAsync(log);
+                await db.LogsAuditoria.AddAsync(log);
                 db.TokenGuardado.Remove(token);
                 await db.SaveChangesAsync();
 

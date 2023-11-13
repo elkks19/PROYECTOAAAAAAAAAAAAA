@@ -78,7 +78,6 @@ namespace API.Controllers
             var cantEmpresas = db.Empresa.Count() + 1;
             Empresa empresa = new Empresa()
             {
-                codEmpresa = "EMP-" + cantEmpresas.ToString("000"),
                 nombreEmpresa = request.nombre,
                 direccionEmpresa = request.direccion,
                 archivoVerificacionEmpresa = path
@@ -88,7 +87,7 @@ namespace API.Controllers
             var admins = db.Administradores.ToList();
             int randomAdmin = rnd.Next(admins.Count);
 
-            Lista_Espera_Empresa listaEspera = new Lista_Espera_Empresa()
+            ListaEsperaEmpresa listaEspera = new ListaEsperaEmpresa()
             {
                 Empresa = empresa,
                 codAdmin = admins[randomAdmin].codAdmin
@@ -96,7 +95,7 @@ namespace API.Controllers
 
 
 
-            await db.Lista_Espera_Empresa.AddAsync(listaEspera);
+            await db.ListaEsperaEmpresa.AddAsync(listaEspera);
             await db.Empresa.AddAsync(empresa);
             await db.SaveChangesAsync();
 

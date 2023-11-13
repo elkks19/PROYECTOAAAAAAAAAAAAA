@@ -45,7 +45,7 @@ namespace API.Controllers
                         pathArchivo = emp.archivoVerificacionEmpresa,
                         fechaRevision = emp.ListaEspera.fechaRevision,
                         fechaSolicitud = emp.ListaEspera.fechaSolicitudRevision.ToString("dd-MM-yyyy"),
-                        isRevisado = emp.ListaEspera.isRevisado
+                        isRevisado = emp.ListaEspera.isAceptado
                     };
                     response.Add(info);
                 }

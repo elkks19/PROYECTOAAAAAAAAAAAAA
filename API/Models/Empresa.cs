@@ -1,6 +1,6 @@
 ﻿using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
-using System.Data;
+using System.Text.Json;
 using System.Text.Json.Serialization;
 
 namespace API.Models
@@ -25,6 +25,9 @@ namespace API.Models
         public string archivoVerificacionEmpresa { get; set; }
 
         [Required]
+        public string socialMediaEmprsa { get; set; }
+
+        [Required]
         [DataType(DataType.Date)]
         [JsonIgnore]
         public DateTime createdAt { get; set; }
@@ -33,14 +36,26 @@ namespace API.Models
         [JsonIgnore]
         public DateTime lastUpdate { get; set; }
         [JsonIgnore]
-        public ICollection<Personal_Empresa> Personal { get; set; }
+        public ICollection<PersonalEmpresa> Personal { get; set; }
         [JsonIgnore]
         public ICollection<Producto> Productos { get; set; }
         [JsonIgnore]
-        public Lista_Espera_Empresa ListaEspera { get; set; }
+        public ListaEsperaEmpresa ListaEspera { get; set; }
+        [JsonIgnore]
+        public ICollection<Orden> Ordenes { get; set; }
+        [JsonIgnore]
+        public ICollection<VisitasEmpresa> Visitas { get; set; }
 
         public Empresa()
         {
+            var json = new
+            {
+                instagram = String.Empty,
+                facebook = String.Empty,
+                twitter = String.Empty
+            };
+            socialMediaEmprsa = JsonSerializer.Serialize(json);
+
             createdAt = DateTime.Now;
             Update();
         }

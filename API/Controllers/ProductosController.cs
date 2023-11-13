@@ -27,21 +27,17 @@ namespace API.Controllers
             Producto[] listaProds =
             {
                 new Producto(){
-                    codProducto = "PROD-001",
                     codEmpresa = "EMP-001",
                     nombreProducto = "Abrigo 1",
                     descProducto = "Abrigo para el frio",
                     precioProducto = 400,
-                    envioProducto = 100,
                     pathFotoProducto = env.ContentRootPath + "\\ImgProductos\\PROD-001\\01.jpg"
                 },
                 new Producto(){
-                    codProducto = "PROD-002",
                     codEmpresa = "EMP-001",
                     nombreProducto = "Abrigo 2",
                     descProducto = "Abrigo para mas frio",
                     precioProducto = 200,
-                    envioProducto = 200,
                     pathFotoProducto = env.ContentRootPath + "\\ImgProductos\\PROD-002\\02.jpg"
                 },
             };

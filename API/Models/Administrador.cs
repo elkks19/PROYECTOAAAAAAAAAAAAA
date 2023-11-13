@@ -16,7 +16,7 @@ namespace API.Models
         public string codPersona { get; set; }
         [ForeignKey("codPersona")]
         public Persona Persona { get; set; }
-        public ICollection<Lista_Espera_Empresa> Lista_Espera_Empresas { get; set; }
-        public ICollection<Reclamos_Empresa> Reclamos { get; set; }
+        public ICollection<ListaEsperaEmpresa> ListaEsperaEmpresas { get; set; }
+        public ICollection<ReclamosEmpresa> Reclamos { get; set; }
     }
 }

@@ -1,5 +1,4 @@
-﻿    using Microsoft.AspNetCore.Authentication.Cookies;
-using System.ComponentModel.DataAnnotations;
+﻿using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 using System.Text.Json.Serialization;
 
@@ -30,7 +29,7 @@ namespace API.Models
         [Required]
         public float precioProducto { get; set; }
         [Required]
-        public float envioProducto { get; set; }
+        public float precioEnvioProducto { get; set; }
 
         [DataType(DataType.ImageUrl)]
         [Required]
@@ -48,17 +47,17 @@ namespace API.Models
 
         // RELACIONES
         [JsonIgnore]
-        public ICollection<Reclamos_Empresa> Reclamos { get; set; }
+        public ICollection<ReclamosEmpresa> Reclamos { get; set; }
         [JsonIgnore]
         public ICollection<Comentario> Comentarios { get; set; }
         [JsonIgnore]
         public ICollection<Like> Likes { get; set; }
         [JsonIgnore]
-        public ICollection<Categorias_Por_Producto> CategoriasProductos { get; set; }
+        public ICollection<CategoriasPorProducto> CategoriasProductos { get; set; }
         [JsonIgnore]
-        public ICollection<Detalle_Orden> Ordenes { get; set; }
+        public ICollection<DetalleOrden> Ordenes { get; set; }
         [JsonIgnore]
-        public ICollection<Detalle_Wishlist> Wishlists { get; set; }
+        public ICollection<DetalleWishlist> Wishlists { get; set; }
 
         public Producto()
         {
