@@ -11,4 +11,3 @@
 
 ## [Reportes Figma](https://www.figma.com/file/xGxf2bBtiHFzaPcQs5KHhA/REPORTES?type=design&node-id=0%3A1&mode=design&t=dD7fDdxpeUDceuwZ-1)
 ## [Casos de uso](https://docs.google.com/document/d/19jQuHtW-A0oEPxsDRa1Hf_PQLYzTS-4mqVmNm34J4hg/edit)
-## [Casos de uso diagramas](https://lucid.app/lucidchart/5d2c7d4a-b5d2-488d-8bba-95f20845a8f3/edit?viewport_loc=-618%2C-140%2C2524%2C1122%2C0_0&invitationId=inv_659fc06f-3b7e-4bd2-aa50-5d516810f3ca)
