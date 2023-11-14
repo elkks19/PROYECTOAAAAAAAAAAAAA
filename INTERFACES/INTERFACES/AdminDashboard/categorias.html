@@ -1,0 +1,181 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8"/>
+    <title>CATEGORIAS</title>
+    <link href="../registrosCSS/PerComprador.css" rel="stylesheet" />
+    <!--Js-->
+    <script src="categorias.js"></script>
+    <script src="https://kit.fontawesome.com/7c61ac1c1a.js" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@4.5.0/dist/css/bootstrap.min.css" rel="stylesheet">
+</head>
+<body style="background-color: #2A2A2A; ">
+    <!--Navbar Inicio-->
+    <header>
+        <div class="navbar">
+            <div class="logo">
+                <img src="../../RECURSOS/LOGO NEGRO.png" />
+            </div>
+            <div class="button">
+                <a style="font-family: 'Genera-grotesk-heavy'; text-decoration: none; color: #FFFCED; background-color: transparent; border: none;"
+                   onclick="history.back()">
+                    Regresar
+                </a>
+            </div>
+        </div>
+    </header>
+    <!--Navbar Fin-->
+    <!--EDICIÓN DEL PERFIL INICIO-->
+    <section>
+        <div class="container light-style flex-grow-1 container-p-y">
+            <h4 style="color: #BF9004;font-size:40px" class=" py-3 mb-4">
+                Categoría
+            </h4>
+            <div style="border-radius:30px" class="card overflow-hidden">
+                <div class="row no-gutters row-bordered row-border-light">
+                    <!--oPCIONES INICIO-->
+                    <div class="col-md-3 pt-0">
+                        <div class="list-group list-group-flush account-settings-links">
+                            <a class="list-group-item list-group-item-action active" data-toggle="list"
+                               href="#account-general" onclick="setToAccount()">Nueva Categoria</a>
+                            <a class="list-group-item list-group-item-action" data-toggle="list"
+                               href="#account-change-password" onclick="setToPassword()">Subcategoria</a>
+                        </div>
+                    </div>
+                    <!--OPCIONES FIN-->
+
+                    <div class="col-md-9">
+                        <div class="tab-content">
+                            <div class="tab-pane fade active show" id="account-general">
+                                <hr class="border-light m-0">
+                                <!--NUEVA CATEGORIA INICIO-->
+                                <div class="card-body">
+                                    <div class="form-group">
+                                        <label style="font-family:'Genera Grotesk';color:#BF9004" class="form-label">Nombre</label>
+                                        <input type="text" class="form-control mb-1" id="categoria">
+                                    </div>
+                                    <div class="form-group">
+                                        <label style="font-family:'Genera Grotesk';color:#BF9004" class="form-label">Subcategoria</label>
+                                        <input type="text" class="form-control" id="Subcategoria">
+                                    </div>
+                                   <div class="card-body pb-2">
+                                    <h6 style="font-family:'Genera Grotesk';color:#BF9004" class="mb-4">Dirigido a:</h6>
+                                    <div class="form-group">
+                                        <label class="switcher">
+                                            <input type="checkbox" class="switcher-input" id="dirigido-a">
+                                            <span class="switcher-indicator">
+                                                <span class="switcher-yes"></span>
+                                                <span class="switcher-no"></span>
+                                            </span>
+                                            <span class="switcher-label">Mujer</span>
+                                        </label>
+                                        <label class="switcher">
+                                            <input type="checkbox" class="switcher-input" id="dirigido-a">
+                                            <span class="switcher-indicator">
+                                                <span class="switcher-yes"></span>
+                                                <span class="switcher-no"></span>
+                                            </span>
+                                            <span class="switcher-label">Hombre</span>
+                                        </label>
+                                        <label class="switcher">
+                                            <input type="checkbox" class="switcher-input" id="dirigido-a">
+                                            <span class="switcher-indicator">
+                                                <span class="switcher-yes"></span>
+                                                <span class="switcher-no"></span>
+                                            </span>
+                                            <span class="switcher-label">Niños</span>
+                                        </label>                                                                                                                                                             
+                                    </div>
+
+                                </div>
+                                </div>
+                                <!--NUEVA CATEGORIA FIN-->
+                            </div>
+                            <!--SUBCATEGORIA INICIO-->
+                            <div class="tab-pane fade" id="account-change-password">
+                                <div class="card-body pb-2">
+                                     <div class="form-group">
+                                        <label style="font-family:'Genera Grotesk';color:#BF9004" class="form-label">Nombre</label>
+                                        <input type="text" class="form-control mb-1" id="categoria">
+                                    </div> 
+                                    <h6 style="font-family:'Genera Grotesk';color:#BF9004" class="mb-4">Nombre Subcategoria</h6>
+                                    <div class="form-group">
+                                        <label class="switcher">
+                                            <input type="checkbox" class="switcher-input" id="Subcategoria">
+                                            <span class="switcher-indicator">
+                                                <span class="switcher-yes"></span>
+                                                <span class="switcher-no"></span>
+                                            </span>
+                                            <span class="switcher-label">Ropa</span>
+                                        </label>
+                                        <label class="switcher">
+                                            <input type="checkbox" class="switcher-input" id="Subcategoria">
+                                            <span class="switcher-indicator">
+                                                <span class="switcher-yes"></span>
+                                                <span class="switcher-no"></span>
+                                            </span>
+                                            <span class="switcher-label">Zapatos</span>
+                                        </label>
+                                        <label class="switcher">
+                                            <input type="checkbox" class="switcher-input" id="Subcategoria">
+                                            <span class="switcher-indicator">
+                                                <span class="switcher-yes"></span>
+                                                <span class="switcher-no"></span>
+                                            </span>
+                                            <span class="switcher-label">Accesorios</span>
+                                        </label>                                         
+                                    </div> 
+                                    <h6 style="font-family:'Genera Grotesk';color:#BF9004" class="mb-4">Dirigido a:</h6>
+                                    <div class="form-group">
+                                        <label class="switcher">
+                                            <input type="checkbox" class="switcher-input" id="dirigido-a">
+                                            <span class="switcher-indicator">
+                                                <span class="switcher-yes"></span>
+                                                <span class="switcher-no"></span>
+                                            </span>
+                                            <span class="switcher-label">Mujer</span>
+                                        </label>
+                                        <label class="switcher">
+                                            <input type="checkbox" class="switcher-input" id="dirigido-a">
+                                            <span class="switcher-indicator">
+                                                <span class="switcher-yes"></span>
+                                                <span class="switcher-no"></span>
+                                            </span>
+                                            <span class="switcher-label">Hombre</span>
+                                        </label>
+                                        <label class="switcher">
+                                            <input type="checkbox" class="switcher-input" id="dirigido-a">
+                                            <span class="switcher-indicator">
+                                                <span class="switcher-yes"></span>
+                                                <span class="switcher-no"></span>
+                                            </span>
+                                            <span class="switcher-label">Niños</span>
+                                        </label>                                         
+                                    </div>
+
+                                    
+                        
+                                </div>
+                            </div>
+                            <!--SUBCATEGORIA FIN-->
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="text-right mt-3">
+                <button type="submit" style="border-color: #F0E6DA; background: #BF9004; margin-bottom:20px" type="button" class="btn btn-primary" onclick="actualizarDatosUsuario()">Guardar cambios</button>;
+                <button type="button" style="color: #F0E6DA; margin-bottom: 20px" class="btn btn-default" onclick="history.back()">Cancelar</button>
+            </div>
+        </div>
+        <script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script>
+        <script src="https://code.jquery.com/jquery-1.10.2.min.js"></script>
+        <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.5.0/dist/js/bootstrap.bundle.min.js"></script>
+        <script type="text/javascript">
+
+        </script>
+    </section>
+    <!--EDICIÓN DE CATEGORIA FIN-->
+
+</body>
+</html>

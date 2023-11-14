@@ -1,0 +1,118 @@
+C:\Users\Alejandra\Documents\VISUALSTUDIOPROYECTOS\INTERFACES\INTERFACES\bin\INTERFACES.dll.config
+C:\Users\Alejandra\Documents\VISUALSTUDIOPROYECTOS\INTERFACES\INTERFACES\bin\INTERFACES.dll
+C:\Users\Alejandra\Documents\VISUALSTUDIOPROYECTOS\INTERFACES\INTERFACES\bin\INTERFACES.pdb
+C:\Users\Alejandra\Documents\VISUALSTUDIOPROYECTOS\INTERFACES\INTERFACES\bin\roslyn\csc.exe
+C:\Users\Alejandra\Documents\VISUALSTUDIOPROYECTOS\INTERFACES\INTERFACES\bin\roslyn\csc.exe.config
+C:\Users\Alejandra\Documents\VISUALSTUDIOPROYECTOS\INTERFACES\INTERFACES\bin\roslyn\csc.rsp
+C:\Users\Alejandra\Documents\VISUALSTUDIOPROYECTOS\INTERFACES\INTERFACES\bin\roslyn\csi.exe
+C:\Users\Alejandra\Documents\VISUALSTUDIOPROYECTOS\INTERFACES\INTERFACES\bin\roslyn\csi.exe.config
+C:\Users\Alejandra\Documents\VISUALSTUDIOPROYECTOS\INTERFACES\INTERFACES\bin\roslyn\csi.rsp
+C:\Users\Alejandra\Documents\VISUALSTUDIOPROYECTOS\INTERFACES\INTERFACES\bin\roslyn\Microsoft.Build.Tasks.CodeAnalysis.dll
+C:\Users\Alejandra\Documents\VISUALSTUDIOPROYECTOS\INTERFACES\INTERFACES\bin\roslyn\Microsoft.CodeAnalysis.CSharp.dll
+C:\Users\Alejandra\Documents\VISUALSTUDIOPROYECTOS\INTERFACES\INTERFACES\bin\roslyn\Microsoft.CodeAnalysis.CSharp.Scripting.dll
+C:\Users\Alejandra\Documents\VISUALSTUDIOPROYECTOS\INTERFACES\INTERFACES\bin\roslyn\Microsoft.CodeAnalysis.dll
+C:\Users\Alejandra\Documents\VISUALSTUDIOPROYECTOS\INTERFACES\INTERFACES\bin\roslyn\Microsoft.CodeAnalysis.Scripting.dll
+C:\Users\Alejandra\Documents\VISUALSTUDIOPROYECTOS\INTERFACES\INTERFACES\bin\roslyn\Microsoft.CodeAnalysis.VisualBasic.dll
+C:\Users\Alejandra\Documents\VISUALSTUDIOPROYECTOS\INTERFACES\INTERFACES\bin\roslyn\Microsoft.CSharp.Core.targets
+C:\Users\Alejandra\Documents\VISUALSTUDIOPROYECTOS\INTERFACES\INTERFACES\bin\roslyn\Microsoft.DiaSymReader.Native.amd64.dll
+C:\Users\Alejandra\Documents\VISUALSTUDIOPROYECTOS\INTERFACES\INTERFACES\bin\roslyn\Microsoft.DiaSymReader.Native.x86.dll
+C:\Users\Alejandra\Documents\VISUALSTUDIOPROYECTOS\INTERFACES\INTERFACES\bin\roslyn\Microsoft.Managed.Core.targets
+C:\Users\Alejandra\Documents\VISUALSTUDIOPROYECTOS\INTERFACES\INTERFACES\bin\roslyn\Microsoft.VisualBasic.Core.targets
+C:\Users\Alejandra\Documents\VISUALSTUDIOPROYECTOS\INTERFACES\INTERFACES\bin\roslyn\Microsoft.Win32.Primitives.dll
+C:\Users\Alejandra\Documents\VISUALSTUDIOPROYECTOS\INTERFACES\INTERFACES\bin\roslyn\System.AppContext.dll
+C:\Users\Alejandra\Documents\VISUALSTUDIOPROYECTOS\INTERFACES\INTERFACES\bin\roslyn\System.Collections.Immutable.dll
+C:\Users\Alejandra\Documents\VISUALSTUDIOPROYECTOS\INTERFACES\INTERFACES\bin\roslyn\System.Console.dll
+C:\Users\Alejandra\Documents\VISUALSTUDIOPROYECTOS\INTERFACES\INTERFACES\bin\roslyn\System.Diagnostics.DiagnosticSource.dll
+C:\Users\Alejandra\Documents\VISUALSTUDIOPROYECTOS\INTERFACES\INTERFACES\bin\roslyn\System.Diagnostics.FileVersionInfo.dll
+C:\Users\Alejandra\Documents\VISUALSTUDIOPROYECTOS\INTERFACES\INTERFACES\bin\roslyn\System.Diagnostics.StackTrace.dll
+C:\Users\Alejandra\Documents\VISUALSTUDIOPROYECTOS\INTERFACES\INTERFACES\bin\roslyn\System.Globalization.Calendars.dll
+C:\Users\Alejandra\Documents\VISUALSTUDIOPROYECTOS\INTERFACES\INTERFACES\bin\roslyn\System.IO.Compression.dll
+C:\Users\Alejandra\Documents\VISUALSTUDIOPROYECTOS\INTERFACES\INTERFACES\bin\roslyn\System.IO.Compression.ZipFile.dll
+C:\Users\Alejandra\Documents\VISUALSTUDIOPROYECTOS\INTERFACES\INTERFACES\bin\roslyn\System.IO.FileSystem.dll
+C:\Users\Alejandra\Documents\VISUALSTUDIOPROYECTOS\INTERFACES\INTERFACES\bin\roslyn\System.IO.FileSystem.Primitives.dll
+C:\Users\Alejandra\Documents\VISUALSTUDIOPROYECTOS\INTERFACES\INTERFACES\bin\roslyn\System.Net.Http.dll
+C:\Users\Alejandra\Documents\VISUALSTUDIOPROYECTOS\INTERFACES\INTERFACES\bin\roslyn\System.Net.Sockets.dll
+C:\Users\Alejandra\Documents\VISUALSTUDIOPROYECTOS\INTERFACES\INTERFACES\bin\roslyn\System.Reflection.Metadata.dll
+C:\Users\Alejandra\Documents\VISUALSTUDIOPROYECTOS\INTERFACES\INTERFACES\bin\roslyn\System.Runtime.InteropServices.RuntimeInformation.dll
+C:\Users\Alejandra\Documents\VISUALSTUDIOPROYECTOS\INTERFACES\INTERFACES\bin\roslyn\System.Security.Cryptography.Algorithms.dll
+C:\Users\Alejandra\Documents\VISUALSTUDIOPROYECTOS\INTERFACES\INTERFACES\bin\roslyn\System.Security.Cryptography.Encoding.dll
+C:\Users\Alejandra\Documents\VISUALSTUDIOPROYECTOS\INTERFACES\INTERFACES\bin\roslyn\System.Security.Cryptography.Primitives.dll
+C:\Users\Alejandra\Documents\VISUALSTUDIOPROYECTOS\INTERFACES\INTERFACES\bin\roslyn\System.Security.Cryptography.X509Certificates.dll
+C:\Users\Alejandra\Documents\VISUALSTUDIOPROYECTOS\INTERFACES\INTERFACES\bin\roslyn\System.Text.Encoding.CodePages.dll
+C:\Users\Alejandra\Documents\VISUALSTUDIOPROYECTOS\INTERFACES\INTERFACES\bin\roslyn\System.Threading.Tasks.Extensions.dll
+C:\Users\Alejandra\Documents\VISUALSTUDIOPROYECTOS\INTERFACES\INTERFACES\bin\roslyn\System.ValueTuple.dll
+C:\Users\Alejandra\Documents\VISUALSTUDIOPROYECTOS\INTERFACES\INTERFACES\bin\roslyn\System.Xml.ReaderWriter.dll
+C:\Users\Alejandra\Documents\VISUALSTUDIOPROYECTOS\INTERFACES\INTERFACES\bin\roslyn\System.Xml.XmlDocument.dll
+C:\Users\Alejandra\Documents\VISUALSTUDIOPROYECTOS\INTERFACES\INTERFACES\bin\roslyn\System.Xml.XPath.dll
+C:\Users\Alejandra\Documents\VISUALSTUDIOPROYECTOS\INTERFACES\INTERFACES\bin\roslyn\System.Xml.XPath.XDocument.dll
+C:\Users\Alejandra\Documents\VISUALSTUDIOPROYECTOS\INTERFACES\INTERFACES\bin\roslyn\vbc.exe
+C:\Users\Alejandra\Documents\VISUALSTUDIOPROYECTOS\INTERFACES\INTERFACES\bin\roslyn\vbc.exe.config
+C:\Users\Alejandra\Documents\VISUALSTUDIOPROYECTOS\INTERFACES\INTERFACES\bin\roslyn\vbc.rsp
+C:\Users\Alejandra\Documents\VISUALSTUDIOPROYECTOS\INTERFACES\INTERFACES\bin\roslyn\VBCSCompiler.exe
+C:\Users\Alejandra\Documents\VISUALSTUDIOPROYECTOS\INTERFACES\INTERFACES\bin\roslyn\VBCSCompiler.exe.config
+C:\Users\Alejandra\Documents\VISUALSTUDIOPROYECTOS\INTERFACES\INTERFACES\bin\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.dll
+C:\Users\Alejandra\Documents\VISUALSTUDIOPROYECTOS\INTERFACES\INTERFACES\bin\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.xml
+C:\Users\Alejandra\Documents\VISUALSTUDIOPROYECTOS\INTERFACES\INTERFACES\obj\Debug\INTERFACES.csproj.AssemblyReference.cache
+C:\Users\Alejandra\Documents\VISUALSTUDIOPROYECTOS\INTERFACES\INTERFACES\obj\Debug\INTERFACES.csproj.CoreCompileInputs.cache
+C:\Users\Alejandra\Documents\VISUALSTUDIOPROYECTOS\INTERFACES\INTERFACES\obj\Debug\INTERFACES.csproj.CopyComplete
+C:\Users\Alejandra\Documents\VISUALSTUDIOPROYECTOS\INTERFACES\INTERFACES\obj\Debug\INTERFACES.dll
+C:\Users\Alejandra\Documents\VISUALSTUDIOPROYECTOS\INTERFACES\INTERFACES\obj\Debug\INTERFACES.pdb
+S:\Unifranz\Semestre 4\PROYECTO_FINAL\ProyectoEquisDe\INTERFACESa\INTERFACES\bin\INTERFACES.dll.config
+S:\Unifranz\Semestre 4\PROYECTO_FINAL\ProyectoEquisDe\INTERFACESa\INTERFACES\bin\INTERFACES.dll
+S:\Unifranz\Semestre 4\PROYECTO_FINAL\ProyectoEquisDe\INTERFACESa\INTERFACES\bin\INTERFACES.pdb
+S:\Unifranz\Semestre 4\PROYECTO_FINAL\ProyectoEquisDe\INTERFACESa\INTERFACES\bin\roslyn\csc.exe
+S:\Unifranz\Semestre 4\PROYECTO_FINAL\ProyectoEquisDe\INTERFACESa\INTERFACES\bin\roslyn\csc.exe.config
+S:\Unifranz\Semestre 4\PROYECTO_FINAL\ProyectoEquisDe\INTERFACESa\INTERFACES\bin\roslyn\csc.rsp
+S:\Unifranz\Semestre 4\PROYECTO_FINAL\ProyectoEquisDe\INTERFACESa\INTERFACES\bin\roslyn\csi.exe
+S:\Unifranz\Semestre 4\PROYECTO_FINAL\ProyectoEquisDe\INTERFACESa\INTERFACES\bin\roslyn\csi.exe.config
+S:\Unifranz\Semestre 4\PROYECTO_FINAL\ProyectoEquisDe\INTERFACESa\INTERFACES\bin\roslyn\csi.rsp
+S:\Unifranz\Semestre 4\PROYECTO_FINAL\ProyectoEquisDe\INTERFACESa\INTERFACES\bin\roslyn\Microsoft.Build.Tasks.CodeAnalysis.dll
+S:\Unifranz\Semestre 4\PROYECTO_FINAL\ProyectoEquisDe\INTERFACESa\INTERFACES\bin\roslyn\Microsoft.CodeAnalysis.CSharp.dll
+S:\Unifranz\Semestre 4\PROYECTO_FINAL\ProyectoEquisDe\INTERFACESa\INTERFACES\bin\roslyn\Microsoft.CodeAnalysis.CSharp.Scripting.dll
+S:\Unifranz\Semestre 4\PROYECTO_FINAL\ProyectoEquisDe\INTERFACESa\INTERFACES\bin\roslyn\Microsoft.CodeAnalysis.dll
+S:\Unifranz\Semestre 4\PROYECTO_FINAL\ProyectoEquisDe\INTERFACESa\INTERFACES\bin\roslyn\Microsoft.CodeAnalysis.Scripting.dll
+S:\Unifranz\Semestre 4\PROYECTO_FINAL\ProyectoEquisDe\INTERFACESa\INTERFACES\bin\roslyn\Microsoft.CodeAnalysis.VisualBasic.dll
+S:\Unifranz\Semestre 4\PROYECTO_FINAL\ProyectoEquisDe\INTERFACESa\INTERFACES\bin\roslyn\Microsoft.CSharp.Core.targets
+S:\Unifranz\Semestre 4\PROYECTO_FINAL\ProyectoEquisDe\INTERFACESa\INTERFACES\bin\roslyn\Microsoft.DiaSymReader.Native.amd64.dll
+S:\Unifranz\Semestre 4\PROYECTO_FINAL\ProyectoEquisDe\INTERFACESa\INTERFACES\bin\roslyn\Microsoft.DiaSymReader.Native.x86.dll
+S:\Unifranz\Semestre 4\PROYECTO_FINAL\ProyectoEquisDe\INTERFACESa\INTERFACES\bin\roslyn\Microsoft.Managed.Core.targets
+S:\Unifranz\Semestre 4\PROYECTO_FINAL\ProyectoEquisDe\INTERFACESa\INTERFACES\bin\roslyn\Microsoft.VisualBasic.Core.targets
+S:\Unifranz\Semestre 4\PROYECTO_FINAL\ProyectoEquisDe\INTERFACESa\INTERFACES\bin\roslyn\Microsoft.Win32.Primitives.dll
+S:\Unifranz\Semestre 4\PROYECTO_FINAL\ProyectoEquisDe\INTERFACESa\INTERFACES\bin\roslyn\System.AppContext.dll
+S:\Unifranz\Semestre 4\PROYECTO_FINAL\ProyectoEquisDe\INTERFACESa\INTERFACES\bin\roslyn\System.Collections.Immutable.dll
+S:\Unifranz\Semestre 4\PROYECTO_FINAL\ProyectoEquisDe\INTERFACESa\INTERFACES\bin\roslyn\System.Console.dll
+S:\Unifranz\Semestre 4\PROYECTO_FINAL\ProyectoEquisDe\INTERFACESa\INTERFACES\bin\roslyn\System.Diagnostics.DiagnosticSource.dll
+S:\Unifranz\Semestre 4\PROYECTO_FINAL\ProyectoEquisDe\INTERFACESa\INTERFACES\bin\roslyn\System.Diagnostics.FileVersionInfo.dll
+S:\Unifranz\Semestre 4\PROYECTO_FINAL\ProyectoEquisDe\INTERFACESa\INTERFACES\bin\roslyn\System.Diagnostics.StackTrace.dll
+S:\Unifranz\Semestre 4\PROYECTO_FINAL\ProyectoEquisDe\INTERFACESa\INTERFACES\bin\roslyn\System.Globalization.Calendars.dll
+S:\Unifranz\Semestre 4\PROYECTO_FINAL\ProyectoEquisDe\INTERFACESa\INTERFACES\bin\roslyn\System.IO.Compression.dll
+S:\Unifranz\Semestre 4\PROYECTO_FINAL\ProyectoEquisDe\INTERFACESa\INTERFACES\bin\roslyn\System.IO.Compression.ZipFile.dll
+S:\Unifranz\Semestre 4\PROYECTO_FINAL\ProyectoEquisDe\INTERFACESa\INTERFACES\bin\roslyn\System.IO.FileSystem.dll
+S:\Unifranz\Semestre 4\PROYECTO_FINAL\ProyectoEquisDe\INTERFACESa\INTERFACES\bin\roslyn\System.IO.FileSystem.Primitives.dll
+S:\Unifranz\Semestre 4\PROYECTO_FINAL\ProyectoEquisDe\INTERFACESa\INTERFACES\bin\roslyn\System.Net.Http.dll
+S:\Unifranz\Semestre 4\PROYECTO_FINAL\ProyectoEquisDe\INTERFACESa\INTERFACES\bin\roslyn\System.Net.Sockets.dll
+S:\Unifranz\Semestre 4\PROYECTO_FINAL\ProyectoEquisDe\INTERFACESa\INTERFACES\bin\roslyn\System.Reflection.Metadata.dll
+S:\Unifranz\Semestre 4\PROYECTO_FINAL\ProyectoEquisDe\INTERFACESa\INTERFACES\bin\roslyn\System.Runtime.InteropServices.RuntimeInformation.dll
+S:\Unifranz\Semestre 4\PROYECTO_FINAL\ProyectoEquisDe\INTERFACESa\INTERFACES\bin\roslyn\System.Security.Cryptography.Algorithms.dll
+S:\Unifranz\Semestre 4\PROYECTO_FINAL\ProyectoEquisDe\INTERFACESa\INTERFACES\bin\roslyn\System.Security.Cryptography.Encoding.dll
+S:\Unifranz\Semestre 4\PROYECTO_FINAL\ProyectoEquisDe\INTERFACESa\INTERFACES\bin\roslyn\System.Security.Cryptography.Primitives.dll
+S:\Unifranz\Semestre 4\PROYECTO_FINAL\ProyectoEquisDe\INTERFACESa\INTERFACES\bin\roslyn\System.Security.Cryptography.X509Certificates.dll
+S:\Unifranz\Semestre 4\PROYECTO_FINAL\ProyectoEquisDe\INTERFACESa\INTERFACES\bin\roslyn\System.Text.Encoding.CodePages.dll
+S:\Unifranz\Semestre 4\PROYECTO_FINAL\ProyectoEquisDe\INTERFACESa\INTERFACES\bin\roslyn\System.Threading.Tasks.Extensions.dll
+S:\Unifranz\Semestre 4\PROYECTO_FINAL\ProyectoEquisDe\INTERFACESa\INTERFACES\bin\roslyn\System.ValueTuple.dll
+S:\Unifranz\Semestre 4\PROYECTO_FINAL\ProyectoEquisDe\INTERFACESa\INTERFACES\bin\roslyn\System.Xml.ReaderWriter.dll
+S:\Unifranz\Semestre 4\PROYECTO_FINAL\ProyectoEquisDe\INTERFACESa\INTERFACES\bin\roslyn\System.Xml.XmlDocument.dll
+S:\Unifranz\Semestre 4\PROYECTO_FINAL\ProyectoEquisDe\INTERFACESa\INTERFACES\bin\roslyn\System.Xml.XPath.dll
+S:\Unifranz\Semestre 4\PROYECTO_FINAL\ProyectoEquisDe\INTERFACESa\INTERFACES\bin\roslyn\System.Xml.XPath.XDocument.dll
+S:\Unifranz\Semestre 4\PROYECTO_FINAL\ProyectoEquisDe\INTERFACESa\INTERFACES\bin\roslyn\vbc.exe
+S:\Unifranz\Semestre 4\PROYECTO_FINAL\ProyectoEquisDe\INTERFACESa\INTERFACES\bin\roslyn\vbc.exe.config
+S:\Unifranz\Semestre 4\PROYECTO_FINAL\ProyectoEquisDe\INTERFACESa\INTERFACES\bin\roslyn\vbc.rsp
+S:\Unifranz\Semestre 4\PROYECTO_FINAL\ProyectoEquisDe\INTERFACESa\INTERFACES\bin\roslyn\VBCSCompiler.exe
+S:\Unifranz\Semestre 4\PROYECTO_FINAL\ProyectoEquisDe\INTERFACESa\INTERFACES\bin\roslyn\VBCSCompiler.exe.config
+S:\Unifranz\Semestre 4\PROYECTO_FINAL\ProyectoEquisDe\INTERFACESa\INTERFACES\bin\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.dll
+S:\Unifranz\Semestre 4\PROYECTO_FINAL\ProyectoEquisDe\INTERFACESa\INTERFACES\bin\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.xml
+S:\Unifranz\Semestre 4\PROYECTO_FINAL\ProyectoEquisDe\INTERFACESa\INTERFACES\obj\Debug\INTERFACES.csproj.AssemblyReference.cache
+S:\Unifranz\Semestre 4\PROYECTO_FINAL\ProyectoEquisDe\INTERFACESa\INTERFACES\obj\Debug\INTERFACES.csproj.CoreCompileInputs.cache
+S:\Unifranz\Semestre 4\PROYECTO_FINAL\ProyectoEquisDe\INTERFACESa\INTERFACES\obj\Debug\INTERFACES.csproj.CopyComplete
+S:\Unifranz\Semestre 4\PROYECTO_FINAL\ProyectoEquisDe\INTERFACESa\INTERFACES\obj\Debug\INTERFACES.dll
+S:\Unifranz\Semestre 4\PROYECTO_FINAL\ProyectoEquisDe\INTERFACESa\INTERFACES\obj\Debug\INTERFACES.pdb
