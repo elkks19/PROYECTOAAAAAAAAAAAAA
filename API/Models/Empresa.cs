@@ -42,8 +42,6 @@ namespace API.Models
         [JsonIgnore]
         public ListaEsperaEmpresa ListaEspera { get; set; }
         [JsonIgnore]
-        public ICollection<Orden> Ordenes { get; set; }
-        [JsonIgnore]
         public ICollection<VisitasEmpresa> Visitas { get; set; }
 
         public Empresa()

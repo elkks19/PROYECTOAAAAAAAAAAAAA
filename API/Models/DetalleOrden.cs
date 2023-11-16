@@ -4,9 +4,14 @@ using System.ComponentModel.DataAnnotations.Schema;
 
 namespace API.Models
 {
-    [Keyless]
     public class DetalleOrden
     {
+        [MaxLength(10)]
+        [Key]
+        [DatabaseGenerated(DatabaseGeneratedOption.None)]
+        [Required]
+        public string codDetalleOrden { get; set; }
+
         [MaxLength(10)]
         [Required]
         public string codOrden { get; set; }

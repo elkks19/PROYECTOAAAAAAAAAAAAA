@@ -26,9 +26,11 @@ namespace API.Models
         public string codPersona { get; set; }
 
         [Required]
+        [MinLength(8)]
         public string userPersona { get; set; }
 
         [Required]
+        [MinLength(8)]
         public string passwordPersona { get; set; }
 
         [MaxLength(70)]

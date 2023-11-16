@@ -7,6 +7,8 @@ using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
 using API.Data;
 using API.Models;
+using API.Atributos;
+using Microsoft.CodeAnalysis.Scripting.Hosting;
 
 namespace API.Controllers
 {
@@ -21,33 +23,63 @@ namespace API.Controllers
             this.env = env;
         }
 
-        [HttpGet]
-        public async Task<IActionResult> dummyData()
+        //[Autorizado("empresa")]
+        public async Task<IActionResult> Create([FromBody]Producto request, [FromRoute]string cod)
         {
-            Producto[] listaProds =
+            var empresa = await db.Empresa.FirstOrDefaultAsync(x => x.codEmpresa.Equals(cod));
+            if (empresa == null)
             {
-                new Producto(){
-                    codEmpresa = "EMP-001",
-                    nombreProducto = "Abrigo 1",
-                    descProducto = "Abrigo para el frio",
-                    precioProducto = 400,
-                    pathFotoProducto = env.ContentRootPath + "\\ImgProductos\\PROD-001\\01.jpg"
-                },
-                new Producto(){
-                    codEmpresa = "EMP-001",
-                    nombreProducto = "Abrigo 2",
-                    descProducto = "Abrigo para mas frio",
-                    precioProducto = 200,
-                    pathFotoProducto = env.ContentRootPath + "\\ImgProductos\\PROD-002\\02.jpg"
-                },
-            };
-            foreach (Producto p in listaProds)
-            {
-                await db.Producto.AddAsync(p);
+                return BadRequest("No se encontro la empresa");
             }
+
+            //IFormFile img = Request.Form.Files.FirstOrDefault();
+
+            //var path = $"{env.ContentRootPath}\\ImagenesProductos";
+            //if (!Directory.Exists($"{path}\\{empresa.nombreEmpresa}"))
+            //{
+            //    Directory.CreateDirectory($"{path}\\{empresa.nombreEmpresa}");
+            //}
+
+            //if (img.Length == 0)
+            //{
+            //    return BadRequest("Ingrese un archivo valido");
+            //}
+
+            //var file = $"{path}\\{empresa.nombreempresa}\\{img.filename}";
+
+            //if (!System.IO.File.Exists(file))
+            //{
+            //    var diskFile = System.IO.File.Create(file);
+            //    await img.CopyToAsync(diskFile);
+            //    diskFile.Close();
+            //}
+            //else
+            //{
+            //    var diskFile = System.IO.File.Open(file, FileMode.Open);
+            //    await img.CopyToAsync(diskFile);
+            //    diskFile.Close();
+            //}
+
+
+            var cantProductos = await db.Producto.CountAsync() + 1;
+            var producto = new Producto()
+            {
+                codProducto = "PROD-" + cantProductos.ToString("000"),
+                Empresa = empresa,
+                nombreProducto = request.nombreProducto,
+                descProducto = request.descProducto,
+                precioProducto = request.precioProducto,
+                precioEnvioProducto = request.precioEnvioProducto,
+                cantidadRestante = request.cantidadRestante,
+                pathFotoProducto = env.ContentRootPath + "\\Imagenes\\perrito.jpg"
+            };
+
+            await db.Producto.AddAsync(producto);
             await db.SaveChangesAsync();
-            return Ok("Se guardaron los productos");
+
+            return Ok("El producto se registro correctemente");
         }
+
 
 
         public async Task<IActionResult> Details([FromRoute]string cod)
@@ -70,6 +102,13 @@ namespace API.Controllers
             }
 
             return BadRequest("No se encontro el producto");
+        }
+
+        protected internal async Task<Producto> Disminuir(Producto producto, int cantidad)
+        {
+            producto.cantidadRestante -= cantidad;
+            await db.SaveChangesAsync();
+            return producto;
         }
     }
 }

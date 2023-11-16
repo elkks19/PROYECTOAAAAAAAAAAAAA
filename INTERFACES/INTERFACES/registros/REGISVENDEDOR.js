@@ -1,10 +1,10 @@
 function registroEmpresas(){
     // console.log(document.getElementById("archivo").value.split('\\').pop());
     // console.log(document.getElementById("archivo").files[0]);
-    axios.post  ('http://localhost:5132/Empresas/Create', {
-        nombre: document.getElementById("nombre").value,
-        direccion: document.getElementById("direccion").value,
-        nombreArchivo: document.getElementById("archivo").value.split('\\').pop(),
+    axios.post  ('http://localhost:5132/Empresas/Registro', {
+        nombreEmpresa: document.getElementById("nombre").value,
+        direccionEmpresa: document.getElementById("direccion").value,
+        archivo: document.getElementById("archivo").value.split('\\').pop(),
         archivo: document.getElementById("archivo").files[0]
     },
     {

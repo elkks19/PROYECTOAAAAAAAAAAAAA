@@ -114,21 +114,29 @@ namespace API.Migrations
 
             modelBuilder.Entity("API.Models.DetalleOrden", b =>
                 {
-                    b.Property<string>("codOrden")
-                        .HasMaxLength(10)
-                        .HasColumnType("nvarchar(10)");
-
-                    b.Property<string>("codProducto")
+                    b.Property<string>("codDetalleOrden")
                         .HasMaxLength(10)
                         .HasColumnType("nvarchar(10)");
 
                     b.Property<int>("cantidadProducto")
                         .HasColumnType("int");
 
+                    b.Property<string>("codOrden")
+                        .IsRequired()
+                        .HasMaxLength(10)
+                        .HasColumnType("nvarchar(10)");
+
+                    b.Property<string>("codProducto")
+                        .IsRequired()
+                        .HasMaxLength(10)
+                        .HasColumnType("nvarchar(10)");
+
                     b.Property<float>("precioTotal")
                         .HasColumnType("real");
 
-                    b.HasKey("codOrden", "codProducto");
+                    b.HasKey("codDetalleOrden");
+
+                    b.HasIndex("codOrden");
 
                     b.HasIndex("codProducto");
 
@@ -340,11 +348,6 @@ namespace API.Migrations
                         .HasMaxLength(10)
                         .HasColumnType("nvarchar(10)");
 
-                    b.Property<string>("codEmpresa")
-                        .IsRequired()
-                        .HasMaxLength(10)
-                        .HasColumnType("nvarchar(10)");
-
                     b.Property<string>("codUsuario")
                         .IsRequired()
                         .HasMaxLength(10)
@@ -372,8 +375,6 @@ namespace API.Migrations
                         .HasColumnType("datetime2");
 
                     b.HasKey("codOrden");
-
-                    b.HasIndex("codEmpresa");
 
                     b.HasIndex("codUsuario");
 
@@ -468,6 +469,9 @@ namespace API.Migrations
                     b.Property<string>("codProducto")
                         .HasMaxLength(10)
                         .HasColumnType("nvarchar(10)");
+
+                    b.Property<int>("cantidadRestante")
+                        .HasColumnType("int");
 
                     b.Property<string>("codEmpresa")
                         .IsRequired()
@@ -826,19 +830,11 @@ namespace API.Migrations
 
             modelBuilder.Entity("API.Models.Orden", b =>
                 {
-                    b.HasOne("API.Models.Empresa", "Empresa")
-                        .WithMany("Ordenes")
-                        .HasForeignKey("codEmpresa")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
                     b.HasOne("API.Models.Usuario", "Usuario")
                         .WithMany("Ordenes")
                         .HasForeignKey("codUsuario")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
-
-                    b.Navigation("Empresa");
 
                     b.Navigation("Usuario");
                 });
@@ -968,8 +964,6 @@ namespace API.Migrations
                 {
                     b.Navigation("ListaEspera")
                         .IsRequired();
-
-                    b.Navigation("Ordenes");
 
                     b.Navigation("Personal");
 

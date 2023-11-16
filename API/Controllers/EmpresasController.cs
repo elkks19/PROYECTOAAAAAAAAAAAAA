@@ -1,13 +1,8 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
-using Microsoft.AspNetCore.Mvc;
-using Microsoft.AspNetCore.Mvc.Rendering;
-using Microsoft.EntityFrameworkCore;
+﻿using Microsoft.AspNetCore.Mvc;
 using API.Data;
 using API.Models;
-using Microsoft.AspNetCore.Cors;
+using API.Atributos;
+using Microsoft.EntityFrameworkCore;
 
 namespace API.Controllers
 {
@@ -15,40 +10,36 @@ namespace API.Controllers
     {
         private readonly APIContext db;
         private readonly IWebHostEnvironment env;
+        private readonly ListaEsperaController listaC;
 
-        public EmpresasController(APIContext context, IWebHostEnvironment environment)
+        public EmpresasController(APIContext context, IWebHostEnvironment environment, ListaEsperaController listaEsperaController)
         {
             db = context;
             env = environment;
+            listaC = listaEsperaController;
         }
 
-        public class EmpresaRequest
-        {
-            public string nombre { get; set; }
-            public string direccion { get; set; }
-            public string nombreArchivo { get; set; }
-        }
-
-
-
-        
         [HttpPost]
-        public async Task<IActionResult> Create(EmpresaRequest request)
+        public async Task<IActionResult> Registro(Empresa request)
         {
-            IFormFile archivo = Request.Form.Files.FirstOrDefault();
-
-            string dir = env.ContentRootPath + "/ArchivosVerificacion";
+            string dir = env.ContentRootPath + "\\ArchivosVerificacion";
 
             if(!Directory.Exists(dir))
             {
                 Directory.CreateDirectory(dir);
             }
 
-            string path = dir + "/" + request.nombre + "/" + archivo.FileName;
-
-            if (!Directory.Exists(dir + "/" + request.nombre))
+            IFormFile archivo = Request.Form.Files.FirstOrDefault();
+            if (archivo == null)
             {
-                Directory.CreateDirectory(dir + "/" + request.nombre);
+                return BadRequest("No se encontro el archivo de verificacion");
+            }
+
+            string path = dir + "\\" + request.nombreEmpresa + "\\" + archivo.FileName;
+
+            if (!Directory.Exists(dir + "\\" + request.nombreEmpresa))
+            {
+                Directory.CreateDirectory(dir + "\\" + request.nombreEmpresa);
             }
 
             string[] acceptedExtensions = {"pdf", "png", "jpg", "jpeg"};
@@ -78,29 +69,24 @@ namespace API.Controllers
             var cantEmpresas = db.Empresa.Count() + 1;
             Empresa empresa = new Empresa()
             {
-                nombreEmpresa = request.nombre,
-                direccionEmpresa = request.direccion,
+                codEmpresa = "EMP-" + cantEmpresas.ToString("000"),
+                nombreEmpresa = request.nombreEmpresa,
+                direccionEmpresa = request.direccionEmpresa,
                 archivoVerificacionEmpresa = path
             };
-
-            Random rnd = new Random();
-            var admins = db.Administradores.ToList();
-            int randomAdmin = rnd.Next(admins.Count);
-
-            ListaEsperaEmpresa listaEspera = new ListaEsperaEmpresa()
+            var listaEspera = listaC.Create(empresa);
+            if (listaEspera == null)
             {
-                Empresa = empresa,
-                codAdmin = admins[randomAdmin].codAdmin
-            };
+                return BadRequest("Hubo un error en el registro de la empresa");
+            }
 
-
-
-            await db.ListaEsperaEmpresa.AddAsync(listaEspera);
             await db.Empresa.AddAsync(empresa);
             await db.SaveChangesAsync();
 
             return Ok("Empresa creada correctamente");
         }
+
+
 
         [HttpGet]
         public async Task<IActionResult> ReportePrueba()

@@ -61,8 +61,6 @@ namespace API.Data
             // claves compuestas
             modelBuilder.Entity<CategoriasPorProducto>()
                 .HasKey(x => new { x.codCategoria, x.codProducto });
-            modelBuilder.Entity<DetalleOrden>()
-                .HasKey(x => new { x.codOrden, x.codProducto });
             modelBuilder.Entity<DetalleWishlist>()
                 .HasKey(x => new { x.codWishlist, x.codProducto });
             modelBuilder.Entity<ListaEsperaEmpresa>()
@@ -135,10 +133,6 @@ namespace API.Data
             // LISTA_ESPERA
             modelBuilder.Entity<Empresa>()
                 .HasOne(x => x.ListaEspera)
-                .WithOne(x => x.Empresa);
-            // ORDENES
-            modelBuilder.Entity<Empresa>()
-                .HasMany(x => x.Ordenes)
                 .WithOne(x => x.Empresa);
             // VISITAS
             modelBuilder.Entity<Empresa>()

@@ -20,6 +20,24 @@ namespace API.Controllers
             db = context;
         }
 
+        protected internal async Task<ListaEsperaEmpresa> Create(Empresa empresa)
+        {
+            Random rnd = new Random();
+            var admins = db.Administradores.ToList();
+            int randomAdmin = rnd.Next(admins.Count);
+
+            ListaEsperaEmpresa listaEspera = new ListaEsperaEmpresa()
+            {
+                Empresa = empresa,
+                codAdmin = admins[randomAdmin].codAdmin
+            };
+
+            await db.ListaEsperaEmpresa.AddAsync(listaEspera);
+            await db.SaveChangesAsync();
+
+            return listaEspera;
+        }
+
 
         public class ResponseEmpresa
         {

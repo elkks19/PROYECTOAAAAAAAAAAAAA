@@ -215,6 +215,23 @@ FIN*/
 
 
 /* NAVBAR */
+
+.profileButton{
+	display: flex;
+	align-items: center;
+	gap: 15px;
+	border-radius: 15px;
+	padding: 1px 7px 1px 7px;
+}
+
+@keyframes shadow-drop-br{0%{box-shadow:0 0 0 0 transparent}100%{box-shadow:12px 12px 20px -12px rgba(0,0,0,.35)}}
+.profileButton:hover{
+	cursor: pointer;
+	border-top: 0.2px solid  #777778;
+	border-left: 0.2px solid #777778;
+	animation:shadow-drop-br .4s cubic-bezier(.25,.46,.45,.94) both
+}
+
 #content nav {
 	height: 56px;
 	background: var(--light);

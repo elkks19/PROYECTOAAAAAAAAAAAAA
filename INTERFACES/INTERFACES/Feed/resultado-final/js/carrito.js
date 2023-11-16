@@ -22,32 +22,40 @@ function cargarProductosCarrito() {
         contenedorCarritoProductos.innerHTML = "";
     
         productosEnCarrito.forEach(producto => {
-            let i = window.URL.createObjectURL(producto.imagen);
-    
-            const div = document.createElement("div");
-            div.classList.add("carrito-producto");
-            div.innerHTML = `
-                <img class="carrito-producto-imagen" src="${i}" alt="${producto.titulo}">
-                <div class="carrito-producto-titulo">
-                    <small>Título</small>
-                    <h3>${producto.titulo}</h3>
-                </div>
-                <div class="carrito-producto-cantidad">
-                    <small>Cantidad</small>
-                    <p>${producto.cantidad}</p>
-                </div>
-                <div class="carrito-producto-precio">
-                    <small>Precio</small>
-                    <p>${producto.precio} Bs</p>
-                </div>
-                <div class="carrito-producto-subtotal">
-                    <small>Subtotal</small>
-                    <p>${producto.precio * producto.cantidad} Bs</p>
-                </div>
-                <button class="carrito-producto-eliminar" id="${producto.id}"><i class="bi bi-trash-fill"></i></button>
-            `;
-    
-            contenedorCarritoProductos.append(div);
+            axios.get("http://localhost:5132/productos/getfoto/" + producto.id, {
+                responseType: 'blob'
+            })
+            .then((response) => {
+                let imagen = window.URL.createObjectURL(response.data);
+                const div = document.createElement("div");
+                div.classList.add("carrito-producto");
+                div.innerHTML = `
+                    <img class="carrito-producto-imagen" src="${imagen}" alt="${producto.titulo}">
+                    <div class="carrito-producto-titulo">
+                        <small>Título</small>
+                        <h3>${producto.titulo}</h3>
+                    </div>
+                    <div class="carrito-producto-cantidad">
+                        <small>Cantidad</small>
+                        <p>${producto.cantidad}</p>
+                    </div>
+                    <div class="carrito-producto-precio">
+                        <small>Precio</small>
+                        <p>${producto.precio} Bs</p>
+                    </div>
+                    <div class="carrito-producto-subtotal">
+                        <small>Subtotal</small>
+                        <p>${producto.precio * producto.cantidad} Bs</p>
+                    </div>
+                    <button class="carrito-producto-eliminar" id="${producto.id}"><i class="bi bi-trash-fill"></i></button>
+                `;
+        
+                contenedorCarritoProductos.append(div);
+
+            }).catch((error) => {
+                console.log(error)
+            });
+
         })
     
     actualizarBotonesEliminar();
@@ -114,8 +122,9 @@ function vaciarCarrito() {
         focusConfirm: false,
         confirmButtonText: 'Sí',
         cancelButtonText: 'No',
-        
-    confirmButtonColor: "#BF9004",
+        confirmButtonColor: "#BF9004",
+        iconColor: "#BF9004",
+
     }).then((result) => {
         if (result.isConfirmed) {
             productosEnCarrito.length = 0;
@@ -141,5 +150,41 @@ function comprarCarrito() {
     contenedorCarritoProductos.classList.add("disabled");
     contenedorCarritoAcciones.classList.add("disabled");
     contenedorCarritoComprado.classList.remove("disabled");
+
+}
+
+
+function registrarCompra(){
+    let productosCompra = JSON.parse(localStorage.getItem("productos-en-carrito"));
+    let id;
+    let productos = [];
+
+    productosCompra.forEach(producto => {
+        id = producto.codEmpresa;
+        var productosDeEstaEmpresa = productosCompra.filter(producto => producto.codEmpresa === id);
+
+        productosDeEstaEmpresa.forEach(p => {
+            let prodFinal = {
+                codProducto : p.id,
+                cantidad : p.cantidad,
+            }
+            productos.push(prodFinal);
+        });
+        console.log(productos);
+    });
+
+    axios.post('http://localhost:5132/ordenes/create/' + localStorage.getItem("codUsuario"), {
+        a: productos
+    },
+    {
+        headers: {
+            'Accept': 'application/json',
+            'Content-Type': 'application/json'
+        }
+    }).then(function (response) {
+        console.log(response.data);
+    }).catch(function (error) {
+        console.log(error);
+    });
 
 }

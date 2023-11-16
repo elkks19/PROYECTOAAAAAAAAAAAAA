@@ -15,12 +15,6 @@ namespace API.Models
 
         [MaxLength(10)]
         [Required]
-        public string codEmpresa { get; set; }
-        [ForeignKey("codEmpresa")]
-        public Empresa Empresa { get; set; }
-
-        [MaxLength(10)]
-        [Required]
         public string codUsuario { get; set; }
         [ForeignKey("codUsuario")]
         public Usuario Usuario { get; set; }

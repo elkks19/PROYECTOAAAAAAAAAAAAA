@@ -1,17 +1,44 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using API.Data;
 using API.Models;
+using API.Atributos;
 using Microsoft.EntityFrameworkCore;
+using System.Web.Helpers;
 
 namespace API.Controllers
 {
     public class AdministradoresController : Controller
     {
         private readonly APIContext db;
+        private readonly IWebHostEnvironment env;
+        private readonly PersonasController personasC;
 
-        public AdministradoresController(APIContext context)
+        public AdministradoresController(APIContext context, IWebHostEnvironment env, PersonasController personasController)
         {
-            db = context;
+            this.db = context;
+            this.env = env;
+            this.personasC = personasController;
+        }
+
+        [HttpPost]
+        [Autorizado("administrador")]
+        public async Task<IActionResult> Registro([FromBody]Persona request)
+        {
+            var persona = await personasC.Create(request);
+            if (persona == null)
+            {
+                return BadRequest("Hubo un error en el registro");
+            }
+
+            var cantAdmin = await db.Administradores.CountAsync() + 1;
+            Administrador admin = new Administrador()
+            {
+                codAdmin = "ADM-" + cantAdmin.ToString("000"),
+                Persona = persona
+            };
+            await db.Administradores.AddAsync(admin);
+            await db.SaveChangesAsync();
+            return Ok("El administrador se registro correctemente");
         }
 
 

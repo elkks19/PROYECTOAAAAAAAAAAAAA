@@ -31,9 +31,11 @@ namespace API.Models
         [Required]
         public float precioEnvioProducto { get; set; }
 
-        [DataType(DataType.ImageUrl)]
         [Required]
         public string pathFotoProducto { get; set; }
+
+        [Required]
+        public int cantidadRestante { get; set; }
 
         [DataType(DataType.Date)]
         [Required]

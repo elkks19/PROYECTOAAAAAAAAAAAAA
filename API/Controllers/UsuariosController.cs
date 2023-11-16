@@ -1,28 +1,73 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
-using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using API.Data;
-using System.Web.Helpers;
+using API.Models;
 using API.Atributos;
 
 namespace API.Controllers
 {
-    //[Autorizado]
     public class UsuariosController : Controller
     {
         private readonly APIContext db;
         private readonly IWebHostEnvironment env;
-        public UsuariosController(APIContext context, IWebHostEnvironment environment)
+        private readonly PersonasController personasC;
+        private readonly LogsAuditoriaController logsC;
+        public UsuariosController(APIContext context, IWebHostEnvironment environment, PersonasController personasController, LogsAuditoriaController logsController)
         {
             db = context;
             env = environment;
+            personasC = personasController;
+            logsC = logsController;
+        }
+
+        [HttpPost]
+        public async Task<IActionResult> Registro([FromBody]Persona request)
+        {
+            var usuarioExists = await db.Persona.FirstOrDefaultAsync(x => x.userPersona.Equals(request.userPersona));
+            if (!(usuarioExists == null))
+            {
+                return BadRequest("El nombre de usuario ya existe");
+            }
+
+            var mailExists = await db.Persona.FirstOrDefaultAsync(x => x.mailPersona.Equals(request.mailPersona));
+            if (!(mailExists == null))
+            {
+                return BadRequest("El email ya existe");
+            }
+
+            var persona = await personasC.Create(request);
+            if (persona == null)
+            {
+                return BadRequest("No se pudo registrar a la persona");
+            }
+
+            var cantUsuarios = await db.Usuarios.CountAsync() + 1;
+            var usuario = new Usuario()
+            {
+                codUsuario = "USU-" + cantUsuarios.ToString("000"),
+                Persona = persona
+            };
+
+            var log = await logsC.RegistrarUsuarios(persona);
+            if (log == null)
+            {
+                return BadRequest("No se pudo registrar el log");
+            }
+
+            await db.Usuarios.AddAsync(usuario);
+            await db.SaveChangesAsync();
+
+
+            //personasC.EnviarMail(persona, $"Tu cuenta se ha registrado correctamente.\nPara confimar tu corre ingresa al siguiente link:\n\t{}");
+
+
+
+            return Ok("Usuario registrado correctamente");
         }
 
         [HttpGet]
-        public async Task<IActionResult> Details(string cod)
+        [Autorizado(rol2 = "administrador")]
+        public async Task<IActionResult> Details([FromRoute]string cod)
         {
             var usuario = db.Usuarios.Include(x => x.Persona).FirstOrDefault(x => x.codUsuario.Equals(cod));
             if (usuario != null)
@@ -42,15 +87,15 @@ namespace API.Controllers
         }
 
         [HttpGet]
+        [Autorizado(rol2 = "administrador")]
         public async Task<IActionResult> GetFoto(string cod)
         {
-            var usuario = await db.Usuarios.FirstOrDefaultAsync(x => x.codUsuario.Equals(cod));
-            if (usuario != null)
+            var foto = await personasC.GetFoto(cod);
+            if (foto == null)
             {
-                //var b = System.IO.File.ReadAllBytes();
-                //return File(b, "image/jpeg");
+                return BadRequest("No se encontro al usuario");
             }
-            return BadRequest("Usuario no encontrado");
+            return File(foto, "image/jpeg");
         }
 
 
@@ -61,7 +106,8 @@ namespace API.Controllers
         }
 
         [HttpPatch]
-        public async Task<IActionResult> ChangePassword([FromBody] PasswordRequest request, [FromRoute] string cod)
+        [Autorizado(rol2 = "administrador")]
+        public async Task<IActionResult> ChangePassword([FromBody]PasswordRequest request, [FromRoute]string cod)
         {
             if (request.oldPassword == null)
             {
@@ -71,94 +117,41 @@ namespace API.Controllers
             {
                 return BadRequest("Falta el password nuevo");
             }
-            var usuario = db.Usuarios.Include(x => x.Persona).FirstOrDefault(x => x.codUsuario.Equals(cod));
-            if (usuario != null)
+
+            var persona = personasC.ChangePassword(request.oldPassword, request.newPassword, cod);
+            if (persona == null)
             {
-                var persona = usuario.Persona;
-                var correctPassword = Crypto.VerifyHashedPassword(persona.passwordPersona, request.oldPassword);
-
-                if (correctPassword)
-                {
-                    persona.passwordPersona = Crypto.HashPassword(request.newPassword);
-                    await db.SaveChangesAsync();
-                    return Ok("Se cambio correctamente la contraseña");
-
-                }
-                return BadRequest("Contraseña equivocada");
+                return BadRequest("Error al cambiar la contraseña");
             }
-            return BadRequest("No se encontro el usuario");
+            return Ok("Se cambio correctamente la contraseña");
         }
 
-        public class UserEditRequest
-        {
-            public string nombrePersona { get; set; }
-            public DateTime fechaNacPersona { get; set; }
-            public string mailPersona { get; set; }
-            public string direccionPersona { get; set; }
-            public string userPersona { get; set; }
-            public string celularPersona { get; set; }
-            public string configUsuario { get; set; }
-
-        }
 
         [HttpPatch]
-        public async Task<IActionResult> Edit(UserEditRequest request, [FromRoute] string cod)
+        [Autorizado(rol2 = "administrador")]
+        public async Task<IActionResult> Edit([FromBody]Persona request, [FromRoute] string cod)
         {
+            var usuario = await db.Usuarios.Include(x => x.Persona).FirstOrDefaultAsync(x => x.codUsuario.Equals(cod));
+
+            if (usuario == null)
+            {
+                return BadRequest("No se encontro al usuario");
+            }
+
+            var persona = usuario.Persona;
+
+
             IFormFile img = Request.Form.Files.FirstOrDefault();
 
-            var usuario = db.Usuarios.Include(x => x.Persona).FirstOrDefault(x => x.codUsuario.Equals(cod));
-
-            if (usuario != null)
+            var personaEditada = await personasC.Edit(persona, img);
+            if (personaEditada == null)
             {
-                var persona = usuario.Persona;
-
-                if (img != null)
-                {
-                    // CREA EL DIRECTORIO IMAGENES SI NO EXISTE
-                    string dir = env.ContentRootPath + "\\Imagenes";
-                    if (!Directory.Exists(dir))
-                    {
-                        Directory.CreateDirectory(dir);
-                    }
-
-
-                    // CREA EL DIRECTORIO CON EL NOMBRE DEL USUARIO Y LA FOTO DE PERFIL
-                    string path = dir + "\\" + cod + "\\" + img.FileName;  
-                    if (!Directory.Exists($"{dir}\\{cod}"))
-                    {
-                        Directory.CreateDirectory($"{dir}\\{cod}");
-                    }
-
-                    if (img.Length > 0)
-                    {
-                        if (!System.IO.File.Exists(path))
-                        {
-                            var diskImg = System.IO.File.Create(path);
-                            await img.CopyToAsync(diskImg);
-                            //usuario.pathFotoUsuario = path;
-                            diskImg.Close();
-                        }
-                        else
-                        {
-                            var diskImg = System.IO.File.Open(path, FileMode.Open);
-                            await img.CopyToAsync(diskImg);
-                            //usuario.pathFotoUsuario = path;
-                            diskImg.Close();
-                        }
-                    }
-                }
-                if (request.nombrePersona != null) { persona.nombrePersona = request.nombrePersona; }
-                if (request.fechaNacPersona != DateTime.MinValue) { persona.fechaNacPersona = request.fechaNacPersona; }
-                if (request.mailPersona != null) { persona.mailPersona = request.mailPersona; }
-                if (request.direccionPersona != null) { persona.direccionPersona = request.direccionPersona; }
-                if (request.userPersona != null) { persona.userPersona = request.userPersona; }
-                if (request.celularPersona != null) { persona.celularPersona = request.celularPersona; }
-                db.Persona.Update(persona);
-                persona.Update();
-                await db.SaveChangesAsync();
-                return Ok("El usuario se edito correctamente");
+                return BadRequest("Ingrese un mail valido");
             }
-            return NotFound("El usuario no se encontro");
+            return Ok("Se edito el usuario correctamente");
         }
+
+
+
     }
 }

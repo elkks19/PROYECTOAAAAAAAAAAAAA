@@ -1,29 +1,17 @@
 let productos = [];
-document.onload = function(){
-    localStorage.removeItem("productos-en-carrito");
-}
 
 axios.get("http://localhost:5132/productos/details/EMP-001",{}).then((response) => {
-
     response.data.forEach(p => {
-        axios.get("http://localhost:5132/productos/getfoto/" + p.codProducto, {
-            responseType: 'blob'
-        })
-        .then((response) => {
             let prod = {
                 id : p.codProducto,
                 nombre : p.nombreProducto,
                 precio : p.precioProducto,
-                imagen : response.data
+                codEmpresa : p.codEmpresa
             }
             productos.push(prod);
-            console.log(prod);
-        }).catch((error) => {
-            console.log(error)
-        });
     });
-
     cargarProductos(productos);
+
 }).catch((error) => {
     console.log(error)
 });
@@ -71,23 +59,30 @@ function cargarProductos(productosElegidos) {
     contenedorProductos.innerHTML = "";
 
     productosElegidos.forEach(producto => {
+        axios.get("http://localhost:5132/productos/getfoto/" + producto.id, {
+            responseType: 'blob'
+        })
+        .then((response) => {
+            let img = window.URL.createObjectURL(response.data);
+            const div = document.createElement("div");
+            div.classList.add("producto");
+            div.innerHTML = `
+                <img class="producto-imagen" src="${img}" alt="${producto.id}">
+                <div class="producto-detalles">
+                    <h3 class="producto-titulo">${producto.nombre}</h3>
+                    <p class="producto-precio">${producto.precio} Bs</p>
+                    <button class="producto-agregar" id="${producto.id}">Agregar</button>
+                </div>
+            `;
 
-        let img = window.URL.createObjectURL(producto.imagen);
-        const div = document.createElement("div");
-        div.classList.add("producto");
-        div.innerHTML = `
-            <img class="producto-imagen" src="${img}" alt="${producto.id}">
-            <div class="producto-detalles">
-                <h3 class="producto-titulo">${producto.nombre}</h3>
-                <p class="producto-precio">${producto.precio} Bs</p>
-                <button class="producto-agregar" id="${producto.id}">Agregar</button>
-            </div>
-        `;
+            contenedorProductos.append(div);
+            actualizarBotonesAgregar();
+        }).catch((error) => {
+            console.log(error)
+        });
+        console.log(producto);
+    });
 
-        contenedorProductos.append(div);
-    })
-
-    actualizarBotonesAgregar();
 }
 
 

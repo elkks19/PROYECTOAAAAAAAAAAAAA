@@ -8,6 +8,7 @@ using Microsoft.IdentityModel.Tokens;
 using System.IdentityModel.Tokens.Jwt;
 using Microsoft.EntityFrameworkCore;
 using API.Atributos;
+using System.Configuration;
 
 namespace API.Controllers
 {
@@ -24,43 +25,6 @@ namespace API.Controllers
             this.env = environment;
         }
 
-        [HttpPost]
-        public async Task<IActionResult> RegistroUsuarios([FromBody] Persona model)
-        {
-            var cantPersonas = db.Persona.Count();
-            var persona = new Persona()
-            {
-                nombrePersona = model.nombrePersona,
-                fechaNacPersona = model.fechaNacPersona,
-                mailPersona = model.mailPersona,
-                direccionPersona = model.direccionPersona,
-                userPersona = model.userPersona,
-                passwordPersona = Crypto.HashPassword(model.passwordPersona),
-            };
-
-            var countUsu = db.Usuarios.Count() + 1;
-            var usuario = new Usuario()
-            {
-                Persona = persona,
-            };
-
-            var cantLogs = db.LogsAuditoria.Count() + 1;
-            var log = new LogAuditoria()
-            {
-                codLog = "LOG-" + cantLogs.ToString("000"),
-                Persona = persona,
-                accionLog = "Registro"
-            };
-
-            await db.LogsAuditoria.AddAsync(log);
-            await db.Persona.AddAsync(persona);
-            await db.Usuarios.AddAsync(usuario);
-            await db.SaveChangesAsync();
-
-            return Ok("Se registro el usuario correctamente");
-        }
-
-
         public class PersonaLogin
         {
             public string userPersona { get; set; }
@@ -70,41 +34,100 @@ namespace API.Controllers
         [HttpPost]
         public async Task<IActionResult> Login([FromBody] PersonaLogin persona)
         {
-            var per = db.Persona.Include(x => x.Usuario).FirstOrDefault(b => b.userPersona.Equals(persona.userPersona));
-
-            if (per != null)
+            //retorna un string que dice el rol xd
+            var rol = verificarRol(persona.userPersona);
+            
+            switch (rol)
             {
-                bool usuarioExists = Crypto.VerifyHashedPassword(per.passwordPersona, persona.passwordPersona);
-
-                var usuario = per.Usuario; 
-
-                if (usuarioExists)
-                {
-                    string tok = CrearToken(per);
-
-                    var cantLogs = db.LogsAuditoria.Count() + 1;
-                    var log = new LogAuditoria()
+                case "administrador":
+                    var per = await db.Persona.Include(x => x.Administrador).FirstOrDefaultAsync(b => b.userPersona.Equals(persona.userPersona));
+                    var admin = per.Administrador;
+                    bool usuarioExists = Crypto.VerifyHashedPassword(per.passwordPersona, persona.passwordPersona);
+                    if (usuarioExists)
                     {
-                        Persona = per,
-                        accionLog = "Login"
-                    };
-                    await db.LogsAuditoria.AddAsync(log);
-                    await db.SaveChangesAsync();
+                        string tok = CrearToken(per);
 
-                    return Ok(new
+                        var cantLogs = await db.LogsAuditoria.CountAsync() + 1;
+                        var log = new LogAuditoria()
+                        {
+                            codLog = "LOG-" + cantLogs.ToString("000"),
+                            Persona = per,
+                            accionLog = "Login",
+                        };
+                        await db.LogsAuditoria.AddAsync(log);
+                        await db.SaveChangesAsync();
+                        return Ok(new
+                        {
+                            token = tok,
+                        });
+                    }
+                    else
                     {
-                        token = tok,
-                        codUsu = usuario.codUsuario
-                    });
-                }
-                else
-                {
-                    return BadRequest("Contraseña incorrecta");
-                }
-            }
-            else
-            {
-                return BadRequest("El usuario no existe");
+                        return BadRequest("Contraseña incorrecta");
+                    }
+
+
+                case "personal":
+                    per = await db.Persona.Include(x => x.PersonalEmpresa).FirstOrDefaultAsync(b => b.userPersona.Equals(persona.userPersona));
+                    var personal = per.PersonalEmpresa;
+                    usuarioExists = Crypto.VerifyHashedPassword(per.passwordPersona, persona.passwordPersona);
+                    if (usuarioExists)
+                    {
+                        string tok = CrearToken(per);
+
+                        var cantLogs = await db.LogsAuditoria.CountAsync() + 1;
+                        var log = new LogAuditoria()
+                        {
+                            codLog = "LOG-" + cantLogs.ToString("000"),
+                            Persona = per,
+                            accionLog = "Login",
+                        };
+                        await db.LogsAuditoria.AddAsync(log);
+                        await db.SaveChangesAsync();
+                        return Ok(new
+                        {
+                            token = tok,
+                        });
+                    }
+                    else
+                    {
+                        return BadRequest("Contraseña incorrecta");
+                    }
+
+                case "usuario":
+                    per = await db.Persona.Include(x => x.Usuario).FirstOrDefaultAsync(b => b.userPersona.Equals(persona.userPersona));
+                    usuarioExists = Crypto.VerifyHashedPassword(per.passwordPersona, persona.passwordPersona);
+
+                    var usuario = per.Usuario; 
+
+                    if (usuarioExists)
+                    {
+                        string tok = CrearToken(per);
+
+                        var cantLogs = await db.LogsAuditoria.CountAsync() + 1;
+                        var log = new LogAuditoria()
+                        {
+                            codLog = "LOG-" + cantLogs.ToString("000"),
+                            Persona = per,
+                            accionLog = "Login"
+                        };
+                        await db.LogsAuditoria.AddAsync(log);
+                        await db.SaveChangesAsync();
+
+                        return Ok(new
+                        {
+                            token = tok,
+                        });
+                    }
+                    else
+                    {
+                        return BadRequest("Contraseña incorrecta");
+                    }
+
+
+                default:
+                    return BadRequest("El usuario ingresado no existe");
+
             }
         }
 
@@ -112,7 +135,7 @@ namespace API.Controllers
         {
             List<Claim> claims = new List<Claim>
             {
-                new Claim(ClaimTypes.Name, persona.userPersona)
+                new Claim(ClaimTypes.Name, persona.codPersona)
             };
 
             var key = new SymmetricSecurityKey(System.Text.Encoding.UTF8.GetBytes(
@@ -131,13 +154,13 @@ namespace API.Controllers
             var cantTok = db.TokenGuardado.Count() + 1;
             var tokenGuardar = new TokenGuardado()
             {
+                codToken = "TOK-" + cantTok.ToString("000"),
                 codPersona = persona.codPersona,
                 Token = jwt
             };
 
             db.TokenGuardado.Add(tokenGuardar);
             db.SaveChanges();
-
             return jwt;
         }
 
@@ -147,13 +170,14 @@ namespace API.Controllers
         public async Task<IActionResult> Logout()
         {
             var tok = Request.Headers["Authorization"];
-            var token = db.TokenGuardado.Include(x => x.Persona).Where(b => b.Token.Equals(tok)).FirstOrDefault();
+            var token = await db.TokenGuardado.Include(x => x.Persona).FirstOrDefaultAsync(b => b.Token.Equals(tok));
 
             if(token != null)
             {
-                var cantLog = db.LogsAuditoria.Count() + 1;
+                var cantLogs = db.LogsAuditoria.Count() + 1;
                 var log = new LogAuditoria()
                 {
+                    codLog = "LOG-" + cantLogs.ToString("000"),
                     Persona = token.Persona,
                     accionLog = "Logout"
                 };
@@ -165,6 +189,33 @@ namespace API.Controllers
             }
             return BadRequest("El token no existe");
 
+        }
+
+
+
+
+        public string verificarRol(string codPersona)
+        {
+            var usuario = db.Usuarios.Include(x => x.Persona).FirstOrDefault(x => x.Persona.userPersona.Equals(codPersona));
+            var administrador = db.Administradores.Include(x => x.Persona).FirstOrDefault(x => x.Persona.userPersona.Equals(codPersona));
+            var personal = db.PersonalEmpresa.Include(x => x.Persona).FirstOrDefault(x => x.Persona.userPersona.Equals(codPersona));
+
+            if (usuario != null)
+            {
+                return "usuario";
+            }
+            else if (administrador != null)
+            {
+                return "administrador";
+            }
+            else if (personal != null)
+            {
+                return "personal";
+            }
+            else
+            {
+                return "no";
+            }
         }
     }
 }
