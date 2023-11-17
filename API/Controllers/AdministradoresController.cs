@@ -21,7 +21,7 @@ namespace API.Controllers
         }
 
         [HttpPost]
-        [Autorizado("administrador")]
+        //[Autorizado("administrador")]
         public async Task<IActionResult> Registro([FromBody]Persona request)
         {
             var persona = await personasC.Create(request);

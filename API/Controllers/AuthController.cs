@@ -59,6 +59,7 @@ namespace API.Controllers
                         return Ok(new
                         {
                             token = tok,
+                            rol = "administrador"
                         });
                     }
                     else
@@ -87,6 +88,7 @@ namespace API.Controllers
                         return Ok(new
                         {
                             token = tok,
+                            rol = "personal"
                         });
                     }
                     else
@@ -117,6 +119,7 @@ namespace API.Controllers
                         return Ok(new
                         {
                             token = tok,
+                            rol = "usuario"
                         });
                     }
                     else

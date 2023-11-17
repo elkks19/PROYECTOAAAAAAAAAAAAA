@@ -23,6 +23,19 @@ namespace API.Controllers
             this.env = env;
         }
 
+        [HttpGet]
+        public async Task<IActionResult> GetAll()
+        {
+            var productos = await db.Producto.ToListAsync();
+            if (productos == null)
+            {
+                return BadRequest("No se encontró ningun producto");
+            }
+
+            return Ok(productos);
+        }
+
+        [HttpPost]
         //[Autorizado("empresa")]
         public async Task<IActionResult> Create([FromBody]Producto request, [FromRoute]string cod)
         {

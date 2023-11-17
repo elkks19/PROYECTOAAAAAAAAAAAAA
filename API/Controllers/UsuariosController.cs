@@ -3,6 +3,7 @@ using Microsoft.EntityFrameworkCore;
 using API.Data;
 using API.Models;
 using API.Atributos;
+using NuGet.Protocol.Core.Types;
 
 namespace API.Controllers
 {
@@ -19,6 +20,7 @@ namespace API.Controllers
             personasC = personasController;
             logsC = logsController;
         }
+        
 
         [HttpPost]
         public async Task<IActionResult> Registro([FromBody]Persona request)

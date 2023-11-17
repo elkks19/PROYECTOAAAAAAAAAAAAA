@@ -11,7 +11,7 @@ namespace API.Atributos
 {
     public class Autorizado : Attribute, IAuthorizationFilter
     {
-        public string rol1 { get; }
+        public string rol1 { get; } 
         public string rol2 { get; set; }
         public string rol3 { get; set; }
 
@@ -55,13 +55,9 @@ namespace API.Atributos
                 context.Result = new UnauthorizedResult();
             }
             // Se verifica que la persona del codigo exista y que este en la tabla de tokens
-            var tokenExists = db.TokenGuardado.Include(x => x.Persona).FirstOrDefault(x => x.Token.Equals(token));
-            if (tokenExists == null)
-            {
-                context.Result = new UnauthorizedResult();
-            }
-            var personaToken = tokenExists.Persona;
-            if (personaToken.codPersona != codPersonaReq || personaToken == null)
+            
+            var tokenFin = persona.Token;
+            if (persona.codPersona != codPersonaReq || tokenFin == null)
             {
                 context.Result = new UnauthorizedResult();
             }
