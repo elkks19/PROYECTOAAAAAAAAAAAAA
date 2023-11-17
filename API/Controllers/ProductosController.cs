@@ -110,5 +110,12 @@ namespace API.Controllers
             await db.SaveChangesAsync();
             return producto;
         }
+
+        [HttpGet]
+        public async Task<IActionResult> Index([FromRoute]string cod)
+        {
+            var productos = db.Producto.Where(x => x.codEmpresa.Equals(cod)).ToList();
+            return Ok(productos);
+        }
     }
 }
