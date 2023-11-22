@@ -1,0 +1,378 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Empresa</title>
+    <!-- Boxicons -->
+	<script src="https://kit.fontawesome.com/7c61ac1c1a.js" crossorigin="anonymous"></script>
+     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+	<link href='https://unpkg.com/boxicons@2.0.9/css/boxicons.min.css' rel='stylesheet'>
+    <link rel="stylesheet" href="Empresa.css">
+	<!--jquery-->
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+
+</head>
+<body>
+    <!--Menu izquierda inicio-->
+    <section id="sidebar">
+	    <!--	<div class="logo-y-config">
+            <a href="#" class="logo">
+                <img src="../../../RECURSOS/LOGO NEGRO.png" />
+            </a> -->
+                          
+            </div>
+            <div class="perfil">
+                <img src="../../../INTERFACES/AdminDashboard/imagenes/Damaroli.jpg">
+                <h1>Damaroli</h1>
+                <div class="estrellas">
+                    <i class="fa-solid fa-star"></i>
+                    <i class="fa-solid fa-star"></i>
+                    <i class="fa-solid fa-star"></i>
+                    <i class="fa-solid fa-star"></i>
+                    <i class="fa-solid fa-star"></i>
+                </div>
+                <ul class="redes-sociales">
+                    <li><a href=""><i class="fab fa-facebook"></i></a></li>
+                    <li><a href=""><i class="fab fa-instagram"></i></a></li>
+                    <li><a href=""><i class="fa-solid fa-envelope"></i></a></li>
+                </ul>
+                <ul class="seguidores">
+                    <li><span>10</span>Productos</li>
+                    <li><span>20</span>Seguidores</li>
+                </ul>
+            </div>
+		<!--MENU OPCIONES-->	
+        </div class="sidebar">
+		<ul class="side-menu top">
+			<li class="active">
+				<a href="#" onclick="ChangeContent('pag1')">
+					<i class='bx bxs-dashboard' ></i>
+					<span class="text">Todo</span>
+				</a>
+			</li>
+			<li>
+				<a href="#" onclick="ChangeContent('pag2')">
+					<i class='bx bxs-t-shirt' ></i>
+					<span class="text">Ropa</span>
+				</a>
+			</li>            
+			<li>
+				<a href="#" onclick="ChangeContent('pag3')">
+				<i class='bx bx-badge'></i>
+					<span class="text">Zapatos</span>
+				</a>
+			</li>
+
+
+			<li>
+				<a href="#" onclick="ChangeContent('pag4')">
+					<i class='bx bx-glasses' ></i>
+					<span class="text">Accesorios</span>
+				</a>
+			</li>
+
+		</ul>
+		<ul class="side-menu">
+			<li>
+				<a href="#" >
+					<i class='bx bx-face' ></i>
+					<span class="text">Personal</span>
+				</a>
+			</li>			
+			<li>
+				<a href="#" >
+					<i class='bx bxs-doughnut-chart'></i>
+					<span class="text">Estadísticas</span>
+				</a>
+			</li>
+			<li>
+				<a href="#" >
+					<i class='bx bxs-message-alt-dots'></i>
+					<span class="text">Comentarios</span>
+				</a>
+			</li>			
+			<li>
+				<a href="#" class="logout">
+					<i class='bx bxs-log-in-circle' ></i>
+					<span class="text">Cerrar Sesión</span>
+				</a>
+			</li>
+		</ul>
+	</section>
+	<!-- Menu izquierda fin -->
+
+
+
+	<!-- lado derechito uwu-->
+	<section id="content">
+		<!-- NAVBAR -->
+		<nav>
+			<form action="#">
+				<div class="form-input">
+					<input type="search" placeholder="Buscar...">
+					<button type="submit" class="search-btn"><i class='bx bx-search' ></i></button>
+				</div>
+			</form>
+			<div class="config">
+			<a href="../../Perfilvendedor/PerVendedor.html"><i class='bx bx-cog'></i></a>
+			</div>
+
+
+			<!--Agregar boton-->
+		<button class="comic-button">
+			<a href="../../EMPRESA/Productos/opciones.html"></a>Agregar Producto</button>		
+		
+
+		</nav>
+    <main>
+		<div class="main-content">
+			<!--todo INICIO-->
+			<div id="pag1" class="head-titulo">
+				<div class="left">
+					<h1>Todos los productos</h1>
+					<ul class="subti">
+						<li>
+							<a href="#">Todo</a>
+						</li>
+						<li><i class='bx bx-chevron-right' ></i></li>
+						<li>
+							<a class="active" href="#">Inicio</a>
+						</li>
+					</ul>
+				</div>
+				<!--Card prducto-->
+			<div class="contenedor-cards">
+				<div class="card">
+					<div class="imgBx">
+						<img src="../FotosRopa/Body84.jpg">
+						<ul class="action">
+							<li>
+								<i class='bx bx-heart'></i>
+								<span>Añadir a la wishlist</span>
+							</li>
+							<li>
+								<i class='bx bx-cart' ></i>
+								<span>Añadir al carrito</span>
+							</li>
+							<li>
+								<i class='bx bxs-analyse'></i>
+								<span>Ver detalles</span>
+							</li>
+						</ul>
+					</div>
+					<div class="contenido">
+						<div class="producto-nombre">
+							<h3>Body Básico</h3>
+						</div>
+						<div class="precio">
+							<h2>84Bs</h2>
+							<div class="calificacion">
+								<i class="fa fa-star" aria-hidden="true"></i>
+								<i class="fa fa-star" aria-hidden="true"></i>
+								<i class="fa fa-star" aria-hidden="true"></i>
+								<i class="fa fa-star" aria-hidden="true"></i>
+								<i class="fa grey fa-star" aria-hidden="true"></i>
+							</div>
+						</div>
+					</div>
+				</div>
+				<!--Card prducto-->
+								<!--Card prducto-->
+				<div class="card">
+					<div class="imgBx">
+						<img src="../FotosRopa/parachute90.jpg">
+						<ul class="action">
+							<li>
+								<i class='bx bx-heart'></i>
+								<span>Añadir a la wishlist</span>
+							</li>
+							<li>
+								<i class='bx bx-cart' ></i>
+								<span>Añadir al carrito</span>
+							</li>
+							<li>
+								<i class='bx bxs-analyse'></i>
+								<span>Ver detalles</span>
+							</li>
+						</ul>
+					</div>
+					<div class="contenido">
+						<div class="producto-nombre">
+							<h3>Parachute</h3>
+						</div>
+						<div class="precio">
+							<h2>90Bs</h2>
+							<div class="calificacion">
+								<i class="fa fa-star" aria-hidden="true"></i>
+								<i class="fa fa-star" aria-hidden="true"></i>
+								<i class="fa fa-star" aria-hidden="true"></i>
+								<i class="fa fa-star" aria-hidden="true"></i>
+								<i class="fa fa-star" aria-hidden="true"></i>
+							</div>
+						</div>
+					</div>
+				</div>
+				<!--Card prducto-->
+												<!--Card prducto-->
+				<div class="card">
+					<div class="imgBx">
+						<img src="../FotosRopa/Shortrasgado80.jpg">
+						<ul class="action">
+							<li>
+								<i class='bx bx-heart'></i>
+								<span>Añadir a la wishlist</span>
+							</li>
+							<li>
+								<i class='bx bx-cart' ></i>
+								<span>Añadir al carrito</span>
+							</li>
+							<li>
+								<i class='bx bxs-analyse'></i>
+								<span>Ver detalles</span>
+							</li>
+						</ul>
+					</div>
+					<div class="contenido">
+						<div class="producto-nombre">
+							<h3>Short Rasgado</h3>
+						</div>
+						<div class="precio">
+							<h2>80Bs</h2>
+							<div class="calificacion">
+								<i class="fa fa-star" aria-hidden="true"></i>
+								<i class="fa fa-star" aria-hidden="true"></i>
+								<i class="fa fa-star" aria-hidden="true"></i>
+								<i class="fa grey fa-star" aria-hidden="true"></i>
+								<i class="fa grey fa-star" aria-hidden="true"></i>
+							</div>
+						</div>
+					</div>
+				</div>
+				<!--Card prducto-->
+								<!--Card prducto-->
+				<div class="card">
+					<div class="imgBx">
+						<img src="../FotosRopa/SolyLuna77.jpg">
+						<ul class="action">
+							<li>
+								<i class='bx bx-heart'></i>
+								<span>Añadir a la wishlist</span>
+							</li>
+							<li>
+								<i class='bx bx-cart' ></i>
+								<span>Añadir al carrito</span>
+							</li>
+							<li>
+								<i class='bx bxs-analyse'></i>
+								<span>Ver detalles</span>
+							</li>
+						</ul>
+					</div>
+					<div class="contenido">
+						<div class="producto-nombre">
+							<h3>Sol y Luna</h3>
+						</div>
+						<div class="precio">
+							<h2>77Bs</h2>
+							<div class="calificacion">
+								<i class="fa fa-star" aria-hidden="true"></i>
+								<i class="fa fa-star" aria-hidden="true"></i>
+								<i class="fa fa-star" aria-hidden="true"></i>
+								<i class="fa fa-star" aria-hidden="true"></i>
+								<i class="fa grey fa-star " aria-hidden="true"></i>
+							</div>
+						</div>
+					</div>
+				</div>
+				
+				
+			</div>	
+				
+			</div>
+			<!--todo FIN-->
+
+
+			<!--Ropa INICIOO-->
+			<div id="pag2" class="head-titulo">
+				<div class="left">
+					<h1>Ropa</h1>
+					<ul class="subti">
+						<li>
+							<a href="#">Ropa</a>
+						</li>
+						<li><i class='bx bx-chevron-right' ></i></li>
+						<li>
+							<a class="active" href="#">Inicio</a>
+						</li>
+					</ul>
+						<div class="Filtros">
+							<select id="tipo_categorias">
+							<option value="todo">Todo</option>
+							<option value="pantalon">Pantalon</option>
+							<option value="short">Short</option>
+							<option value="blusa">Blusa</option>
+							</select>
+							<select id="tipo_tallas">
+							<option value="todas">Todas</option>
+							<option value="pantalon">X</option>
+							<option value="short">S</option>
+							<option value="blusa">M</option>
+							<option value="blusa">L</option>
+							<option value="blusa">XL</option>
+							</select>
+						</div>	
+
+				</div>	
+				<div class="content pantalon">
+					
+				</div>			
+			</div>
+			<!--Ropa FIN-->
+
+			<!--Zapatos INICIO-->
+			<div id="pag3" class="head-titulo">
+				<div class="left">
+					<h1>Zapatos</h1>
+					<ul class="subti">
+						<li>
+							<a href="#">Zapatos</a>
+						</li>
+						<li><i class='bx bx-chevron-right' ></i></li>
+						<li>
+							<a class="active" href="#">Inicio</a>
+						</li>
+					</ul>
+				</div>	
+
+				
+			</div>			
+			<!--Zapatos FIN-->
+			
+
+			<!--Accesorios INICIO-->
+			<div id="pag4" class="head-titulo">
+				<div class="left">
+					<h1>Accesorios</h1>
+					<ul class="subti">
+						<li>
+							<a href="#">Accesorios</a>
+						</li>
+						<li><i class='bx bx-chevron-right' ></i></li>
+						<li>
+							<a class="active" href="#">Inicio</a>
+						</li>
+					</ul>		
+				</div>	
+								
+			</div>			
+
+			<!--Accesorios FIN-->
+
+
+		</div>
+		
+	</section>
+    <script src="Empresa.js"></script>
+</body>
+</html>
