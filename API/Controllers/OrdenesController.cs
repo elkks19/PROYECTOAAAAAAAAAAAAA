@@ -10,12 +10,13 @@ namespace API.Controllers
     {
         private readonly APIContext db;
         private readonly DetalleOrdenController detalleOrdenC;
+        private readonly UsuariosController usuariosC;
 
-
-        public OrdenesController(APIContext context, DetalleOrdenController detalleOrdenController)
+        public OrdenesController(APIContext context, DetalleOrdenController detalleOrdenController, UsuariosController usuariosController)
         {
             db = context;
             detalleOrdenC = detalleOrdenController;
+            usuariosC = usuariosController;
         }
 
 
@@ -30,12 +31,19 @@ namespace API.Controllers
         }
 
         [HttpPost]
-        public async Task<IActionResult> Create([FromBody]OrdenRequest request, [FromRoute]string cod)
+        [Autorizado(rol2 = "administrador")]
+        public async Task<IActionResult> Create([FromBody]OrdenRequest request)
         {
-            var usuario = await db.Usuarios.Include(x => x.Persona).FirstOrDefaultAsync(x => x.codUsuario.Equals(cod));
+            var token = Request.Headers["Authorization"];
+            var persona = await usuariosC.getUsuario(token);
+            if (persona == null)
+            {
+                return BadRequest("Hubo un error al buscar a la persona");
+            }
+            var usuario = persona.Usuario;
             if (usuario == null)
             {
-                return BadRequest("No se encontro al usuario");
+                return BadRequest("Hubo un error al buscar al usuario");
             }
 
             var cantOrdenes = await db.Orden.CountAsync() + 1;
@@ -57,10 +65,10 @@ namespace API.Controllers
                     return BadRequest("Hubo un error al crear la orden");
                 }
             }
+
             await db.Orden.AddAsync(orden);
             await db.SaveChangesAsync();
-
-            return Ok();
+            return Ok("Orden guardada correctamente");
         }
     }
 }

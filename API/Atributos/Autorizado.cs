@@ -29,84 +29,91 @@ namespace API.Atributos
 
         public void OnAuthorization(AuthorizationFilterContext context)
         {
-            this.roles.Add(this.rol1);
-            this.roles.Add(this.rol2);
-            this.roles.Add(this.rol3);
-            db = (APIContext)context.HttpContext.RequestServices.GetService(typeof(APIContext));
-            if (db == null)
+            try
             {
-                context.Result = new UnauthorizedResult();
-            }
-
-            string token = context.HttpContext.Request.Headers["Authorization"];
-
-            if (token == null)
-            {
-                context.Result = new UnauthorizedResult();
-            }
-
-            var tok = handler.ReadJwtToken(token);
-            var claimCod = tok.Claims.Where(x => x.Type.Equals("codPersona")).FirstOrDefault();
-
-            if (claimCod == null)
-            {
-                context.Result = new UnauthorizedResult();
-            }
-
-            var codRequest = claimCod.Value;
-
-            var persona = db.Persona.FirstOrDefault(x => x.codPersona.Equals(codRequest));
-
-            if (persona == null)
-            {
-                context.Result = new UnauthorizedResult();
-            }
-            // Se verifica que la persona del codigo exista y que este en la tabla de tokens
-
-
-            var tokenExists = db.TokenGuardado.Include(x => x.Persona).FirstOrDefault(x => x.Token.Equals(token));
-            if (tokenExists == null)
-            {
-                context.Result = new UnauthorizedResult();
-            }
-            var personaToken = tokenExists.Persona;
-
-            if (personaToken.codPersona != codRequest || personaToken == null)
-            {
-                context.Result = new UnauthorizedResult();
-            }
-
-            if (this.roles.Contains("administrador"))
-            {
-                db.Entry(persona).Reference(x => x.Administrador).Load();
-                if (persona.Administrador != null)
+                this.roles.Add(this.rol1);
+                this.roles.Add(this.rol2);
+                this.roles.Add(this.rol3);
+                db = (APIContext)context.HttpContext.RequestServices.GetService(typeof(APIContext));
+                if (db == null)
                 {
-                    return;
+                    context.Result = new UnauthorizedResult();
                 }
-            }
-            if (this.roles.Contains("empresa"))
-            {
-                db.Entry(persona).Reference(x => x.PersonalEmpresa).Load();
 
-                var codEmpresa = tok.Claims.FirstOrDefault(x => x.Type.Equals("codEmpresa")).Value;
-                if (persona.PersonalEmpresa != null)
+                string token = context.HttpContext.Request.Headers["Authorization"];
+
+                if (token == null)
                 {
-                    if (persona.PersonalEmpresa.codEmpresa != codEmpresa)
+                    context.Result = new UnauthorizedResult();
+                }
+
+                var tok = handler.ReadJwtToken(token);
+                var claimCod = tok.Claims.Where(x => x.Type.Equals("codPersona")).FirstOrDefault();
+
+                if (claimCod == null)
+                {
+                    context.Result = new UnauthorizedResult();
+                }
+
+                var codRequest = claimCod.Value;
+
+                var persona = db.Persona.FirstOrDefault(x => x.codPersona.Equals(codRequest));
+
+                if (persona == null)
+                {
+                    context.Result = new UnauthorizedResult();
+                }
+                // Se verifica que la persona del codigo exista y que este en la tabla de tokens
+
+
+                var tokenExists = db.TokenGuardado.Include(x => x.Persona).FirstOrDefault(x => x.Token.Equals(token));
+                if (tokenExists == null)
+                {
+                    context.Result = new UnauthorizedResult();
+                }
+                var personaToken = tokenExists.Persona;
+
+                if (personaToken.codPersona != codRequest || personaToken == null)
+                {
+                    context.Result = new UnauthorizedResult();
+                }
+
+                if (this.roles.Contains("administrador"))
+                {
+                    db.Entry(persona).Reference(x => x.Administrador).Load();
+                    if (persona.Administrador != null)
                     {
-                        context.Result = new UnauthorizedResult();
+                        return;
                     }
-                    return;
                 }
-            }
-            if (this.roles.Contains("usuario"))
-            {
-                db.Entry(persona).Reference(x => x.Usuario).Load();
-                if (persona.Usuario != null)
+                if (this.roles.Contains("empresa"))
                 {
-                    return;
+                    db.Entry(persona).Reference(x => x.PersonalEmpresa).Load();
+
+                    var codEmpresa = tok.Claims.FirstOrDefault(x => x.Type.Equals("codEmpresa")).Value;
+                    if (persona.PersonalEmpresa != null)
+                    {
+                        if (persona.PersonalEmpresa.codEmpresa != codEmpresa)
+                        {
+                            context.Result = new UnauthorizedResult();
+                        }
+                        return;
+                    }
                 }
+                if (this.roles.Contains("usuario"))
+                {
+                    db.Entry(persona).Reference(x => x.Usuario).Load();
+                    if (persona.Usuario != null)
+                    {
+                        return;
+                    }
+                }
+                context.Result = new UnauthorizedResult();
             }
-            context.Result = new UnauthorizedResult();
+            catch (Exception e)
+            {
+                context.Result = new UnauthorizedResult();
+            }
         }
     }
 }

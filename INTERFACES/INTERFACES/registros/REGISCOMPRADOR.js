@@ -29,7 +29,7 @@ var password;
 function registroUsuarios(){
     user = document.getElementById("user").value;
     password = document.getElementById("password").value;
-    axios.post("http://localhost:5132/auth/registroUsuarios",
+    axios.post("http://localhost:5132/usuarios/registro",
     {
         nombrePersona: document.getElementById("nombre").value,
         fechaNacPersona: document.getElementById("fechaNac").value,
@@ -56,11 +56,8 @@ function login(user, password){
         passwordPersona: password
     }
     ).then((response)=>{
-        if(response.data.token != null && response.data.codUsu != null){
-            localStorage.setItem("token", response.data.token);
-            localStorage.setItem("codUsuario", response.data.codUsu);
-            window.location.href = "../Feed/resultado-final/index.html";
-        }
+        localStorage.setItem("token", response.data.token);
+        window.location.href = "../Feed/resultado-final/index.html";
     }).catch((error)=>{
         console.log(error);
     });

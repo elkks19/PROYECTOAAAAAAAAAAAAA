@@ -1,9 +1,6 @@
 ﻿let methodNumber = "account";
 window.onload = cargarDatosUsuario;
 
-function nombreArchivo(){
-    document.getElementById("nombreArchivo").innerHTML = document.getElementById("imagen").files[0].name;
-}
 function setToAccount(){
     methodNumber = "account";
 }
@@ -15,24 +12,17 @@ function setToRecibo(){
     document.getElementById("direccion").value = localStorage.getItem("direccion");
     document.getElementById("celular").value = localStorage.getItem("celular");
 }
-function setToSocialMedia(){
-    methodNumber = "socialMedia";
-    document.getElementById("facebook").value = JSON.parse(localStorage.getItem("configUsuario")).facebook;
-    document.getElementById("instagram").value = JSON.parse(localStorage.getItem("configUsuario")).instagram;
-    document.getElementById("twitter").value = JSON.parse(localStorage.getItem("configUsuario")).twitter;
-}
-function setToNotifications(){
-    methodNumber = "notifications";
-    document.getElementById("notificaciones").checked = JSON.parse(localStorage.getItem("configUsuario")).notificaciones;
-}
 
 function cargarDatosUsuario(){
     document.getElementById("nombreArchivo").innerHTML = ""
     //descarga la foto
-    axios.get('http://localhost:5132/Usuarios/GetFoto/' + localStorage.getItem("codUsuario"),
-    {
+    axios.get('http://localhost:5132/Usuarios/GetFoto', {
+        headers:{
+            "Authorization": localStorage.getItem("token"),
+            "Content-Type": "application/json",
+        } ,
         responseType: 'blob',
-    }
+    },
     ).then((response)=>{
         document.getElementById("foto").setAttribute("src", window.URL.createObjectURL(response.data));
     }).catch((error)=>{
@@ -40,10 +30,11 @@ function cargarDatosUsuario(){
     });
 
     //descarga el resto de datos y los pone en sus respectivos cuadritos
-    axios.get('http://localhost:5132/Usuarios/Details/' + localStorage.getItem("codUsuario"),
+    axios.get('http://localhost:5132/Usuarios/Details',
     {
         headers:{
-            'Content-Type': 'multipart/form-data'
+            "Authorization": localStorage.getItem("token"),
+            "Content-Type": "application/json",
         }
     }).then((response)=>{
         document.getElementById("user").value = response.data.userPersona;
@@ -52,7 +43,6 @@ function cargarDatosUsuario(){
         document.getElementById("fechaNac").value = response.data.fechaNacPersona;
         localStorage.setItem("direccion", response.data.direccionPersona);
         localStorage.setItem("celular", response.data.celularPersona);
-        localStorage.setItem("configUsuario", JSON.parse(response.data.configUsuario));
         console.log(response.data);
     }).catch((error)=>{
         console.log(error);
@@ -71,12 +61,6 @@ function actualizarDatosUsuario(){
         case "recibo":
             actualizarRecibo();
             break;
-        case "socialMedia":
-            actualizarSocialMedia();
-            break;
-        case "notifications":
-            actualizarSocialMedia();
-            break;
     }
 }
 
@@ -88,8 +72,8 @@ function actualizarRecibo(){
     },
     {
         headers:{
-            'Accept': 'application/json',
-            'Content-Type': 'multipart/form-data'
+            'Content-Type': 'application/json',
+            'Authorization': localStorage.getItem("token"),
         }
     }).then((response)=>{
         console.log(response.data);
@@ -101,18 +85,37 @@ function actualizarRecibo(){
 
 
 function actualizarCuenta(){
-    axios.patch('http://localhost:5132/Usuarios/Edit/' + localStorage.getItem("codUsuario"),
+    let imgs = document.getElementById("imagen").files.length;
+    if (imgs > 0){
+        let img = document.getElementById("imagen").files[0];
+        axios.patch('http://localhost:5132/Usuarios/ChangeFoto',
+        {
+            data: img
+        },
+        {
+            headers:{
+                "Content-Type": "multipart/form-data",
+                "Authorization": localStorage.getItem("token"),
+            }
+        }).then((response)=>{
+            console.log(response.data);
+            cargarDatosUsuario();
+        }).catch((error)=>{
+            console.log(error);
+        });
+    }
+
+    axios.patch('http://localhost:5132/Usuarios/Edit',
     {
         userPersona: document.getElementById("user").value,
         nombrePersona: document.getElementById("nombres").value,
         fechaNacPersona: document.getElementById("fechaNac").value,
         mailPersona: document.getElementById("mail").value,
-        img: document.getElementById("imagen").files[0]
     },
     {
         headers:{
-            "Accept": "application/json",
-            "Content-Type": "multipart/form-data"
+            "Authorization": localStorage.getItem("token"),
+            "Content-Type": "application/json"
         }
     }).then((response)=>{
         console.log(response.data);
@@ -126,19 +129,21 @@ function actualizarContrasena(){
     let oldPass = document.getElementById("oldPassword").value;
     let newPass = document.getElementById("newPassword").value;
     let newConfirmation = document.getElementById("newPassword2").value;
+
     if (newPass != newConfirmation){
         alert("Las contraseñas no coinciden");
         return;
     }
     else{
-        axios.patch('http://localhost:5132/Usuarios/ChangePassword/' + localStorage.getItem("codUsuario"),
+        axios.patch('http://localhost:5132/Usuarios/ChangePassword',
         {
             oldPassword: oldPass,
             newPassword: newPass,
         },
         {
             headers:{
-                "Content-Type": "application/json"
+                "Content-Type": "application/json",
+                "Authorization": localStorage.getItem("token"),
             }
         }).then((response)=>{
             console.log(response.data);

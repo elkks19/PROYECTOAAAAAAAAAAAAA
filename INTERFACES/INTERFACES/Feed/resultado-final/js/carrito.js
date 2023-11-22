@@ -169,22 +169,25 @@ function registrarCompra(){
                 cantidad : p.cantidad,
             }
             productos.push(prodFinal);
+            productosCompra.splice(productosCompra.indexOf(p), 1);
         });
         console.log(productos);
+
+        axios.post('http://localhost:5132/ordenes/create', {
+            a: productos
+        },
+        {
+            headers: {
+                'Accept': 'application/json',
+                'Authorization': localStorage.getItem("token"), 
+                'Content-Type': 'application/json'
+            }
+        }).then(function (response) {
+            console.log(response.data);
+        }).catch(function (error) {
+            console.log(error);
+        });
     });
 
-    axios.post('http://localhost:5132/ordenes/create/' + localStorage.getItem("codUsuario"), {
-        a: productos
-    },
-    {
-        headers: {
-            'Accept': 'application/json',
-            'Content-Type': 'application/json'
-        }
-    }).then(function (response) {
-        console.log(response.data);
-    }).catch(function (error) {
-        console.log(error);
-    });
 
 }

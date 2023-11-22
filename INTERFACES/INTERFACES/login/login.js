@@ -15,31 +15,31 @@
     }
 }
 
-function prueba(){
-            axios.post("http://localhost:5132/auth/login",
-            {
-                userPersona: document.getElementById("user").value,
-                passwordPersona: document.getElementById("password").value
-            }
-            ).then((response)=>{
-                localStorage.setItem("token", response.data.token);
-                localStorage.setItem("codUsuario", response.data.codUsu);
-                switch(response.data.rol){
-                    case "usuario":
-                        window.location.href = "../Feed/resultado-final/index.html";
-                        break;
-                    case "personal":
-                        window.location.href = "../Feed/resultado-final/index.html";
-                        break;
-                    case "administrador":
-                        window.location.href = "../AdminDashboard/AdminDash.html";
-                        break;
-                }
-            }).catch((error)=>{
-                errorUser.style.visibility = "visible";
-                errorUser.innerHTML = "Usuario o contraseña incorrectos";
-            });
+function login(){
+    axios.post("http://localhost:5132/auth/login",
+    {
+        userPersona: document.getElementById("user").value,
+        passwordPersona: document.getElementById("password").value
+    }
+    ).then((response)=>{
+        localStorage.setItem("token", response.data.token);
+        
+        switch(response.data.rol){
+            case "usuario":
+                window.location.href = "../Feed/resultado-final/index.html";
+                break;
+            case "personal":
+                window.location.href = "../Feed/resultado-final/index.html";
+                break;
+            case "administrador":
+                window.location.href = "../AdminDashboard/AdminDash.html";
+                break;
         }
+    }).catch((error)=>{
+        errorUser.style.visibility = "visible";
+        errorUser.innerHTML = "Usuario o contraseña incorrectos";
+    });
+}
 
 
 // function prueba(){

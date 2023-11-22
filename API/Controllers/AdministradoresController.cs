@@ -59,35 +59,42 @@ namespace API.Controllers
         public async Task<IActionResult> RevisionesPendientes([FromRoute]string cod)
         {
             var token = Request.Headers["Authorization"];
-            var persona = await db.TokenGuardado.Include(x => x.Persona.Administrador).FirstOrDefaultAsync(x => x.Token.Equals(token));
-            if (persona.Persona.Administrador.codAdmin != cod)
+            try
             {
-                return BadRequest("El token es de otro administrador");
-            }
-
-            var listaEmpresas = db.Empresa.Where(x => x.ListaEspera.codAdmin.Equals(cod)).Where(x => x.ListaEspera.isAceptado.Equals(false)).Include(x => x.ListaEspera).ToList();
-
-            if (listaEmpresas.Count > 0)
-            {
-                var response = new List<InfoEmpresas>();
-                foreach (var emp in listaEmpresas)
+                var persona = await db.TokenGuardado.Include(x => x.Persona.Administrador).FirstOrDefaultAsync(x => x.Token.Equals(token));
+                if (persona.Persona.Administrador.codAdmin != cod)
                 {
-                    var info = new InfoEmpresas()
-                    {
-                        cod = emp.codEmpresa,
-                        nombre = emp.nombreEmpresa,
-                        direccion = emp.direccionEmpresa,
-                        pathArchivo = emp.archivoVerificacionEmpresa,
-                        fechaRevision = emp.ListaEspera.fechaRevision,
-                        fechaSolicitud = emp.ListaEspera.fechaSolicitudRevision.ToString("dd-MM-yyyy"),
-                        isRevisado = emp.ListaEspera.isAceptado
-                    };
-                    response.Add(info);
+                    return BadRequest("El token es de otro administrador");
                 }
-                return Ok(response);
-            }
 
-            return BadRequest("No hay ninguna empresa asignada a este usuario");
+                var listaEmpresas = db.Empresa.Where(x => x.ListaEspera.codAdmin.Equals(cod)).Where(x => x.ListaEspera.isAceptado.Equals(false)).Include(x => x.ListaEspera).ToList();
+
+                if (listaEmpresas.Count > 0)
+                {
+                    var response = new List<InfoEmpresas>();
+                    foreach (var emp in listaEmpresas)
+                    {
+                        var info = new InfoEmpresas()
+                        {
+                            cod = emp.codEmpresa,
+                            nombre = emp.nombreEmpresa,
+                            direccion = emp.direccionEmpresa,
+                            pathArchivo = emp.archivoVerificacionEmpresa,
+                            fechaRevision = emp.ListaEspera.fechaRevision,
+                            fechaSolicitud = emp.ListaEspera.fechaSolicitudRevision.ToString("dd-MM-yyyy"),
+                            isRevisado = emp.ListaEspera.isAceptado
+                        };
+                        response.Add(info);
+                    }
+                    return Ok(response);
+                }
+
+                return BadRequest("No hay ninguna empresa asignada a este usuario");
+            }
+            catch (Exception e)
+            {
+                return BadRequest("No existe el administrador");
+            }
         }
     }
 }

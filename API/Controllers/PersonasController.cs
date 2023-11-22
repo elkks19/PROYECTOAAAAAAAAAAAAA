@@ -39,9 +39,8 @@ namespace API.Controllers
             });
         }
 
-        protected internal async Task<byte[]> GetFoto(string cod)
+        protected internal async Task<byte[]> GetFoto(Persona persona)
         {
-            var persona = await db.Persona.FindAsync(cod);
             if (persona == null)
             {
                 return null;
@@ -50,18 +49,8 @@ namespace API.Controllers
             return imagen;
         }
 
-        protected internal async Task<Persona> ChangePassword(string oldPassword, string newPassword, string cod)
+        protected internal async Task<Persona> ChangePassword(Persona persona, string oldPassword, string newPassword)
         {
-            if (oldPassword == null)
-            {
-                return null;
-            }
-            if (newPassword == null)
-            {
-                return null;
-            }
-
-            var persona = await db.Persona.FindAsync(cod);
             if (persona == null)
             {
                 return null;
@@ -73,6 +62,8 @@ namespace API.Controllers
                 return null;
             }
             persona.passwordPersona = Crypto.HashPassword(newPassword);
+            db.Persona.Update(persona);
+            persona.Update();
             await db.SaveChangesAsync();
             return persona;
         }
@@ -101,39 +92,8 @@ namespace API.Controllers
             return persona;
         }
 
-        protected internal async Task<Persona> Edit(Persona request, IFormFile img)
+        protected internal async Task<Persona> Edit(Persona persona, Persona request)//la que se va a editar
         {
-            var persona = db.Persona.FirstOrDefault(x => x.codPersona.Equals(request.codPersona));
-
-            if (img != null)
-            {
-                // CREA EL DIRECTORIO IMAGENES SI NO EXISTE
-                string dir = env.ContentRootPath + "\\Imagenes";
-                if (!Directory.Exists(dir)) { Directory.CreateDirectory(dir); }
-
-                // CREA EL DIRECTORIO CON EL NOMBRE DEL USUARIO Y LA FOTO DE PERFIL
-                string path = $"{dir}\\{request.codPersona}\\{img.FileName}";
-                if (!Directory.Exists($"{dir}\\{request.codPersona}")) { Directory.CreateDirectory($"{dir}\\{request.codPersona}"); }
-
-                if (img.Length > 0)
-                {
-                    if (!System.IO.File.Exists(path))
-                    {
-                        var diskImg = System.IO.File.Create(path);
-                        await img.CopyToAsync(diskImg);
-                        persona.pathFotoPersona = path;
-                        diskImg.Close();
-                    }
-                    else
-                    {
-                        var diskImg = System.IO.File.Open(path, FileMode.Open);
-                        await img.CopyToAsync(diskImg);
-                        persona.pathFotoPersona = path;
-                        diskImg.Close();
-                    }
-                }
-            }
-
             if (request.nombrePersona != null) { persona.nombrePersona = request.nombrePersona; }
             if (request.fechaNacPersona != DateTime.MinValue) { persona.fechaNacPersona = request.fechaNacPersona; }
             if (request.mailPersona != null) {
@@ -194,6 +154,45 @@ namespace API.Controllers
                 client.Disconnect(true);
             }
             return;
+        }
+
+        protected internal async Task<Persona> ChangeFoto(Persona persona, IFormFile img)
+        {
+            if (img == null)
+            {
+                return null;
+            }
+
+            // CREA EL DIRECTORIO IMAGENES SI NO EXISTE
+            string dir = env.ContentRootPath + "\\Imagenes";
+            if (!Directory.Exists(dir)) { Directory.CreateDirectory(dir); }
+
+            // CREA EL DIRECTORIO CON EL NOMBRE DEL USUARIO Y LA FOTO DE PERFIL
+            string path = $"{dir}\\{persona.codPersona}\\{img.FileName}";
+            if (!Directory.Exists($"{dir}\\{persona.codPersona}")) { Directory.CreateDirectory($"{dir}\\{persona.codPersona}"); }
+
+            if (img.Length > 0)
+            {
+                if (!System.IO.File.Exists(path))
+                {
+                    var diskImg = System.IO.File.Create(path);
+                    await img.CopyToAsync(diskImg);
+                    persona.pathFotoPersona = path;
+                    diskImg.Close();
+                }
+                else
+                {
+                    var diskImg = System.IO.File.Open(path, FileMode.Open);
+                    await img.CopyToAsync(diskImg);
+                    persona.pathFotoPersona = path;
+                    diskImg.Close();
+                }
+            }
+
+            db.Persona.Update(persona);
+            await db.SaveChangesAsync();
+            persona.Update();
+            return persona;
         }
     }
 }

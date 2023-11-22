@@ -1,11 +1,15 @@
 window.onload = function(){
     localStorage.setItem("productos-en-carrito", "");
-    numerito = 0;
 }
 
 let productos = [];
 
-axios.get("http://localhost:5132/productos/getall",{}).then((response) => {
+axios.get("http://localhost:5132/productos/getall",{
+    headers: {
+        "Authorization": localStorage.getItem("token"),
+        "content-type": "application/json",
+    }
+}).then((response) => {
     response.data.forEach(p => {
             let prod = {
                 id : p.codProducto,
@@ -20,14 +24,6 @@ axios.get("http://localhost:5132/productos/getall",{}).then((response) => {
 }).catch((error) => {
     console.log(error)
 });
-
-
-// fetch("./js/productos.json")
-//     .then(response => response.json())
-//     .then(data => {
-//         productos = data;
-//         cargarProductos(productos);
-//     })
 
 
 const contenedorProductos = document.querySelector("#contenedor-productos");

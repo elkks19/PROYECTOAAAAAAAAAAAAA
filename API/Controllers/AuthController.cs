@@ -60,7 +60,6 @@ namespace API.Controllers
                         {
                             rol = rol,
                             token = tok,
-                            rol = "administrador"
                         });
                     }
                     else
@@ -87,7 +86,6 @@ namespace API.Controllers
                         {
                             rol = rol,
                             token = tok,
-                            rol = "personal"
                         });
                     }
                     else
@@ -110,7 +108,6 @@ namespace API.Controllers
                         {
                             rol = rol,
                             token = tok,
-                            rol = "usuario"
                         });
                     }
                     else

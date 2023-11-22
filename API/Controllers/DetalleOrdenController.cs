@@ -18,7 +18,7 @@ namespace API.Controllers
 
         protected internal async Task<DetalleOrden> Create(string codProducto, int cantidad, Orden orden)
         {
-            var producto = await db.Producto.FirstOrDefaultAsync();
+            var producto = await db.Producto.FirstOrDefaultAsync(x => x.codProducto.Equals(codProducto));
             if (producto == null)
             {
                 return null;

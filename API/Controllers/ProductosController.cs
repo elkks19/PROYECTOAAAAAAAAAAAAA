@@ -24,6 +24,7 @@ namespace API.Controllers
         }
 
         [HttpGet]
+        [Autorizado]
         public async Task<IActionResult> GetAll()
         {
             var productos = await db.Producto.ToListAsync();
