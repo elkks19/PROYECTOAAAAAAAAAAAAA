@@ -72,6 +72,8 @@ function closeModal(modal) {
 }
 
 //CARDS NUMERO
+
+
 let myObject = {
       nuevoUsuario: 50,
       nuevaEmpresa: 40,

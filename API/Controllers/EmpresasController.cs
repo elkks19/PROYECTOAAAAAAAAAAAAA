@@ -75,15 +75,16 @@ namespace API.Controllers
                 direccionEmpresa = request.direccionEmpresa,
                 archivoVerificacionEmpresa = path
             };
-            var listaEspera = listaC.Create(empresa);
+
+            await db.Empresa.AddAsync(empresa);
+            
+            var listaEspera = await listaC.Create(empresa);
             if (listaEspera == null)
             {
                 return BadRequest("Hubo un error en el registro de la empresa");
             }
 
-            await db.Empresa.AddAsync(empresa);
             await db.SaveChangesAsync();
-
             return Ok("Empresa creada correctamente");
         }
 

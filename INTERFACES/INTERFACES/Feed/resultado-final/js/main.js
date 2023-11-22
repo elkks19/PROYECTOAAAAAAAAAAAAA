@@ -1,6 +1,11 @@
+window.onload = function(){
+    localStorage.setItem("productos-en-carrito", "");
+    numerito = 0;
+}
+
 let productos = [];
 
-axios.get("http://localhost:5132/productos/details/EMP-001",{}).then((response) => {
+axios.get("http://localhost:5132/productos/getall",{}).then((response) => {
     response.data.forEach(p => {
             let prod = {
                 id : p.codProducto,

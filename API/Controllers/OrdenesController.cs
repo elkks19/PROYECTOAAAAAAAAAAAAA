@@ -32,10 +32,6 @@ namespace API.Controllers
         [HttpPost]
         public async Task<IActionResult> Create([FromBody]OrdenRequest request, [FromRoute]string cod)
         {
-            if (request == null)
-            {
-                return BadRequest("aaaaaaaaaaaa");
-            }
             var usuario = await db.Usuarios.Include(x => x.Persona).FirstOrDefaultAsync(x => x.codUsuario.Equals(cod));
             if (usuario == null)
             {
@@ -61,6 +57,9 @@ namespace API.Controllers
                     return BadRequest("Hubo un error al crear la orden");
                 }
             }
+            await db.Orden.AddAsync(orden);
+            await db.SaveChangesAsync();
+
             return Ok();
         }
     }

@@ -19,6 +19,25 @@ namespace API.Controllers
             env = environment;
         }
 
+        [HttpGet]
+        //[Autorizado("administrador")]
+        public async Task<IActionResult> UltimoMes()
+        {
+            var usuarios = await db.Usuarios.Include(x => x.Persona).Where(x => x.Persona.createdAt >= DateTime.Now.AddDays(-30)).ToListAsync();
+            var empresas = await db.Empresa.Where(x => x.createdAt >= DateTime.Now.AddDays(-30)).ToListAsync();
+            var ventasTotales = await db.DetalleOrden.Include(x => x.Producto).Where(x => x.Orden.fechaEntregaOrden >= DateTime.Now.AddDays(-30)).ToListAsync();
+            float total = 0;
+            foreach (var venta in ventasTotales)
+            {
+                total += venta.cantidadProducto * venta.Producto.precioProducto;
+            }
+            return Ok(new
+            {
+                usuarios = usuarios,
+                empresas = empresas,
+                ventasTotales = total
+            });
+        }
 
         protected internal async Task<byte[]> GetFoto(string cod)
         {

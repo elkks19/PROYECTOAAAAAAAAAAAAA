@@ -21,6 +21,9 @@ namespace API.Controllers
             db = context;
         }
 
+
+        
+
         public class PersonalRequest
         {
             public string nombre { get; set; }
