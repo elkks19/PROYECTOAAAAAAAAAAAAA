@@ -3,6 +3,7 @@ using API.Data;
 using API.Models;
 using API.Atributos;
 using Microsoft.EntityFrameworkCore;
+using System.IdentityModel.Tokens.Jwt;
 
 namespace API.Controllers
 {

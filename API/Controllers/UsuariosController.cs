@@ -59,6 +59,7 @@ namespace API.Controllers
 
 
             //personasC.EnviarMail(persona, $"Tu cuenta se ha registrado correctamente.\nPara confimar tu corre ingresa al siguiente link:\n\t{}");
+            //personasC.EnviarMail(persona, $"Tu cuenta se ha registrado correctamente.\nPara confimar tu corre ingresa al siguiente link:\n\t{}");
 
 
 
@@ -66,7 +67,7 @@ namespace API.Controllers
         }
 
         [HttpGet]
-        [Autorizado(rol2 = "administrador")]
+        [Autorizado("administrador")]
         public async Task<IActionResult> Details([FromRoute]string cod)
         {
             var usuario = db.Usuarios.Include(x => x.Persona).FirstOrDefault(x => x.codUsuario.Equals(cod));
@@ -87,7 +88,6 @@ namespace API.Controllers
         }
 
         [HttpGet]
-        [Autorizado(rol2 = "administrador")]
         public async Task<IActionResult> GetFoto(string cod)
         {
             var foto = await personasC.GetFoto(cod);
@@ -106,7 +106,6 @@ namespace API.Controllers
         }
 
         [HttpPatch]
-        [Autorizado(rol2 = "administrador")]
         public async Task<IActionResult> ChangePassword([FromBody]PasswordRequest request, [FromRoute]string cod)
         {
             if (request.oldPassword == null)
@@ -128,7 +127,6 @@ namespace API.Controllers
 
 
         [HttpPatch]
-        [Autorizado(rol2 = "administrador")]
         public async Task<IActionResult> Edit([FromBody]Persona request, [FromRoute] string cod)
         {
             var usuario = await db.Usuarios.Include(x => x.Persona).FirstOrDefaultAsync(x => x.codUsuario.Equals(cod));

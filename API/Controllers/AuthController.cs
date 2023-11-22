@@ -17,12 +17,15 @@ namespace API.Controllers
 
         public APIContext db;
         private readonly IConfiguration config;
-        private IWebHostEnvironment env;
-        public AuthController(APIContext db, IConfiguration configuration, IWebHostEnvironment environment)
+        public readonly LogsAuditoriaController logC;
+        private readonly IWebHostEnvironment env;
+
+        public AuthController(APIContext dbContext, IConfiguration configuration, IWebHostEnvironment environment, LogsAuditoriaController logController)
         {
-            this.db = db;
-            this.config = configuration;
-            this.env = environment;
+            db = dbContext;
+            config = configuration;
+            env = environment;
+            logC = logController;
         }
 
         public class PersonaLogin
@@ -47,17 +50,15 @@ namespace API.Controllers
                     {
                         string tok = CrearToken(per);
 
-                        var cantLogs = await db.LogsAuditoria.CountAsync() + 1;
-                        var log = new LogAuditoria()
+                        var log = await logC.Login(per);
+                        if (log == null)
                         {
-                            codLog = "LOG-" + cantLogs.ToString("000"),
-                            Persona = per,
-                            accionLog = "Login",
-                        };
-                        await db.LogsAuditoria.AddAsync(log);
-                        await db.SaveChangesAsync();
+                            return BadRequest("Hubo un error al crear el log");
+                        }
+
                         return Ok(new
                         {
+                            rol = rol,
                             token = tok,
                         });
                     }
@@ -73,19 +74,17 @@ namespace API.Controllers
                     usuarioExists = Crypto.VerifyHashedPassword(per.passwordPersona, persona.passwordPersona);
                     if (usuarioExists)
                     {
-                        string tok = CrearToken(per);
+                        string tok = CrearToken(per, per.PersonalEmpresa.codEmpresa);
 
-                        var cantLogs = await db.LogsAuditoria.CountAsync() + 1;
-                        var log = new LogAuditoria()
+                        var log = await logC.Login(per);
+                        if (log == null)
                         {
-                            codLog = "LOG-" + cantLogs.ToString("000"),
-                            Persona = per,
-                            accionLog = "Login",
-                        };
-                        await db.LogsAuditoria.AddAsync(log);
-                        await db.SaveChangesAsync();
+                            return BadRequest("Hubo un error al crear el log");
+                        }
+
                         return Ok(new
                         {
+                            rol = rol,
                             token = tok,
                         });
                     }
@@ -103,19 +102,11 @@ namespace API.Controllers
                     if (usuarioExists)
                     {
                         string tok = CrearToken(per);
-
-                        var cantLogs = await db.LogsAuditoria.CountAsync() + 1;
-                        var log = new LogAuditoria()
-                        {
-                            codLog = "LOG-" + cantLogs.ToString("000"),
-                            Persona = per,
-                            accionLog = "Login"
-                        };
-                        await db.LogsAuditoria.AddAsync(log);
-                        await db.SaveChangesAsync();
+                        var log = await logC.Login(per);
 
                         return Ok(new
                         {
+                            rol = rol,
                             token = tok,
                         });
                     }
@@ -131,12 +122,21 @@ namespace API.Controllers
             }
         }
 
-        private string CrearToken(Persona persona)
+        private string CrearToken(Persona persona, string? codEmpresa = null)
         {
-            List<Claim> claims = new List<Claim>
+            List<Claim> claims = new List<Claim>();
+            if (codEmpresa == null)
             {
-                new Claim(ClaimTypes.Name, persona.codPersona)
-            };
+                var claim1 = new Claim("codPersona", persona.codPersona);
+                claims.Add(claim1);
+            }
+            else
+            {
+                var claim1 = new Claim("codPersona", persona.codPersona);
+                var claim2 = new Claim("codEmpresa", codEmpresa);
+                claims.Add(claim1);
+                claims.Add(claim2);
+            }
 
             var key = new SymmetricSecurityKey(System.Text.Encoding.UTF8.GetBytes(
                 config.GetSection("AppSettings:Token").Value));
@@ -155,7 +155,7 @@ namespace API.Controllers
             var tokenGuardar = new TokenGuardado()
             {
                 codToken = "TOK-" + cantTok.ToString("000"),
-                codPersona = persona.codPersona,
+                Persona = persona,
                 Token = jwt
             };
 
@@ -166,29 +166,23 @@ namespace API.Controllers
 
 
         [HttpPost]
-        [Autorizado]
+        [Autorizado(rol2 = "administrador", rol3 = "empresa")]
         public async Task<IActionResult> Logout()
         {
             var tok = Request.Headers["Authorization"];
             var token = await db.TokenGuardado.Include(x => x.Persona).FirstOrDefaultAsync(b => b.Token.Equals(tok));
 
-            if(token != null)
+            var cantLogs = db.LogsAuditoria.Count() + 1;
+            var log  = await logC.Logout(token.Persona);
+            if (log == null)
             {
-                var cantLogs = db.LogsAuditoria.Count() + 1;
-                var log = new LogAuditoria()
-                {
-                    codLog = "LOG-" + cantLogs.ToString("000"),
-                    Persona = token.Persona,
-                    accionLog = "Logout"
-                };
-                await db.LogsAuditoria.AddAsync(log);
-                db.TokenGuardado.Remove(token);
-                await db.SaveChangesAsync();
-
-                return Ok("Se cerro correctamente la sesion");
+                return BadRequest("Hubo un error al crear el log");
             }
-            return BadRequest("El token no existe");
 
+            db.TokenGuardado.Remove(token);
+            await db.SaveChangesAsync();
+
+            return Ok("Se cerro correctamente la sesion");
         }
 
 
@@ -200,13 +194,13 @@ namespace API.Controllers
             var administrador = db.Administradores.Include(x => x.Persona).FirstOrDefault(x => x.Persona.userPersona.Equals(codPersona));
             var personal = db.PersonalEmpresa.Include(x => x.Persona).FirstOrDefault(x => x.Persona.userPersona.Equals(codPersona));
 
-            if (usuario != null)
-            {
-                return "usuario";
-            }
-            else if (administrador != null)
+            if (administrador != null)
             {
                 return "administrador";
+            }
+            else if (usuario != null)
+            {
+                return "usuario";
             }
             else if (personal != null)
             {

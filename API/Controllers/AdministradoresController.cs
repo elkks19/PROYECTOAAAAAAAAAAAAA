@@ -27,7 +27,7 @@ namespace API.Controllers
             var persona = await personasC.Create(request);
             if (persona == null)
             {
-                return BadRequest("Hubo un error en el registro");
+                return BadRequest("Hubo un error al crear la persona");
             }
 
             var cantAdmin = await db.Administradores.CountAsync() + 1;
@@ -55,9 +55,17 @@ namespace API.Controllers
 
 
         [HttpGet]
+        [Autorizado("administrador")]
         public async Task<IActionResult> RevisionesPendientes([FromRoute]string cod)
         {
-            var listaEmpresas = db.Empresa.Where(x => x.ListaEspera.codAdmin.Equals(cod)).Include(x => x.ListaEspera).ToList();
+            var token = Request.Headers["Authorization"];
+            var persona = await db.TokenGuardado.Include(x => x.Persona.Administrador).FirstOrDefaultAsync(x => x.Token.Equals(token));
+            if (persona.Persona.Administrador.codAdmin != cod)
+            {
+                return BadRequest("El token es de otro administrador");
+            }
+
+            var listaEmpresas = db.Empresa.Where(x => x.ListaEspera.codAdmin.Equals(cod)).Where(x => x.ListaEspera.isAceptado.Equals(false)).Include(x => x.ListaEspera).ToList();
 
             if (listaEmpresas.Count > 0)
             {
@@ -81,9 +89,5 @@ namespace API.Controllers
 
             return BadRequest("No hay ninguna empresa asignada a este usuario");
         }
-        //public async Task<IActionResult> Create(Administrador request)
-        //{
-
-        //}
     }
 }

@@ -13,6 +13,17 @@ namespace API.Controllers
         {
             db = context;
         }
+
+        protected internal async Task<LogAuditoria> Logout([FromBody]Persona persona)
+        {
+            var log = await Create(persona);
+            log.accionLog = "Logout";
+            await db.LogsAuditoria.AddAsync(log);
+            await db.SaveChangesAsync();
+            return log;
+        }
+
+
         private async Task<LogAuditoria> Create(Persona persona)
         {
             var cantLogs = await db.LogsAuditoria.CountAsync() + 1;
