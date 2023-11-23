@@ -11,7 +11,8 @@
     <link rel="stylesheet" href="Empresa.css">
 	<!--jquery-->
 	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
-
+	<script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+	<script src="./ProductosRequest.js"></script>
 </head>
 <body>
     <!--Menu izquierda inicio-->
@@ -141,168 +142,9 @@
 						</li>
 					</ul>
 				</div>
-				<!--*********1Card prducto-->
-			<div class="contenedor-cards">
-				<div class="card">
-					<div class="imgBx">
-						<img src="../FotosRopa/Body84.jpg">
-						<ul class="action">
-
-							<li><a href="../Productos/Estadisticas-x-prod/e-x-producto.html">
-								<i class='bx bxs-doughnut-chart'></i>
-								<span>Estadísticas</span></a>
-							</li>
-							<li><a href="../Productos/detalles productos/body.html">
-								<i class='bx bxs-analyse'></i>
-								<span>Ver detalles</span></a>
-							</li>
-							<li><a href="#">
-								<i class='bx bxs-edit-alt'></i>
-								<span>Editar detalles</span></a>
-							</li>							
-						</ul>
-					</div>
-					<div class="contenido">
-						<div class="producto-nombre">
-							<h3>Body Básico</h3>
-						</div>
-						<div class="precio">
-							<h2>84Bs</h2>
-							<div class="calificacion">
-								<i class="fa fa-star" aria-hidden="true"></i>
-								<i class="fa fa-star" aria-hidden="true"></i>
-								<i class="fa fa-star" aria-hidden="true"></i>
-								<i class="fa fa-star" aria-hidden="true"></i>
-								<i class="fa grey fa-star" aria-hidden="true"></i>
-							</div>
-						</div>
-					</div>
+				<div id="contenedor-cards">
 				</div>
-				<!--Card prducto1-->
-								<!--*************2Card prducto-->
-				<div class="card">
-					<div class="imgBx">
-						<img src="../FotosRopa/parachute90.jpg">
-						<ul class="action">
-							<li><a href="../Productos/Estadisticas-x-prod/e-x-producto.html">
-								<i class='bx bxs-doughnut-chart'></i>
-								<span>Estadísticas</span></a>
-							</li>
-							<li><a href="../Productos/detalles productos/parachute.html">
-								<i class='bx bxs-analyse'></i>
-								<span>Ver detalles</span></a>
-							</li>
-							<li><a href="#">
-								<i class='bx bxs-edit-alt'></i>
-								<span>Editar detalles</span></a>
-							</li>							
-						</ul>
-					</div>
-					<div class="contenido">
-						<div class="producto-nombre">
-							<h3>Parachute</h3>
-						</div>
-						<div class="precio">
-							<h2>90Bs</h2>
-							<div class="calificacion">
-								<i class="fa fa-star" aria-hidden="true"></i>
-								<i class="fa fa-star" aria-hidden="true"></i>
-								<i class="fa fa-star" aria-hidden="true"></i>
-								<i class="fa fa-star" aria-hidden="true"></i>
-								<i class="fa fa-star" aria-hidden="true"></i>
-							</div>
-						</div>
-					</div>
-				</div>
-				<!--Card prducto2-->
-				<!--***************3Card prducto-->
-				<div class="card">
-					<div class="imgBx">
-						<img src="../FotosRopa/Shortrasgado80.jpg">
-						<ul class="action">
-							<!--
-								<li>
-								<i class='bx bx-heart'></i>
-								<span>Añadir a la wishlist</span>
-							</li>
-							<li>
-								<i class='bx bx-cart' ></i>
-								<span>Añadir al carrito</span>
-							</li>
-						-->
-						<li><a href="../Productos/Estadisticas-x-prod/e-x-producto.html">
-								<i class='bx bxs-doughnut-chart'></i>
-								<span>Estadísticas</span></a>
-							</li>
-							<li>
-								<i class='bx bxs-analyse'></i>
-								<span>Ver detalles</span>
-							</li>
-							<li><a href="#">
-								<i class='bx bxs-edit-alt'></i>
-								<span>Editar detalles</span></a>
-							</li>
-						</ul>
-					</div>
-					<div class="contenido">
-						<div class="producto-nombre">
-							<h3>Short Rasgado</h3>
-						</div>
-						<div class="precio">
-							<h2>80Bs</h2>
-							<div class="calificacion">
-								<i class="fa fa-star" aria-hidden="true"></i>
-								<i class="fa fa-star" aria-hidden="true"></i>
-								<i class="fa fa-star" aria-hidden="true"></i>
-								<i class="fa grey fa-star" aria-hidden="true"></i>
-								<i class="fa grey fa-star" aria-hidden="true"></i>
-							</div>
-						</div>
-					</div>
-				</div>
-				<!--Card prducto3-->
-			<!--****************4Card prducto-->
-				<div class="card">
-					<div class="imgBx">
-						<img src="../FotosRopa/SolyLuna77.jpg">
-						<ul class="action">
-							<li><a href="../Productos/Estadisticas-x-prod/e-x-producto.html">
-								<i class='bx bxs-doughnut-chart'></i>
-								<span>Estadísticas</span></a>
-							</li>
-
-							<li>
-								<i class='bx bxs-analyse'></i>
-								<span>Ver detalles</span>
-							</li>
-							<li><a href="#">
-								<i class='bx bxs-edit-alt'></i>
-								<span>Editar detalles</span></a>
-							</li>
-						</ul>
-					</div>
-					<div class="contenido">
-						<div class="producto-nombre">
-							<h3>Sol y Luna</h3>
-						</div>
-						<div class="precio">
-							<h2>77Bs</h2>
-							<div class="calificacion">
-								<i class="fa fa-star" aria-hidden="true"></i>
-								<i class="fa fa-star" aria-hidden="true"></i>
-								<i class="fa fa-star" aria-hidden="true"></i>
-								<i class="fa fa-star" aria-hidden="true"></i>
-								<i class="fa grey fa-star " aria-hidden="true"></i>
-							</div>
-						</div>
-					</div>
-				</div>
-				<!--Crd 4-->
-				
-				
 			</div>	
-				
-			</div>
 			<!--todo FIN-->
 
 

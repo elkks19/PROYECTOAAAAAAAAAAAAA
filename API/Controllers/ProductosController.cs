@@ -24,7 +24,7 @@ namespace API.Controllers
         }
 
         [HttpGet]
-        [Autorizado]
+        //[Autorizado]
         public async Task<IActionResult> GetAll()
         {
             var productos = await db.Producto.ToListAsync();
@@ -95,17 +95,18 @@ namespace API.Controllers
         }
 
 
-
+        [HttpGet]
         public async Task<IActionResult> Details([FromRoute]string cod)
         {
-            var prod = await db.Empresa.Include(x => x.Productos).FirstOrDefaultAsync(x => x.codEmpresa.Equals(cod));
-            if (prod != null)
+            var prod = await db.Producto.FirstOrDefaultAsync(x => x.codProducto.Equals(cod));
+            if (prod == null)
             {
-                return Ok(prod.Productos.ToList());
+                return BadRequest("No se encontro la empresa");
             }
-            return BadRequest("No se encontro la empresa");
+            return Ok(prod);
         }
 
+        [HttpGet]
         public async Task<IActionResult> GetFoto([FromRoute]string cod)
         {
             var prod = await db.Producto.FirstOrDefaultAsync(x => x.codProducto.Equals(cod));

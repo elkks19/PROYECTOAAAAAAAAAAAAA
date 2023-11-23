@@ -1,5 +1,3 @@
-const numeroElements = document.querySelectorAll('.numero');
-
 window.onload = function(){
     const numUsuarios = document.getElementById("numUsuarios");
     const numEmpresas = document.getElementById("numEmpresas");
@@ -18,7 +16,7 @@ window.onload = function(){
         const ventasTotales = response.data.ventasTotales;
         numUsuarios.innerText = cantUsuarios;
         numEmpresas.innerText = cantEmpresas;
-        ventasTotales.innerHTML = ventasTotales;
+        ventasTotales.innerText = ventasTotales + "Bs";
     }).catch(error => {
         console.log(error);
     });

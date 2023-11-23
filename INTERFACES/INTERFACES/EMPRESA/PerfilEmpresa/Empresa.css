@@ -404,7 +404,7 @@ FIN*/
 	pointer-events: unset;
 }
 /*CARDS*/
-.contenedor-cards{
+#contenedor-cards{
 	position: relative;
 	width: 1000px;
 	display: grid;
@@ -412,17 +412,17 @@ FIN*/
 	grid-gap: 10px;
 	padding: 10px;
 }
-.contenedor-cards .card{
+#contenedor-cards .card{
 	width: 100%; /* Changed this line */
 	background: var(--light);
 }
-.contenedor-cards .card .imgBx{
+#contenedor-cards .card .imgBx{
 	position: relative;
 	width: 100%;
 	height: 250px;
 	overflow: hidden;
 }
-.contenedor-cards .card .imgBx img{
+#contenedor-cards .card .imgBx img{
 	position: absolute;
 	top: 0;
 	left: 0;
@@ -432,28 +432,28 @@ FIN*/
 	transition: 0.5s ease-in-out;
 	transform-origin: right;
 }
-.contenedor-cards .card:hover .imgBx img{
+#contenedor-cards .card:hover .imgBx img{
 	transform: scale(1.5);
 }
-.contenedor-cards .card .contenido .producto-nombre h3{
+#contenedor-cards .card .contenido .producto-nombre h3{
 	font-size: 15px;
 	font-weight: 500;
 	color: #342E37;
 	margin: 5px 0;
 }
-.contenedor-cards .card .contenido .precio{
+#contenedor-cards .card .contenido .precio{
 	display: flex;
 	justify-content: space-between;
 	align-items: center;
 }
-.contenedor-cards .card .contenido .precio h2{
+#contenedor-cards .card .contenido .precio h2{
 	font-size: 20px;
 	color: var(--mostaza);
 }
-.contenedor-cards .card .contenido .precio .fa{
+#contenedor-cards .card .contenido .precio .fa{
 	color:#c0a759;
 }
-.contenedor-cards .card .contenido .precio .fa.grey{
+#contenedor-cards .card .contenido .precio .fa.grey{
 	color:#6e7175;
 }
 /*Botones derecha*/
@@ -477,7 +477,7 @@ FIN*/
 	transform: translateX(60px);
 	transition: transform 0.5s;
 }
-.contenedor-cards .card:hover .action li{
+#contenedor-cards .card:hover .action li{
 	transform: translateX(0px);
 }
 .action li:nth-child(2){

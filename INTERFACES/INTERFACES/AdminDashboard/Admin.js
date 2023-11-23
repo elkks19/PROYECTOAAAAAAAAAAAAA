@@ -74,30 +74,37 @@ function closeModal(modal) {
 //CARDS NUMERO
 
 
-let myObject = {
-      nuevoUsuario: 50,
-      nuevaEmpresa: 40,
-      nuevoComprador: 10,
-      ventasTotales: '1000Bs'  
-  };
+function cargarNumeros(){
+  axios.get('http://localhost:5132/administradores/ultimomes').then(response => {
 
-  let numeroElements = document.querySelectorAll('.numero');
-  numeroElements.forEach((element, index) => {
-    switch(index) {
-      case 0:
-        element.innerHTML = myObject.nuevoUsuario;
-        break;
-      case 1:
-        element.innerHTML = myObject.nuevaEmpresa;
-        break;
-      case 2:
-        element.innerHTML = myObject.nuevoComprador;
-        break;
-      case 3:
-       element.innerHTML = myObject.ventasTotales;
-       break;  
-    }
+    let myObject = {
+      nuevoUsuario: response.data.cantUsuarios,
+      nuevaEmpresa: response.data.cantEmpresas,
+      nuevoComprador: response.data.cantCompradores,
+      ventasTotales: response.data.ventasTotales + 'Bs'  
+    };
+
+    let numeroElements = document.querySelectorAll('.numero');
+    numeroElements.forEach((element, index) => {
+      switch(index) {
+        case 0:
+          element.innerHTML = myObject.nuevoUsuario;
+          break;
+        case 1:
+          element.innerHTML = myObject.nuevaEmpresa;
+          break;
+        case 2:
+          element.innerHTML = myObject.nuevoComprador;
+          break;
+        case 3:
+        element.innerHTML = myObject.ventasTotales;
+        break;  
+      }
+    });
+  }).catch(error => {
+    console.log(error);
   });
+}
 
 //NUEVOS USUARIOS EN GENERAL
 

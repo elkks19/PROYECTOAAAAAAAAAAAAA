@@ -96,5 +96,31 @@ namespace API.Controllers
                 return BadRequest("No existe el administrador");
             }
         }
+
+        [HttpGet]
+        [Autorizado("administrador")]
+        public async Task<IActionResult> UltimoMes()
+        {
+            var cantUsuarios = await db.Persona.Where(x => DateTime.Now.AddDays(-30) <= x.createdAt).CountAsync();
+            var cantEmpresas = await db.Empresa.Where(x => DateTime.Now.AddDays(-30) <= x.createdAt).CountAsync();
+            var cantCompradores = await db.Usuarios.Include(x => x.Persona).Where(x => DateTime.Now.AddDays(-30) <= x.Persona.createdAt).CountAsync();
+            var ventas= db.Orden.Include(x => x.Ordenes).Where(x => DateTime.Now.AddDays(-30) <= x.fechaPagoOrden);
+
+            float total = 0;
+            foreach(var venta in ventas)
+            {
+                foreach(var orden in venta.Ordenes)
+                {
+                    total += orden.precioTotal;
+                }
+            }
+            return Ok(new
+            {
+                cantUsuarios = cantUsuarios,
+                cantEmpresas = cantEmpresas,
+                cantCompradores = cantCompradores,
+                ventasTotales = total
+            });
+        }
     }
 }
