@@ -1,7 +1,6 @@
 ﻿using System.Web.Mvc;
 using CrystalDecisions.CrystalReports.Engine;
 using CrystalDecisions.Shared;
-using CrystalDecisions.Web;
 
 namespace APIreportes.Controllers
 {

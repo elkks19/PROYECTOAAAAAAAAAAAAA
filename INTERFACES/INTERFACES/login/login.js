@@ -15,7 +15,7 @@
     }
 }
 
-function login(){
+function prueba(){
     axios.post("http://localhost:5132/auth/login",
     {
         userPersona: document.getElementById("user").value,
