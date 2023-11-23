@@ -1,0 +1,167 @@
+ <!--DOCTYPE html-->
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!--==Title============================-->
+    <title>Detalles</title>
+    <!--==CSS==============================-->
+    <link rel="stylesheet" href="detalles-pro.css"/>
+    <!--==Poppins-font=====================-->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap" rel="stylesheet">
+    <!--==Font-Awesome=====-->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.0/css/all.min.css">
+
+    <!-- Link Swiper CSS -->
+    <link
+      rel="stylesheet"
+      href="https://cdn.jsdelivr.net/npm/swiper/swiper-bundle.min.css"
+    />
+    <script src="detalles.js"></script>
+
+
+</head>
+<body>
+
+    <!--==PAGINA PRODUCTO=================================-->
+    <section id="product-page">
+    <div class="product-details">
+        <!--**Img*************************-->
+        <div class="product-img">
+
+        <!-- Slider -->
+        <div class="swiper mySwiper">
+            <div class="swiper-wrapper">
+            
+            <!--**1******-->
+            <div class="swiper-slide">
+                <img src="../../FotosRopa/Body84.jpg" />
+            </div>
+            <!--**2******-->
+            <div class="swiper-slide">
+                <img src="../../FotosRopa/bodymarron.jpg" />
+            </div>
+            <!--**3******-->
+            <div class="swiper-slide">
+               <img src="../../FotosRopa/bodyblanco.jpg" />
+            </div>
+            <!--**4******-->
+            <div class="swiper-slide">
+                <img src="../../FotosRopa/bodycolores.jpg" />
+            </div>
+
+            </div>
+
+            <!--btns-->
+            <div class="slider-btns">
+                <div class="swiper-button-prev"></div>
+                <div class="swiper-button-next"></div>
+            </div>
+        </div>
+
+
+        
+        </div>
+        <!--**Texto************************-->
+        <div class="product-text">
+            <!--categorias-->
+            <span class="product-category">Blusas</span>
+            <h3>Body Básico</h3>
+            <span class="product-price">84Bs</span>
+            <p>Lorem ipsum, dolor sit amet consectetur adipisicing elit. Officiis laboriosam vitae ab aspernatur qui facere a commodi cupiditate praesentium. Aliquam, voluptatem est debitis consequuntur ex autem exercitationem quas dolorem alias?
+                <br/>
+                Lorem ipsum dolor sit amet consectetur adipisicing elit. Hic illo, enim non molestias dolores eos officia minima quidem architecto labore soluta? Expedita officiis voluptas sapiente officia debitis, mollitia eum quia.
+            </p>
+            <!--TALLAS-->
+            <div class="product-size-container">
+                <strong>Selecciona Talla:-</strong>
+                <div class="product-size">
+                    <!--xl-->
+                    <input type="checkbox" class="s-checkbox" id="s-xl">
+                    <label for="s-xl" class="s-label">XL</label>
+                    <!--Small-->
+                    <input type="checkbox" class="s-checkbox" id="s-s">
+                    <label for="s-s" class="s-label">S</label>
+                    <!--Medium-->
+                    <input type="checkbox" class="s-checkbox" id="s-m">
+                    <label for="s-m" class="s-label">M</label>
+                    <!--Large-->
+                    <input type="checkbox" class="s-checkbox" id="s-l">
+                    <label for="s-l" class="s-label">L</label>
+                </div>
+
+                     <!--COLORES-->
+                    <div class="product-color-container">
+                    <strong>Selecciona Color:</strong>
+                    <div class="product-color">
+                        <!--Negro-->
+                        <div class="color-circle negro"></div>
+                        <!--Cafe-->
+                        <div class="color-circle cafe"></div>
+                        <!--Beige-->
+                        <div class="color-circle beige"></div>
+                        <!--Plomo-->
+                        <div class="color-circle plomo"></div>
+                    </div>
+                    </div>
+            </div>
+            
+
+
+
+
+
+            <!--btn-->
+            <div class="product-button">
+                <a href="#" class="add-bag-btn">Añadir al carrito</a>
+                <a href="#" class="add-wishlist-btn">Wishlist</a>
+            </div>
+
+        </div>
+    </div>
+    </section>
+
+    <!--==Jquery===========================-->
+    <script
+  src="https://code.jquery.com/jquery-3.6.1.js"
+  integrity="sha256-3zlB5s2uwoUzrXK3BT7AX3FyvojsraNFxCc2vC/7pNI="
+  crossorigin="anonymous"></script>
+
+    <!-- Swipeo JS -->
+    <script src="https://cdn.jsdelivr.net/npm/swiper/swiper-bundle.min.js"></script>
+
+    <!-- Swipeo xd -->
+    <script>
+      var swiper = new Swiper(".mySwiper", {
+        slidesPerView: 1,
+        spaceBetween: 10,
+        navigation: {
+          nextEl: ".swiper-button-next",
+          prevEl: ".swiper-button-prev",
+        },
+        breakpoints: {
+          450: {
+            slidesPerView: 2,
+            spaceBetween: 0,
+          },
+          820: {
+            slidesPerView: 1,
+            spaceBetween: 0,
+          },
+          1024: {
+            slidesPerView: 2,
+            spaceBetween:0,
+          },
+        },
+      });
+
+
+      $('.s-checkbox').on('change', function() {
+		    $('.s-checkbox').not(this).prop('checked', false);  
+		});
+    </script>
+</body>
+</html>

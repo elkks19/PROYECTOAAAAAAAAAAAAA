@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Estadisticas del producto</title>
+    <link rel="stylesheet" href="e-x-producto.css">
+    <script src="e-x-producto.js"></script>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+	<link href='https://unpkg.com/boxicons@2.0.9/css/boxicons.min.css' rel='stylesheet'>
+	<script src="https://kit.fontawesome.com/7c61ac1c1a.js" crossorigin="anonymous"></script>
+    
+</head>
+<body>
+		<div class="estadisticas">	
+                <div class="head">
+                    <h1>Estadísticas por producto</h1>
+                    	<div class="Filtros">
+							<select id="tipo_categorias">
+							<option value="todo">14 dias</option>
+							<option value="pantalon">1 mes</option>
+					
+							</select>
+						</div>
+                </div>	
+				<div class="cards">
+					<div class="card">
+						<div class="card-contenido">
+							<div class="numero" id="numUsuarios">0</div>
+							<div class="card-nombre">Veces que se guardo en favoritos</div>
+						</div>
+						<div class="icon">
+							<i class='bx bxs-heart'></i>
+						</div>					
+					</div>
+
+
+					<div class="card">
+						<div class="card-contenido">
+							<div class="numero" id="numEmpresas">0 Bs</div>
+							<div class="card-nombre">Total de ventas</div>
+						</div>
+						<div class="icon">
+							<i class="fa-solid fa-money-bill"></i>
+						</div>					
+					</div>
+					
+					<div class="card">
+						<div class="card-contenido">
+							<div class="numero" id="ventasTotales">0</div>
+							<div class="card-nombre">Cantidad vendida</div>
+						</div>
+						<div class="icon">
+							<i class='bx bx-closet'></i>
+						</div>					
+					</div>					
+				</div>  
+        </div>          
+    
+</body>
+</html>
