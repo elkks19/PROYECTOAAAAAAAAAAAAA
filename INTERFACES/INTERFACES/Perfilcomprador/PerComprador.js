@@ -65,7 +65,7 @@ function actualizarDatosUsuario(){
 }
 
 function actualizarRecibo(){
-    axios.patch('http://localhost:5132/Usuarios/Edit/' + localStorage.getItem("codUsuario"),
+    axios.patch('http://localhost:5132/Usuarios/Edit',
     {
         direccionPersona: document.getElementById("direccion").value,
         celularPersona: document.getElementById("celular").value

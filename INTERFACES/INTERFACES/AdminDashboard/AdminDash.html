@@ -17,7 +17,7 @@
     <link rel="stylesheet" href="AdminDash.css">
 
 </head>
-<body onload="cargarNumeros()">
+<body>
     <!--Menu izquierda inicio-->
     <section id="sidebar">
 		<a href="#" class="logo">
@@ -140,7 +140,7 @@
 
 					<div class="card">
 						<div class="card-contenido">
-							<div class="numero"></div>
+							<div class="numero" id="numCompradores"></div>
 							<div class="card-nombre">Compradores</div>
 						</div>
 						<div class="icon">
@@ -171,60 +171,34 @@
 
 
 				<div class="cards-registros">
-					<div class="card-tipo">
+					<div class="card-tipo" id="cardUsuarios">
 						<div class="regis-tipo">
 							<div class="card-nom1">Nuevos</div>
 							<div class="card-nom2">Usuarios</div>
 							<button><a href="#">Ver todo</a></button>
 						</div>
 						<div class="divider"></div>						
-						<div class="nuevos-usuario">
-							<div class="img-usu">
-								<img src="../../RECURSOS/Patocuchillo.jpg">
-							</div>
-							<div class="nombreees">
-								<div class="nombre">Rafael</div>
-								<div class="tipo-usuario">Empleado</div>
-							</div>
-							
-						</div>
 					</div>	
 					
-					<div class="card-tipo">
+					<div class="card-tipo" id="cardCompradores">
 						<div class="regis-tipo">
 							<div class="card-nom1">Nuevos</div>
 							<div class="card-nom2">Compradores</div>
 							<button><a href="#">Ver todo</a></button>
 						</div>	
 						<div class="divider"></div>						
-						<div class="nuevos-usuario">
-							<div class="img-usu">
-								<img src="../../RECURSOS/Patocuchillo.jpg">
-							</div>
-							<div class="nombreees">
-								<div class="nombre">Rafael</div>
-							</div>	
-						</div>
 					</div>
-					<div class="card-tipo">
+					<div class="card-tipo" id="cardEmpresas">
 						<div class="regis-tipo">
 							<div class="card-nom1">Nuevas</div>
 							<div class="card-nom2">Empresas</div>
 							<button><a href="#">Ver todo</a></button>
 						</div>	
 						<div class="divider"></div>						
-						<div class="nuevos-usuario">
-							<div class="img-usu">
-								<img src="../../RECURSOS/Patocuchillo.jpg">
-							</div>
-							<div class="nombreees">
-								<div class="nombre">Rafael</div>
-							</div>	
-						</div>
 					</div>																
 				</div>
 
-				<div class="categorias-caja">
+				<!-- <div class="categorias-caja">
 					<div class="categoria-header">
 						<h1>Categorias</h1>
 						<button><a href="categorias.html">Modificar</a></button>
@@ -251,7 +225,7 @@
 						</div>
 					</div>
 				</div>
-
+ -->
 
 
 			</div>

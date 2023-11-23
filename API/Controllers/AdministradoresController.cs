@@ -12,12 +12,14 @@ namespace API.Controllers
         private readonly APIContext db;
         private readonly IWebHostEnvironment env;
         private readonly PersonasController personasC;
+        private readonly AuthController authC;
 
-        public AdministradoresController(APIContext context, IWebHostEnvironment env, PersonasController personasController)
+        public AdministradoresController(APIContext context, IWebHostEnvironment env, PersonasController personasController, AuthController authC)
         {
             this.db = context;
             this.env = env;
             this.personasC = personasController;
+            this.authC = authC;
         }
 
         [HttpPost]
@@ -101,24 +103,34 @@ namespace API.Controllers
         [Autorizado("administrador")]
         public async Task<IActionResult> UltimoMes()
         {
-            var cantUsuarios = await db.Persona.Where(x => DateTime.Now.AddDays(-30) <= x.createdAt).CountAsync();
-            var cantEmpresas = await db.Empresa.Where(x => DateTime.Now.AddDays(-30) <= x.createdAt).CountAsync();
-            var cantCompradores = await db.Usuarios.Include(x => x.Persona).Where(x => DateTime.Now.AddDays(-30) <= x.Persona.createdAt).CountAsync();
-            var ventas= db.Orden.Include(x => x.Ordenes).Where(x => DateTime.Now.AddDays(-30) <= x.fechaPagoOrden);
+            var usuarios = await db.Persona.Select(x => new
+            {
+                x.nombrePersona,
+                x.createdAt,
+                x.pathFotoPersona,
+                x.mailPersona,
+                rol = authC.verificarRol(x.userPersona)
+            }).Where(x => DateTime.Now.AddDays(-30) <= x.createdAt).ToListAsync();
+
+            var empresas = await db.Empresa.Where(x => DateTime.Now.AddDays(-30) <= x.createdAt).ToListAsync();
+
+            var compradores = usuarios.Where(x => x.rol.Equals("usuario"));
+
+            var ventas = await db.Orden.Include(x => x.Ordenes).Where(x => DateTime.Now.AddDays(-30) <= x.fechaPagoOrden).ToListAsync();
 
             float total = 0;
-            foreach(var venta in ventas)
+            foreach (var venta in ventas)
             {
-                foreach(var orden in venta.Ordenes)
+                foreach (var orden in venta.Ordenes)
                 {
                     total += orden.precioTotal;
                 }
             }
             return Ok(new
             {
-                cantUsuarios = cantUsuarios,
-                cantEmpresas = cantEmpresas,
-                cantCompradores = cantCompradores,
+                usuarios = usuarios,
+                empresas = empresas,
+                compradores = compradores,
                 ventasTotales = total
             });
         }

@@ -56,6 +56,8 @@ namespace API.Controllers
                 fechaPagoOrden = DateTime.Now
             };
 
+            await db.Orden.AddAsync(orden);
+
             var prods = request.a;
             foreach (var detalle in prods)
             {
@@ -66,7 +68,6 @@ namespace API.Controllers
                 }
             }
 
-            await db.Orden.AddAsync(orden);
             await db.SaveChangesAsync();
             return Ok("Orden guardada correctamente");
         }

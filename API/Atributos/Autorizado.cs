@@ -5,16 +5,17 @@ using Microsoft.AspNetCore.Mvc.Filters;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.IdentityModel.Abstractions;
 using Microsoft.IdentityModel.Tokens;
+using System.Diagnostics;
 using System.IdentityModel.Tokens.Jwt;
 using System.Text;
 
 namespace API.Atributos
 {
-    public class Autorizado : Attribute, IAuthorizationFilter
+    public class Autorizado : Attribute, IAsyncAuthorizationFilter
     {
         public string rol1 { get; set; }
-        public string rol2 { get; set; }
-        public string rol3 { get; set; }
+        public string? rol2 { get; set; }
+        public string? rol3 { get; set; }
         public JwtSecurityTokenHandler handler = new JwtSecurityTokenHandler();
 
         private APIContext db;
@@ -22,15 +23,14 @@ namespace API.Atributos
 
         public Autorizado(string? rol1 = "usuario")
         {
-            roles = new List<string>();
             this.rol1 = rol1;
-            System.Diagnostics.Debug.WriteLine("CTOR");
         }
 
-        public void OnAuthorization(AuthorizationFilterContext context)
+        public async Task OnAuthorizationAsync(AuthorizationFilterContext context)
         {
             try
             {
+                roles = new List<string>();
                 this.roles.Add(this.rol1);
                 this.roles.Add(this.rol2);
                 this.roles.Add(this.rol3);
@@ -57,7 +57,7 @@ namespace API.Atributos
 
                 var codRequest = claimCod.Value;
 
-                var persona = db.Persona.FirstOrDefault(x => x.codPersona.Equals(codRequest));
+                var persona = await db.Persona.FirstOrDefaultAsync(x => x.codPersona.Equals(codRequest));
 
                 if (persona == null)
                 {
@@ -66,7 +66,7 @@ namespace API.Atributos
                 // Se verifica que la persona del codigo exista y que este en la tabla de tokens
 
 
-                var tokenExists = db.TokenGuardado.Include(x => x.Persona).FirstOrDefault(x => x.Token.Equals(token));
+                var tokenExists = await db.TokenGuardado.Include(x => x.Persona).FirstOrDefaultAsync(x => x.Token.Equals(token));
                 if (tokenExists == null)
                 {
                     context.Result = new UnauthorizedResult();
@@ -80,7 +80,7 @@ namespace API.Atributos
 
                 if (this.roles.Contains("administrador"))
                 {
-                    db.Entry(persona).Reference(x => x.Administrador).Load();
+                    await db.Entry(persona).Reference(x => x.Administrador).LoadAsync();
                     if (persona.Administrador != null)
                     {
                         return;
@@ -88,11 +88,11 @@ namespace API.Atributos
                 }
                 if (this.roles.Contains("empresa"))
                 {
-                    db.Entry(persona).Reference(x => x.PersonalEmpresa).Load();
+                    await db.Entry(persona).Reference(x => x.PersonalEmpresa).LoadAsync();
 
-                    var codEmpresa = tok.Claims.FirstOrDefault(x => x.Type.Equals("codEmpresa")).Value;
                     if (persona.PersonalEmpresa != null)
                     {
+                        var codEmpresa = tok.Claims.FirstOrDefault(x => x.Type.Equals("codEmpresa")).Value;
                         if (persona.PersonalEmpresa.codEmpresa != codEmpresa)
                         {
                             context.Result = new UnauthorizedResult();
@@ -102,7 +102,7 @@ namespace API.Atributos
                 }
                 if (this.roles.Contains("usuario"))
                 {
-                    db.Entry(persona).Reference(x => x.Usuario).Load();
+                    await db.Entry(persona).Reference(x => x.Usuario).LoadAsync();
                     if (persona.Usuario != null)
                     {
                         return;

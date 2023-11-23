@@ -38,12 +38,11 @@ botonesCategorias.forEach(boton => boton.addEventListener("click", () => {
 }))
 
 function logout(){
-    axios.post("http://localhost:5132/auth/logout",{
-        token: localStorage.getItem("token")
-    },
+    axios.post("http://localhost:5132/auth/logout", {},
     {
         headers: {
-            "content-type": "application/json"
+            "content-type": "application/json",
+            "Authorization": localStorage.getItem("token"),
         }
     }).then((response) => {
         localStorage.removeItem("token");
@@ -55,35 +54,66 @@ function logout(){
 
 }
 
+function buscar(){
+    const barraBusqueda = document.getElementById("barraBusqueda");
+    axios.post("http://localhost:5132/productos/search", 
+    {
+        search: barraBusqueda.value,
+    },
+    {
+        headers: {
+            "content-type": "application/json",
+            "Accept": "application/json",
+            "Authorization": localStorage.getItem("token"),
+        },
+    }).then((response) => {
+        productos = [];
+        response.data.forEach(p => {
+                let prod = {
+                    id : p.codProducto,
+                    nombre : p.nombreProducto,
+                    precio : p.precioProducto,
+                    codEmpresa : p.codEmpresa
+                }
+                productos.push(prod);
+        });
+        cargarProductos(productos);
+    }).catch((error) => {
+        console.log(error)
+    });
+}
+
 
 function cargarProductos(productosElegidos) {
+
     contenedorProductos.innerHTML = "";
 
     productosElegidos.forEach(producto => {
-        axios.get("http://localhost:5132/productos/getfoto/" + producto.id, {
-            responseType: 'blob'
-        })
-        .then((response) => {
-            let img = window.URL.createObjectURL(response.data);
-            const div = document.createElement("div");
-            div.classList.add("producto");
-            div.innerHTML = `
-                <img class="producto-imagen" src="${img}" alt="${producto.id}">
-                <div class="producto-detalles">
-                    <h3 class="producto-titulo">${producto.nombre}</h3>
-                    <p class="producto-precio">${producto.precio} Bs</p>
-                    <button class="producto-agregar" id="${producto.id}">Agregar</button>
-                </div>
-            `;
+            axios.get("http://localhost:5132/productos/getfoto/" + producto.id, 
+            {
+                responseType: 'blob',
+                headers:{
+                    "content-type": "application/json",
+                }
+            }).then((response) => {
+                let img = window.URL.createObjectURL(response.data);
+                const div = document.createElement("div");
+                div.classList.add("producto");
+                div.innerHTML = `
+                    <img class="producto-imagen" src="${img}" alt="${producto.id}">
+                    <div class="producto-detalles">
+                        <h3 class="producto-titulo">${producto.nombre}</h3>
+                        <p class="producto-precio">${producto.precio} Bs</p>
+                        <button class="producto-agregar" id="${producto.id}">Agregar</button>
+                    </div>
+                `;
 
-            contenedorProductos.append(div);
-            actualizarBotonesAgregar();
-        }).catch((error) => {
-            console.log(error)
-        });
-        console.log(producto);
+                contenedorProductos.append(div);
+                actualizarBotonesAgregar();
+            }).catch((error) => {
+                console.log(error)
+            });
     });
-
 }
 
 
@@ -151,6 +181,18 @@ function agregarAlCarrito(e) {
 
     const idBoton = e.currentTarget.id;
     const productoAgregado = productos.find(producto => producto.id === idBoton);
+
+    axios.post("http://localhost:5132/Carrito/Create/" + productoAgregado.id, {},
+    {
+        headers:{
+            "Authorization": localStorage.getItem("token"),
+            "content-type": "application/json",
+        }
+    }).then((response) => {
+        console.log(response.data);
+    }).catch((error) => {
+        console.log(error)
+    });
 
     if(productosEnCarrito.some(producto => producto.id === idBoton)) {
         const index = productosEnCarrito.findIndex(producto => producto.id === idBoton);

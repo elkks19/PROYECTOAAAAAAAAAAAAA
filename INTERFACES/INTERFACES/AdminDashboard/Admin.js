@@ -27,9 +27,6 @@ function ChangeContent(pageId) {
   }
 }
 
-window.onload = function() {
-  ChangeContent('pag1');
-}
 
 //ESTITO ES PARA EL POP UP ME CAGOOOOOOOOOOOOOOOOO
 
@@ -74,69 +71,17 @@ function closeModal(modal) {
 //CARDS NUMERO
 
 
-function cargarNumeros(){
-  axios.get('http://localhost:5132/administradores/ultimomes').then(response => {
-
-    let myObject = {
-      nuevoUsuario: response.data.cantUsuarios,
-      nuevaEmpresa: response.data.cantEmpresas,
-      nuevoComprador: response.data.cantCompradores,
-      ventasTotales: response.data.ventasTotales + 'Bs'  
-    };
-
-    let numeroElements = document.querySelectorAll('.numero');
-    numeroElements.forEach((element, index) => {
-      switch(index) {
-        case 0:
-          element.innerHTML = myObject.nuevoUsuario;
-          break;
-        case 1:
-          element.innerHTML = myObject.nuevaEmpresa;
-          break;
-        case 2:
-          element.innerHTML = myObject.nuevoComprador;
-          break;
-        case 3:
-        element.innerHTML = myObject.ventasTotales;
-        break;  
-      }
-    });
-  }).catch(error => {
-    console.log(error);
-  });
-}
-
-//NUEVOS USUARIOS EN GENERAL
-
-let users = [
- {
-   img: "../../RECURSOS/Patocuchillo.jpg",
-   name: "Usuario1",
-   type: "Empleado"
- },
- {
-   img: "../../RECURSOS/Patocuchillo.jpg",
-   name: "Rafael",
-   type: "Comprador"
- },
- {
-   img: "../../RECURSOS/Patocuchillo.jpg",
-   name: "Damaroli",
-   type: "Empresa"
- }
-];
-
 let imgElements = document.querySelectorAll('.img-usu img');
 let nameElements = document.querySelectorAll('.nombre');
 let typeElements = document.querySelectorAll('.tipo-usuario');
 
-users.forEach((user, index) => {
- imgElements[index].src = user.img;
- nameElements[index].textContent = user.name;
- if (typeElements[index]) {
-   typeElements[index].textContent = user.type;
- }
-});
+// users.forEach((user, index) => {
+//  imgElements[index].src = user.img;
+//  nameElements[index].textContent = user.name;
+//  if (typeElements[index]) {
+//    typeElements[index].textContent = user.type;
+//  }
+// });
 
 
 //categorias

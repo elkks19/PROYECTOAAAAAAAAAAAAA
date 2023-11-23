@@ -9,6 +9,7 @@ using API.Data;
 using API.Models;
 using API.Atributos;
 using Microsoft.CodeAnalysis.Scripting.Hosting;
+using Microsoft.AspNetCore.Authorization;
 
 namespace API.Controllers
 {
@@ -24,7 +25,7 @@ namespace API.Controllers
         }
 
         [HttpGet]
-        //[Autorizado]
+        [Autorizado(rol2 = "empresa", rol3 = "administrador")]
         public async Task<IActionResult> GetAll()
         {
             var productos = await db.Producto.ToListAsync();
@@ -36,8 +37,9 @@ namespace API.Controllers
             return Ok(productos);
         }
 
+
         [HttpPost]
-        //[Autorizado("empresa")]
+        [Autorizado("empresa", rol2 = "administrador")]
         public async Task<IActionResult> Create([FromBody]Producto request, [FromRoute]string cod)
         {
             var empresa = await db.Empresa.FirstOrDefaultAsync(x => x.codEmpresa.Equals(cod));
@@ -96,6 +98,7 @@ namespace API.Controllers
 
 
         [HttpGet]
+        [Autorizado(rol2 = "empresa", rol3= "administrador")]
         public async Task<IActionResult> Details([FromRoute]string cod)
         {
             var prod = await db.Producto.FirstOrDefaultAsync(x => x.codProducto.Equals(cod));
@@ -126,11 +129,27 @@ namespace API.Controllers
             return producto;
         }
 
-        [HttpGet]
-        public async Task<IActionResult> Index([FromRoute]string cod)
+
+
+        public class Busqueda
         {
-            var productos = db.Producto.Where(x => x.codEmpresa.Equals(cod)).ToList();
-            return Ok(productos);
+            public string search { get; set; }
+        }
+        [HttpPost]
+        [Autorizado]
+        public async Task<IActionResult> Search([FromBody]Busqueda request)
+        {
+            if (String.IsNullOrEmpty(request.search))
+            {
+                var prod = await db.Producto.ToListAsync();
+                return Ok(prod);
+            }
+            var prods = await db.Producto.Where(x => x.nombreProducto.Contains(request.search) || x.descProducto.Contains(request.search)).ToListAsync();
+            if (prods.Count == 0)
+            {
+                return BadRequest("No se encontro ningun producto");
+            }
+            return Ok(prods);
         }
     }
 }
