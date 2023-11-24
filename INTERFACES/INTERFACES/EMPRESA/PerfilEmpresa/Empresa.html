@@ -21,7 +21,7 @@
             <a href="#" class="logo">
                 <img src="../../../RECURSOS/LOGO NEGRO.png" />
             </a> -->
-                          
+                         
             </div>
             <div class="perfil">
                 <img src="../../../INTERFACES/AdminDashboard/imagenes/Damaroli.jpg">
@@ -75,14 +75,9 @@
 
 		</ul>
 		<ul class="side-menu">
+						
 			<li>
-				<a href="#" >
-					<i class='bx bx-face' ></i>
-					<span class="text">Personal</span>
-				</a>
-			</li>			
-			<li>
-				<a href="#" >
+				<a href="../Estadisticas/estadisticas_generales.html" >
 					<i class='bx bxs-doughnut-chart'></i>
 					<span class="text">Estadísticas</span>
 				</a>
@@ -92,7 +87,13 @@
 					<i class='bx bxs-store-alt'></i>
 					<span class="text">Productos</span>
 				</a>
-			</li>			
+			</li>	
+			<li>
+				<a href="#" >
+					<i class='bx bxs-message-square-dots'></i>
+					<span class="text">Reclamos</span>
+				</a>
+			</li>		
 			<li>
 				<a href="#" class="logout">
 					<i class='bx bxs-log-in-circle' ></i>
@@ -161,14 +162,17 @@
 							<a class="active" href="#">Inicio</a>
 						</li>
 					</ul>
-						<div class="Filtros">
+					<div class="Filtros">
+						<div class="cat">
+							<h3>Filtrar por categoria</h3>
 							<select id="tipo_categorias">
 							<option value="todo">Todo</option>
 							<option value="pantalon">Pantalon</option>
 							<option value="short">Short</option>
 							<option value="blusa">Blusa</option>
 							</select>
-							<select id="tipo_tallas">
+						</div>
+						<!--<select id="tipo_tallas">
 							<option value="todas">Todas</option>
 							<option value="pantalon">X</option>
 							<option value="short">S</option>
@@ -176,7 +180,8 @@
 							<option value="blusa">L</option>
 							<option value="blusa">XL</option>
 							</select>
-						</div>	
+							-->	
+					</div>	
 
 				</div>	
 				<div class="content pantalon">
@@ -198,6 +203,21 @@
 							<a class="active" href="#">Inicio</a>
 						</li>
 					</ul>
+					<!--FILTROS-->
+					<div class="Filtros">
+						<div class="cat">
+							<h3>Filtrar por categoria</h3>
+							<select id="tipo_categorias">
+							<option value="todo">Todo</option>
+							<option value="pantalon">Botas</option>
+							<option value="short">Tacones</option>
+							<option value="blusa">Tenis</option>
+							</select>
+						</div>
+						
+					</div>
+					<!--FILTROS-->
+
 				</div>	
 
 				
@@ -217,7 +237,21 @@
 						<li>
 							<a class="active" href="#">Inicio</a>
 						</li>
-					</ul>		
+					</ul>	
+					<!--FILTROS-->
+					<div class="Filtros">
+						<div class="cat">
+							<h3>Filtrar por categoria</h3>
+							<select id="tipo_categorias">
+							<option value="todo">Todo</option>
+							<option value="pantalon">Collares</option>
+							<option value="short">Anillos</option>
+							<option value="blusa">Manillas</option>
+							</select>
+						</div>
+						
+					</div>
+					<!--FILTROS-->	
 				</div>	
 								
 			</div>			
@@ -227,7 +261,9 @@
 
 		</div>
 		
+		
 	</section>
+
     <script src="Empresa.js"></script>
 </body>
 </html>

@@ -538,6 +538,16 @@ FIN*/
 .Filtros{
 	padding-top: 10px;
 }
+.cat{
+	display: flex;
+}
+.Filtros .cat h3{
+	font-size: 16px;
+	padding-right: 20px;
+	font-family: var(--hanken);
+	color: var(--dark-grey);
+	font-weight: 400;
 
+}
 
 
