@@ -4,12 +4,12 @@ colorCircles.forEach((circle) => {
 });
 
 function selectColor(event) {
- // Remove the 'selected' class from all circles
+
  colorCircles.forEach((circle) => {
    circle.classList.remove("selected");
  });
 
- // Add the 'selected' class to the clicked circle
+ 
  event.target.classList.add("selected");
 }
 
@@ -74,3 +74,14 @@ function getDetalles(){
       console.log(error)
     })
 }
+//--------------- BOTON
+// Crear elemento boton
+var button = document.createElement("button");
+button.className = "perfil";
+var img = document.createElement("img");
+img.src = "../../../AdminDashboard/imagenes/Damaroli.jpg";
+button.appendChild(img);
+var h1 = document.createElement("h1");
+//nombre de la empresa
+h1.textContent = "Damaroli";
+button.appendChild(h1);
