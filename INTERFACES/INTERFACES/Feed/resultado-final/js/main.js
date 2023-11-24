@@ -100,12 +100,28 @@ function cargarProductos(productosElegidos) {
                 const div = document.createElement("div");
                 div.classList.add("producto");
                 div.innerHTML = `
-                    <img class="producto-imagen" src="${img}" alt="${producto.id}">
-                    <div class="producto-detalles">
-                        <h3 class="producto-titulo">${producto.nombre}</h3>
-                        <p class="producto-precio">${producto.precio} Bs</p>
-                        <button class="producto-agregar" id="${producto.id}">Agregar</button>
-                    </div>
+                   <div class="card">
+                        <div class="imgBx">
+                            <img class="producto-imagen" src="${producto.imagen}" alt="${producto.titulo}">
+                            <ul class="action">
+                                                <li><a href="#">
+                                                    <i class='bx bxs-star'></i>
+                                                    <span>Agregar a Wishlist</span></a>
+                                                </li>
+
+                                                <li>
+                                                    <i class='bx bxs-analyse'></i>
+                                                    <span>Ver detalles</span>
+                                                </li>
+                                                
+                            </ul>
+                        </div>
+                            <div class="producto-detalles">
+                                <h3 class="producto-titulo">${producto.titulo}</h3>
+                                <p class="producto-precio">$${producto.precio}</p>
+                                <button class="producto-agregar" id="${producto.id}">Agregar al carrito</button>
+                            </div>
+                    </div> 
                 `;
 
                 contenedorProductos.append(div);
