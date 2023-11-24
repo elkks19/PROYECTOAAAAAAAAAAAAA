@@ -9,6 +9,20 @@
     <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
 </head>
 <body>
+    <!--POPUP  Bienvenida-->
+    <div id="welcomePopup" class="popup">
+      <div onclick="closePopup()" class="close">&times;</div>
+      <h2>Bienvenido</h2>
+      <p>
+        La creación de tu cuenta empresarial, debe ser verificada previamente.
+        Te enviaremos un correo de confirmación cuando esta se haya creado, 
+        esto será de 2 a 3 días.
+      </p>
+    </div>
+
+
+    <!--POPUP  Bienvenida-->
+
     <div class="wrapper">
         <span></span>
         <span></span>
@@ -28,16 +42,14 @@
 
         <div class="container">
             <form action="/" method="post">
-                <p>Bienvenido</p>
-                <h1>La creación de tu cuenta empresarial, debe ser verificada previamente.Te enviaremos un correo de confirmación cuando esta se haya creado, esto será de 2 a 3 días.</h1>
+                <p>Regístrate</p>
+        <!--DATOS--> 
+        <div class="contenedor-datos">  
+        <div class="row">
+            <div class="daEmpresa">
+                <h1>Datos de empresa:</h1>
                 <input type="text" placeholder="Ingresa el nombre" id="nombre"/><br>
                 <input type="text" placeholder="Ingresa la direccion" id="direccion"/><br>
-                <!-- <input type="email" placeholder="Ingresa tu correo" /><br>
-                <input type="password" placeholder="Crea una contraseña" id="myInput" /> -->
-                <span class="eye" onclick="myFunction()">
-                    <i style="color: #F0E6DA;" id="hide1" class="fa-solid fa-eye"></i>
-                    <i style="color: #F0E6DA;" id="hide2" class="fa-solid fa-eye-slash"></i>
-                </span>
                 <h2 style="color: #F0E6DA;">Queremos comprobar que tu empresa es real</h2>
                 <ul style="color: #F0E6DA;">
                     <li>Foto de carnet</li>
@@ -47,6 +59,26 @@
                 <div id="drop-area">
                     <input type="file" id="archivo">
                 </div>
+            </div> 
+            <div class="daDueño">
+                <h1>Ingresa tus datos:</h1>
+
+                <input id="nombre" type="text" placeholder="Ingresa tu nombre"/><br>
+                <input id="fechaNac" type="text" placeholder="Ingresa tu fecha de nacimiento" 
+                onfocus="this.type = 'date'" onblur="this.type = 'text'"/><br>
+                <input id="mail" type="text" placeholder="Ingresa tu correo electronico"/><br>
+                <input id="password" type="password" placeholder="Crea una contraseña" /><br>
+                <input id="password2" type="password" placeholder="Confirma tu contraseña" />
+                <!-- <input type="password" placeholder="Confirma tu contraseña" id="myInput2" /> -->
+                <span class="eye" onclick="myFunction()">
+                    <i style="color: #F0E6DA;" id="hide1" class="fa-solid fa-eye"></i>
+                    <i style="color: #F0E6DA;"  id="hide2" class="fa-solid fa-eye-slash"></i>
+                </span>
+
+            </div>
+        </div>    
+        </div>  
+        <!--DATOS-->      
 
                 <div class="button">
                     <a style="font-family: 'Genera-grotesk-heavy'; text-decoration: none; color: #FFFCED; background-color: transparent; border: none;font-size:15px"
