@@ -7,23 +7,27 @@ using System.Web.Helpers;
 
 namespace API.Controllers
 {
+    [Autorizado("administrador")]
     public class AdministradoresController : Controller
     {
         private readonly APIContext db;
         private readonly IWebHostEnvironment env;
         private readonly PersonasController personasC;
+        private readonly ListaEsperaController listaEsperaC;
         private readonly AuthController authC;
+        private readonly UsuariosController usuariosC;
 
-        public AdministradoresController(APIContext context, IWebHostEnvironment env, PersonasController personasController, AuthController authC)
+        public AdministradoresController(APIContext context, IWebHostEnvironment env, PersonasController personasController, AuthController authC, UsuariosController usuariosC, ListaEsperaController listaEsperaC)
         {
             this.db = context;
             this.env = env;
             this.personasC = personasController;
             this.authC = authC;
+            this.usuariosC = usuariosC;
+            this.listaEsperaC = listaEsperaC;
         }
 
         [HttpPost]
-        //[Autorizado("administrador")]
         public async Task<IActionResult> Registro([FromBody]Persona request)
         {
             var persona = await personasC.Create(request);
@@ -57,50 +61,26 @@ namespace API.Controllers
 
 
         [HttpGet]
-        [Autorizado("administrador")]
-        public async Task<IActionResult> RevisionesPendientes([FromRoute]string cod)
+        public async Task<IActionResult> RevisionesPendientes()
         {
             var token = Request.Headers["Authorization"];
-            try
+
+            var persona = await usuariosC.getUsuario(token);
+            if (persona == null)
             {
-                var persona = await db.TokenGuardado.Include(x => x.Persona.Administrador).FirstOrDefaultAsync(x => x.Token.Equals(token));
-                if (persona.Persona.Administrador.codAdmin != cod)
-                {
-                    return BadRequest("El token es de otro administrador");
-                }
-
-                var listaEmpresas = db.Empresa.Where(x => x.ListaEspera.codAdmin.Equals(cod)).Where(x => x.ListaEspera.isAceptado.Equals(false)).Include(x => x.ListaEspera).ToList();
-
-                if (listaEmpresas.Count > 0)
-                {
-                    var response = new List<InfoEmpresas>();
-                    foreach (var emp in listaEmpresas)
-                    {
-                        var info = new InfoEmpresas()
-                        {
-                            cod = emp.codEmpresa,
-                            nombre = emp.nombreEmpresa,
-                            direccion = emp.direccionEmpresa,
-                            pathArchivo = emp.archivoVerificacionEmpresa,
-                            fechaRevision = emp.ListaEspera.fechaRevision,
-                            fechaSolicitud = emp.ListaEspera.fechaSolicitudRevision.ToString("dd-MM-yyyy"),
-                            isRevisado = emp.ListaEspera.isAceptado
-                        };
-                        response.Add(info);
-                    }
-                    return Ok(response);
-                }
-
-                return BadRequest("No hay ninguna empresa asignada a este usuario");
+                return BadRequest("Hubo un error al buscar la persona");
             }
-            catch (Exception e)
+            await db.Entry(persona).Reference(x => x.Administrador).LoadAsync();
+            var listaEmpresas = await listaEsperaC.Index(persona.Administrador.codAdmin);
+            if (listaEmpresas.Count == 0)
             {
-                return BadRequest("No existe el administrador");
+                return Ok("El administrador no tiene ninguna empresa en espera");
             }
+
+            return Ok(listaEmpresas);
         }
 
         [HttpGet]
-        [Autorizado("administrador")]
         public async Task<IActionResult> UltimoMes()
         {
             var usuarios = await db.Persona.Select(x => new

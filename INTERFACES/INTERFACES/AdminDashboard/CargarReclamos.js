@@ -10,8 +10,7 @@ function llenarEmpresas(){
     const tablaEmpresas = document.getElementById('reclamosEmpresas');
     empresasReportadas.forEach(empresa => {
         tablaEmpresas.innerHTML += `
-            <tr class="empresaRow">
-                <td class="empresa"><img src="${empresa.pathFotoEmpresa}"><a href="#">${empresa.nombreEmpresa}</a></td>
+            <tr class="row-empresa">
                 <td class="report" >1</td>
                 <td>
                     <label class="switch">

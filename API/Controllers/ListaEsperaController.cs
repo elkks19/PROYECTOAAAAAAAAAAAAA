@@ -47,7 +47,7 @@ namespace API.Controllers
             public bool isRevisado { get; set; }
         }
 
-        public async Task<IActionResult> Index([FromRoute]string cod)
+        protected internal async Task<List<ResponseEmpresa>> Index(string cod)
         {
             var empresas = await db.ListaEsperaEmpresa.Include(x => x.Empresa).Include(x => x.Administrador.Persona).Where(x => x.codAdmin.Equals(cod)).ToListAsync();
             if (empresas != null)
@@ -64,9 +64,9 @@ namespace API.Controllers
                     };
                     response.Add(a);
                 }
-                return Ok(response);
+                return response;
             }
-            return BadRequest("No se encontro al administrador");
+            return null;
         }
 
         public async Task<IActionResult> GetArchivo([FromRoute]string cod)
