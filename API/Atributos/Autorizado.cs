@@ -16,6 +16,7 @@ namespace API.Atributos
         public string rol1 { get; set; }
         public string? rol2 { get; set; }
         public string? rol3 { get; set; }
+        public string rol4 = "superAdmin";
         public JwtSecurityTokenHandler handler = new JwtSecurityTokenHandler();
 
         private APIContext db;
@@ -104,6 +105,14 @@ namespace API.Atributos
                 {
                     await db.Entry(persona).Reference(x => x.Usuario).LoadAsync();
                     if (persona.Usuario != null)
+                    {
+                        return;
+                    }
+                }
+                if (this.roles.Contains("superAdmin"))
+                {
+                    await db.Entry(persona).Reference(x => x.SuperAdmin).LoadAsync();
+                    if (persona.SuperAdmin != null)
                     {
                         return;
                     }
