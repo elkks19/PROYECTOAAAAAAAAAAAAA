@@ -87,5 +87,14 @@ h1.textContent = "Damaroli";
 button.appendChild(h1);
 
 
-//mas opciones
+//mas opciones no me funca aca pero si en el html :c
+document.getElementById('reportLink').addEventListener('click', openModal);
+
+function openModal() {
+  document.getElementById('reportModal').style.display = 'block';
+}
+
+function closeModal() {
+  document.getElementById('reportModal').style.display = 'none';
+}
 
