@@ -85,3 +85,7 @@ var h1 = document.createElement("h1");
 //nombre de la empresa
 h1.textContent = "Damaroli";
 button.appendChild(h1);
+
+
+//mas opciones
+
