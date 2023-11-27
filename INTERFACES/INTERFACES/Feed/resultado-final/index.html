@@ -21,7 +21,7 @@
         <div class="logo"><a href="#"><img style="width: 150px" src="../RECURSOS/LOGO BLANCO.png"  ></a></li></div>
             <div class="search-box">
                 <input type ="text" name ="search" id ="barraBusqueda" placeholder="Buscar">
-                <button onclick="buscar()"><i class="fa fa-search"></i></button>
+                <button id="buscar" onclick="buscar()"><i class="fa fa-search"></i></button>
             </div>
             <ul>
                 <li>
@@ -77,7 +77,9 @@
                         function logout(){
                             axios.post("http://localhost:5132/auth/logout",
                             {
-                                token: localStorage.getItem("token")
+                                headers:{
+                                  "Authorization": localStorage.getItem("token")
+                                } 
                             }
                             ).then((response)=>{
                                 localStorage.removeItem("token")

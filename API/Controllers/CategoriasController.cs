@@ -14,14 +14,15 @@ namespace API.Controllers
         {
             db = context;
         }
-
+        [HttpGet]
         public async Task<IActionResult> Index()
         {
-            var categorias = db.Categorias.ToList();
+            var categorias = await db.Categorias.ToListAsync();
             return Ok(categorias);
         }
 
-        public async Task<IActionResult> Create([FromBody]string nombreCategoria)
+        [HttpPost]
+        public async Task<IActionResult> Upsert([FromBody]string nombreCategoria)
         {
             var cantCategorias = await db.Categorias.CountAsync();
             var categoria = new Categoria()

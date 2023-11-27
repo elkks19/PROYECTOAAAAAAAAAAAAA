@@ -35,8 +35,6 @@ namespace API.Data
         public DbSet<API.Models.ListaEsperaEmpresa> ListaEsperaEmpresa { get; set; } = default!;
         public DbSet<API.Models.Like> Like { get; set; } = default!;
         public DbSet<API.Models.TokenGuardado> TokenGuardado { get; set; } = default!;
-        public DbSet<API.Models.SuperAdmin> SuperAdmin { get; set; } = default!;
-
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {

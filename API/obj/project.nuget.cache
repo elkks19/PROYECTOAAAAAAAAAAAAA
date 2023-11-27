@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "hJew/ra11ZUuMn1YSLtklBNTlqmoYEZzFAvm1FnWlS9ABOry6/YWdX6LFUBOFWALDCKBiCUQLHTdHNxpkRAiSw==",
+  "dgSpecHash": "1Veg2EiYIhbBrXBjgu3IxFimX3Dwjn04QXs/tl6VzjCevMUzGUenrfECFwfwJDkj96jtYM+8NcDkukwHSEhwcA==",
   "success": true,
-  "projectFilePath": "C:\\Users\\Alejandra\\OneDrive\\Escritorio\\Ultimaaaaa copiaaaaa\\ProyectoEquisDe\\API\\API.csproj",
+  "projectFilePath": "C:\\Users\\Alejandra\\OneDrive\\Escritorio\\ULTIMISIMAA\\ProyectoEquisDe\\API\\API.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\Alejandra\\.nuget\\packages\\azure.core\\1.25.0\\azure.core.1.25.0.nupkg.sha512",
     "C:\\Users\\Alejandra\\.nuget\\packages\\azure.identity\\1.7.0\\azure.identity.1.7.0.nupkg.sha512",

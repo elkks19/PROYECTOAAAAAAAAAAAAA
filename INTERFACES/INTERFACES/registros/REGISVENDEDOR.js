@@ -4,7 +4,6 @@ function registroEmpresas(){
     axios.post  ('http://localhost:5132/Empresas/Registro', {
         nombreEmpresa: document.getElementById("nombre").value,
         direccionEmpresa: document.getElementById("direccion").value,
-        archivo: document.getElementById("archivo").value.split('\\').pop(),
         archivo: document.getElementById("archivo").files[0]
     },
     {

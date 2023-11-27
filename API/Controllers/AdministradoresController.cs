@@ -7,7 +7,6 @@ using System.Web.Helpers;
 
 namespace API.Controllers
 {
-    [Autorizado("administrador")]
     public class AdministradoresController : Controller
     {
         private readonly APIContext db;
