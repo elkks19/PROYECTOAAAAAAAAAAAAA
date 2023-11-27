@@ -26,6 +26,7 @@ namespace API.Controllers
             this.listaEsperaC = listaEsperaC;
         }
 
+
         [HttpPost]
         public async Task<IActionResult> Registro([FromBody]Persona request)
         {

@@ -1,4 +1,5 @@
 window.onload = function() {
+
     const tabla = document.getElementById("tablaPRO");
 
     let datos = [];
@@ -109,5 +110,5 @@ function crear(){
         descProducto: descripcionProducto,
         precioProducto: precioProducto,
         precioEnvioProducto: precioEnvioProducto
-    },
+    });
 }

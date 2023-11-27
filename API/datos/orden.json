@@ -1,0 +1,52 @@
+[
+ {
+  "codProducto": 6,
+  "cantidadProducto": 1,
+  "precioTotal": 35
+ },
+ {
+  "codProducto": 1,
+  "cantidadProducto": 2,
+  "precioTotal": 100
+ },
+ {
+  "codProducto": 10,
+  "cantidadProducto": 1,
+  "precioTotal": 35
+ },
+ {
+  "codProducto": 14,
+  "cantidadProducto": 1,
+  "precioTotal": 55
+ },
+ {
+  "codProducto": 5,
+  "cantidadProducto": 2,
+  "precioTotal": 60
+ },
+ {
+  "codProducto": 29,
+  "cantidadProducto": 2,
+  "precioTotal": 40
+ },
+ {
+  "codProducto": 19,
+  "cantidadProducto": 2,
+  "precioTotal": 90
+ },
+ {
+  "codProducto": 20,
+  "cantidadProducto": 3,
+  "precioTotal": 120
+ },
+ {
+  "codProducto": 25,
+  "cantidadProducto": 2,
+  "precioTotal": 100
+ },
+ {
+  "codProducto": 28,
+  "cantidadProducto": 1,
+  "precioTotal": 55
+ }
+]

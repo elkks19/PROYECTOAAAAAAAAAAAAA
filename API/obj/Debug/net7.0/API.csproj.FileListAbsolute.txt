@@ -1529,3 +1529,4 @@ C:\Users\Alejandra\OneDrive\Escritorio\ULTIMISIMAA\ProyectoEquisDe\API\obj\Debug
 C:\Users\Alejandra\OneDrive\Escritorio\ULTIMISIMAA\ProyectoEquisDe\API\obj\Debug\net7.0\API.pdb
 C:\Users\Alejandra\OneDrive\Escritorio\ULTIMISIMAA\ProyectoEquisDe\API\obj\Debug\net7.0\API.genruntimeconfig.cache
 C:\Users\Alejandra\OneDrive\Escritorio\ULTIMISIMAA\ProyectoEquisDe\API\obj\Debug\net7.0\ref\API.dll
+C:\Users\rafaf\Desktop\PROYECTO\ProyectoEquisDe\API\bin\Debug\net7.0\datos\personas.json

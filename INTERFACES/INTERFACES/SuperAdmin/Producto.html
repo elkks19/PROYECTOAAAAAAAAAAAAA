@@ -1,14 +1,14 @@
 ﻿<!DOCTYPE html>
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head>
-      <meta charset="utf-8" />
+    <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Simple Responsive Admin</title>
+    <title>Super Admin</title>
 	<!-- BOOTSTRAP STYLES-->
     <link href="assets/css/bootstrap.css" rel="stylesheet" />
      <!-- FONTAWESOME STYLES-->
     <link href="assets/css/font-awesome.css" rel="stylesheet" />
-        <!-- CUSTOM STYLES-->
+    <!-- CUSTOM STYLES-->
     <link href="assets/css/custom.css" rel="stylesheet" />
      <!-- GOOGLE FONTS-->
    <link href='http://fonts.googleapis.com/css?family=Open+Sans' rel='stylesheet' type='text/css' />
@@ -19,9 +19,6 @@
     <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
 </head>
 <body>
-     
-           
-          
     <div id="wrapper">
          <div class="navbar navbar-inverse navbar-fixed-top">
             <div class="adjust-nav">
@@ -34,6 +31,11 @@
                     <a class="navbar-brand" href="#">
                         <img src="assets/img/LOGO BLANCO.png" />
                     </a>
+                </div>
+
+                <div class="search-box">
+                    <input type ="text" name ="search" id ="barraBusqueda" placeholder="Buscar">
+                    <button id="buscar" onclick="buscar()"><i class="fa fa-search"></i></button>
                 </div>
               
                  <span class="logout-spn" >
