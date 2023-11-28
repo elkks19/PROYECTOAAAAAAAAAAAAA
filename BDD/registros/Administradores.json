@@ -1,5 +1,6 @@
 [
  {
+<<<<<<< HEAD
   "codAdmin": 1,
   "codPersona": 13
  },
@@ -10,5 +11,14 @@
  {
   "codAdmin": 3,
   "codPersona": 15
+=======
+  "codPersona": "PER-013"
+ },
+ {
+  "codPersona": "PER-014"
+ },
+ {
+  "codPersona": "PER-015"
+>>>>>>> 30b905dff2c8f20bea9af42a8c89bff759061472
  }
 ]

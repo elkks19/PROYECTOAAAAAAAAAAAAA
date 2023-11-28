@@ -408,12 +408,12 @@ FIN*/
 	position: relative;
 	width: 1000px;
 	display: grid;
-	grid-template-columns: repeat(4, 1fr); /* Changed this line */
+	grid-template-columns: repeat(4, 1fr); 
 	grid-gap: 10px;
 	padding: 10px;
 }
 #contenedor-cards .card{
-	width: 100%; /* Changed this line */
+	width: 100%; 
 	background: var(--light);
 }
 #contenedor-cards .card .imgBx{
@@ -538,6 +538,16 @@ FIN*/
 .Filtros{
 	padding-top: 10px;
 }
+.cat{
+	display: flex;
+}
+.Filtros .cat h3{
+	font-size: 16px;
+	padding-right: 20px;
+	font-family: var(--hanken);
+	color: var(--dark-grey);
+	font-weight: 400;
 
+}
 
 

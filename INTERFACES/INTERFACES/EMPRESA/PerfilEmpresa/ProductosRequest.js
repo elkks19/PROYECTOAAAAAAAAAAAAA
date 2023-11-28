@@ -2,7 +2,7 @@
 axios.get('http://localhost:5132/Productos/GetAll',
 {
     headers: {
-        // "Authorization": localStorage.getItem("token"),
+        "Authorization": localStorage.getItem("token"),
         "Content-Type": "application/json"
     }
 }).then(response => {

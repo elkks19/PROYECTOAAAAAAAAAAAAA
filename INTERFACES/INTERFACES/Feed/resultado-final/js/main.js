@@ -1,5 +1,19 @@
 window.onload = function(){
     localStorage.setItem("productos-en-carrito", "");
+    
+    const input = document.getElementById("barraBusqueda");
+
+    input.addEventListener("keypress", function(event) {
+        if (event.key === "Enter") {
+            event.preventDefault();
+            document.getElementById("buscar").click();
+        }
+    });
+}
+
+function detalles(cod){
+    localStorage.setItem("codProducto", cod);
+    window.location.href = "../../../../INTERFACES/EMPRESA/Productos/detalles productos/body.html";
 }
 
 let productos = [];
@@ -100,12 +114,28 @@ function cargarProductos(productosElegidos) {
                 const div = document.createElement("div");
                 div.classList.add("producto");
                 div.innerHTML = `
-                    <img class="producto-imagen" src="${img}" alt="${producto.id}">
-                    <div class="producto-detalles">
-                        <h3 class="producto-titulo">${producto.nombre}</h3>
-                        <p class="producto-precio">${producto.precio} Bs</p>
-                        <button class="producto-agregar" id="${producto.id}">Agregar</button>
-                    </div>
+                   <div class="card">
+                        <div class="imgBx">
+                            <img class="producto-imagen" src="${img}" alt="${producto.nombre}">
+                            <ul class="action">
+                                                <li>
+                                                    <i class='bx bxs-star'></i>
+                                                    <span>Agregar a Wishlist</span></a>
+                                                </li>
+
+                                                <li onclick="detalles('${producto.id}')">
+                                                    <i class='bx bxs-analyse'></i>
+                                                    <span>Ver detalles</span>
+                                                </li>
+                                                
+                            </ul>
+                        </div>
+                            <div class="producto-detalles">
+                                <h3 class="producto-titulo">${producto.nombre}</h3>
+                                <p class="producto-precio">${producto.precio} Bs</p>
+                                <button class="producto-agregar" id="${producto.id}">Agregar al carrito</button>
+                            </div>
+                    </div> 
                 `;
 
                 contenedorProductos.append(div);

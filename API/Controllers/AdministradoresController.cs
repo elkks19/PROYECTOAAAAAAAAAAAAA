@@ -7,7 +7,6 @@ using System.Web.Helpers;
 
 namespace API.Controllers
 {
-    [Autorizado("administrador")]
     public class AdministradoresController : Controller
     {
         private readonly APIContext db;
@@ -26,6 +25,7 @@ namespace API.Controllers
             this.usuariosC = usuariosC;
             this.listaEsperaC = listaEsperaC;
         }
+
 
         [HttpPost]
         public async Task<IActionResult> Registro([FromBody]Persona request)

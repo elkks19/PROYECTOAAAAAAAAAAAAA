@@ -1,15 +1,46 @@
+window.onload = function(){
+  document.getElementById('reportLink').addEventListener('click', openModal);
+
+
+  let codProducto = localStorage.getItem("codProducto");
+
+  axios.get("http://localhost:5132/productos/details/" + codProducto, {
+    headers:{
+      "Content-Type": "application/json",
+      "Authorization": localStorage.getItem("token")
+    }
+  }).then(response => {
+    console.log(response.data);
+    let div = document.getElementById("detalles-producto");
+    let producto = response.data;
+    div.innerHTML +=
+    `
+      <span class="product-category">Blusas</span>
+      <h3>${producto.nombreProducto}</h3>
+      <span class="product-price">${producto.precioProducto}Bs</span>
+      <p>
+        ${producto.descProducto}
+      </p>
+    `;
+  }).catch(error => {
+    console.log(error);
+  })
+
+}
+
+
 let colorCircles = document.querySelectorAll(".color-circle");
 colorCircles.forEach((circle) => {
  circle.addEventListener("click", selectColor, false);
 });
 
 function selectColor(event) {
- // Remove the 'selected' class from all circles
+
  colorCircles.forEach((circle) => {
    circle.classList.remove("selected");
  });
 
- // Add the 'selected' class to the clicked circle
+ 
  event.target.classList.add("selected");
 }
 
@@ -74,3 +105,26 @@ function getDetalles(){
       console.log(error)
     })
 }
+//--------------- BOTON
+// Crear elemento boton
+var button = document.createElement("button");
+button.className = "perfil";
+var img = document.createElement("img");
+img.src = "../../../AdminDashboard/imagenes/Damaroli.jpg";
+button.appendChild(img);
+var h1 = document.createElement("h1");
+//nombre de la empresa
+h1.textContent = "Damaroli";
+button.appendChild(h1);
+
+
+//mas opciones no me funca aca pero si en el html :c
+
+function openModal() {
+  document.getElementById('reportModal').style.display = 'block';
+}
+
+function closeModal() {
+  document.getElementById('reportModal').style.display = 'none';
+}
+

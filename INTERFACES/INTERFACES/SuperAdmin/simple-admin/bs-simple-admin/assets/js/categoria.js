@@ -1,22 +1,18 @@
 window.onload= function () {
     const tabla = document.getElementById("tablaCAT");
+    let datos = [];
+    axios.get('http://localhost:5132/categorias/index', {
+        headers:{
+            "Authorization": localStorage.getItem("token")
+        }
+    }).then(response => {
+        datos = response.data;
+    }).catch(error => {
+        console.log(error);
+    })
 
-    let personas = [
-        {
-            categoria: 'tenis',
-    
-        },
-        {
-            categoria: 'Prenda',
-   
-        },
-        {
-            categoria: 'accesorio',
 
-        },
-    ]
-
-    personas.forEach(persona => {
+    datos.forEach(dato => {
         tabla.innerHTML += 
         `
         <tr>
@@ -26,5 +22,4 @@ window.onload= function () {
         </tr>
         `;
     });
-
 }
