@@ -40,7 +40,8 @@ body {
 
 #page-wrapper {
     padding: 15px 15px;
-    min-height: 600px;
+    /* min-height: 600px; */
+    max-height: 500px;
     background:#F3F3F3;
    
 }
@@ -49,7 +50,7 @@ body {
     margin:10px 20px 10px 0px;
     background-color:#fff!important;
     padding:10px;
-    min-height:1050px;
+    min-height:850px;
 }
 .pad-top {
     padding-top:15px;
@@ -66,11 +67,14 @@ body {
 .sidebar-collapse > .nav > li > a {
 	padding:15px 10px;
     color: #BF9004;
-font-weight: 900;
-font-size: 16px;
+    font-weight: 900;
+    font-size: 16px;
 }
 .sidebar-collapse > .nav > li {
 	border-bottom:1px solid #e1e1e1;
+}
+.sidebar-collapse > .nav > li :hover{
+    cursor: pointer;
 }
 .sidebar-collapse .nav > li > a:hover,
 .sidebar-collapse .nav > li > a:focus {
@@ -82,7 +86,6 @@ font-size: 16px;
 .navbar-side {
 	border:none;
 	background-color: #fff;
-	
 }
 .navbar-inverse {
 
@@ -152,7 +155,7 @@ min-height: 80px;
      #page-wrapper{
                margin: 0 0 0 260px;
         padding: 15px 30px;
-        min-height: 1050px;
+        min-height: 850px;
 		
     }
 	

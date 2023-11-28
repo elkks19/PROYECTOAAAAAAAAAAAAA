@@ -1,18 +1,27 @@
 ﻿<!DOCTYPE html>
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head>
-      <meta charset="utf-8" />
+    <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title> SuperAdmin</title>
-	<!-- BOOTSTRAP STYLES-->
+    <title>Administrador</title>
     <link href="assets/css/bootstrap.css" rel="stylesheet" />
-     <!-- FONTAWESOME STYLES-->
     <link href="assets/css/font-awesome.css" rel="stylesheet" />
-        <!-- CUSTOM STYLES-->
     <link href="assets/css/custom.css" rel="stylesheet" />
-     <!-- GOOGLE FONTS-->
-   <link href='http://fonts.googleapis.com/css?family=Open+Sans' rel='stylesheet' type='text/css' />
+    <link href='http://fonts.googleapis.com/css?family=Open+Sans' rel='stylesheet' type='text/css' />
     <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto|Varela+Round">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
+    <script src="./assets/js/index.js"></script>
+    <script src="./assets/js/categoria.js"></script>
+    <script src="./assets/js/DetallesOrden.js"></script>
+    <script src="./assets/js/Detwish.js"></script>
+    <script src="./assets/js/empresa.js"></script>
+    <script src="./assets/js/ListEmp.js"></script>
+    <script src="./assets/js/orden.js"></script>
+    <script src="./assets/js/persona.js"></script>
+    <script src="./assets/js/producto.js"></script>
+    <script src="./assets/js/reclamos.js"></script>
+    <script src="./assets/js/wish.js"></script>
 </head>
 <body>
     <div id="wrapper">
@@ -24,13 +33,10 @@
                         <span class="icon-bar"></span>
                         <span class="icon-bar"></span>
                     </button>
-                    <a class="navbar-brand" href="#">
-                        <img src="assets/img/LOGO NEGRO.png" />
+                    <a class="navbar-brand" href="../AdminDashboard/AdminDash.html">
+                        <img src="assets/img/LOGO BLANCO.png" />
                     </a>
                 </div>
-                <span class="logout-spn" >
-                  <a href="#" style="color:#fff;">LOGOUT</a>  
-                </span>
             </div>
         </div>
         <!-- /. NAV TOP  -->
@@ -40,34 +46,40 @@
                     <li class="active-link">
                         <a href="index.html" ><i class="fa fa-desktop "></i>SuperAdmin </a>
                     </li>
-                    <li>
-                        <a href="Categorias.html"><i class="fa fa-table "></i>Categorias  </a>
+                    <li onclick="categoria()">
+                        <a><i class="fa fa-table "></i>Categorias  </a>
                     </li>
-                    <li>
-                        <a href="DetallesOrden.html"><i class="fa fa-qrcode "></i>Detalle Orden</a>
+                    <li onclick="detalleOrden()">
+                        <a><i class="fa fa-qrcode "></i>Detalle Orden</a>
                     </li>
-                    <li>
-                        <a href="Detallewishlist.html"><i class="fa fa-bar-chart-o"></i>Detalle Wishlist</a>
+                    <li onclick="detalleWishlist()">
+                        <a><i class="fa fa-bar-chart-o"></i>Detalle Wishlist</a>
                     </li>
-                    <li>
-                        <a href="Empres.html"><i class="fa fa-edit "></i>Empresa </a>
+                    <li onclick="empresa()">
+                        <a><i class="fa fa-edit "></i>Empresa </a>
                     </li>
-                    <li>
-                        <a href="ListEmpre.html"><i class="fa fa-table "></i>Lista Espera Empresa</a>
+                    <li onclick="listaEspera()">
+                        <a><i class="fa fa-table "></i>Lista Espera Empresa</a>
                     </li>
-                     <li>
-                        <a href="Orden.html"><i class="fa fa-edit "></i>Orden </a>
+                    <li onclick="orden()">
+                        <a><i class="fa fa-edit "></i>Orden </a>
                     </li>
-                    <li>
-                        <a href="Persona.html"><i class="fa fa-edit "></i>Persona </a>
+                    <li onclick="persona()">
+                        <a><i class="fa fa-edit "></i>Persona </a>
                     </li>
-                    <li>
-                        <a href="Producto.html"><i class="fa fa-edit "></i>Producto </a>
-                    <li>
-                        <a href="Wishlist.html"><i class="fa fa-edit "></i>Wishlist </a>
+                    <li onclick="producto()">
+                        <a><i class="fa fa-edit "></i>Producto </a>
+                    <li onclick="wishlist()">
+                        <a><i class="fa fa-edit "></i>Wishlist </a>
                     </li>
-                    <li>
-                        <a href="ReclamosEmpresa.html"><i class="fa fa-edit "></i>Reclamos Empresa </a>
+                    <li onclick="reclamo()">
+                        <a><i class="fa fa-edit "></i>Reclamos Empresa </a>
+                    </li>
+                    <li onclick="logout()">
+                        <a href="#" class="logout">
+                            <i class='bx bxs-log-out-circle' ></i>
+                            <span class="text">Cerrar Sesión</span>
+                        </a>
                     </li>
                 </ul>
                             </div>
@@ -76,30 +88,14 @@
         <!-- /. NAV SIDE  -->
         <div id="page-wrapper" >
             <div id="page-inner">
-                <div class="row">
-                    <div class="col-lg-12">
-                     <h2>SUPER ADMIN</h2>   
-                    </div>
-                </div>              
-                
-              </div>
-                 <!-- /. ROW  -->   
-				  <div class="row">
-                    <div class="col-lg-12 ">
-					<br/>
-                        
-                       
-                    </div>
-                    </div>
-                  <!-- /. ROW  --> 
-    </div>
-             <!-- /. PAGE INNER  -->
+
             </div>
-         <!-- /. PAGE WRAPPER  -->
         </div>
-          
 
      <!-- /. WRAPPER  -->
+    </div>
+          
+
     <!-- SCRIPTS -AT THE BOTOM TO REDUCE THE LOAD TIME-->
     <!-- JQUERY SCRIPTS -->
     <script src="assets/js/jquery-1.10.2.js"></script>

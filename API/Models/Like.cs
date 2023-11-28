@@ -27,9 +27,17 @@ namespace API.Models
         [Required]
         public DateTime fechaLike { get; set; }
 
+        [Required]
+        public bool activo { get; set; }
+
         public Like()
         {
+            activo = true;
             fechaLike = DateTime.Now;
+        }
+        public void Desactivar()
+        {
+            activo = false;
         }
     }
 }

@@ -21,37 +21,66 @@ namespace API.Controllers
             var categorias = await db.Categorias.Select(x => new
             {
                 x.codCategoria,
-                x.nombreCategoria
-            }).ToListAsync();
+                x.nombreCategoria,
+                x.activo
+            }).Where(x => x.activo.Equals(true)).ToListAsync();
+
             return Ok(categorias);
         }
 
         [HttpPost]
-        public async Task<IActionResult> Upsert([FromBody]string nombreCategoria)
+        public async Task<IActionResult> Create([FromBody]Categoria request)
         {
-            var categoriaExiste = await db.Categorias.FirstOrDefaultAsync(x => x.nombreCategoria.Equals(nombreCategoria));
-            if (categoriaExiste == null)
+            var categoriaExists = await db.Categorias.FirstOrDefaultAsync(x => x.nombreCategoria.Equals(request.nombreCategoria));
+            if (categoriaExists != null)
             {
-                var cantCategorias = await db.Categorias.CountAsync();
-                var categoria = new Categoria()
+                categoriaExists.Activar();
+            }
+            else
+            {
+                var cantCategorias = await db.Categorias.CountAsync() + 1;
+
+                var categoriaNueva = new Categoria()
                 {
                     codCategoria = "CAT-" + cantCategorias.ToString("000"),
-                    nombreCategoria = nombreCategoria
+                    nombreCategoria = request.nombreCategoria
                 };
-                await db.Categorias.AddAsync(categoria);
+                await db.Categorias.AddAsync(categoriaNueva);
             }
 
-            categoriaExiste.nombreCategoria = nombreCategoria;
-            db.Categorias.Update(categoriaExiste);
             await db.SaveChangesAsync();
+            return Ok("La categoria se guardo correctamente");
+        }
 
+        [HttpPatch]
+        public async Task<IActionResult> Edit([FromBody]Categoria request, [FromRoute]string cod)
+        {
+            var categoria = await db.Categorias.FirstOrDefaultAsync(x => x.codCategoria.Equals(cod));
+            if (categoria == null)
+            {
+                return BadRequest("No se encontro la categoria");
+            }
+
+            var categoriaExists = await db.Categorias.FirstOrDefaultAsync(x => x.nombreCategoria.Equals(request.nombreCategoria));
+            if (categoriaExists != null)
+            {
+                categoriaExists.Activar();
+            }
+            else
+            {
+            
+                if (request.nombreCategoria != null) { categoria.nombreCategoria = request.nombreCategoria; }
+                db.Categorias.Update(categoria);
+            }
+
+            await db.SaveChangesAsync();
             return Ok("Categoria añadida correctamente");
         }
 
         [HttpGet]
         public async Task<IActionResult> Details([FromRoute]string cod)
         {
-            var categoria = db.Categorias.FirstOrDefaultAsync(x => x.codCategoria.Equals(cod));
+            var categoria = await db.Categorias.FirstOrDefaultAsync(x => x.codCategoria.Equals(cod));
 
             if (categoria == null)
             {
@@ -61,7 +90,7 @@ namespace API.Controllers
             return Ok(categoria);
         }
 
-        [HttpPost]
+        [HttpDelete]
         public async Task<IActionResult> Delete([FromRoute]string cod)
         {
             var categoria = await db.Categorias.FirstOrDefaultAsync(x => x.codCategoria.Equals(cod));
@@ -71,7 +100,8 @@ namespace API.Controllers
                 return BadRequest("No se encontro la categoria");
             }
 
-            db.Categorias.Remove(categoria);
+            categoria.Desactivar();
+            await db.SaveChangesAsync();
 
             return Ok("La categoria se elimino correctamente");
         }

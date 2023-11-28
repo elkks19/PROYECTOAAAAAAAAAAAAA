@@ -8,6 +8,7 @@ namespace API.Models
     {
         public Persona()
         {
+            activo = true;
             createdAt = DateTime.Now;
             celularPersona = String.Empty;
             Update();
@@ -17,6 +18,11 @@ namespace API.Models
         {
             lastUpdate = DateTime.Now;
         }
+        public void Desactivar()
+        {
+            activo = false;
+        }
+
 
 
         [MaxLength(10)]
@@ -57,13 +63,15 @@ namespace API.Models
 
         [Required]
         [DataType(DataType.Date)]
-        [JsonIgnore]
         public DateTime createdAt { get; set; }
 
         [Required]
         [DataType(DataType.Date)]
-        [JsonIgnore]
         public DateTime lastUpdate { get; set; }
+
+        [Required]
+        public bool activo { get; set; }
+
 
 
         // MODELOS RELACIONADOS
@@ -73,8 +81,6 @@ namespace API.Models
         public Administrador Administrador { get; set; }
         [JsonIgnore]
         public PersonalEmpresa PersonalEmpresa { get; set; }
-        [JsonIgnore]
-        public ICollection<Comentario> Comentarios { get; set; }
         [JsonIgnore]
         public ICollection<LogAuditoria> Logs { get; set; }
         [JsonIgnore]

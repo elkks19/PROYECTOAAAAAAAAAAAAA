@@ -47,14 +47,23 @@ namespace API.Models
         public DateTime? fechaRevisionReclamo { get; set; }
         public string? respuestaReclamo { get; set; }
 
+        [Required]
+        public bool activo { get; set; }
+
         public ReclamosEmpresa()
         {
+            activo = true;
             isRevisado = false;
             fechaCreacionReclamo = DateTime.Now;
         }
-        public void Responder()
+        public void Responder(string respuesta)
         {
+            respuestaReclamo = respuesta;
             fechaRevisionReclamo = DateTime.Now;
+        }
+        public void Desactivar()
+        {
+            activo = false;
         }
     }
 }

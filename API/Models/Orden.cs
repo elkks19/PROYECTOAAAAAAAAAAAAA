@@ -45,8 +45,13 @@ namespace API.Models
         [JsonIgnore]
         public ICollection<DetalleOrden> Ordenes { get; set; }
 
+        [Required]
+        public bool activo { get; set; }
+
+
         public Orden()
         {
+            activo = true;
             createdAt = DateTime.Now;
             Update();
         }
@@ -57,6 +62,10 @@ namespace API.Models
         public void Update()
         {
             lastUpdate = DateTime.Now;
+        }
+        public void Desactivar()
+        {
+            activo = false;
         }
     }
 }

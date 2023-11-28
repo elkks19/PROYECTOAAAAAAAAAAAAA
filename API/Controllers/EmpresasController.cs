@@ -46,6 +46,7 @@ namespace API.Controllers
             string[] acceptedExtensions = {"pdf", "png", "jpg", "jpeg"};
             var extension = archivo.FileName.Split(".").Last();
             var ok = Array.Exists(acceptedExtensions, e => e == extension);
+
             if(archivo.Length > 0)
             {
                 if (!ok)
@@ -59,12 +60,17 @@ namespace API.Controllers
                     await archivo.CopyToAsync(diskFile);
                     diskFile.Close();
                 }
+
                 else
                 {
                     var diskFile = System.IO.File.Open(path, FileMode.Open);
                     await archivo.CopyToAsync(diskFile);
                     diskFile.Close();
                 }
+            }
+            else
+            {
+                return BadRequest("Ingrese un archivo valido");
             }
 
             var cantEmpresas = db.Empresa.Count() + 1;
@@ -90,17 +96,23 @@ namespace API.Controllers
 
 
 
-        [HttpGet]
-        public async Task<IActionResult> ReportePrueba()
-        {
-            var client = new HttpClient();
-            var uri = Environment.GetEnvironmentVariable("RUTA_REPORTES");
-            var response = await client.GetAsync($"{uri}/prueba/prueba");
 
-            Stream a = await response.Content.ReadAsStreamAsync();
 
-            return File(a, "application/pdf");
-        }
+        //
+        //  PARA LOS REPORTES
+        //
+
+        //[HttpGet]
+        //public async Task<IActionResult> ReportePrueba()
+        //{
+        //    var client = new HttpClient();
+        //    var uri = Environment.GetEnvironmentVariable("RUTA_REPORTES");
+        //    var response = await client.GetAsync($"{uri}/prueba/prueba");
+
+        //    Stream a = await response.Content.ReadAsStreamAsync();
+
+        //    return File(a, "application/pdf");
+        //}
 
     }
 }

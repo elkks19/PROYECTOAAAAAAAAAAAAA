@@ -28,9 +28,10 @@ namespace API.Controllers
 
 
         [HttpPost]
+        [Autorizado("administrador")]
         public async Task<IActionResult> Registro([FromBody]Persona request)
         {
-            var persona = await personasC.Create(request);
+            var persona = await personasC.Upsert(request);
             if (persona == null)
             {
                 return BadRequest("Hubo un error al crear la persona");

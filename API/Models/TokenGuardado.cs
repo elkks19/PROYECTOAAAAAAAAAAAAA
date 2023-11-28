@@ -20,6 +20,8 @@ namespace API.Models
         [Required]
         public string Token { get; set; }
 
+        [Required]
+        public bool activo { get; set; }
 
         [Required]
         [DataType(DataType.DateTime)]
@@ -27,7 +29,12 @@ namespace API.Models
 
         public TokenGuardado()
         {
+            activo = true;
             fechaCreacionToken = DateTime.Now;
+        }
+        public void Desactivar()
+        {
+            activo = false;
         }
     }
 }
