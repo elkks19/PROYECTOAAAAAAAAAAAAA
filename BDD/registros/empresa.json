@@ -1,62 +1,107 @@
 [
  {
+  "codEmpresa": 1,
   "nombreEmpresa": "ModaViva",
-  "direccionEmpresa": "c. Socabaya # 240 Ed. Handal"
+  "direccionEmpresa": "c. Socabaya # 240 Ed. Handal",
+  "createdAt": "11\/27\/2023 23:33",
+  "lastUpdate": "11\/27\/2023 23:33"
  },
  {
+  "codEmpresa": 2,
   "nombreEmpresa": "EleganteStyle",
-  "direccionEmpresa": "Av. Kollasuyo Nro. 50 (La Portada)"
+  "direccionEmpresa": "Av. Kollasuyo Nro. 50 (La Portada)",
+  "createdAt": "11\/27\/2023 23:33",
+  "lastUpdate": "11\/27\/2023 23:33"
  },
  {
+  "codEmpresa": 3,
   "nombreEmpresa": "TelaTrend",
-  "direccionEmpresa": "Av. 6 de Agosto # 2336"
+  "direccionEmpresa": "Av. 6 de Agosto # 2336",
+  "createdAt": "11\/27\/2023 23:33",
+  "lastUpdate": "11\/27\/2023 23:33"
  },
  {
+  "codEmpresa": 4,
   "nombreEmpresa": "CosidoChic",
-  "direccionEmpresa": "c. Otero de la Vega 292, entre Cañada Strongest y México"
+  "direccionEmpresa": "c. Otero de la Vega 292, entre Cañada Strongest y México",
+  "createdAt": "11\/27\/2023 23:33",
+  "lastUpdate": "11\/27\/2023 23:33"
  },
  {
+  "codEmpresa": 5,
   "nombreEmpresa": "EstiloEclectico",
-  "direccionEmpresa": "c. Murillo # 1046 P2"
+  "direccionEmpresa": "c. Murillo # 1046 P2",
+  "createdAt": "11\/27\/2023 23:33",
+  "lastUpdate": "11\/27\/2023 23:33"
  },
  {
+  "codEmpresa": 6,
   "nombreEmpresa": "ModaEstilo",
-  "direccionEmpresa": "Av. Quintanilla Zuazo # 554"
+  "direccionEmpresa": "Av. Quintanilla Zuazo # 554",
+  "createdAt": "11\/27\/2023 23:33",
+  "lastUpdate": "11\/27\/2023 23:33"
  },
  {
+  "codEmpresa": 7,
   "nombreEmpresa": "EleganciaTextil",
-  "direccionEmpresa": "Av. Simón Bolívar # 1990"
+  "direccionEmpresa": "Av. Simón Bolívar # 1990",
+  "createdAt": "11\/27\/2023 23:33",
+  "lastUpdate": "11\/27\/2023 23:33"
  },
  {
+  "codEmpresa": 8,
   "nombreEmpresa": "TendenciaFashion",
-  "direccionEmpresa": "Av. Buenos Aires Nº 2654 Zona Llojeta"
+  "direccionEmpresa": "Av. Buenos Aires Nº 2654 Zona Llojeta",
+  "createdAt": "11\/27\/2023 23:33",
+  "lastUpdate": "11\/27\/2023 23:33"
  },
  {
+  "codEmpresa": 9,
   "nombreEmpresa": "CosidoCreativo",
-  "direccionEmpresa": "San Salvador Y Av. Busch"
+  "direccionEmpresa": "San Salvador Y Av. Busch",
+  "createdAt": "11\/27\/2023 23:33",
+  "lastUpdate": "11\/27\/2023 23:33"
  },
  {
+  "codEmpresa": 10,
   "nombreEmpresa": "VestirChic",
-  "direccionEmpresa": "c. Tomasa Murillo 25"
+  "direccionEmpresa": "c. Tomasa Murillo 25",
+  "createdAt": "11\/27\/2023 23:33",
+  "lastUpdate": "11\/27\/2023 23:33"
  },
  {
+  "codEmpresa": 11,
   "nombreEmpresa": "Confecci贸nArte",
-  "direccionEmpresa": "Ed. San Pablo P-17"
+  "direccionEmpresa": "Ed. San Pablo P-17",
+  "createdAt": "11\/27\/2023 23:33",
+  "lastUpdate": "11\/27\/2023 23:33"
  },
  {
+  "codEmpresa": 12,
   "nombreEmpresa": "AltaCouture",
-  "direccionEmpresa": "Av. Buenos Aires y Max Paredes # 2"
+  "direccionEmpresa": "Av. Buenos Aires y Max Paredes # 2",
+  "createdAt": "11\/27\/2023 23:33",
+  "lastUpdate": "11\/27\/2023 23:33"
  },
  {
+  "codEmpresa": 13,
   "nombreEmpresa": "TejidosElegantes",
-  "direccionEmpresa": "Pza. Estudiante # 1940 Ed. Inchauste Zelaya P1 Of. 101"
+  "direccionEmpresa": "Pza. Estudiante # 1940 Ed. Inchauste Zelaya P1 Of. 101",
+  "createdAt": "11\/27\/2023 23:33",
+  "lastUpdate": "11\/27\/2023 23:33"
  },
  {
+  "codEmpresa": 14,
   "nombreEmpresa": "ModaNova",
-  "direccionEmpresa": "Av. Montenegro # 100 Ed. Corona P1 Of. 101"
+  "direccionEmpresa": "Av. Montenegro # 100 Ed. Corona P1 Of. 101",
+  "createdAt": "11\/27\/2023 23:33",
+  "lastUpdate": "11\/27\/2023 23:33"
  },
  {
+  "codEmpresa": 15,
   "nombreEmpresa": "EstiloVivo",
-  "direccionEmpresa": "Av. Arce # 2789 esq. Cordero Ed. Altamira P.2"
+  "direccionEmpresa": "Av. Arce # 2789 esq. Cordero Ed. Altamira P.2",
+  "createdAt": "11\/27\/2023 23:33",
+  "lastUpdate": "11\/27\/2023 23:33"
  }
 ]

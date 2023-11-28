@@ -1,27 +1,42 @@
 [
  {
+  "codcomentario": 1,
   "codpersona": 6,
   "codproducto": 1,
-  "contenidoComentario": "¡La calidad de esta camisa es excepcional! El tejido es suave y duradero. Además, el diseño clásico hace que sea perfecta para cualquier ocasión. Muy satisfecho con mi compra."
+  "contenidoComentario": "¡La calidad de esta camisa es excepcional! El tejido es suave y duradero. Además, el diseño clásico hace que sea perfecta para cualquier ocasión. Muy satisfecho con mi compra.",
+  "createdAt": "11\/27\/2023 23:33",
+  "lastUpdate": "11\/27\/2023 23:33"
  },
  {
+  "codcomentario": 2,
   "codpersona": 7,
   "codproducto": 6,
-  "contenidoComentario": "Estos pantalones son increíbles. El ajuste es perfecto, y la tela es cómoda y resistente. Se convirtieron rápidamente en mis favoritos para el trabajo. ¡Altamente recomendados!"
+  "contenidoComentario": "Estos pantalones son increíbles. El ajuste es perfecto, y la tela es cómoda y resistente. Se convirtieron rápidamente en mis favoritos para el trabajo. ¡Altamente recomendados!",
+  "createdAt": "11\/27\/2023 23:33",
+  "lastUpdate": "11\/27\/2023 23:33"
  },
  {
+  "codcomentario": 3,
   "codpersona": 10,
   "codproducto": 14,
-  "contenidoComentario": "Este jersey es justo lo que necesitaba para los días fríos. Es cálido y acogedor sin ser demasiado pesado. Además, el diseño elegante lo hace versátil para cualquier ocasión casual."
+  "contenidoComentario": "Este jersey es justo lo que necesitaba para los días fríos. Es cálido y acogedor sin ser demasiado pesado. Además, el diseño elegante lo hace versátil para cualquier ocasión casual.",
+  "createdAt": "11\/27\/2023 23:33",
+  "lastUpdate": "11\/27\/2023 23:33"
  },
  {
+  "codcomentario": 4,
   "codpersona": 8,
   "codproducto": 3,
-  "contenidoComentario": "Me enamoré de este vestido desde el momento en que lo vi. La tela es ligera y fluida, y el corte favorece mi figura. Perfecto para eventos formales o una salida especial. ¡Lo volvería a comprar!"
+  "contenidoComentario": "Me enamoré de este vestido desde el momento en que lo vi. La tela es ligera y fluida, y el corte favorece mi figura. Perfecto para eventos formales o una salida especial. ¡Lo volvería a comprar!",
+  "createdAt": "11\/27\/2023 23:33",
+  "lastUpdate": "11\/27\/2023 23:33"
  },
  {
+  "codcomentario": 5,
   "codpersona": 12,
   "codproducto": 25,
-  "contenidoComentario": "Esta blusa es simplemente encantadora. Los detalles en encaje le dan un toque femenino, y la tela es fresca y ligera. Combina muy bien con jeans o pantalones formales. 隆Una excelente adici贸n a mi armario!"
+  "contenidoComentario": "Esta blusa es simplemente encantadora. Los detalles en encaje le dan un toque femenino, y la tela es fresca y ligera. Combina muy bien con jeans o pantalones formales. 隆Una excelente adici贸n a mi armario!",
+  "createdAt": "11\/27\/2023 23:33",
+  "lastUpdate": "11\/27\/2023 23:33"
  }
 ]

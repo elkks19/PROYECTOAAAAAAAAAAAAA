@@ -1,23 +1,30 @@
 [
  {
+  "codUsuario": 1,
   "cod Persona": 6
  },
  {
+  "codUsuario": 2,
   "cod Persona": 7
  },
  {
+  "codUsuario": 3,
   "cod Persona": 8
  },
  {
+  "codUsuario": 4,
   "cod Persona": 9
  },
  {
+  "codUsuario": 5,
   "cod Persona": 10
  },
  {
+  "codUsuario": 6,
   "cod Persona": 11
  },
  {
+  "codUsuario": 7,
   "cod Persona": 12
  }
 ]

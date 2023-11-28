@@ -1,212 +1,302 @@
 [
  {
-  "codEmpresa": 5,
-  "nombreProducto": "Blusa Floral Elegante",
-  "descProducto": "Blusa de seda con un estampado floral elegante. Perfecta para ocasiones especiales.",
-  "precioProducto": 50,
-  "precioEnvioProducto": 12
+  "codpro": 1,
+  "codempr": 5,
+  "nompro": "Blusa Floral Elegante",
+  "descpro": "Blusa de seda con un estampado floral elegante. Perfecta para ocasiones especiales.",
+  "preciopro": 50,
+  "precenvio": 12,
+  "create": "11\/27\/2023 23:33",
+  "last": "11\/27\/2023 23:33"
  },
  {
-  "codEmpresa": 2,
-  "nombreProducto": "Vaqueros Slim Fit Clásicos",
-  "descProducto": "Vaqueros cómodos y modernos con corte slim fit. Ideal para un estilo casual.",
-  "precioProducto": 40,
-  "precioEnvioProducto": 10
+  "codpro": 2,
+  "codempr": 2,
+  "nompro": "Vaqueros Slim Fit Clásicos",
+  "descpro": "Vaqueros cómodos y modernos con corte slim fit. Ideal para un estilo casual.",
+  "preciopro": 40,
+  "precenvio": 10,
+  "create": "11\/27\/2023 23:33",
+  "last": "11\/27\/2023 23:33"
  },
  {
-  "codEmpresa": 1,
-  "nombreProducto": "Vestido Midi Bohemio",
-  "descProducto": "Vestido bohemio de longitud midi con detalles bordados y mangas acampanadas.",
-  "precioProducto": 60,
-  "precioEnvioProducto": 5
+  "codpro": 3,
+  "codempr": 1,
+  "nompro": "Vestido Midi Bohemio",
+  "descpro": "Vestido bohemio de longitud midi con detalles bordados y mangas acampanadas.",
+  "preciopro": 60,
+  "precenvio": 5,
+  "create": "11\/27\/2023 23:33",
+  "last": "11\/27\/2023 23:33"
  },
  {
-  "codEmpresa": 3,
-  "nombreProducto": "Camiseta Vintage Gráfica",
-  "descProducto": "Camiseta Vintage Gráfica",
-  "precioProducto": 30,
-  "precioEnvioProducto": 5
+  "codpro": 4,
+  "codempr": 3,
+  "nompro": "Camiseta Vintage Gráfica",
+  "descpro": "Camiseta Vintage Gráfica",
+  "preciopro": 30,
+  "precenvio": 5,
+  "create": "11\/27\/2023 23:33",
+  "last": "11\/27\/2023 23:33"
  },
  {
-  "codEmpresa": 4,
-  "nombreProducto": "Chaqueta de Cuero Clásica",
-  "descProducto": "Chaqueta de cuero genuino con un estilo atemporal. Perfecta para cualquier ocasión.",
-  "precioProducto": 90,
-  "precioEnvioProducto": 5
+  "codpro": 5,
+  "codempr": 4,
+  "nompro": "Chaqueta de Cuero Clásica",
+  "descpro": "Chaqueta de cuero genuino con un estilo atemporal. Perfecta para cualquier ocasión.",
+  "preciopro": 90,
+  "precenvio": 5,
+  "create": "11\/27\/2023 23:33",
+  "last": "11\/27\/2023 23:33"
  },
  {
-  "codEmpresa": 1,
-  "nombreProducto": "Pantalones Deportivos con Rayas",
-  "descProducto": "Pantalones deportivos con rayas laterales. Ideal para un look deportivo y moderno.",
-  "precioProducto": 35,
-  "precioEnvioProducto": 6
+  "codpro": 6,
+  "codempr": 1,
+  "nompro": "Pantalones Deportivos con Rayas",
+  "descpro": "Pantalones deportivos con rayas laterales. Ideal para un look deportivo y moderno.",
+  "preciopro": 35,
+  "precenvio": 6,
+  "create": "11\/27\/2023 23:33",
+  "last": "11\/27\/2023 23:33"
  },
  {
-  "codEmpresa": 2,
-  "nombreProducto": "Blazer de Terciopelo",
-  "descProducto": "Blazer elegante de terciopelo suave. Perfecto para eventos formales o salidas nocturnas.",
-  "precioProducto": 80,
-  "precioEnvioProducto": 0
+  "codpro": 7,
+  "codempr": 2,
+  "nompro": "Blazer de Terciopelo",
+  "descpro": "Blazer elegante de terciopelo suave. Perfecto para eventos formales o salidas nocturnas.",
+  "preciopro": 80,
+  "precenvio": 0,
+  "create": "11\/27\/2023 23:33",
+  "last": "11\/27\/2023 23:33"
  },
  {
-  "codEmpresa": 3,
-  "nombreProducto": "Suéter de Punto Grueso",
-  "descProducto": "Suéter cálido y acogedor de punto grueso. Ideal para los días fríos de invierno.",
-  "precioProducto": 45,
-  "precioEnvioProducto": 0
+  "codpro": 8,
+  "codempr": 3,
+  "nompro": "Suéter de Punto Grueso",
+  "descpro": "Suéter cálido y acogedor de punto grueso. Ideal para los días fríos de invierno.",
+  "preciopro": 45,
+  "precenvio": 0,
+  "create": "11\/27\/2023 23:33",
+  "last": "11\/27\/2023 23:33"
  },
  {
-  "codEmpresa": 4,
-  "nombreProducto": "Falda Plisada Midi",
-  "descProducto": "Falda midi plisada con un toque vintage. Combina estilo y comodidad.",
-  "precioProducto": 50,
-  "precioEnvioProducto": 5
+  "codpro": 9,
+  "codempr": 4,
+  "nompro": "Falda Plisada Midi",
+  "descpro": "Falda midi plisada con un toque vintage. Combina estilo y comodidad.",
+  "preciopro": 50,
+  "precenvio": 5,
+  "create": "11\/27\/2023 23:33",
+  "last": "11\/27\/2023 23:33"
  },
  {
-  "codEmpresa": 5,
-  "nombreProducto": "Conjunto Deportivo Moderno",
-  "descProducto": "Conjunto deportivo con diseño moderno y materiales transpirables. Perfecto para el gimnasio o actividades al aire libre.",
-  "precioProducto": 55,
-  "precioEnvioProducto": 0
+  "codpro": 10,
+  "codempr": 5,
+  "nompro": "Conjunto Deportivo Moderno",
+  "descpro": "Conjunto deportivo con diseño moderno y materiales transpirables. Perfecto para el gimnasio o actividades al aire libre.",
+  "preciopro": 55,
+  "precenvio": 0,
+  "create": "11\/27\/2023 23:33",
+  "last": "11\/27\/2023 23:33"
  },
  {
-  "codEmpresa": 2,
-  "nombreProducto": "Blusa sin Hombros con Volantes",
-  "descProducto": "Blusa femenina sin hombros con volantes. Ideal para ocasiones informales.",
-  "precioProducto": 40,
-  "precioEnvioProducto": 8
+  "codpro": 11,
+  "codempr": 2,
+  "nompro": "Blusa sin Hombros con Volantes",
+  "descpro": "Blusa femenina sin hombros con volantes. Ideal para ocasiones informales.",
+  "preciopro": 40,
+  "precenvio": 8,
+  "create": "11\/27\/2023 23:33",
+  "last": "11\/27\/2023 23:33"
  },
  {
-  "codEmpresa": 1,
-  "nombreProducto": "Jeans Boyfriend Desgastados",
-  "descProducto": "Jeans estilo boyfriend con efecto desgastado. Aporta un toque desenfadado a tu atuendo.",
-  "precioProducto": 50,
-  "precioEnvioProducto": 5
+  "codpro": 12,
+  "codempr": 1,
+  "nompro": "Jeans Boyfriend Desgastados",
+  "descpro": "Jeans estilo boyfriend con efecto desgastado. Aporta un toque desenfadado a tu atuendo.",
+  "preciopro": 50,
+  "precenvio": 5,
+  "create": "11\/27\/2023 23:33",
+  "last": "11\/27\/2023 23:33"
  },
  {
-  "codEmpresa": 2,
-  "nombreProducto": "Vestido Ajustado de Noche",
-  "descProducto": "Vestido ajustado perfecto para salidas nocturnas. Con un diseño elegante y seductor.",
-  "precioProducto": 70,
-  "precioEnvioProducto": 0
+  "codpro": 13,
+  "codempr": 2,
+  "nompro": "Vestido Ajustado de Noche",
+  "descpro": "Vestido ajustado perfecto para salidas nocturnas. Con un diseño elegante y seductor.",
+  "preciopro": 70,
+  "precenvio": 0,
+  "create": "11\/27\/2023 23:33",
+  "last": "11\/27\/2023 23:33"
  },
  {
-  "codEmpresa": 1,
-  "nombreProducto": "Jersey de Cuello Alto",
-  "descProducto": "Jersey de cuello alto suave y cómodo. Ideal para mantenerse abrigado en días fríos.",
-  "precioProducto": 35,
-  "precioEnvioProducto": 0
+  "codpro": 14,
+  "codempr": 1,
+  "nompro": "Jersey de Cuello Alto",
+  "descpro": "Jersey de cuello alto suave y cómodo. Ideal para mantenerse abrigado en días fríos.",
+  "preciopro": 35,
+  "precenvio": 0,
+  "create": "11\/27\/2023 23:33",
+  "last": "11\/27\/2023 23:33"
  },
  {
-  "codEmpresa": 3,
-  "nombreProducto": "Traje de Baño Estampado",
-  "descProducto": "Traje de baño de una sola pieza con estampado tropical. Perfecto para días de playa.",
-  "precioProducto": 55,
-  "precioEnvioProducto": 5
+  "codpro": 15,
+  "codempr": 3,
+  "nompro": "Traje de Baño Estampado",
+  "descpro": "Traje de baño de una sola pieza con estampado tropical. Perfecto para días de playa.",
+  "preciopro": 55,
+  "precenvio": 5,
+  "create": "11\/27\/2023 23:33",
+  "last": "11\/27\/2023 23:33"
  },
  {
-  "codEmpresa": 4,
-  "nombreProducto": "Cazadora Bomber Retro",
-  "descProducto": "Cazadora bomber con un toque retro. Añade estilo a tu look casual.",
-  "precioProducto": 65,
-  "precioEnvioProducto": 0
+  "codpro": 16,
+  "codempr": 4,
+  "nompro": "Cazadora Bomber Retro",
+  "descpro": "Cazadora bomber con un toque retro. Añade estilo a tu look casual.",
+  "preciopro": 65,
+  "precenvio": 0,
+  "create": "11\/27\/2023 23:33",
+  "last": "11\/27\/2023 23:33"
  },
  {
-  "codEmpresa": 5,
-  "nombreProducto": "Leggings Deportivos con Detalles de Malla",
-  "descProducto": "Leggings deportivos con detalles de malla. Combina comodidad y estilo para tus entrenamientos.",
-  "precioProducto": 45,
-  "precioEnvioProducto": 5
+  "codpro": 17,
+  "codempr": 5,
+  "nompro": "Leggings Deportivos con Detalles de Malla",
+  "descpro": "Leggings deportivos con detalles de malla. Combina comodidad y estilo para tus entrenamientos.",
+  "preciopro": 45,
+  "precenvio": 5,
+  "create": "11\/27\/2023 23:33",
+  "last": "11\/27\/2023 23:33"
  },
  {
-  "codEmpresa": 5,
-  "nombreProducto": "Camisa a Cuadros",
-  "descProducto": "Camisa a cuadros de algodón suave. Perfecta para un estilo informal y relajado.",
-  "precioProducto": 45,
-  "precioEnvioProducto": 3
+  "codpro": 18,
+  "codempr": 5,
+  "nompro": "Camisa a Cuadros",
+  "descpro": "Camisa a cuadros de algodón suave. Perfecta para un estilo informal y relajado.",
+  "preciopro": 45,
+  "precenvio": 3,
+  "create": "11\/27\/2023 23:33",
+  "last": "11\/27\/2023 23:33"
  },
  {
-  "codEmpresa": 1,
-  "nombreProducto": "Vestido Camisero a Rayas",
-  "descProducto": "Vestido camisero a rayas con cinturón. Ideal para un look fresco y veraniego.",
-  "precioProducto": 45,
-  "precioEnvioProducto": 0
+  "codpro": 19,
+  "codempr": 1,
+  "nompro": "Vestido Camisero a Rayas",
+  "descpro": "Vestido camisero a rayas con cinturón. Ideal para un look fresco y veraniego.",
+  "preciopro": 45,
+  "precenvio": 0,
+  "create": "11\/27\/2023 23:33",
+  "last": "11\/27\/2023 23:33"
  },
  {
-  "codEmpresa": 3,
-  "nombreProducto": "Sudadera con Capucha y Estampado",
-  "descProducto": "Sudadera con capucha y estampado urbano. Aporta un toque moderno a tu vestuario.",
-  "precioProducto": 40,
-  "precioEnvioProducto": 0
+  "codpro": 20,
+  "codempr": 3,
+  "nompro": "Sudadera con Capucha y Estampado",
+  "descpro": "Sudadera con capucha y estampado urbano. Aporta un toque moderno a tu vestuario.",
+  "preciopro": 40,
+  "precenvio": 0,
+  "create": "11\/27\/2023 23:33",
+  "last": "11\/27\/2023 23:33"
  },
  {
-  "codEmpresa": 5,
-  "nombreProducto": "Pantalones Cortos Deportivos",
-  "descProducto": "Pantalones cortos deportivos con tecnología de secado rápido. Perfectos para actividades físicas.",
-  "precioProducto": 25,
-  "precioEnvioProducto": 0
+  "codpro": 21,
+  "codempr": 5,
+  "nompro": "Pantalones Cortos Deportivos",
+  "descpro": "Pantalones cortos deportivos con tecnología de secado rápido. Perfectos para actividades físicas.",
+  "preciopro": 25,
+  "precenvio": 0,
+  "create": "11\/27\/2023 23:33",
+  "last": "11\/27\/2023 23:33"
  },
  {
-  "codEmpresa": 5,
-  "nombreProducto": "Vestido de Punto con Cuello V",
-  "descProducto": "Vestido de punto suave y elástico con cuello en V. Versátil y cómodo.",
-  "precioProducto": 35,
-  "precioEnvioProducto": 5
+  "codpro": 22,
+  "codempr": 5,
+  "nompro": "Vestido de Punto con Cuello V",
+  "descpro": "Vestido de punto suave y elástico con cuello en V. Versátil y cómodo.",
+  "preciopro": 35,
+  "precenvio": 5,
+  "create": "11\/27\/2023 23:33",
+  "last": "11\/27\/2023 23:33"
  },
  {
-  "codEmpresa": 1,
-  "nombreProducto": "Chaleco de Mezclilla con Borlas",
-  "descProducto": "Chaleco de mezclilla con detalles de borlas. Completa tu look casual con estilo.",
-  "precioProducto": 30,
-  "precioEnvioProducto": 5
+  "codpro": 23,
+  "codempr": 1,
+  "nompro": "Chaleco de Mezclilla con Borlas",
+  "descpro": "Chaleco de mezclilla con detalles de borlas. Completa tu look casual con estilo.",
+  "preciopro": 30,
+  "precenvio": 5,
+  "create": "11\/27\/2023 23:33",
+  "last": "11\/27\/2023 23:33"
  },
  {
-  "codEmpresa": 1,
-  "nombreProducto": "Pijama de Satén con Estampado",
-  "descProducto": "Pijama de dos piezas de satén con estampado elegante. Perfecto para noches relajadas.",
-  "precioProducto": 40,
-  "precioEnvioProducto": 0
+  "codpro": 24,
+  "codempr": 1,
+  "nompro": "Pijama de Satén con Estampado",
+  "descpro": "Pijama de dos piezas de satén con estampado elegante. Perfecto para noches relajadas.",
+  "preciopro": 40,
+  "precenvio": 0,
+  "create": "11\/27\/2023 23:33",
+  "last": "11\/27\/2023 23:33"
  },
  {
-  "codEmpresa": 1,
-  "nombreProducto": "Blusa Asimétrica de Lunares",
-  "descProducto": "Blusa asimétrica con estampado de lunares. Aporta un toque juguetón a tu estilo.",
-  "precioProducto": 50,
-  "precioEnvioProducto": 5
+  "codpro": 25,
+  "codempr": 1,
+  "nompro": "Blusa Asimétrica de Lunares",
+  "descpro": "Blusa asimétrica con estampado de lunares. Aporta un toque juguetón a tu estilo.",
+  "preciopro": 50,
+  "precenvio": 5,
+  "create": "11\/27\/2023 23:33",
+  "last": "11\/27\/2023 23:33"
  },
  {
-  "codEmpresa": 2,
-  "nombreProducto": "Pantalones Palazzo de Talle Alto",
-  "descProducto": "Pantalones palazzo elegantes con talle alto. Ideal para ocasiones formales.",
-  "precioProducto": 60,
-  "precioEnvioProducto": 0
+  "codpro": 26,
+  "codempr": 2,
+  "nompro": "Pantalones Palazzo de Talle Alto",
+  "descpro": "Pantalones palazzo elegantes con talle alto. Ideal para ocasiones formales.",
+  "preciopro": 60,
+  "precenvio": 0,
+  "create": "11\/27\/2023 23:33",
+  "last": "11\/27\/2023 23:33"
  },
  {
-  "codEmpresa": 4,
-  "nombreProducto": "Sudadera con Estampado Floral",
-  "descProducto": "Sudadera cómoda con estampado floral. Perfecta para un look casual y relajado.",
-  "precioProducto": 35,
-  "precioEnvioProducto": 4
+  "codpro": 27,
+  "codempr": 4,
+  "nompro": "Sudadera con Estampado Floral",
+  "descpro": "Sudadera cómoda con estampado floral. Perfecta para un look casual y relajado.",
+  "preciopro": 35,
+  "precenvio": 4,
+  "create": "11\/27\/2023 23:33",
+  "last": "11\/27\/2023 23:33"
  },
  {
-  "codEmpresa": 5,
-  "nombreProducto": "Vestido Lápiz Clásico",
-  "descProducto": "Vestido lápiz clásico con un toque moderno. Acentúa tu figura con estilo.",
-  "precioProducto": 55,
-  "precioEnvioProducto": 0
+  "codpro": 28,
+  "codempr": 5,
+  "nompro": "Vestido Lápiz Clásico",
+  "descpro": "Vestido lápiz clásico con un toque moderno. Acentúa tu figura con estilo.",
+  "preciopro": 55,
+  "precenvio": 0,
+  "create": "11\/27\/2023 23:33",
+  "last": "11\/27\/2023 23:33"
  },
  {
-  "codEmpresa": 2,
-  "nombreProducto": "Gorra de Béisbol Vintage",
-  "descProducto": "Gorra de béisbol con diseño vintage. Completa tu estilo urbano.",
-  "precioProducto": 20,
-  "precioEnvioProducto": 0
+  "codpro": 29,
+  "codempr": 2,
+  "nompro": "Gorra de Béisbol Vintage",
+  "descpro": "Gorra de béisbol con diseño vintage. Completa tu estilo urbano.",
+  "preciopro": 20,
+  "precenvio": 0,
+  "create": "11\/27\/2023 23:33",
+  "last": "11\/27\/2023 23:33"
  },
  {
-  "codEmpresa": 3,
-  "nombreProducto": "Jersey de Punto con Detalles Entrelazados",
-  "descProducto": "Jersey de punto suave con detalles entrelazados en la parte delantera. Perfecto para un look acogedor.",
-  "precioProducto": 45,
-  "precioEnvioProducto": 0
+  "codpro": 30,
+  "codempr": 3,
+  "nompro": "Jersey de Punto con Detalles Entrelazados",
+  "descpro": "Jersey de punto suave con detalles entrelazados en la parte delantera. Perfecto para un look acogedor.",
+  "preciopro": 45,
+  "precenvio": 0,
+  "create": "11\/27\/2023 23:33",
+  "last": "11\/27\/2023 23:33"
  }
 ]

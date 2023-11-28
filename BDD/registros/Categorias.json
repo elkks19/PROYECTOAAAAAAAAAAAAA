@@ -1,77 +1,102 @@
 [
  {
-  "nombreCategoria": "Camisas"
+  "cod categoria ": 1,
+  "nombre categoria": "Camisas"
  },
  {
-  "nombreCategoria": "Poleras"
+  "cod categoria ": 2,
+  "nombre categoria": "Poleras"
  },
  {
-  "nombreCategoria": "Faldas"
+  "cod categoria ": 3,
+  "nombre categoria": "Faldas"
  },
  {
-  "nombreCategoria": "Pantalones"
+  "cod categoria ": 4,
+  "nombre categoria": "Pantalones"
  },
  {
-  "nombreCategoria": "Chaquetas"
+  "cod categoria ": 5,
+  "nombre categoria": "Chaquetas"
  },
  {
-  "nombreCategoria": "Vestido"
+  "cod categoria ": 6,
+  "nombre categoria": "Vestido"
  },
  {
-  "nombreCategoria": "Blusas"
+  "cod categoria ": 7,
+  "nombre categoria": "Blusas"
  },
  {
-  "nombreCategoria": "Trajes"
+  "cod categoria ": 8,
+  "nombre categoria": "Trajes"
  },
  {
-  "nombreCategoria": "Sudaderas"
+  "cod categoria ": 9,
+  "nombre categoria": "Sudaderas"
  },
  {
-  "nombreCategoria": "Gorras"
+  "cod categoria ": 10,
+  "nombre categoria": "Gorras"
  },
  {
-  "nombreCategoria": "Sueter"
+  "cod categoria ": 11,
+  "nombre categoria": "Sueter"
  },
  {
-  "nombreCategoria": "Tenis"
+  "cod categoria ": 12,
+  "nombre categoria": "Tenis"
  },
  {
-  "nombreCategoria": "Buzos"
+  "cod categoria ": 13,
+  "nombre categoria": "Buzos"
  },
  {
-  "nombreCategoria": "Poleras oversize"
+  "cod categoria ": 14,
+  "nombre categoria": "Poleras oversize"
  },
  {
-  "nombreCategoria": "Chamarras de Cuero"
+  "cod categoria ": 15,
+  "nombre categoria": "Chamarras de Cuero"
  },
  {
-  "nombreCategoria": "jeans"
+  "cod categoria ": 16,
+  "nombre categoria": "jeans"
  },
  {
-  "nombreCategoria": "Sacos"
+  "cod categoria ": 17,
+  "nombre categoria": "Sacos"
  },
  {
-  "nombreCategoria": "Jogger"
+  "cod categoria ": 18,
+  "nombre categoria": "Jogger"
  },
  {
-  "nombreCategoria": "Bombers"
+  "cod categoria ": 19,
+  "nombre categoria": "Bombers"
  },
  {
-  "nombreCategoria": "Camisas Playeras"
+  "cod categoria ": 20,
+  "nombre categoria": "Camisas Playeras"
  },
  {
-  "nombreCategoria": "Pantuflas"
+  "cod categoria ": 21,
+  "nombre categoria": "Pantuflas"
  },
  {
-  "nombreCategoria": "Pantalones de tela"
+  "cod categoria ": 22,
+  "nombre categoria": "Pantalones de tela"
  },
  {
-  "nombreCategoria": "Pantalones Campana"
+  "cod categoria ": 23,
+  "nombre categoria": "Pantalones Campana"
  },
  {
-  "nombreCategoria": "Polera cuello Camisa"
+  "cod categoria ": 24,
+  "nombre categoria": "Polera cuello Camisa"
  },
  {
-  "nombreCategoria": "Gafas"
+  "cod categoria ": 25,
+  "nombre categoria": "Gafas"
  }
 ]

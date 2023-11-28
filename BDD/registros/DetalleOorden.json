@@ -1,50 +1,60 @@
 [
  {
+  "codOrden": 1,
   "codProducto": 6,
   "cantidadProducto": 1,
   "precioTotal": 35
  },
  {
+  "codOrden": 2,
   "codProducto": 1,
   "cantidadProducto": 2,
   "precioTotal": 100
  },
  {
+  "codOrden": 3,
   "codProducto": 10,
   "cantidadProducto": 1,
   "precioTotal": 35
  },
  {
+  "codOrden": 4,
   "codProducto": 14,
   "cantidadProducto": 1,
   "precioTotal": 55
  },
  {
+  "codOrden": 5,
   "codProducto": 5,
   "cantidadProducto": 2,
   "precioTotal": 60
  },
  {
+  "codOrden": 6,
   "codProducto": 29,
   "cantidadProducto": 2,
   "precioTotal": 40
  },
  {
+  "codOrden": 7,
   "codProducto": 19,
   "cantidadProducto": 2,
   "precioTotal": 90
  },
  {
+  "codOrden": 8,
   "codProducto": 20,
   "cantidadProducto": 3,
   "precioTotal": 120
  },
  {
+  "codOrden": 9,
   "codProducto": 25,
   "cantidadProducto": 2,
   "precioTotal": 100
  },
  {
+  "codOrden": 10,
   "codProducto": 28,
   "cantidadProducto": 1,
   "precioTotal": 55

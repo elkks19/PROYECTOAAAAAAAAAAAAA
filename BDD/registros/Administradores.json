@@ -1,11 +1,14 @@
 [
  {
+  "codAdmin": 1,
   "codPersona": 13
  },
  {
+  "codAdmin": 2,
   "codPersona": 14
  },
  {
+  "codAdmin": 3,
   "codPersona": 15
  }
 ]

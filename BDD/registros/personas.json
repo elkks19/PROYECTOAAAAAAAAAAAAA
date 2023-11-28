@@ -1,137 +1,182 @@
 [
  {
-  "userPersona": "D-Rock",
+  "codperso": 1,
+  "userper": "D-Rock",
   "passwordpersona": "gH3f9pX2aZ",
   "nombrePersona": "Diego",
   "fechaNacPersona": "02\/11\/1990",
   "mailPersona": "Diego@gmail.com",
   "direccionPersona": "Av. Jose Ballivián # 5015",
-  "celularPersona": 72458936
+  "celularPersona": 72458936,
+  "createdAt": "11\/27\/2023 23:33",
+  "lastUpdate": "11\/27\/2023 23:33"
  },
  {
-  "userPersona": "J-Dynamite",
+  "codperso": 2,
+  "userper": "J-Dynamite",
   "passwordpersona": "kL8sR2tW1y",
   "nombrePersona": "Juan",
   "fechaNacPersona": "25\/01\/1995",
   "mailPersona": "Juan@gmail.com",
   "direccionPersona": "c. Fernando Guachalla esq. 20 de Octubre (Sopocachi)",
-  "celularPersona": 16385027
+  "celularPersona": 16385027,
+  "createdAt": "11\/27\/2023 23:33",
+  "lastUpdate": "11\/27\/2023 23:33"
  },
  {
-  "userPersona": "M-Art",
+  "codperso": 3,
+  "userper": "M-Art",
   "passwordpersona": "bV6cJ9oL4r",
   "nombrePersona": "Marta",
   "fechaNacPersona": "30\/01\/2003",
   "mailPersona": "Marta@gmail.com",
   "direccionPersona": "c. Boquerón 589 Esq. Almirante Grau",
-  "celularPersona": 90724615
+  "celularPersona": 90724615,
+  "createdAt": "11\/27\/2023 23:33",
+  "lastUpdate": "11\/27\/2023 23:33"
  },
  {
-  "userPersona": "R-Man",
+  "codperso": 4,
+  "userper": "R-Man",
   "passwordpersona": "xQ2mP7dN5z",
   "nombrePersona": "Roberto",
   "fechaNacPersona": "24\/10\/2000",
   "mailPersona": "Roberto@gmail.com",
   "direccionPersona": "Av. Ismael Vasquez Nro. 912 (Pura Pura)",
-  "celularPersona": 53271894
+  "celularPersona": 53271894,
+  "createdAt": "11\/27\/2023 23:33",
+  "lastUpdate": "11\/27\/2023 23:33"
  },
  {
-  "userPersona": "jesus papas",
+  "codperso": 5,
+  "userper": "jesus papas",
   "passwordpersona": "hA1sD4tV9x",
   "nombrePersona": "Jesus",
   "fechaNacPersona": "01\/05\/1985",
   "mailPersona": "Jesus@gmail.com",
   "direccionPersona": "c.Tomás Rodríguez 1172 esq Villamil de Rada",
-  "celularPersona": 64829517
+  "celularPersona": 64829517,
+  "createdAt": "11\/27\/2023 23:33",
+  "lastUpdate": "11\/27\/2023 23:33"
  },
  {
-  "userPersona": "E-Man",
+  "codperso": 6,
+  "userper": "E-Man",
   "passwordpersona": "jK5lM8iZ3q",
   "nombrePersona": "Esteban",
   "fechaNacPersona": "25\/6\/1980",
   "mailPersona": "Esteban@gmail.com",
   "direccionPersona": "c. Diaz Romero # 1597",
-  "celularPersona": 21573498
+  "celularPersona": 21573498,
+  "createdAt": "11\/27\/2023 23:33",
+  "lastUpdate": "11\/27\/2023 23:33"
  },
  {
-  "userPersona": "Sweet Ju",
+  "codperso": 7,
+  "userper": "Sweet Ju",
   "passwordpersona": "rU7oP3wF2e",
   "nombrePersona": "Juana",
   "fechaNacPersona": "20\/7\/2010",
   "mailPersona": "Juana@gmail.com",
   "direccionPersona": "c. Murillo # 420 casi Av. América Ed. Gabriela P2",
-  "celularPersona": 78930142
+  "celularPersona": 78930142,
+  "createdAt": "11\/27\/2023 23:33",
+  "lastUpdate": "11\/27\/2023 23:33"
  },
  {
-  "userPersona": "Ale lechugas",
+  "codperso": 8,
+  "userper": "Ale lechugas",
   "passwordpersona": "zX6vH1yB9g",
   "nombrePersona": "Alejandra",
   "fechaNacPersona": "15\/07\/1995",
   "mailPersona": "Alejandra@gmail.com",
   "direccionPersona": "Av. Busch # 1156 entre Guatemala y Haití Ed. Hamburgo",
-  "celularPersona": 36487029
+  "celularPersona": 36487029,
+  "createdAt": "11\/27\/2023 23:33",
+  "lastUpdate": "11\/27\/2023 23:33"
  },
  {
-  "userPersona": "Fabi",
+  "codperso": 9,
+  "userper": "Fabi",
   "passwordpersona": "cI4nO8uY2p",
   "nombrePersona": "Fabiana",
   "fechaNacPersona": "03\/03\/1992",
   "mailPersona": "Fabiana@gmail.com",
   "direccionPersona": "Lluto - Mecapaca",
-  "celularPersona": 47261938
+  "celularPersona": 47261938,
+  "createdAt": "11\/27\/2023 23:33",
+  "lastUpdate": "11\/27\/2023 23:33"
  },
  {
-  "userPersona": "Fabio",
+  "codperso": 10,
+  "userper": "Fabio",
   "passwordpersona": "mE3qR5xL7k",
   "nombrePersona": "Fabiani",
   "fechaNacPersona": "22\/11\/1998",
   "mailPersona": "Fabiani@gmail.com",
   "direccionPersona": "Av. Villazón N° 1940",
-  "celularPersona": 95813426
+  "celularPersona": 95813426,
+  "createdAt": "11\/27\/2023 23:33",
+  "lastUpdate": "11\/27\/2023 23:33"
  },
  {
-  "userPersona": "Rafa",
+  "codperso": 11,
+  "userper": "Rafa",
   "passwordpersona": "fT9bW2sZ1o",
   "nombrePersona": "Rafael",
   "fechaNacPersona": "09\/05\/2000",
   "mailPersona": "Rafael@gmail.com",
   "direccionPersona": "Av. Chacaltaya # 722",
-  "celularPersona": 37648591
+  "celularPersona": 37648591,
+  "createdAt": "11\/27\/2023 23:33",
+  "lastUpdate": "11\/27\/2023 23:33"
  },
  {
-  "userPersona": "Zarena",
+  "codperso": 12,
+  "userper": "Zarena",
   "passwordpersona": "lJ7uK4vX6y",
   "nombrePersona": "Lorenza",
   "fechaNacPersona": "18\/09\/1993",
   "mailPersona": "Lorenza@gmail.com",
   "direccionPersona": "c. Chuquisaca # 545",
-  "celularPersona": 50192834
+  "celularPersona": 50192834,
+  "createdAt": "11\/27\/2023 23:33",
+  "lastUpdate": "11\/27\/2023 23:33"
  },
  {
-  "userPersona": "Vale",
+  "codperso": 13,
+  "userper": "Vale",
   "passwordpersona": "dN5gQ8hM2p",
   "nombrePersona": "Valentina",
   "fechaNacPersona": "07\/12\/1997",
   "mailPersona": "Valentina@gmail.com",
   "direccionPersona": "Cañada Strongest N° 1620",
-  "celularPersona": 68231745
+  "celularPersona": 68231745,
+  "createdAt": "11\/27\/2023 23:33",
+  "lastUpdate": "11\/27\/2023 23:33"
  },
  {
-  "userPersona": "Sonic Axel",
+  "codperso": 14,
+  "userper": "Sonic Axel",
   "passwordpersona": "wZ1aX6oR4l",
   "nombrePersona": "Axel",
   "fechaNacPersona": "26\/08\/2002",
   "mailPersona": "Axel@gmail.com",
   "direccionPersona": "Av. Per煤 Nro. 233",
-  "celularPersona": 24908317
+  "celularPersona": 24908317,
+  "createdAt": "11\/27\/2023 23:33",
+  "lastUpdate": "11\/27\/2023 23:33"
  },
  {
-  "userPersona": "Dandy",
+  "codperso": 15,
+  "userper": "Dandy",
   "passwordpersona": "yC2pU9qI8o",
   "nombrePersona": "Andy",
   "fechaNacPersona": "01\/10\/1985",
   "mailPersona": "Andy@gmail.com",
   "direccionPersona": "c. Carlos Montenegro # 7485, San Pedro,",
-  "celularPersona": 83572614
+  "celularPersona": 83572614,
+  "createdAt": "11\/27\/2023 23:33",
+  "lastUpdate": "11\/27\/2023 23:33"
  }
 ]

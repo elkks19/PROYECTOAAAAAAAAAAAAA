@@ -1,21 +1,26 @@
 [
  {
+  "codPersonalEmpresa": 1,
   "codEmpresa": 14,
   "codPersona": 1
  },
  {
+  "codPersonalEmpresa": 2,
   "codEmpresa": 10,
   "codPersona": 2
  },
  {
+  "codPersonalEmpresa": 3,
   "codEmpresa": 11,
   "codPersona": 3
  },
  {
+  "codPersonalEmpresa": 4,
   "codEmpresa": 2,
   "codPersona": 4
  },
  {
+  "codPersonalEmpresa": 5,
   "codEmpresa": 4,
   "codPersona": 5
  }
