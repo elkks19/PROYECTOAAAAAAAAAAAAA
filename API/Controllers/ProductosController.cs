@@ -25,6 +25,76 @@ namespace API.Controllers
             this.env = env;
         }
 
+
+        public async Task<IActionResult> Dummy()
+        {
+            var productos = new List<Producto>()
+            {
+                new Producto()
+                {
+                    codProducto = "PRO-001",
+                    codEmpresa = "EMP-001",
+                    nombreProducto = "BodyRojo",
+                    descProducto = "Body rojo para mujer talla xs, hasta s",
+                    precioProducto = 50,
+                    precioEnvioProducto = 40,
+                    pathFotoProducto = env.ContentRootPath + "\\ImagenesProducto\\bodyRojo.jpg",
+                    cantidadRestante = 5,
+                    createdAt = DateTime.Now,
+                    lastUpdate = DateTime.Now
+                },
+                new Producto()
+                {
+                    codProducto = "PRO-002",
+                    codEmpresa = "EMP-001",
+                    nombreProducto = "Faldas de tonos café",
+                    descProducto = "Faldas de tonos café",
+                    precioProducto = 70,
+                    precioEnvioProducto = 10,
+                    pathFotoProducto = env.ContentRootPath + "\\ImagenesProducto\\faldas.jpg",
+                    cantidadRestante = 4,
+                    createdAt = DateTime.Now,
+                    lastUpdate = DateTime.Now
+                },
+                new Producto()
+                {
+                    codProducto = "PRO-003",
+                    codEmpresa = "EMP-001",
+                    nombreProducto = "Jeans",
+                    descProducto = "Jeans para mujer",
+                    precioProducto = 70,
+                    precioEnvioProducto = 20,
+                    pathFotoProducto = env.ContentRootPath + "\\ImagenesProducto\\jeans.jpg",
+                    cantidadRestante = 10,
+                    createdAt = DateTime.Now,
+                    lastUpdate = DateTime.Now
+                },
+                new Producto()
+                {
+                    codProducto = "PRO-004",
+                    codEmpresa = "EMP-001",
+                    nombreProducto = "Camisas a cuadros",
+                    descProducto = "Camisas a cuadros para mujer",
+                    precioProducto = 20,
+                    precioEnvioProducto = 5,
+                    pathFotoProducto = env.ContentRootPath + "\\ImagenesProducto\\camisas.jpg",
+                    cantidadRestante = 15,
+                    createdAt = DateTime.Now,
+                    lastUpdate = DateTime.Now
+                }
+            };
+            foreach(var producto in productos)
+            {
+                await db.Producto.AddAsync(producto);
+            }
+            await db.SaveChangesAsync();
+            return Ok("Se añadieron los productos");
+        }
+
+
+
+
+
         [HttpGet]
         public async Task<IActionResult> Index()
         {
@@ -200,5 +270,7 @@ namespace API.Controllers
             await db.SaveChangesAsync();
             return Ok("Se eliminó correctamente el producto");
         }
+
+
     }
 }

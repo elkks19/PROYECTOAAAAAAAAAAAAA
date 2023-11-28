@@ -1,3 +1,34 @@
+window.onload = function(){
+  document.getElementById('reportLink').addEventListener('click', openModal);
+
+
+  let codProducto = localStorage.getItem("codProducto");
+
+  axios.get("http://localhost:5132/productos/details/" + codProducto, {
+    headers:{
+      "Content-Type": "application/json",
+      "Authorization": localStorage.getItem("token")
+    }
+  }).then(response => {
+    console.log(response.data);
+    let div = document.getElementById("detalles-producto");
+    let producto = response.data;
+    div.innerHTML +=
+    `
+      <span class="product-category">Blusas</span>
+      <h3>${producto.nombreProducto}</h3>
+      <span class="product-price">${producto.precioProducto}Bs</span>
+      <p>
+        ${producto.descProducto}
+      </p>
+    `;
+  }).catch(error => {
+    console.log(error);
+  })
+
+}
+
+
 let colorCircles = document.querySelectorAll(".color-circle");
 colorCircles.forEach((circle) => {
  circle.addEventListener("click", selectColor, false);
@@ -88,7 +119,6 @@ button.appendChild(h1);
 
 
 //mas opciones no me funca aca pero si en el html :c
-document.getElementById('reportLink').addEventListener('click', openModal);
 
 function openModal() {
   document.getElementById('reportModal').style.display = 'block';

@@ -16,6 +16,8 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.0/css/all.min.css">
     <link href='https://unpkg.com/boxicons@2.0.9/css/boxicons.min.css' rel='stylesheet'>
 
+    <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+
     <!-- Link Swiper CSS -->
     <link
       rel="stylesheet"
@@ -83,6 +85,8 @@
                 </div>
               </div>
 
+                <i class="fa-solid fa-x fa-2x volver" onclick="history.back()"></i>
+
               <div id="reportModal" class="modal">
                 <div class="modal-content">
                   <span class="close" onclick="closeModal()">&times;</span>
@@ -96,8 +100,6 @@
               </div>
               <!--Para que funcione el pop up porque no queria enlazarse con lo que coloque en el js :c-->
               <script>
-                document.getElementById('reportLink').addEventListener('click', openModal);
-
                 function openModal() {
                   document.getElementById('reportModal').style.display = 'block';
                 }
@@ -106,47 +108,42 @@
                   document.getElementById('reportModal').style.display = 'none';
                 }
               </script>
+              <div id="detalles-producto">
+              </div>
               <!--popup-->
             <!--categorias-->
-            <span class="product-category">Blusas</span>
-            <h3>Body Básico</h3>
-            <span class="product-price">84Bs</span>
-            <p>Lorem ipsum, dolor sit amet consectetur adipisicing elit. Officiis laboriosam vitae ab aspernatur qui facere a commodi cupiditate praesentium. Aliquam, voluptatem est debitis consequuntur ex autem exercitationem quas dolorem alias?
-                <br/>
-                Lorem ipsum dolor sit amet consectetur adipisicing elit. Hic illo, enim non molestias dolores eos officia minima quidem architecto labore soluta? Expedita officiis voluptas sapiente officia debitis, mollitia eum quia.
-            </p>
             <!--TALLAS-->
-            <div class="product-size-container">
+            <!-- <div class="product-size-container">
                 <strong>Selecciona Talla:-</strong>
-                <div class="product-size">
+                <div class="product-size"> -->
                     <!--xl-->
-                    <input type="checkbox" class="s-checkbox" id="s-xl">
-                    <label for="s-xl" class="s-label">XL</label>
+                    <!-- <input type="checkbox" class="s-checkbox" id="s-xl">
+                    <label for="s-xl" class="s-label">XL</label> -->
                     <!--Small-->
-                    <input type="checkbox" class="s-checkbox" id="s-s">
-                    <label for="s-s" class="s-label">S</label>
+                    <!-- <input type="checkbox" class="s-checkbox" id="s-s">
+                    <label for="s-s" class="s-label">s</label> -->
                     <!--Medium-->
-                    <input type="checkbox" class="s-checkbox" id="s-m">
-                    <label for="s-m" class="s-label">M</label>
+                    <!-- <input type="checkbox" class="s-checkbox" id="s-m">
+                    <label for="s-m" class="s-label">M</label> -->
                     <!--Large-->
-                    <input type="checkbox" class="s-checkbox" id="s-l">
+                    <!-- <input type="checkbox" class="s-checkbox" id="s-l">
                     <label for="s-l" class="s-label">L</label>
-                </div>
+                </div> -->
 
                      <!--COLORES-->
-                    <div class="product-color-container">
+                    <!-- <div class="product-color-container">
                     <strong>Selecciona Color:</strong>
-                    <div class="product-color">
+                    <div class="product-color"> -->
                         <!--Negro-->
-                        <div class="color-circle negro"></div>
+                        <!-- <div class="color-circle negro"></div> -->
                         <!--Cafe-->
-                        <div class="color-circle cafe"></div>
+                        <!-- <div class="color-circle cafe"></div> -->
                         <!--Beige-->
-                        <div class="color-circle beige"></div>
+                        <!-- <div class="color-circle beige"></div> -->
                         <!--Plomo-->
-                        <div class="color-circle plomo"></div>
-                    </div>
-                    </div>
+                        <!-- <div class="color-circle plomo"></div> -->
+                    <!-- </div>
+                    </div> -->
             </div>
             
 

@@ -370,3 +370,11 @@ form {
 label {
   margin-bottom: 8px;
 }
+
+.volver{
+    position: absolute;
+    left: 60%;
+}
+.volver:hover{
+    cursor: pointer;
+}
