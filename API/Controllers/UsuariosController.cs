@@ -37,7 +37,7 @@ namespace API.Controllers
                 return BadRequest("El email ya existe");
             }
 
-            var persona = await personasC.Create(request);
+            var persona = await personasC.Upsert(request);
             if (persona == null)
             {
                 return BadRequest("No se pudo registrar a la persona");
@@ -164,7 +164,7 @@ namespace API.Controllers
                 return BadRequest("Hubo un error al buscar a la persona");
             }
 
-            var personaEditada = await personasC.Edit(persona, request);
+            var personaEditada = await personasC.Upsert(request);
             if (personaEditada == null)
             {
                 return BadRequest("Ingrese un mail valido");

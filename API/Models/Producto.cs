@@ -39,19 +39,18 @@ namespace API.Models
 
         [DataType(DataType.Date)]
         [Required]
-        [JsonIgnore]
         public DateTime createdAt { get; set; }
 
         [DataType(DataType.Date)]
         [Required]
-        [JsonIgnore]
         public DateTime lastUpdate { get; set; }
+
+        [Required]
+        public bool activo { get; set; }
 
         // RELACIONES
         [JsonIgnore]
         public ICollection<ReclamosEmpresa> Reclamos { get; set; }
-        [JsonIgnore]
-        public ICollection<Comentario> Comentarios { get; set; }
         [JsonIgnore]
         public ICollection<Like> Likes { get; set; }
         [JsonIgnore]
@@ -63,6 +62,7 @@ namespace API.Models
 
         public Producto()
         {
+            activo = true;
             createdAt = DateTime.Now;
             lastUpdate = DateTime.Now;
         }
@@ -70,6 +70,10 @@ namespace API.Models
         public void Update()
         {
             lastUpdate = DateTime.Now;
+        }
+        public void Desactivar()
+        {
+            activo = false;
         }
     }
 }

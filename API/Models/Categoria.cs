@@ -15,7 +15,22 @@ namespace API.Models
         [Required]
         public string nombreCategoria { get; set; }
 
+        [Required]
+        public bool activo { get; set; }
+
         public ICollection<CategoriasPorProducto> CategoriasProductos { get; set; }
 
+        public Categoria()
+        {
+            Activar();
+        }
+        public void Desactivar()
+        {
+            activo = false;
+        }
+        public void Activar()
+        {
+            activo = true;
+        }
     }
 }

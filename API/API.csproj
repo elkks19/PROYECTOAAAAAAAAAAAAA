@@ -7,6 +7,13 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <Compile Remove="ImagenesProductos\**" />
+    <Content Remove="ImagenesProductos\**" />
+    <EmbeddedResource Remove="ImagenesProductos\**" />
+    <None Remove="ImagenesProductos\**" />
+  </ItemGroup>
+
+  <ItemGroup>
     <PackageReference Include="MailKit" Version="4.3.0" />
     <PackageReference Include="Microsoft.AspNetCore.OpenApi" Version="7.0.13" />
     <PackageReference Include="Microsoft.EntityFrameworkCore" Version="7.0.13" />
@@ -22,9 +29,7 @@
 
   <ItemGroup>
     <Folder Include="Imagenes\" />
-    <Folder Include="ImagenesProductos\" />
     <Folder Include="datos\" />
-    <Folder Include="ImagenesProductos\" />
   </ItemGroup>
 
 </Project>

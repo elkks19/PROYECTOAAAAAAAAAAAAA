@@ -29,12 +29,12 @@ namespace API.Models
 
         [Required]
         [DataType(DataType.Date)]
-        [JsonIgnore]
         public DateTime createdAt { get; set; }
         [Required]
         [DataType(DataType.Date)]
-        [JsonIgnore]
         public DateTime lastUpdate { get; set; }
+
+
         [JsonIgnore]
         public ICollection<PersonalEmpresa> Personal { get; set; }
         [JsonIgnore]
@@ -44,8 +44,12 @@ namespace API.Models
         [JsonIgnore]
         public ICollection<VisitasEmpresa> Visitas { get; set; }
 
+        [Required]
+        public bool activo { get; set; }
+
         public Empresa()
         {
+            activo = true;
             var json = new
             {
                 instagram = String.Empty,
@@ -61,6 +65,11 @@ namespace API.Models
         public void Update()
         {
             lastUpdate = DateTime.Now;
+        }
+
+        public void Desactivar()
+        {
+            activo = false;
         }
     }
 }

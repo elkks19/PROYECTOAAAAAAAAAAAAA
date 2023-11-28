@@ -12,32 +12,12 @@ namespace API.Controllers
     {
         private readonly APIContext db;
         private readonly IWebHostEnvironment env;
-
         public PersonasController(APIContext context, IWebHostEnvironment environment)
         {
             db = context;
             env = environment;
         }
 
-        [HttpGet]
-        //[Autorizado("administrador")]
-        public async Task<IActionResult> UltimoMes()
-        {
-            var usuarios = await db.Usuarios.Include(x => x.Persona).Where(x => x.Persona.createdAt >= DateTime.Now.AddDays(-30)).ToListAsync();
-            var empresas = await db.Empresa.Where(x => x.createdAt >= DateTime.Now.AddDays(-30)).ToListAsync();
-            var ventasTotales = await db.DetalleOrden.Include(x => x.Producto).Where(x => x.Orden.fechaEntregaOrden >= DateTime.Now.AddDays(-30)).ToListAsync();
-            float total = 0;
-            foreach (var venta in ventasTotales)
-            {
-                total += venta.cantidadProducto * venta.Producto.precioProducto;
-            }
-            return Ok(new
-            {
-                usuarios = usuarios,
-                empresas = empresas,
-                ventasTotales = total
-            });
-        }
 
         protected internal async Task<byte[]> GetFoto(Persona persona)
         {
@@ -48,6 +28,7 @@ namespace API.Controllers
             var imagen = System.IO.File.ReadAllBytes(persona.pathFotoPersona);
             return imagen;
         }
+
 
         protected internal async Task<Persona> ChangePassword(Persona persona, string oldPassword, string newPassword)
         {
@@ -61,6 +42,7 @@ namespace API.Controllers
             {
                 return null;
             }
+
             persona.passwordPersona = Crypto.HashPassword(newPassword);
             db.Persona.Update(persona);
             persona.Update();
@@ -68,51 +50,63 @@ namespace API.Controllers
             return persona;
         }
 
-        protected internal async Task<Persona> Create(Persona request)
-        {
-            var cantPersonas = await db.Persona.CountAsync() + 1;
-            if (!IsValidEmail(request.mailPersona))
-            {
-                return null;
-            }
 
-            var persona = new Persona()
-            {
-                codPersona = "PER-" + cantPersonas.ToString("000"),
-                userPersona = request.userPersona,
-                passwordPersona = Crypto.HashPassword(request.passwordPersona),
-                nombrePersona = request.nombrePersona,
-                fechaNacPersona = request.fechaNacPersona,
-                mailPersona = request.mailPersona,
-                direccionPersona = request.direccionPersona,
-                pathFotoPersona = env.ContentRootPath + "\\Imagenes\\perrito.jpg"
-            };
-            await db.Persona.AddAsync(persona);
-            await db.SaveChangesAsync();
-            return persona;
-        }
-
-        protected internal async Task<Persona> Edit(Persona persona, Persona request)//la que se va a editar
+        protected internal async Task<Persona> Upsert(Persona request)
         {
-            if (request.nombrePersona != null) { persona.nombrePersona = request.nombrePersona; }
-            if (request.fechaNacPersona != DateTime.MinValue) { persona.fechaNacPersona = request.fechaNacPersona; }
-            if (request.mailPersona != null) {
+            var personaExists = await db.Persona.FirstOrDefaultAsync(x => x.userPersona.Equals(request.userPersona));
+
+            // INSERT
+            if(personaExists == null)
+            {
+                var cantPersonas = await db.Persona.CountAsync() + 1;
                 if (!IsValidEmail(request.mailPersona))
                 {
                     return null;
                 }
-                persona.mailPersona = request.mailPersona; 
+
+                var persona = new Persona()
+                {
+                    codPersona = "PER-" + cantPersonas.ToString("000"),
+                    userPersona = request.userPersona,
+                    passwordPersona = Crypto.HashPassword(request.passwordPersona),
+                    nombrePersona = request.nombrePersona,
+                    fechaNacPersona = request.fechaNacPersona,
+                    mailPersona = request.mailPersona,
+                    direccionPersona = request.direccionPersona,
+                    pathFotoPersona = env.ContentRootPath + "\\Imagenes\\perrito.jpg"
+                };
+                await db.Persona.AddAsync(persona);
+                await db.SaveChangesAsync();
+
+                return persona;
             }
-            if (request.direccionPersona != null) { persona.direccionPersona = request.direccionPersona; }
-            if (request.userPersona != null) { persona.userPersona = request.userPersona; }
-            if (request.celularPersona != null) { persona.celularPersona = request.celularPersona; }
+            // FIN INSERTAR
 
-            db.Persona.Update(persona);
-            persona.Update();
-            await db.SaveChangesAsync();
+            // EDITAR
+            else
+            {
+                if (request.nombrePersona != null) { personaExists.nombrePersona = request.nombrePersona; }
+                if (request.fechaNacPersona != DateTime.MinValue) { personaExists.fechaNacPersona = request.fechaNacPersona; }
+                if (request.mailPersona != null) {
+                    if (!IsValidEmail(request.mailPersona))
+                    {
+                        return null;
+                    }
+                    personaExists.mailPersona = request.mailPersona; 
+                }
+                if (request.direccionPersona != null) { personaExists.direccionPersona = request.direccionPersona; }
+                if (request.userPersona != null) { personaExists.userPersona = request.userPersona; }
+                if (request.celularPersona != null) { personaExists.celularPersona = request.celularPersona; }
 
-            return persona;
+                db.Persona.Update(personaExists);
+                personaExists.Update();
+                await db.SaveChangesAsync();
+
+                return personaExists;
+            }
+            // FIN EDITAR
         }
+
 
         private bool IsValidEmail(string email)
         {
@@ -155,6 +149,8 @@ namespace API.Controllers
             }
             return;
         }
+
+
 
         protected internal async Task<Persona> ChangeFoto(Persona persona, IFormFile img)
         {

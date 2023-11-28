@@ -21,7 +21,6 @@ namespace API.Data
         public DbSet<API.Models.LogAuditoria> LogsAuditoria { get; set; } = default!;
         public DbSet<API.Models.Administrador> Administradores { get; set; } = default!;
         public DbSet<API.Models.Categoria> Categorias { get; set; } = default!;
-        public DbSet<API.Models.Comentario> Comentarios { get; set; } = default!;
         public DbSet<API.Models.Persona> Persona { get; set; } = default!;
         public DbSet<API.Models.Orden> Orden { get; set; } = default!;
         public DbSet<API.Models.Producto> Producto { get; set; } = default!;
@@ -81,10 +80,6 @@ namespace API.Data
             modelBuilder.Entity<Persona>()
                 .HasOne(x => x.PersonalEmpresa)
                 .WithOne(x => x.Persona);
-            // COMENTARIOS
-            modelBuilder.Entity<Persona>()
-                .HasMany(x => x.Comentarios)
-                .WithOne(x => x.Persona);
             // LOGS
             modelBuilder.Entity<Persona>()
                 .HasMany(x => x.Logs)
@@ -107,20 +102,10 @@ namespace API.Data
 
 
             // Relaciones Productos
-            // COMENTARIOS
-            modelBuilder.Entity<Producto>()
-                .HasMany(x => x.Comentarios)
-                .WithOne(x => x.Producto);
             // RECLAMOS 
             modelBuilder.Entity<Producto>()
                 .HasMany(x => x.Reclamos)
                 .WithOne(x => x.Producto);
-            // COMENTARIOS
-            modelBuilder.Entity<Producto>()
-                .HasMany(x => x.Likes)
-                .WithOne(x => x.Producto);
-
-
             // Relaciones Empresa
             // PERSONAL
             modelBuilder.Entity<Empresa>()

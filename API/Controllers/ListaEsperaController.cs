@@ -1,13 +1,7 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
-using Microsoft.AspNetCore.Mvc;
-using Microsoft.AspNetCore.Mvc.Rendering;
+﻿using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using API.Data;
 using API.Models;
-using Microsoft.AspNetCore.Mvc.Infrastructure;
 
 namespace API.Controllers
 {
@@ -25,6 +19,11 @@ namespace API.Controllers
             Random rnd = new Random();
             var admins = db.Administradores.ToList();
             int randomAdmin = rnd.Next(admins.Count);
+
+            if (admins.Count == 0)
+            {
+                return null;
+            }
 
             ListaEsperaEmpresa listaEspera = new ListaEsperaEmpresa()
             {
