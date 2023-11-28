@@ -11,6 +11,11 @@ window.onload = function(){
     });
 }
 
+function detalles(cod){
+    localStorage.setItem("codProducto", cod);
+    window.location.href = "../../../../INTERFACES/EMPRESA/Productos/detalles productos/body.html";
+}
+
 let productos = [];
 
 axios.get("http://localhost:5132/productos/getall",{
@@ -113,12 +118,12 @@ function cargarProductos(productosElegidos) {
                         <div class="imgBx">
                             <img class="producto-imagen" src="${img}" alt="${producto.nombre}">
                             <ul class="action">
-                                                <li><a href="#">
+                                                <li>
                                                     <i class='bx bxs-star'></i>
                                                     <span>Agregar a Wishlist</span></a>
                                                 </li>
 
-                                                <li>
+                                                <li onclick="detalles('${producto.id}')">
                                                     <i class='bx bxs-analyse'></i>
                                                     <span>Ver detalles</span>
                                                 </li>

@@ -819,6 +819,12 @@ main {
 	transform: translateX(60px);
 	transition: transform 0.5s;
 }
+.action li i{
+    color: #2A2A2A;
+}
+.action li:hover i{
+    color: var(--light);
+}
 #contenedor-cards .card:hover .action li{
 	transform: translateX(0px);
 }
@@ -830,7 +836,6 @@ main {
 }
 .action li:hover{
 	background: var(--mostaza);
-	color: var(--light);
 }
 .action li span{
 	position: absolute;
@@ -841,6 +846,7 @@ main {
 	padding: 4px 10px;
 	background: var(--light);
 	color: #342E37;
+    
 	border-radius: 5px;
 	font-weight: 300;
 	font-size: 12px;
