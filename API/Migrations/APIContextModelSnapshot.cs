@@ -149,8 +149,7 @@ namespace API.Migrations
 
                     b.Property<string>("direccionEmpresa")
                         .IsRequired()
-                        .HasMaxLength(50)
-                        .HasColumnType("nvarchar(50)");
+                        .HasColumnType("nvarchar(max)");
 
                     b.Property<DateTime>("lastUpdate")
                         .HasColumnType("datetime2");

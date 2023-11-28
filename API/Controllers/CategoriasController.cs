@@ -16,6 +16,7 @@ namespace API.Controllers
         }
 
         [HttpGet]
+        //[Autorizado("administrador")]
         public async Task<IActionResult> Index()
         {
             var categorias = await db.Categorias.Select(x => new

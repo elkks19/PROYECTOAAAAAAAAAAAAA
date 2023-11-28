@@ -1,302 +1,302 @@
 [
  {
-  "codpro": 1,
-  "codempr": 5,
+  "codpro": "PRO-001",
+  "codempr": "EMP-005",
   "nompro": "Blusa Floral Elegante",
   "descpro": "Blusa de seda con un estampado floral elegante. Perfecta para ocasiones especiales.",
   "preciopro": 50,
   "precenvio": 12,
-  "create": "11\/27\/2023 23:33",
-  "last": "11\/27\/2023 23:33"
+  "create": "27\/11\/2023",
+  "last": "27\/11\/2023"
  },
  {
-  "codpro": 2,
-  "codempr": 2,
+  "codpro":  "PRO-002",
+  "codempr": "EMP-002",
   "nompro": "Vaqueros Slim Fit Clásicos",
   "descpro": "Vaqueros cómodos y modernos con corte slim fit. Ideal para un estilo casual.",
   "preciopro": 40,
   "precenvio": 10,
-  "create": "11\/27\/2023 23:33",
-  "last": "11\/27\/2023 23:33"
+  "create": "27\/11\/2023",
+  "last": "27\/11\/2023"
  },
  {
-  "codpro": 3,
-  "codempr": 1,
+  "codpro": "PRO-003",
+  "codempr":"EMP-001",
   "nompro": "Vestido Midi Bohemio",
   "descpro": "Vestido bohemio de longitud midi con detalles bordados y mangas acampanadas.",
   "preciopro": 60,
   "precenvio": 5,
-  "create": "11\/27\/2023 23:33",
-  "last": "11\/27\/2023 23:33"
+  "create": "27\/11\/2023",
+  "last": "27\/11\/2023"
  },
  {
-  "codpro": 4,
-  "codempr": 3,
+  "codpro":  "PRO-004",
+  "codempr": "EMP-003",
   "nompro": "Camiseta Vintage Gráfica",
   "descpro": "Camiseta Vintage Gráfica",
   "preciopro": 30,
   "precenvio": 5,
-  "create": "11\/27\/2023 23:33",
-  "last": "11\/27\/2023 23:33"
+  "create": "27\/11\/2023",
+  "last": "27\/11\/2023"
  },
  {
-  "codpro": 5,
-  "codempr": 4,
+  "codpro":  "PRO-005",
+  "codempr":"EMP-004",
   "nompro": "Chaqueta de Cuero Clásica",
   "descpro": "Chaqueta de cuero genuino con un estilo atemporal. Perfecta para cualquier ocasión.",
   "preciopro": 90,
   "precenvio": 5,
-  "create": "11\/27\/2023 23:33",
-  "last": "11\/27\/2023 23:33"
+  "create": "27\/11\/2023",
+  "last": "27\/11\/2023"
  },
  {
-  "codpro": 6,
-  "codempr": 1,
+  "codpro":  "PRO-006",
+  "codempr":"EMP-001",
   "nompro": "Pantalones Deportivos con Rayas",
   "descpro": "Pantalones deportivos con rayas laterales. Ideal para un look deportivo y moderno.",
   "preciopro": 35,
   "precenvio": 6,
-  "create": "11\/27\/2023 23:33",
-  "last": "11\/27\/2023 23:33"
+  "create": "27\/11\/2023",
+  "last": "27\/11\/2023"
  },
  {
-  "codpro": 7,
-  "codempr": 2,
+  "codpro":  "PRO-007",
+  "codempr": "EMP-002",
   "nompro": "Blazer de Terciopelo",
   "descpro": "Blazer elegante de terciopelo suave. Perfecto para eventos formales o salidas nocturnas.",
   "preciopro": 80,
   "precenvio": 0,
-  "create": "11\/27\/2023 23:33",
-  "last": "11\/27\/2023 23:33"
+  "create": "27\/11\/2023",
+  "last": "27\/11\/2023"
  },
  {
-  "codpro": 8,
-  "codempr": 3,
+  "codpro":  "PRO-008",
+  "codempr": "EMP-003",
   "nompro": "Suéter de Punto Grueso",
   "descpro": "Suéter cálido y acogedor de punto grueso. Ideal para los días fríos de invierno.",
   "preciopro": 45,
   "precenvio": 0,
-  "create": "11\/27\/2023 23:33",
-  "last": "11\/27\/2023 23:33"
+  "create": "27\/11\/2023",
+  "last": "27\/11\/2023"
  },
  {
-  "codpro": 9,
-  "codempr": 4,
+  "codpro":  "PRO-009",
+  "codempr": "EMP-004",
   "nompro": "Falda Plisada Midi",
   "descpro": "Falda midi plisada con un toque vintage. Combina estilo y comodidad.",
   "preciopro": 50,
   "precenvio": 5,
-  "create": "11\/27\/2023 23:33",
-  "last": "11\/27\/2023 23:33"
+  "create": "27\/11\/2023",
+  "last": "27\/11\/2023"
  },
  {
-  "codpro": 10,
-  "codempr": 5,
+  "codpro":  "PRO-010",
+  "codempr": "EMP-005",
   "nompro": "Conjunto Deportivo Moderno",
   "descpro": "Conjunto deportivo con diseño moderno y materiales transpirables. Perfecto para el gimnasio o actividades al aire libre.",
   "preciopro": 55,
   "precenvio": 0,
-  "create": "11\/27\/2023 23:33",
-  "last": "11\/27\/2023 23:33"
+  "create": "27\/11\/2023",
+  "last": "27\/11\/2023"
  },
  {
-  "codpro": 11,
-  "codempr": 2,
+  "codpro":  "PRO-011",
+  "codempr": "EMP-002",
   "nompro": "Blusa sin Hombros con Volantes",
   "descpro": "Blusa femenina sin hombros con volantes. Ideal para ocasiones informales.",
   "preciopro": 40,
   "precenvio": 8,
-  "create": "11\/27\/2023 23:33",
-  "last": "11\/27\/2023 23:33"
+  "create": "27\/11\/2023",
+  "last": "27\/11\/2023"
  },
  {
-  "codpro": 12,
-  "codempr": 1,
+  "codpro":  "PRO-012",
+  "codempr": "EMP-001",
   "nompro": "Jeans Boyfriend Desgastados",
   "descpro": "Jeans estilo boyfriend con efecto desgastado. Aporta un toque desenfadado a tu atuendo.",
   "preciopro": 50,
   "precenvio": 5,
-  "create": "11\/27\/2023 23:33",
-  "last": "11\/27\/2023 23:33"
+  "create": "27\/11\/2023",
+  "last": "27\/11\/2023"
  },
  {
-  "codpro": 13,
-  "codempr": 2,
+  "codpro":  "PRO-013",
+  "codempr": "EMP-002",
   "nompro": "Vestido Ajustado de Noche",
   "descpro": "Vestido ajustado perfecto para salidas nocturnas. Con un diseño elegante y seductor.",
   "preciopro": 70,
   "precenvio": 0,
-  "create": "11\/27\/2023 23:33",
-  "last": "11\/27\/2023 23:33"
+  "create": "27\/11\/2023",
+  "last": "27\/11\/2023"
  },
  {
-  "codpro": 14,
-  "codempr": 1,
+  "codpro":  "PRO-014",
+  "codempr": "EMP-001",
   "nompro": "Jersey de Cuello Alto",
   "descpro": "Jersey de cuello alto suave y cómodo. Ideal para mantenerse abrigado en días fríos.",
   "preciopro": 35,
   "precenvio": 0,
-  "create": "11\/27\/2023 23:33",
-  "last": "11\/27\/2023 23:33"
+  "create": "27\/11\/2023",
+  "last": "27\/11\/2023"
  },
  {
-  "codpro": 15,
-  "codempr": 3,
+  "codpro":  "PRO-015",
+  "codempr":"EMP-003",
   "nompro": "Traje de Baño Estampado",
   "descpro": "Traje de baño de una sola pieza con estampado tropical. Perfecto para días de playa.",
   "preciopro": 55,
   "precenvio": 5,
-  "create": "11\/27\/2023 23:33",
-  "last": "11\/27\/2023 23:33"
+  "create": "27\/11\/2023",
+  "last": "27\/11\/2023"
  },
  {
-  "codpro": 16,
-  "codempr": 4,
+  "codpro":  "PRO-016",
+  "codempr": "EMP-004",
   "nompro": "Cazadora Bomber Retro",
   "descpro": "Cazadora bomber con un toque retro. Añade estilo a tu look casual.",
   "preciopro": 65,
   "precenvio": 0,
-  "create": "11\/27\/2023 23:33",
-  "last": "11\/27\/2023 23:33"
+  "create": "27\/11\/2023",
+  "last": "27\/11\/2023"
  },
  {
-  "codpro": 17,
-  "codempr": 5,
+  "codpro":  "PRO-017",
+  "codempr": "EMP-005",
   "nompro": "Leggings Deportivos con Detalles de Malla",
   "descpro": "Leggings deportivos con detalles de malla. Combina comodidad y estilo para tus entrenamientos.",
   "preciopro": 45,
   "precenvio": 5,
-  "create": "11\/27\/2023 23:33",
-  "last": "11\/27\/2023 23:33"
+  "create": "27\/11\/2023",
+  "last": "27\/11\/2023"
  },
  {
-  "codpro": 18,
-  "codempr": 5,
+  "codpro": "PRO-018",
+  "codempr":"EMP-005",
   "nompro": "Camisa a Cuadros",
   "descpro": "Camisa a cuadros de algodón suave. Perfecta para un estilo informal y relajado.",
   "preciopro": 45,
   "precenvio": 3,
-  "create": "11\/27\/2023 23:33",
-  "last": "11\/27\/2023 23:33"
+  "create": "27\/11\/2023",
+  "last": "27\/11\/2023"
  },
  {
-  "codpro": 19,
-  "codempr": 1,
+  "codpro":  "PRO-019",
+  "codempr": "EMP-001",
   "nompro": "Vestido Camisero a Rayas",
   "descpro": "Vestido camisero a rayas con cinturón. Ideal para un look fresco y veraniego.",
   "preciopro": 45,
   "precenvio": 0,
-  "create": "11\/27\/2023 23:33",
-  "last": "11\/27\/2023 23:33"
+  "create": "27\/11\/2023",
+  "last": "27\/11\/2023"
  },
  {
-  "codpro": 20,
-  "codempr": 3,
+  "codpro":  "PRO-020",
+  "codempr": "EMP-003",
   "nompro": "Sudadera con Capucha y Estampado",
   "descpro": "Sudadera con capucha y estampado urbano. Aporta un toque moderno a tu vestuario.",
   "preciopro": 40,
   "precenvio": 0,
-  "create": "11\/27\/2023 23:33",
-  "last": "11\/27\/2023 23:33"
+  "create": "27\/11\/2023",
+  "last": "27\/11\/2023"
  },
  {
-  "codpro": 21,
-  "codempr": 5,
+  "codpro":  "PRO-021",
+  "codempr": "EMP-005",
   "nompro": "Pantalones Cortos Deportivos",
   "descpro": "Pantalones cortos deportivos con tecnología de secado rápido. Perfectos para actividades físicas.",
   "preciopro": 25,
   "precenvio": 0,
-  "create": "11\/27\/2023 23:33",
-  "last": "11\/27\/2023 23:33"
+  "create": "27\/11\/2023",
+  "last": "27\/11\/2023"
  },
  {
-  "codpro": 22,
-  "codempr": 5,
+  "codpro":  "PRO-022",
+  "codempr": "EMP-005",
   "nompro": "Vestido de Punto con Cuello V",
   "descpro": "Vestido de punto suave y elástico con cuello en V. Versátil y cómodo.",
   "preciopro": 35,
   "precenvio": 5,
-  "create": "11\/27\/2023 23:33",
-  "last": "11\/27\/2023 23:33"
+  "create": "27\/11\/2023",
+  "last": "27\/11\/2023"
  },
  {
-  "codpro": 23,
-  "codempr": 1,
+  "codpro":  "PRO-023",
+  "codempr": "EMP-001",
   "nompro": "Chaleco de Mezclilla con Borlas",
   "descpro": "Chaleco de mezclilla con detalles de borlas. Completa tu look casual con estilo.",
   "preciopro": 30,
   "precenvio": 5,
-  "create": "11\/27\/2023 23:33",
-  "last": "11\/27\/2023 23:33"
+  "create": "27\/11\/2023",
+  "last": "27\/11\/2023"
  },
  {
-  "codpro": 24,
-  "codempr": 1,
+  "codpro":  "PRO-024",
+  "codempr": "EMP-001",
   "nompro": "Pijama de Satén con Estampado",
   "descpro": "Pijama de dos piezas de satén con estampado elegante. Perfecto para noches relajadas.",
   "preciopro": 40,
   "precenvio": 0,
-  "create": "11\/27\/2023 23:33",
-  "last": "11\/27\/2023 23:33"
+  "create": "27\/11\/2023",
+  "last": "27\/11\/2023"
  },
  {
-  "codpro": 25,
-  "codempr": 1,
+  "codpro":  "PRO-025",
+  "codempr": "EMP-001",
   "nompro": "Blusa Asimétrica de Lunares",
   "descpro": "Blusa asimétrica con estampado de lunares. Aporta un toque juguetón a tu estilo.",
   "preciopro": 50,
   "precenvio": 5,
-  "create": "11\/27\/2023 23:33",
-  "last": "11\/27\/2023 23:33"
+  "create": "27\/11\/2023",
+  "last": "27\/11\/2023"
  },
  {
-  "codpro": 26,
-  "codempr": 2,
+  "codpro":  "PRO-026",
+  "codempr": "EMP-002",
   "nompro": "Pantalones Palazzo de Talle Alto",
   "descpro": "Pantalones palazzo elegantes con talle alto. Ideal para ocasiones formales.",
   "preciopro": 60,
   "precenvio": 0,
-  "create": "11\/27\/2023 23:33",
-  "last": "11\/27\/2023 23:33"
+  "create": "27\/11\/2023",
+  "last": "27\/11\/2023"
  },
  {
-  "codpro": 27,
-  "codempr": 4,
+  "codpro":  "PRO-027",
+  "codempr": "EMP-004",
   "nompro": "Sudadera con Estampado Floral",
   "descpro": "Sudadera cómoda con estampado floral. Perfecta para un look casual y relajado.",
   "preciopro": 35,
   "precenvio": 4,
-  "create": "11\/27\/2023 23:33",
-  "last": "11\/27\/2023 23:33"
+  "create": "27\/11\/2023",
+  "last": "27\/11\/2023"
  },
  {
-  "codpro": 28,
-  "codempr": 5,
+  "codpro":  "PRO-028",
+  "codempr": "EMP-005",
   "nompro": "Vestido Lápiz Clásico",
   "descpro": "Vestido lápiz clásico con un toque moderno. Acentúa tu figura con estilo.",
   "preciopro": 55,
   "precenvio": 0,
-  "create": "11\/27\/2023 23:33",
-  "last": "11\/27\/2023 23:33"
+  "create": "27\/11\/2023",
+  "last": "27\/11\/2023"
  },
  {
-  "codpro": 29,
-  "codempr": 2,
+  "codpro":  "PRO-029",
+  "codempr":  "EMP-002",
   "nompro": "Gorra de Béisbol Vintage",
   "descpro": "Gorra de béisbol con diseño vintage. Completa tu estilo urbano.",
   "preciopro": 20,
   "precenvio": 0,
-  "create": "11\/27\/2023 23:33",
-  "last": "11\/27\/2023 23:33"
+  "create": "27\/11\/2023",
+  "last": "27\/11\/2023"
  },
  {
-  "codpro": 30,
-  "codempr": 3,
+  "codpro":  "PRO-030",
+  "codempr":  "EMP-003",
   "nompro": "Jersey de Punto con Detalles Entrelazados",
   "descpro": "Jersey de punto suave con detalles entrelazados en la parte delantera. Perfecto para un look acogedor.",
   "preciopro": 45,
   "precenvio": 0,
-  "create": "11\/27\/2023 23:33",
-  "last": "11\/27\/2023 23:33"
+  "create": "27\/11\/2023",
+  "last": "27\/11\/2023"
  }
 ]

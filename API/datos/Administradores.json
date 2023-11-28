@@ -1,11 +1,14 @@
 [
  {
-  "codPersona": 13
+  "codAdmin": "ADM-001",
+  "codPersona": "PER-013"
  },
  {
-  "codPersona": 14
+  "codAdmin":  "ADM-002",
+  "codPersona":  "PER-014"
  },
  {
-  "codPersona": 15
+  "codAdmin": "ADM-003",
+  "codPersona": "PER-015"
  }
 ]

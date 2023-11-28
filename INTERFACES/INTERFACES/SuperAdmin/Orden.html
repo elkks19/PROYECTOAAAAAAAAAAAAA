@@ -40,32 +40,32 @@
                 <div class="modal-body">	
                     <div class="form-group">
                         <label>Cod Empresa</label>
-                        <input type="number" class="form-control" required>
+                        <input type="number" class="form-control" id="codEmpresa">
                     </div>
                     <div class="form-group">
                         <label>Cod Usuario</label>
-                        <input type="number" class="form-control" required>
+                        <input type="number" class="form-control" id="codUsuario">
                     </div>
                     <div class="form-group">
                         <label>Direccion Entrega Orden</label>
-                        <input type="text" class="form-control" required>
+                        <input type="text" class="form-control" id="direccionEntregaOrden">
                     </div>
                     <div class="form-group">
-                        <label>Fecha Entrega Revision</label>
-                        <input type="date" class="form-control" required>
+                        <label>Fecha Entrega Orden</label>
+                        <input type="date" class="form-control" id="fechaEntregaOrden">
                     </div>	
                     <div class="form-group">
                         <label>Fecha Pago Orden</label>
-                        <input type="date" class="form-control" required>
+                        <input type="date" class="form-control" id="fechaPagoOrden">
                     </div>	
                     <div class="form-group">
                         <Label>Cancelado</Label>
-                        <input type="checkbox" name="m" id="">
+                        <input type="checkbox" class="form-control" id="isCancelada">
                     </div>			
                 </div>
                 <div class="modal-footer">
                     <input type="button" class="btn btn-default" data-dismiss="modal" value="Cancel">
-                    <input type="button" class="btn btn-success" value="Agregar">
+                    <input type="button" class="btn btn-success" data-dismiss="modal" value="Agregar" onclick="crearOrden()">
                 </div>
             </form>
         </div>
@@ -77,37 +77,38 @@
         <div class="modal-content">
             <form>
                 <div class="modal-header">						
-                    <h4 class="modal-title">Editar una Prenda</h4>
+                    <h4 class="modal-title">Editar una Orden</h4>
                     <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
                 </div>
                 <div class="modal-body">					
                     <div class="form-group">
                         <label>Cod Empresa</label>
-                        <input type="text" class="form-control" required>
+                        <input type="text" class="form-control" id="codEmpresaEdit">
                     </div>
                     <div class="form-group">
                         <label>Cod Usuario</label>
-                        <input type="number" class="form-control" required>
+                        <input type="number" class="form-control" id="codUsuarioEdit">
                     </div>
                     <div class="form-group">
                         <label>Direccion Entrega Orden</label>
+                        <input type="number" class="form-control" id="direccionEntregaOrdenEdit">
                     </div>
                     <div class="form-group">
-                        <label>Fecha Entrega Revision</label>
-                        <input type="date" class="form-control" required>
+                        <label>Fecha Entrega Edit</label>
+                        <input type="date" class="form-control" id="fechaEntregaOrdenEdit">
                     </div>	
                     <div class="form-group">
                         <label>Fecha Pago Orden</label>
-                        <input type="date" class="form-control" required>
+                        <input type="date" class="form-control" id="fechaPagoOrdenEdit">
                     </div>	
                     <div class="form-group">
                         <Label>Cancelado</Label>
-                        <input type="checkbox" name="m" id="">
+                        <input type="checkbox" class="form-control" id="isCanceladaEdit">
                     </div>			
                 </div>
                 <div class="modal-footer">
                     <input type="button" class="btn btn-default" data-dismiss="modal" value="Cancelar">
-                    <input type="button" class="btn btn-info" value="Guardar">
+                    <input type="button" class="btn btn-info" data-dismiss="modal" value="Guardar" onclick="editarOrden()">
                 </div>
             </form>
         </div>
@@ -119,16 +120,16 @@
         <div class="modal-content">
             <form>
                 <div class="modal-header">						
-                    <h4 class="modal-title">Eliminar </h4>
+                    <h4 class="modal-title">Eliminar Orden</h4>
                     <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
                 </div>
                 <div class="modal-body">					
-                    <p>Esta seguro que desea eliminar lo selecionada?</p>
+                    <p>Esta seguro que desea eliminar esta orden?</p>
                     <p class="text-warning"><small>Esta acción no se podra Restaurar</small></p>
                 </div>
                 <div class="modal-footer">
                     <input type="button" class="btn btn-default" data-dismiss="modal" value="Cancelar">
-                    <input type="button" class="btn btn-danger" value="Eliminar">
+                    <input type="button" class="btn btn-danger" data-dismiss="modal" value="Eliminar" onclick="eliminarOrden()">
                 </div>
             </form>
         </div>

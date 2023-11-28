@@ -1,102 +1,102 @@
 [
  {
-  "cod categoria ": 1,
+  "cod categoria ": "CAT-001",
   "nombre categoria": "Camisas"
  },
  {
-  "cod categoria ": 2,
+  "cod categoria ":   "CAT-002",
   "nombre categoria": "Poleras"
  },
  {
-  "cod categoria ": 3,
+  "cod categoria ": "CAT-003",
   "nombre categoria": "Faldas"
  },
  {
-  "cod categoria ": 4,
+  "cod categoria ": "CAT-004",
   "nombre categoria": "Pantalones"
  },
  {
-  "cod categoria ": 5,
+  "cod categoria ":  "CAT-005",
   "nombre categoria": "Chaquetas"
  },
  {
-  "cod categoria ": 6,
+  "cod categoria ": "CAT-006",
   "nombre categoria": "Vestido"
  },
  {
-  "cod categoria ": 7,
+  "cod categoria ": "CAT-007",
   "nombre categoria": "Blusas"
  },
  {
-  "cod categoria ": 8,
+  "cod categoria ":  "CAT-008",
   "nombre categoria": "Trajes"
  },
  {
-  "cod categoria ": 9,
+  "cod categoria ":  "CAT-009",
   "nombre categoria": "Sudaderas"
  },
  {
-  "cod categoria ": 10,
+  "cod categoria ":  "CAT-010",
   "nombre categoria": "Gorras"
  },
  {
-  "cod categoria ": 11,
+  "cod categoria ":  "CAT-011",
   "nombre categoria": "Sueter"
  },
  {
-  "cod categoria ": 12,
+  "cod categoria ":  "CAT-012",
   "nombre categoria": "Tenis"
  },
  {
-  "cod categoria ": 13,
+  "cod categoria ":  "CAT-013",
   "nombre categoria": "Buzos"
  },
  {
-  "cod categoria ": 14,
+  "cod categoria ": "CAT-014",
   "nombre categoria": "Poleras oversize"
  },
  {
-  "cod categoria ": 15,
+  "cod categoria ":  "CAT-015",
   "nombre categoria": "Chamarras de Cuero"
  },
  {
-  "cod categoria ": 16,
+  "cod categoria ": "CAT-016",
   "nombre categoria": "jeans"
  },
  {
-  "cod categoria ": 17,
+  "cod categoria ":  "CAT-017",
   "nombre categoria": "Sacos"
  },
  {
-  "cod categoria ": 18,
+  "cod categoria ":  "CAT-018",
   "nombre categoria": "Jogger"
  },
  {
-  "cod categoria ": 19,
+  "cod categoria ":  "CAT-019",
   "nombre categoria": "Bombers"
  },
  {
-  "cod categoria ": 20,
+  "cod categoria ":  "CAT-020",
   "nombre categoria": "Camisas Playeras"
  },
  {
-  "cod categoria ": 21,
+  "cod categoria ":  "CAT-021",
   "nombre categoria": "Pantuflas"
  },
  {
-  "cod categoria ": 22,
+  "cod categoria ":  "CAT-022",
   "nombre categoria": "Pantalones de tela"
  },
  {
-  "cod categoria ": 23,
+  "cod categoria ":  "CAT-023",
   "nombre categoria": "Pantalones Campana"
  },
  {
-  "cod categoria ": 24,
+  "cod categoria ":  "CAT-024",
   "nombre categoria": "Polera cuello Camisa"
  },
  {
-  "cod categoria ": 25,
+  "cod categoria ": "CAT-025",
   "nombre categoria": "Gafas"
  }
 ]

@@ -23,7 +23,6 @@ namespace API.Models
         [Required]
         public string nombreProducto { get; set; }
 
-        [MaxLength(100)]
         [Required]
         public string descProducto { get; set; }
         [Required]

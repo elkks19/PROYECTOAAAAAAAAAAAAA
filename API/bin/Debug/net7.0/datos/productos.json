@@ -1,212 +1,331 @@
 [
  {
-  "codEmpresa": 5,
+  "codProducto": "PRO-001",
+  "codEmpresa": "EMP-005",
   "nombreProducto": "Blusa Floral Elegante",
   "descProducto": "Blusa de seda con un estampado floral elegante. Perfecta para ocasiones especiales.",
   "precioProducto": 50,
-  "precioEnvioProducto": 12
+  "precioEnvioProducto": 12,
+  "pathFotoProducto": "Blazerdeterciopelo.jpg",
+  "createdAt": "27\/11\/2023",
+  "lastUpdate": "27\/11\/2023"
  },
  {
-  "codEmpresa": 2,
+  "codProducto":  "PRO-002",
+  "codEmpresa": "EMP-002",
   "nombreProducto": "Vaqueros Slim Fit Clásicos",
   "descProducto": "Vaqueros cómodos y modernos con corte slim fit. Ideal para un estilo casual.",
   "precioProducto": 40,
-  "precioEnvioProducto": 10
+  "precioEnvioProducto": 10,
+  "pathFotoProducto": "Blusaasimétricadelunares.jpg",
+  "createdAt": "27\/11\/2023",
+  "lastUpdate": "27\/11\/2023"
  },
  {
-  "codEmpresa": 1,
+  "codProducto": "PRO-003",
+  "codEmpresa":"EMP-001",
   "nombreProducto": "Vestido Midi Bohemio",
   "descProducto": "Vestido bohemio de longitud midi con detalles bordados y mangas acampanadas.",
   "precioProducto": 60,
-  "precioEnvioProducto": 5
+  "precioEnvioProducto": 5,
+  "pathFotoProducto": "BlusasinHombrosconvolantes.jpg",
+  "createdAt": "27\/11\/2023",
+  "lastUpdate": "27\/11\/2023"
  },
  {
-  "codEmpresa": 3,
+  "codProducto":  "PRO-004",
+  "codEmpresa": "EMP-003",
   "nombreProducto": "Camiseta Vintage Gráfica",
   "descProducto": "Camiseta Vintage Gráfica",
   "precioProducto": 30,
-  "precioEnvioProducto": 5
+  "precioEnvioProducto": 5,
+  "pathFotoProducto": "CAMISA-CUADROS-NEGRO-BLANCO.jpg",
+  "createdAt": "27\/11\/2023",
+  "lastUpdate": "27\/11\/2023"
  },
  {
-  "codEmpresa": 4,
+  "codProducto":  "PRO-005",
+  "codEmpresa":"EMP-004",
   "nombreProducto": "Chaqueta de Cuero Clásica",
   "descProducto": "Chaqueta de cuero genuino con un estilo atemporal. Perfecta para cualquier ocasión.",
   "precioProducto": 90,
-  "precioEnvioProducto": 5
+  "precioEnvioProducto": 5,
+  "pathFotoProducto": "Cazadorabomberretro.jpg",
+  "createdAt": "27\/11\/2023",
+  "lastUpdate": "27\/11\/2023"
  },
  {
-  "codEmpresa": 1,
+  "codProducto":  "PRO-006",
+  "codEmpresa":"EMP-001",
   "nombreProducto": "Pantalones Deportivos con Rayas",
   "descProducto": "Pantalones deportivos con rayas laterales. Ideal para un look deportivo y moderno.",
   "precioProducto": 35,
-  "precioEnvioProducto": 6
+  "precioEnvioProducto": 6,
+  "pathFotoProducto": "Chalecodemezclillaconborlas.jpg",
+  "createdAt": "27\/11\/2023",
+  "lastUpdate": "27\/11\/2023"
  },
  {
-  "codEmpresa": 2,
+  "codProducto":  "PRO-007",
+  "codEmpresa": "EMP-002",
   "nombreProducto": "Blazer de Terciopelo",
   "descProducto": "Blazer elegante de terciopelo suave. Perfecto para eventos formales o salidas nocturnas.",
   "precioProducto": 80,
-  "precioEnvioProducto": 0
+  "precioEnvioProducto": 0,
+  "pathFotoProducto": "chaquetadecuero.png",
+  "createdAt": "27\/11\/2023",
+  "lastUpdate": "27\/11\/2023"
  },
  {
-  "codEmpresa": 3,
+  "codProducto":  "PRO-008",
+  "codEmpresa": "EMP-003",
   "nombreProducto": "Suéter de Punto Grueso",
   "descProducto": "Suéter cálido y acogedor de punto grueso. Ideal para los días fríos de invierno.",
   "precioProducto": 45,
-  "precioEnvioProducto": 0
+  "precioEnvioProducto": 0,
+  "pathFotoProducto": "ConjuntoDeportivoModerno.jpg",
+  "createdAt": "27\/11\/2023",
+  "lastUpdate": "27\/11\/2023"
  },
  {
-  "codEmpresa": 4,
+  "codProducto":  "PRO-009",
+  "codEmpresa": "EMP-004",
   "nombreProducto": "Falda Plisada Midi",
   "descProducto": "Falda midi plisada con un toque vintage. Combina estilo y comodidad.",
   "precioProducto": 50,
-  "precioEnvioProducto": 5
+  "precioEnvioProducto": 5,
+  "pathFotoProducto": "Falda Plisada Midi.jpeg",
+  "createdAt": "27\/11\/2023",
+  "lastUpdate": "27\/11\/2023"
  },
  {
-  "codEmpresa": 5,
+  "codProducto":  "PRO-010",
+  "codEmpresa": "EMP-005",
   "nombreProducto": "Conjunto Deportivo Moderno",
   "descProducto": "Conjunto deportivo con diseño moderno y materiales transpirables. Perfecto para el gimnasio o actividades al aire libre.",
   "precioProducto": 55,
-  "precioEnvioProducto": 0
+  "precioEnvioProducto": 0,
+  "pathFotoProducto": "Gorradebéisbolvintage.jpg",
+  "createdAt": "27\/11\/2023",
+  "lastUpdate": "27\/11\/2023"
  },
  {
-  "codEmpresa": 2,
+  "codProducto":  "PRO-011",
+  "codEmpresa": "EMP-002",
   "nombreProducto": "Blusa sin Hombros con Volantes",
   "descProducto": "Blusa femenina sin hombros con volantes. Ideal para ocasiones informales.",
   "precioProducto": 40,
-  "precioEnvioProducto": 8
+  "precioEnvioProducto": 8,
+  "pathFotoProducto": "JeansBoyfriendDesgastados.jpg",
+  "createdAt": "27\/11\/2023",
+  "lastUpdate": "27\/11\/2023"
  },
  {
-  "codEmpresa": 1,
+  "codProducto":  "PRO-012",
+  "codEmpresa": "EMP-001",
   "nombreProducto": "Jeans Boyfriend Desgastados",
   "descProducto": "Jeans estilo boyfriend con efecto desgastado. Aporta un toque desenfadado a tu atuendo.",
   "precioProducto": 50,
-  "precioEnvioProducto": 5
+  "precioEnvioProducto": 5,
+  "pathFotoProducto": "Jerseydepuntocondetallesenetrelazados.jpg",
+  "createdAt": "27\/11\/2023",
+  "lastUpdate": "27\/11\/2023"
  },
  {
-  "codEmpresa": 2,
+  "codProducto":  "PRO-013",
+  "codEmpresa": "EMP-002",
   "nombreProducto": "Vestido Ajustado de Noche",
   "descProducto": "Vestido ajustado perfecto para salidas nocturnas. Con un diseño elegante y seductor.",
   "precioProducto": 70,
-  "precioEnvioProducto": 0
+  "precioEnvioProducto": 0,
+  "pathFotoProducto": "jersey-hombre-cuello-alto-negro.jpg",
+  "createdAt": "27\/11\/2023",
+  "lastUpdate": "27\/11\/2023"
  },
  {
-  "codEmpresa": 1,
+  "codProducto":  "PRO-014",
+  "codEmpresa": "EMP-001",
   "nombreProducto": "Jersey de Cuello Alto",
   "descProducto": "Jersey de cuello alto suave y cómodo. Ideal para mantenerse abrigado en días fríos.",
   "precioProducto": 35,
-  "precioEnvioProducto": 0
+  "precioEnvioProducto": 0,
+  "pathFotoProducto": "Leggingsdeportivoscondetallesdemalla.jpg",
+  "createdAt": "27\/11\/2023",
+  "lastUpdate": "27\/11\/2023"
  },
  {
-  "codEmpresa": 3,
+  "codProducto":  "PRO-015",
+  "codEmpresa":"EMP-003",
   "nombreProducto": "Traje de Baño Estampado",
   "descProducto": "Traje de baño de una sola pieza con estampado tropical. Perfecto para días de playa.",
   "precioProducto": 55,
-  "precioEnvioProducto": 5
+  "precioEnvioProducto": 5,
+  "pathFotoProducto": "pantalonderayas.jpg",
+  "createdAt": "27\/11\/2023",
+  "lastUpdate": "27\/11\/2023"
  },
  {
-  "codEmpresa": 4,
+  "codProducto":  "PRO-016",
+  "codEmpresa": "EMP-004",
   "nombreProducto": "Cazadora Bomber Retro",
   "descProducto": "Cazadora bomber con un toque retro. Añade estilo a tu look casual.",
   "precioProducto": 65,
-  "precioEnvioProducto": 0
+  "precioEnvioProducto": 0,
+  "pathFotoProducto": "Pantalonescortosdeportivos.jpg",
+  "createdAt": "27\/11\/2023",
+  "lastUpdate": "27\/11\/2023"
  },
  {
-  "codEmpresa": 5,
+  "codProducto":  "PRO-017",
+  "codEmpresa": "EMP-005",
   "nombreProducto": "Leggings Deportivos con Detalles de Malla",
   "descProducto": "Leggings deportivos con detalles de malla. Combina comodidad y estilo para tus entrenamientos.",
   "precioProducto": 45,
-  "precioEnvioProducto": 5
+  "precioEnvioProducto": 5,
+  "pathFotoProducto": "Pantalonespalazzodetallealto.jpg",
+  "createdAt": "27\/11\/2023",
+  "lastUpdate": "27\/11\/2023"
  },
  {
-  "codEmpresa": 5,
+  "codProducto": "PRO-018",
+  "codEmpresa":"EMP-005",
   "nombreProducto": "Camisa a Cuadros",
   "descProducto": "Camisa a cuadros de algodón suave. Perfecta para un estilo informal y relajado.",
   "precioProducto": 45,
-  "precioEnvioProducto": 3
+  "precioEnvioProducto": 3,
+  "pathFotoProducto": "Pijamadesaténconestampado.jpg",
+  "createdAt": "27\/11\/2023",
+  "lastUpdate": "27\/11\/2023"
  },
  {
-  "codEmpresa": 1,
+  "codProducto":  "PRO-019",
+  "codEmpresa": "EMP-001",
   "nombreProducto": "Vestido Camisero a Rayas",
   "descProducto": "Vestido camisero a rayas con cinturón. Ideal para un look fresco y veraniego.",
   "precioProducto": 45,
-  "precioEnvioProducto": 0
+  "precioEnvioProducto": 0,
+  "pathFotoProducto": "Sudaderaconcapuchayestampado.jpg",
+  "createdAt": "27\/11\/2023",
+  "lastUpdate": "27\/11\/2023"
  },
  {
-  "codEmpresa": 3,
+  "codProducto":  "PRO-020",
+  "codEmpresa": "EMP-003",
   "nombreProducto": "Sudadera con Capucha y Estampado",
   "descProducto": "Sudadera con capucha y estampado urbano. Aporta un toque moderno a tu vestuario.",
   "precioProducto": 40,
-  "precioEnvioProducto": 0
+  "precioEnvioProducto": 0,
+  "pathFotoProducto": "Sudaderaconestampadofloral.jpg",
+  "createdAt": "27\/11\/2023",
+  "lastUpdate": "27\/11\/2023"
  },
  {
-  "codEmpresa": 5,
+  "codProducto":  "PRO-021",
+  "codEmpresa": "EMP-005",
   "nombreProducto": "Pantalones Cortos Deportivos",
   "descProducto": "Pantalones cortos deportivos con tecnología de secado rápido. Perfectos para actividades físicas.",
   "precioProducto": 25,
-  "precioEnvioProducto": 0
+  "precioEnvioProducto": 0,
+  "createdAt": "27\/11\/2023",
+  "pathFotoProducto": "Suéter de Punto Grueso.jpeg",
+  "lastUpdate": "27\/11\/2023"
  },
  {
-  "codEmpresa": 5,
+  "codProducto":  "PRO-022",
+  "codEmpresa": "EMP-005",
   "nombreProducto": "Vestido de Punto con Cuello V",
   "descProducto": "Vestido de punto suave y elástico con cuello en V. Versátil y cómodo.",
   "precioProducto": 35,
-  "precioEnvioProducto": 5
+  "precioEnvioProducto": 5,
+  "pathFotoProducto": "Trajedebañoestampado.jpg",
+  "createdAt": "27\/11\/2023",
+  "lastUpdate": "27\/11\/2023"
  },
  {
-  "codEmpresa": 1,
+  "codProducto":  "PRO-023",
+  "codEmpresa": "EMP-001",
   "nombreProducto": "Chaleco de Mezclilla con Borlas",
   "descProducto": "Chaleco de mezclilla con detalles de borlas. Completa tu look casual con estilo.",
   "precioProducto": 30,
-  "precioEnvioProducto": 5
+  "precioEnvioProducto": 5,
+  "pathFotoProducto": "Vestidoajustadodenoche.jpeg",
+  "createdAt": "27\/11\/2023",
+  "lastUpdate": "27\/11\/2023"
  },
  {
-  "codEmpresa": 1,
+  "codProducto":  "PRO-024",
+  "codEmpresa": "EMP-001",
   "nombreProducto": "Pijama de Satén con Estampado",
   "descProducto": "Pijama de dos piezas de satén con estampado elegante. Perfecto para noches relajadas.",
   "precioProducto": 40,
-  "precioEnvioProducto": 0
+  "precioEnvioProducto": 0,
+  "pathFotoProducto": "Vestidocamiseroarayas.jpg",
+  "createdAt": "27\/11\/2023",
+  "lastUpdate": "27\/11\/2023"
  },
  {
-  "codEmpresa": 1,
+  "codProducto":  "PRO-025",
+  "codEmpresa": "EMP-001",
   "nombreProducto": "Blusa Asimétrica de Lunares",
   "descProducto": "Blusa asimétrica con estampado de lunares. Aporta un toque juguetón a tu estilo.",
   "precioProducto": 50,
-  "precioEnvioProducto": 5
+  "precioEnvioProducto": 5,
+  "pathFotoProducto": "VestidodepuntoconcuelloV.jpeg",
+  "createdAt": "27\/11\/2023",
+  "lastUpdate": "27\/11\/2023"
  },
  {
-  "codEmpresa": 2,
+  "codProducto":  "PRO-026",
+  "codEmpresa": "EMP-002",
   "nombreProducto": "Pantalones Palazzo de Talle Alto",
   "descProducto": "Pantalones palazzo elegantes con talle alto. Ideal para ocasiones formales.",
   "precioProducto": 60,
-  "precioEnvioProducto": 0
+  "precioEnvioProducto": 0,
+  "pathFotoProducto": "Vestidolápizclásico.jpg",
+  "createdAt": "27\/11\/2023",
+  "lastUpdate": "27\/11\/2023"
  },
  {
-  "codEmpresa": 4,
+  "codProducto":  "PRO-027",
+  "codEmpresa": "EMP-004",
   "nombreProducto": "Sudadera con Estampado Floral",
   "descProducto": "Sudadera cómoda con estampado floral. Perfecta para un look casual y relajado.",
   "precioProducto": 35,
-  "precioEnvioProducto": 4
+  "precioEnvioProducto": 4,
+  "pathFotoProducto": "perrito.jpg",
+  "createdAt": "27\/11\/2023",
+  "lastUpdate": "27\/11\/2023"
  },
  {
-  "codEmpresa": 5,
+  "codProducto":  "PRO-028",
+  "codEmpresa": "EMP-005",
   "nombreProducto": "Vestido Lápiz Clásico",
   "descProducto": "Vestido lápiz clásico con un toque moderno. Acentúa tu figura con estilo.",
   "precioProducto": 55,
-  "precioEnvioProducto": 0
+  "precioEnvioProducto": 0,
+  "pathFotoProducto": "perrito.jpg",
+  "createdAt": "27\/11\/2023",
+  "lastUpdate": "27\/11\/2023"
  },
  {
-  "codEmpresa": 2,
+  "codProducto":  "PRO-029",
+  "codEmpresa":  "EMP-002",
   "nombreProducto": "Gorra de Béisbol Vintage",
   "descProducto": "Gorra de béisbol con diseño vintage. Completa tu estilo urbano.",
   "precioProducto": 20,
-  "precioEnvioProducto": 0
+  "precioEnvioProducto": 0,
+  "pathFotoProducto": "perrito.jpg",
+  "createdAt": "27\/11\/2023",
+  "lastUpdate": "27\/11\/2023"
  },
  {
-  "codEmpresa": 3,
+  "codProducto":  "PRO-030",
+  "codEmpresa":  "EMP-003",
   "nombreProducto": "Jersey de Punto con Detalles Entrelazados",
   "descProducto": "Jersey de punto suave con detalles entrelazados en la parte delantera. Perfecto para un look acogedor.",
   "precioProducto": 45,
-  "precioEnvioProducto": 0
+  "precioEnvioProducto": 0,
+  "createdAt": "27\/11\/2023",
+  "lastUpdate": "27\/11\/2023"
  }
 ]

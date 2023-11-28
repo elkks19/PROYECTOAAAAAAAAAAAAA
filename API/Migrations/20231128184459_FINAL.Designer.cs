@@ -12,7 +12,7 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace API.Migrations
 {
     [DbContext(typeof(APIContext))]
-    [Migration("20231128024215_FINAL")]
+    [Migration("20231128184459_FINAL")]
     partial class FINAL
     {
         /// <inheritdoc />
@@ -152,8 +152,7 @@ namespace API.Migrations
 
                     b.Property<string>("direccionEmpresa")
                         .IsRequired()
-                        .HasMaxLength(50)
-                        .HasColumnType("nvarchar(50)");
+                        .HasColumnType("nvarchar(max)");
 
                     b.Property<DateTime>("lastUpdate")
                         .HasColumnType("datetime2");

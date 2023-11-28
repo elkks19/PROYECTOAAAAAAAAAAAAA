@@ -1,8 +1,4 @@
-window.onload = function() {
-
-    const tabla = document.getElementById("tablaPRO");
-
-    let datos = [];
+function cargarProductos() {
 
     axios.get("http://localhost:5132/productos/index",
     {
@@ -11,7 +7,9 @@ window.onload = function() {
             "Authorization": localStorage.getItem("token")
         }
     }).then(response => {
-        datos = response.data;
+        const tabla = document.getElementById("tablaPRO");
+
+        let datos = response.data;
 
         datos.forEach(dato => {
             tabla.innerHTML += 

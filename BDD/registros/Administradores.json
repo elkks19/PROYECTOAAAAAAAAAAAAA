@@ -1,16 +1,16 @@
 [
  {
 <<<<<<< HEAD
-  "codAdmin": 1,
-  "codPersona": 13
+  "codAdmin": "ADM-001",
+  "codPersona": "PER-013",
  },
  {
-  "codAdmin": 2,
-  "codPersona": 14
+  "codAdmin":  "ADM-002",
+  "codPersona":  "PER-014",
  },
  {
-  "codAdmin": 3,
-  "codPersona": 15
+  "codAdmin": "ADM-003",
+  "codPersona": "PER-015",
 =======
   "codPersona": "PER-013"
  },

@@ -85,6 +85,7 @@ function producto(){
     let container = document.getElementById("page-inner");
     container.innerHTML = text;
   });
+  cargarProductos();
 }
 
 function reclamo(){

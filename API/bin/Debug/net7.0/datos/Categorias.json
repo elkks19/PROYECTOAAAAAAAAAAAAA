@@ -1,77 +1,102 @@
 [
  {
+  "codCategoria": "CAT-001",
   "nombreCategoria": "Camisas"
  },
  {
+  "codCategoria":   "CAT-002",
   "nombreCategoria": "Poleras"
  },
  {
+  "codCategoria": "CAT-003",
   "nombreCategoria": "Faldas"
  },
  {
+  "codCategoria": "CAT-004",
   "nombreCategoria": "Pantalones"
  },
  {
+  "codCategoria":  "CAT-005",
   "nombreCategoria": "Chaquetas"
  },
  {
+  "codCategoria": "CAT-006",
   "nombreCategoria": "Vestido"
  },
  {
+  "codCategoria": "CAT-007",
   "nombreCategoria": "Blusas"
  },
  {
+  "codCategoria":  "CAT-008",
   "nombreCategoria": "Trajes"
  },
  {
+  "codCategoria":  "CAT-009",
   "nombreCategoria": "Sudaderas"
  },
  {
+  "codCategoria":  "CAT-010",
   "nombreCategoria": "Gorras"
  },
  {
+  "codCategoria":  "CAT-011",
   "nombreCategoria": "Sueter"
  },
  {
+  "codCategoria":  "CAT-012",
   "nombreCategoria": "Tenis"
  },
  {
+  "codCategoria":  "CAT-013",
   "nombreCategoria": "Buzos"
  },
  {
+  "codCategoria": "CAT-014",
   "nombreCategoria": "Poleras oversize"
  },
  {
+  "codCategoria":  "CAT-015",
   "nombreCategoria": "Chamarras de Cuero"
  },
  {
+  "codCategoria": "CAT-016",
   "nombreCategoria": "jeans"
  },
  {
+  "codCategoria":  "CAT-017",
   "nombreCategoria": "Sacos"
  },
  {
+  "codCategoria":  "CAT-018",
   "nombreCategoria": "Jogger"
  },
  {
+  "codCategoria":  "CAT-019",
   "nombreCategoria": "Bombers"
  },
  {
+  "codCategoria":  "CAT-020",
   "nombreCategoria": "Camisas Playeras"
  },
  {
+  "codCategoria":  "CAT-021",
   "nombreCategoria": "Pantuflas"
  },
  {
+  "codCategoria":  "CAT-022",
   "nombreCategoria": "Pantalones de tela"
  },
  {
+  "codCategoria":  "CAT-023",
   "nombreCategoria": "Pantalones Campana"
  },
  {
+  "codCategoria":  "CAT-024",
   "nombreCategoria": "Polera cuello Camisa"
  },
  {
+  "codCategoria": "CAT-025",
   "nombreCategoria": "Gafas"
  }
 ]

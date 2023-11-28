@@ -83,6 +83,7 @@ namespace API.Controllers
                     lastUpdate = DateTime.Now
                 }
             };
+
             foreach(var producto in productos)
             {
                 await db.Producto.AddAsync(producto);
@@ -106,6 +107,7 @@ namespace API.Controllers
                 x.precioProducto,
                 x.descProducto,
                 x.precioEnvioProducto,
+                x.pathFotoProducto,
                 createdAt = x.createdAt.ToString("dd/MM/yyyy HH:mm:ss"),
                 lastUpdate = x.lastUpdate.ToString("dd/MM/yyyy HH:mm:ss")
             }).ToListAsync();
@@ -113,22 +115,8 @@ namespace API.Controllers
             return Ok(prods);
         }
 
-        [HttpGet]
-        [Autorizado(rol2 = "empresa", rol3 = "administrador")]
-        public async Task<IActionResult> GetAll()
-        {
-            var productos = await db.Producto.ToListAsync();
-            if (productos == null)
-            {
-                return BadRequest("No se encontró ningun producto");
-            }
-
-            return Ok(productos);
-        }
-
 
         [HttpPost]
-        [Autorizado("empresa", rol2 = "administrador")]
         public async Task<IActionResult> Create([FromBody]Producto request, [FromRoute]string cod)
         {
             var empresa = await db.Empresa.FirstOrDefaultAsync(x => x.codEmpresa.Equals(cod));
@@ -137,33 +125,33 @@ namespace API.Controllers
                 return BadRequest("No se encontro la empresa");
             }
 
-            //IFormFile img = Request.Form.Files.FirstOrDefault();
+            IFormFile img = Request.Form.Files.FirstOrDefault();
 
-            //var path = $"{env.ContentRootPath}\\ImagenesProductos";
-            //if (!Directory.Exists($"{path}\\{empresa.nombreEmpresa}"))
-            //{
-            //    Directory.CreateDirectory($"{path}\\{empresa.nombreEmpresa}");
-            //}
+            var path = $"{env.ContentRootPath}\\ImagenesProductos";
+            if (!Directory.Exists($"{path}\\{empresa.nombreEmpresa}"))
+            {
+                Directory.CreateDirectory($"{path}\\{empresa.nombreEmpresa}");
+            }
 
-            //if (img.Length == 0)
-            //{
-            //    return BadRequest("Ingrese un archivo valido");
-            //}
+            if (img.Length == 0)
+            {
+                return BadRequest("Ingrese un archivo valido");
+            }
 
-            //var file = $"{path}\\{empresa.nombreempresa}\\{img.filename}";
+            var file = $"{path}\\{empresa.nombreEmpresa}\\{img.FileName}";
 
-            //if (!System.IO.File.Exists(file))
-            //{
-            //    var diskFile = System.IO.File.Create(file);
-            //    await img.CopyToAsync(diskFile);
-            //    diskFile.Close();
-            //}
-            //else
-            //{
-            //    var diskFile = System.IO.File.Open(file, FileMode.Open);
-            //    await img.CopyToAsync(diskFile);
-            //    diskFile.Close();
-            //}
+            if (!System.IO.File.Exists(file))
+            {
+                var diskFile = System.IO.File.Create(file);
+                await img.CopyToAsync(diskFile);
+                diskFile.Close();
+            }
+            else
+            {
+                var diskFile = System.IO.File.Open(file, FileMode.Open);
+                await img.CopyToAsync(diskFile);
+                diskFile.Close();
+            }
 
 
             var cantProductos = await db.Producto.CountAsync() + 1;

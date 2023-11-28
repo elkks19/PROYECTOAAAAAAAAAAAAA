@@ -1802,10 +1802,10 @@ C:\Users\Alejandra\OneDrive\Escritorio\ccccccccccccccccccccccc\ProyectoEquisDe\A
 C:\Users\Alejandra\OneDrive\Escritorio\ccccccccccccccccccccccc\ProyectoEquisDe\API\obj\Debug\net7.0\ref\API.dll
 C:\Users\rafaf\Desktop\PROYECTO\ProyectoEquisDe\API\bin\Debug\net7.0\datos\Administradores.json
 C:\Users\rafaf\Desktop\PROYECTO\ProyectoEquisDe\API\bin\Debug\net7.0\datos\Categorias.json
-C:\Users\rafaf\Desktop\PROYECTO\ProyectoEquisDe\API\bin\Debug\net7.0\datos\comentarios.json
 C:\Users\rafaf\Desktop\PROYECTO\ProyectoEquisDe\API\bin\Debug\net7.0\datos\detalleorden.json
 C:\Users\rafaf\Desktop\PROYECTO\ProyectoEquisDe\API\bin\Debug\net7.0\datos\empresa.json
-C:\Users\rafaf\Desktop\PROYECTO\ProyectoEquisDe\API\bin\Debug\net7.0\datos\orden.json
 C:\Users\rafaf\Desktop\PROYECTO\ProyectoEquisDe\API\bin\Debug\net7.0\datos\personalempresa.json
 C:\Users\rafaf\Desktop\PROYECTO\ProyectoEquisDe\API\bin\Debug\net7.0\datos\productos.json
 C:\Users\rafaf\Desktop\PROYECTO\ProyectoEquisDe\API\bin\Debug\net7.0\datos\usuario.json
+C:\Users\rafaf\Desktop\PROYECTO\ProyectoEquisDe\API\bin\Debug\net7.0\datos\DetalleOorden.json
+C:\Users\rafaf\Desktop\PROYECTO\ProyectoEquisDe\API\bin\Debug\net7.0\datos\Orrden.json

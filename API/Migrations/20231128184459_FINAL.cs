@@ -30,7 +30,7 @@ namespace API.Migrations
                 {
                     codEmpresa = table.Column<string>(type: "nvarchar(10)", maxLength: 10, nullable: false),
                     nombreEmpresa = table.Column<string>(type: "nvarchar(50)", maxLength: 50, nullable: false),
-                    direccionEmpresa = table.Column<string>(type: "nvarchar(50)", maxLength: 50, nullable: false),
+                    direccionEmpresa = table.Column<string>(type: "nvarchar(max)", nullable: false),
                     archivoVerificacionEmpresa = table.Column<string>(type: "nvarchar(max)", nullable: false),
                     socialMediaEmprsa = table.Column<string>(type: "nvarchar(max)", nullable: false),
                     createdAt = table.Column<DateTime>(type: "datetime2", nullable: false),
@@ -71,7 +71,7 @@ namespace API.Migrations
                     codProducto = table.Column<string>(type: "nvarchar(10)", maxLength: 10, nullable: false),
                     codEmpresa = table.Column<string>(type: "nvarchar(10)", maxLength: 10, nullable: false),
                     nombreProducto = table.Column<string>(type: "nvarchar(50)", maxLength: 50, nullable: false),
-                    descProducto = table.Column<string>(type: "nvarchar(100)", maxLength: 100, nullable: false),
+                    descProducto = table.Column<string>(type: "nvarchar(max)", maxLength: 100, nullable: false),
                     precioProducto = table.Column<float>(type: "real", nullable: false),
                     precioEnvioProducto = table.Column<float>(type: "real", nullable: false),
                     pathFotoProducto = table.Column<string>(type: "nvarchar(max)", nullable: false),

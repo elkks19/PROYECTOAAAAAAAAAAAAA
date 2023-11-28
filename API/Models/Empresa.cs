@@ -17,7 +17,6 @@ namespace API.Models
         [Required]
         public string nombreEmpresa { get; set; }
 
-        [MaxLength(50)]
         [Required]
         public string direccionEmpresa { get; set; }
 

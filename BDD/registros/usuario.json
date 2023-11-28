@@ -1,30 +1,30 @@
 [
  {
-  "codUsuario": 1,
-  "cod Persona": 6
+  "codUsuario": "USU-001",
+  "cod Persona": "PER-006",
  },
  {
-  "codUsuario": 2,
-  "cod Persona": 7
+  "codUsuario": "USU-002",
+  "cod Persona":  "PER-007",
  },
  {
-  "codUsuario": 3,
-  "cod Persona": 8
+  "codUsuario": "USU-003",
+  "cod Persona": "PER-008",
  },
  {
-  "codUsuario": 4,
-  "cod Persona": 9
+  "codUsuario":"USU-004",
+  "cod Persona": "PER-009",
  },
  {
-  "codUsuario": 5,
-  "cod Persona": 10
+  "codUsuario": "USU-005",
+  "cod Persona":  "PER-010",
  },
  {
-  "codUsuario": 6,
-  "cod Persona": 11
+  "codUsuario": "USU-006",
+  "cod Persona":  "PER-011",
  },
  {
-  "codUsuario": 7,
-  "cod Persona": 12
+  "codUsuario": "USU-007",
+  "cod Persona":  "PER-012",
  }
 ]

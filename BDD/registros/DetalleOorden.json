@@ -1,61 +1,61 @@
 [
  {
-  "codOrden": 1,
-  "codProducto": 6,
+  "codOrden": "ORD-001",
+  "codProducto": "PRO-006",
   "cantidadProducto": 1,
   "precioTotal": 35
  },
  {
-  "codOrden": 2,
-  "codProducto": 1,
+  "codOrden": "ORD-002",
+  "codProducto": "PRO-001",
   "cantidadProducto": 2,
   "precioTotal": 100
  },
  {
-  "codOrden": 3,
-  "codProducto": 10,
+  "codOrden":"ORD-003",
+  "codProducto": "PRO-010",
   "cantidadProducto": 1,
   "precioTotal": 35
  },
  {
-  "codOrden": 4,
-  "codProducto": 14,
+  "codOrden":"ORD-004",
+  "codProducto": "PRO-014",
   "cantidadProducto": 1,
   "precioTotal": 55
  },
  {
-  "codOrden": 5,
-  "codProducto": 5,
+  "codOrden":"ORD-005",
+  "codProducto":"PRO-015",
   "cantidadProducto": 2,
   "precioTotal": 60
  },
  {
-  "codOrden": 6,
-  "codProducto": 29,
+  "codOrden":"ORD-006",
+  "codProducto": "PRO-029",
   "cantidadProducto": 2,
   "precioTotal": 40
  },
  {
-  "codOrden": 7,
-  "codProducto": 19,
+  "codOrden": "ORD-007",
+  "codProducto": "PRO-019",
   "cantidadProducto": 2,
   "precioTotal": 90
  },
  {
-  "codOrden": 8,
-  "codProducto": 20,
+  "codOrden": "ORD-008",
+  "codProducto": "PRO-020",
   "cantidadProducto": 3,
   "precioTotal": 120
  },
  {
-  "codOrden": 9,
-  "codProducto": 25,
+  "codOrden": "ORD-009",
+  "codProducto": "PRO-025",
   "cantidadProducto": 2,
   "precioTotal": 100
  },
  {
-  "codOrden": 10,
-  "codProducto": 28,
+  "codOrden": "ORD-010",
+  "codProducto": "PRO-028",
   "cantidadProducto": 1,
   "precioTotal": 55
  }

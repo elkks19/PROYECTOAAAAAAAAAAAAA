@@ -1,22 +1,27 @@
 [
  {
-  "codEmpresa": 14,
-  "codPersona": 1
+  "codPersonalEmpresa": "PEMP-001",
+  "codEmpresa": "EMP-014",
+  "codPersona":"PER-001",
  },
  {
-  "codEmpresa": 10,
-  "codPersona": 2
+  "codPersonalEmpresa": "PEMP-002",
+  "codEmpresa": "EMP-010",
+  "codPersona": "PER-002",
  },
  {
-  "codEmpresa": 11,
-  "codPersona": 3
+  "codPersonalEmpresa":"PEMP-003",
+  "codEmpresa": "EMP-011",
+  "codPersona":"PER-003",
  },
  {
-  "codEmpresa": 2,
-  "codPersona": 4
+  "codPersonalEmpresa":"PEMP-004",
+  "codEmpresa": "EMP-002",
+  "codPersona": "PER-004",
  },
  {
-  "codEmpresa": 4,
-  "codPersona": 5
+  "codPersonalEmpresa": "PEMP-005",
+  "codEmpresa":"EMP-004",
+  "codPersona": "PER-005",
  }
 ]
