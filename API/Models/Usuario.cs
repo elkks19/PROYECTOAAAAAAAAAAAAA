@@ -23,6 +23,7 @@ namespace API.Models
         public ICollection<VisitasEmpresa> VisitasEmpresa { get; set; }
         public ICollection<GuardadoWishlist> GuardadoWishlist { get; set; }
         public ICollection<GuardadoCarrito> GuardadoCarrito { get; set; }
+        public ICollection<Wishlist> Wishlist { get; set; }
 
     }
 }

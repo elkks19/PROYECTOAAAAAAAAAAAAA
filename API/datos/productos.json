@@ -292,7 +292,7 @@
   "descProducto": "Sudadera cómoda con estampado floral. Perfecta para un look casual y relajado.",
   "precioProducto": 35,
   "precioEnvioProducto": 4,
-  "pathFotoProducto": "perrito.jpg",
+  "pathFotoProducto": "sudaderafloral.jpg",
   "createdAt": "27\/11\/2023",
   "lastUpdate": "27\/11\/2023"
  },
@@ -303,7 +303,7 @@
   "descProducto": "Vestido lápiz clásico con un toque moderno. Acentúa tu figura con estilo.",
   "precioProducto": 55,
   "precioEnvioProducto": 0,
-  "pathFotoProducto": "perrito.jpg",
+  "pathFotoProducto": "vestidolapiz.jpg",
   "createdAt": "27\/11\/2023",
   "lastUpdate": "27\/11\/2023"
  },
@@ -314,7 +314,7 @@
   "descProducto": "Gorra de béisbol con diseño vintage. Completa tu estilo urbano.",
   "precioProducto": 20,
   "precioEnvioProducto": 0,
-  "pathFotoProducto": "perrito.jpg",
+  "pathFotoProducto": "gorra.jpg",
   "createdAt": "27\/11\/2023",
   "lastUpdate": "27\/11\/2023"
  },
@@ -324,6 +324,7 @@
   "nombreProducto": "Jersey de Punto con Detalles Entrelazados",
   "descProducto": "Jersey de punto suave con detalles entrelazados en la parte delantera. Perfecto para un look acogedor.",
   "precioProducto": 45,
+  "pathFotoProducto":  "jersey.jpg",
   "precioEnvioProducto": 0,
   "createdAt": "27\/11\/2023",
   "lastUpdate": "27\/11\/2023"

@@ -10,7 +10,20 @@ window.onload = function(){
       "Authorization": localStorage.getItem("token")
     }
   }).then(response => {
-    console.log(response.data);
+
+    axios.get("http://localhost:5132/productos/getfoto/" + codProducto, {
+      responseType: 'blob',
+      headers:{
+        "Content-Type": "application/json",
+        "Authorization": localStorage.getItem("token")
+      }
+    }).then(response2 => {
+      let img = document.getElementById("img");
+      img.src = window.URL.createObjectURL(response2.data);
+    }).catch(error => {
+      console.log(error);
+    });
+
     let div = document.getElementById("detalles-producto");
     let producto = response.data;
     div.innerHTML +=

@@ -22,8 +22,11 @@ function cargarProductos() {
                 <td>${dato.precioEnvioProducto}</td>
                 <td>${dato.createdAt}</td>
                 <td>${dato.lastUpdate}</td>
-                <td><a onclick=editar('${dato.codProducto}') href="#editEmployeeModal" class="edit" data-toggle="modal"><i class="material-icons" data-toggle="tooltip" title="Edit">&#xE254;</i></a></td>
-                <td><a onclick=eliminar('${dato.codProducto}') href="#deleteEmployeeModal" class="delete" data-toggle="modal"><i class="material-icons" data-toggle="tooltip" title="Delete">&#xE872;</i></a></td>
+                <td>
+                    <a onclick=editar('${dato.codProducto}') href="#editEmployeeModal" class="edit" data-toggle="modal"><i class="material-icons" data-toggle="tooltip" title="Edit">&#xE254;</i></a>
+                    <a onclick=eliminar('${dato.codProducto}') href="#deleteEmployeeModal" class="delete" data-toggle="modal"><i class="material-icons" data-toggle="tooltip" title="Delete">&#xE872;</i></a>
+                    <a onclick=categorias('${dato.codProducto}') href="#categoriasModal" class="info" data-toggle="modal"><i class="material-icons" data-toggle="tooltip" title="Categorias">&#xe574;</i></a>
+                </td>
             </tr>
            `;
         });
@@ -99,14 +102,47 @@ function eliminar(cod){
 function crear(){
     let codEmpresa = document.getElementById("codEmpresaCrear").value;
     let nombreProducto = document.getElementById("nombreProductoCrear").value;
-    let descripcionProducto = document.getElementById("descripcionProductoCrear").value;
+    let descripcionProducto = document.getElementById("descProductoCrear").value;
     let precioProducto = document.getElementById("precioProductoCrear").value;
     let precioEnvioProducto = document.getElementById("precioEnvioProductoCrear").value;
-    axios.post("http://localhost:5132/productos/create", {
-        codEmpresa : codEmpresa,
+    let fotoProducto = document.getElementById("fotoProducto").files[0];
+
+    axios.post("http://localhost:5132/productos/create/" + codEmpresa, {
         nombreProducto: nombreProducto,
         descProducto: descripcionProducto,
         precioProducto: precioProducto,
-        precioEnvioProducto: precioEnvioProducto
+        precioEnvioProducto: precioEnvioProducto,
+        fotoProducto: fotoProducto
+    },{
+        headers:{
+            "Authorization": localStorage.getItem("token"),
+            "Content-Type": "multipart/form-data",
+            "Accept": "application/json"
+        }
+    }).then(response => {
+        cargarProductos();
+    }).catch(error => {
+        console.log(error);
     });
+}
+
+function categorias(cod){
+    axios.get("http://localhost:5132/productos/categorias/" + cod,{
+        headers:{
+            "Authorization": localStorage.getItem("token")
+        }
+    }).then(response => {
+        let datos = response.data;
+        let body = document.getElementById("categoriasBody");
+        datos.forEach(dato => {
+            body.innerHTML = body.innerHTML + `
+                <input type="text" value="${dato.nombreCategoria}">
+            `;
+        });
+    }).catch(error => {
+        console.log(error);
+    });
+}
+
+function agregarCategoria(){
 }

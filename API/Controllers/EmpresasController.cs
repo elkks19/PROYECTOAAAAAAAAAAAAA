@@ -4,6 +4,7 @@ using API.Models;
 using API.Atributos;
 using Microsoft.EntityFrameworkCore;
 using System.IdentityModel.Tokens.Jwt;
+using System.Runtime.CompilerServices;
 
 namespace API.Controllers
 {
@@ -12,16 +13,57 @@ namespace API.Controllers
         private readonly APIContext db;
         private readonly IWebHostEnvironment env;
         private readonly ListaEsperaController listaC;
+        private readonly PersonalController personalC;
+        private readonly UsuariosController usuariosC;
 
-        public EmpresasController(APIContext context, IWebHostEnvironment environment, ListaEsperaController listaEsperaController)
+        public EmpresasController(APIContext context, IWebHostEnvironment environment, ListaEsperaController listaEsperaController, PersonalController personalC, UsuariosController usuariosController)
         {
             db = context;
             env = environment;
             listaC = listaEsperaController;
+            usuariosC = usuariosController;
+            this.personalC = personalC;
+        }
+
+        public class RegistroEmpresa
+        {
+            public string nombreEmpresa { get; set; }
+            public string direccionEmpresa { get; set; }
+            public string nombrePersona { get; set; }
+            public DateTime fechaNacPersona { get; set; }
+            public string mailPersona { get; set; }
+            public string userPersona { get; set; }
+            public string passwordPersona { get; set; }
+        }
+
+        [HttpGet]
+        public async Task<IActionResult> Productos()
+        {
+            var token = Request.Headers["Authorization"];
+            var persona = await usuariosC.getUsuario(token);
+
+            if (persona == null)
+            {
+                return BadRequest("No se encontro a la persona");
+            }
+
+            await db.Entry(persona).Reference(x => x.PersonalEmpresa).LoadAsync();
+            if (persona.PersonalEmpresa == null)
+            {
+                return BadRequest("Ingrese un personal valido");
+            }
+
+            await db.Entry(persona.PersonalEmpresa).Reference(x => x.Empresa).LoadAsync();
+
+            var empresa = persona.PersonalEmpresa.Empresa;
+
+            var productos = await db.Producto.Where(x => x.codEmpresa.Equals(empresa.codEmpresa)).ToListAsync();
+
+            return Ok(productos);
         }
 
         [HttpPost]
-        public async Task<IActionResult> Registro(Empresa request)
+        public async Task<IActionResult> Registro(RegistroEmpresa request)
         {
             string dir = env.ContentRootPath + "\\ArchivosVerificacion";
 
@@ -83,6 +125,24 @@ namespace API.Controllers
             };
 
             await db.Empresa.AddAsync(empresa);
+
+            await db.SaveChangesAsync();
+
+            PersonalEmpresa personal = await personalC.Create(new Persona()
+            {
+                nombrePersona = request.nombrePersona,
+                direccionPersona = request.direccionEmpresa,
+                fechaNacPersona = request.fechaNacPersona,
+                mailPersona = request.mailPersona,
+                userPersona = request.userPersona,
+                passwordPersona = request.passwordPersona
+            }, empresa);
+
+            if (personal == null)
+            {
+                return BadRequest("Hubo un error al registrar la empresa");
+            }
+
             
             var listaEspera = await listaC.Create(empresa);
             if (listaEspera == null)
@@ -90,29 +150,131 @@ namespace API.Controllers
                 return BadRequest("Hubo un error en el registro de la empresa");
             }
 
-            await db.SaveChangesAsync();
             return Ok("Empresa creada correctamente");
         }
 
+        [HttpGet]
+        [Autorizado("administrador")]
+        public async Task<IActionResult> ArchivoVerificacion([FromRoute]string cod)
+        {
+            var empresa = await db.Empresa.FirstOrDefaultAsync(x => x.codEmpresa.Equals(cod));
 
+            if (empresa == null)
+            {
+                return BadRequest("No se encontro la empresa");
+            }
 
+            var archivo = System.IO.File.ReadAllBytes(empresa.archivoVerificacionEmpresa);
+
+            var extension = empresa.archivoVerificacionEmpresa.Split(".").Last();
+
+            if (extension == "jpg" || extension == "jpeg" || extension == "png")
+            {
+                return File(archivo, "image/jpeg");
+            }
+
+            if (extension == "pdf")
+            {
+                return File(archivo, "application/pdf");
+            }
+
+            return BadRequest("No es un tipo de archivo valido");
+
+        }
 
 
         //
         //  PARA LOS REPORTES
         //
+        [HttpGet]
+        public async Task<IActionResult> visitas()
+        {
+            var client = new HttpClient();
+            var uri = Environment.GetEnvironmentVariable("RUTA_REPORTES");
+            var response = await client.GetAsync($"{uri}/prueba/visitas");
 
-        //[HttpGet]
-        //public async Task<IActionResult> ReportePrueba()
-        //{
-        //    var client = new HttpClient();
-        //    var uri = Environment.GetEnvironmentVariable("RUTA_REPORTES");
-        //    var response = await client.GetAsync($"{uri}/prueba/prueba");
+            Stream a = await response.Content.ReadAsStreamAsync();
 
-        //    Stream a = await response.Content.ReadAsStreamAsync();
+            return File(a, "application/pdf");
+        }
+        [HttpGet]
+        public async Task<IActionResult> guardados()
+        {
+            var client = new HttpClient();
+            var uri = Environment.GetEnvironmentVariable("RUTA_REPORTES");
+            var response = await client.GetAsync($"{uri}/prueba/guardadosWishlist");
 
-        //    return File(a, "application/pdf");
-        //}
+            Stream a = await response.Content.ReadAsStreamAsync();
 
+            return File(a, "application/pdf");
+        }
+
+        [HttpGet]
+        public async Task<IActionResult> usuarios()
+        {
+            var client = new HttpClient();
+            var uri = Environment.GetEnvironmentVariable("RUTA_REPORTES");
+            var response = await client.GetAsync($"{uri}/prueba/usuarios");
+
+            Stream a = await response.Content.ReadAsStreamAsync();
+
+            return File(a, "application/pdf");
+        }
+
+        [HttpGet]
+        public async Task<IActionResult> empresas()
+        {
+            var client = new HttpClient();
+            var uri = Environment.GetEnvironmentVariable("RUTA_REPORTES");
+            var response = await client.GetAsync($"{uri}/prueba/empresas");
+
+            Stream a = await response.Content.ReadAsStreamAsync();
+
+            return File(a, "application/pdf");
+        }
+
+        [HttpGet]
+        public async Task<IActionResult> ventas()
+        {
+            var client = new HttpClient();
+            var uri = Environment.GetEnvironmentVariable("RUTA_REPORTES");
+            var response = await client.GetAsync($"{uri}/prueba/ventas");
+
+            Stream a = await response.Content.ReadAsStreamAsync();
+
+            return File(a, "application/pdf");
+        }
+
+        //CRUD ACTIONS
+        [HttpGet]
+        [Autorizado("administrador")]
+        public async Task<IActionResult> Index()
+        {
+            var empresas = db.Empresa.Include(x => x.ListaEspera).Select(x => new
+            {
+                x.nombreEmpresa,
+                x.direccionEmpresa,
+                x.activo,
+                x.codEmpresa,
+                createdAt = x.createdAt.ToString("dd/MM/yyyy HH:mm"),
+                lastUpdate = x.lastUpdate.ToString("dd/MM/yyyy HH:mm"),
+
+                listaEspera = new{
+                    x.ListaEspera.isAceptado,
+                    x.ListaEspera.razonRevision,
+                    x.ListaEspera.fechaRevision,
+                    x.ListaEspera.fechaSolicitudRevision,
+                    x.ListaEspera.codAdmin
+                }
+
+            }).Where(x => x.activo.Equals(true));
+
+            if (empresas.Count() == 0)
+            {
+                return BadRequest("No se encontro ninguna empresa");
+            }
+
+            return Ok(empresas);
+        }
     }
 }

@@ -28,9 +28,25 @@ function ChangeContent(pageId) {
 
 window.onload = function() {
   ChangeContent('pag1');
+  cargarProductos();
 }
 
 function verDetalles(cod){
   localStorage.setItem("codProducto", cod);
   window.location.href = "../Productos/detalles productos/detalles.html";
+}
+
+function logout(){
+  axios.post('http://localhost:5132/auth/logout', {}, {
+    headers: {
+      "Content-Type": "application/json",
+      "Authorization": localStorage.getItem("token")
+    }
+  }).then((response) => {
+    console.log(response.data);
+    localStorage.removeItem("token");
+    window.location.href = "../../INICIO.html";
+  }).catch((error) => { 
+    console.log(error); 
+  });
 }

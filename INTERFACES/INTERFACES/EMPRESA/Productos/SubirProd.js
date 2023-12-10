@@ -1,141 +1,151 @@
-/*document.getElementById('product-form').addEventListener('submit', function(event) {
-   event.preventDefault();
+function cargarProductos() {
+    axios.get("http://localhost:5132/productos/index",
+    {
+        headers :{
+            "Content-Type": "application/json",
+            "Authorization": localStorage.getItem("token")
+        }
+    }).then(response => {
+        const tabla = document.getElementById("tablaPRO");
 
+        let datos = response.data;
 
-   var productPhoto = document.getElementById('product-photo').files[0];
-   var productPrice = document.getElementById('product-price').value;
-   var productCategories = document.getElementById('product-categories').value;
-   var productQuantity = document.getElementById('product-quantity').value;
-
-   
-   console.log('Product Photo:', productPhoto);
-   console.log('Product Price:', productPrice);
-   console.log('Product Categories:', productCategories);
-   console.log('Product Quantity:', productQuantity);
-});
- 
-
-//drop
-var dropArea = document.getElementById('drop-area');
-var fileElem = document.getElementById('fileElem');
-var preview = document.getElementById('preview');
-var uploadText = document.getElementById('upload-text');
-
-dropArea.addEventListener('dragover', function(e) {
- e.stopPropagation();
- e.preventDefault();
- uploadText.textContent = 'Arrastra o Suelta las imagenes';
-});
-
-dropArea.addEventListener('dragleave', function(e) {
- e.stopPropagation();
- e.preventDefault();
- uploadText.textContent = 'Arrastra o Suelta las imagenes';
-});
-
-dropArea.addEventListener('drop', function(e) {
- e.stopPropagation();
- e.preventDefault();
- uploadText.textContent = 'Cargando...';
- var files = e.dataTransfer.files;
- handleFiles(files);
-});
-//funcion para que se suba la imagen
-
-function handleFiles(files) {
- for (var i = 0; i < files.length; i++) {
- var file = files[i];
- if (file.type.startsWith('image/')) {
-   var img = document.createElement('img');
-   img.classList.add('obj');
-   img.file = file;
-   var reader = new FileReader();
-   reader.onload = (function(aImg) {
-     return function(e) {
-       aImg.src = e.target.result;
-     };
-   })(img);
-   reader.readAsDataURL(file);
-   data.push({
-     photo: img.src,
-     price: document.getElementById('price').value,
-     categories: document.getElementById('categories').value,
-     quantity: document.getElementById('quantity').value,
-     description: document.getElementById('description').value
-   });
-   updateTable();
- }
- }
-}
-//subir a la tabla
-
-function updateTable() {
- var tableBody = document.getElementById('productTable').getElementsByTagName('tbody')[0];
- tableBody.innerHTML = '';
- for (var i = 0; i < data.length; i++) {
- var row = tableBody.insertRow();
- var cell1 = row.insertCell(0);
- var cell2 = row.insertCell(1);
- var cell3 = row.insertCell(2);
- var cell4 = row.insertCell(3);
- var cell5 = row.insertCell(4);
- var cell6 = row.insertCell(5);
- cell1.innerHTML = '<img src="' + data[i].photo + '" width="50" height="50">';
- cell2.innerHTML = data[i].price;
- cell3.innerHTML = data[i].categories;
- cell4.innerHTML = data[i].quantity;
- cell5.innerHTML = data[i].description;
- cell6.innerHTML = '<button onclick="deleteRow(' + i + ')">Delete</button>';
- }
+        datos.forEach(dato => {
+          axios.get("http://localhost:5132/productos/getfoto/" + dato.codProducto, {
+            responseType: 'blob',
+            headers: {
+              "content-type": "application/json",
+              "Authorization": localStorage.getItem("token"),
+            }}).then(response => {
+              let imagen = window.URL.createObjectURL(response.data);
+              tabla.innerHTML +=
+              `
+                  <tr>
+                      <td><img src="${imagen}" ></td>
+                      <td>${dato.nombreProducto}</td>
+                      <td>${dato.precioProducto}Bs</td>
+                      <td>${dato.cantidadProducto}</td>
+                      <td>${dato.descProducto}</td>
+                      <td>
+                          <a href="#editEmployeeModal" class="edit" data-toggle="modal"><i class="material-icons" data-toggle="tooltip" title="Edit">&#xE254;</i></a>
+                          <a href="#deleteEmployeeModal" class="delete" data-toggle="modal"><i class="material-icons" data-toggle="tooltip" title="Delete">&#xE872;</i></a>
+                      </td>
+                  </tr>
+              `;
+            }).catch(error => {
+              console.log(error);
+            });
+        });
+    }).catch(error => {
+        console.log(error);
+    });
 }
 
-function deleteRow(index) {
- data.splice(index, 1);
- updateTable();
-}*/
-//para llenar los espacios
-const form = document.getElementById('product-form');
-form.addEventListener('submit', function(event) {
-   event.preventDefault();
-   const myFormData = new FormData(event.target);
-   const formDataObj = {};
-   myFormData.forEach((value, key) => (formDataObj[key] = value));
+function editar(cod){
+    let codEmpresa = document.getElementById("codEmpresa");
+    let nombreProducto = document.getElementById("nombreProducto");
+    let descripcionProducto = document.getElementById("descripcionProducto");
+    let precioProducto = document.getElementById("precioProducto");
+    let precioEnvioProducto = document.getElementById("precioEnvioProducto");
 
-   const table = document.getElementById('productTable');
-   const row = table.insertRow();
-
-   const nameCell = row.insertCell();
-   nameCell.innerHTML = formDataObj['product-name'];
-
-   const priceCell = row.insertCell();
-   priceCell.innerHTML = formDataObj['product-price'];
-
-   const categoriesCell = row.insertCell();
-   categoriesCell.innerHTML = formDataObj['product-categories'];
-
-   const quantityCell = row.insertCell();
-   quantityCell.innerHTML = formDataObj['product-quantity'];
-
-   const descriptionCell = row.insertCell();
-   descriptionCell.innerHTML = formDataObj['product-description'];
-});
-//acciones
-function modifyProduct(button) {
-
-   var row = button.parentNode.parentNode;
-
-   var cells = row.getElementsByTagName('td');
-
-   var productName = cells[1].innerText;
-   var productPrice = cells[2].innerText;
-
+    axios.get("http://localhost:5132/productos/details/" + cod,{
+        headers: {
+            "Authorization": localStorage.getItem("token")
+        }
+    }).then(response => {
+        localStorage.setItem("productoEdicion", JSON.stringify(response.data));
+        codEmpresa.value = response.data.codEmpresa;
+        nombreProducto.value = response.data.nombreProducto;
+        descripcionProducto.value = response.data.descProducto;
+        precioProducto.value = response.data.precioProducto;
+        precioEnvioProducto.value = response.data.precioEnvioProducto;
+    }).catch(error =>{
+        console.log(error);
+    })
 }
 
-function deleteProduct(button) {
 
-   var row = button.parentNode.parentNode;
+function guardar(){
+    let codProducto = JSON.parse(localStorage.getItem("productoEdicion")).codProducto;
+    let codEmpresa = document.getElementById("codEmpresa").value;
+    let nombreProducto = document.getElementById("nombreProducto").value;
+    let descripcionProducto = document.getElementById("descripcionProducto").value;
+    let precioProducto = document.getElementById("precioProducto").value;
+    let precioEnvioProducto = document.getElementById("precioEnvioProducto").value;
 
-
-   row.parentNode.removeChild(row);
+    axios.post("http://localhost:5132/productos/edit/" + codProducto, {
+        codEmpresa : codEmpresa,
+        nombreProducto: nombreProducto,
+        descProducto: descripcionProducto,
+        precioProducto: precioProducto,
+        precioEnvioProducto: precioEnvioProducto
+    },
+    {
+        headers: {
+            "Authorization": localStorage.getItem("token")
+        }
+    }).catch(error => {
+        console.log(error);
+    })
 }
 
+function confirmarEliminar(){
+    let codProducto = localStorage.getItem("codProducto");
+
+    axios.post("http://localhost:5132/productos/delete/" + codProducto, {
+        headers:{
+            "Authorization": localStorage.getItem("token")
+        }
+    }).catch(error => {
+        console.log(error);
+    });
+}
+
+function eliminar(cod){
+    localStorage.setItem("codProducto", cod);
+}
+
+function crear(){
+    let codEmpresa = document.getElementById("codEmpresaCrear").value;
+    let nombreProducto = document.getElementById("nombreProductoCrear").value;
+    let descripcionProducto = document.getElementById("descProductoCrear").value;
+    let precioProducto = document.getElementById("precioProductoCrear").value;
+    let precioEnvioProducto = document.getElementById("precioEnvioProductoCrear").value;
+    let fotoProducto = document.getElementById("fotoProducto").files[0];
+
+    axios.post("http://localhost:5132/productos/create/" + codEmpresa, {
+        nombreProducto: nombreProducto,
+        descProducto: descripcionProducto,
+        precioProducto: precioProducto,
+        precioEnvioProducto: precioEnvioProducto,
+        fotoProducto: fotoProducto
+    },{
+        headers:{
+            "Authorization": localStorage.getItem("token"),
+            "Content-Type": "multipart/form-data",
+            "Accept": "application/json"
+        }
+    }).then(response => {
+        cargarProductos();
+    }).catch(error => {
+        console.log(error);
+    });
+}
+
+function categorias(cod){
+    axios.get("http://localhost:5132/productos/categorias/" + cod,{
+        headers:{
+            "Authorization": localStorage.getItem("token")
+        }
+    }).then(response => {
+        let datos = response.data;
+        let body = document.getElementById("categoriasBody");
+        datos.forEach(dato => {
+            body.innerHTML = body.innerHTML + `
+                <input type="text" value="${dato.nombreCategoria}">
+            `;
+        });
+    }).catch(error => {
+        console.log(error);
+    });
+}

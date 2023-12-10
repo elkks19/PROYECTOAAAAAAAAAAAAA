@@ -13,12 +13,15 @@ namespace API.Controllers
         private readonly IWebHostEnvironment env;
         private readonly PersonasController personasC;
         private readonly LogsAuditoriaController logsC;
-        public UsuariosController(APIContext context, IWebHostEnvironment environment, PersonasController personasController, LogsAuditoriaController logsController)
+        private readonly AuthController authC;
+
+        public UsuariosController(APIContext context, IWebHostEnvironment environment, PersonasController personasController, LogsAuditoriaController logsController, AuthController authController)
         {
             db = context;
             env = environment;
             personasC = personasController;
             logsC = logsController;
+            authC = authController;
         }
         
 
@@ -72,15 +75,30 @@ namespace API.Controllers
         {
             var token = Request.Headers["Authorization"];
             var persona = await getUsuario(token);
+            var rol = authC.verificarRol(persona.userPersona);
             if (persona == null)
             {
                 return BadRequest("Hubo algun error al buscar al usuario");
             }
 
-            var usuario = persona.Usuario;
-
-            if (usuario != null)
+            if (rol == "usuario")
             {
+                await db.Entry(persona).Reference(x => x.Usuario).LoadAsync();
+
+                return Ok(new
+                {
+                    userPersona = persona.userPersona,
+                    nombrePersona = persona.nombrePersona,
+                    mailPersona = persona.mailPersona,
+                    fechaNacPersona = persona.fechaNacPersona.ToString("yyyy-MM-dd"),
+                    direccionPersona = persona.direccionPersona,
+                    celularPersona = persona.celularPersona,
+                });
+            }
+            if (rol == "administrador")
+            {
+                await db.Entry(persona).Reference(x => x.Administrador).LoadAsync();
+
                 return Ok(new
                 {
                     userPersona = persona.userPersona,
@@ -169,6 +187,7 @@ namespace API.Controllers
             {
                 return BadRequest("Ingrese un mail valido");
             }
+            await db.SaveChangesAsync();
 
             return Ok("Se edito el usuario correctamente");
         }
@@ -205,7 +224,7 @@ namespace API.Controllers
         {
             try
             {
-                var persona = await db.Persona.Include(x => x.Usuario).FirstOrDefaultAsync(x => x.Token.Token.Equals(token));
+                var persona = await db.Persona.FirstOrDefaultAsync(x => x.Token.Token.Equals(token));
                 return persona;
             }
             catch (Exception e)

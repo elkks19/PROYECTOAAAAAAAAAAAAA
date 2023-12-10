@@ -12,10 +12,12 @@
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
     <script src="https://kit.fontawesome.com/7c61ac1c1a.js" crossorigin="anonymous"></script>
+	<script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+	<script src="./SubirProd.js"></script>
 </head>
-<body>
+<body onload="cargarProductos()">
     <div class="header">
-        <H1>Añadir Prendas</H1>
+        <H1>Añadir Ropa</H1>
         <a href=""><i class="fa-solid fa-arrow-left"></i>Regresar</a>
     </div>
     <div class="container">
@@ -42,31 +44,7 @@
                         <th>Acciones</th>
                     </tr>
                 </thead>
-                <tbody>
-                    <tr>
-                        <td><img src="img1.jpg" ></td>
-                        <td>Producto 1</td>
-                        <td>100 Bs</td>
-                        <td>Categoria 1</td>
-                        <td>10</td>
-                        <td>jshfjsbvjdsbvkjsbkvsd</td>
-                        <td>
-                            <a href="#editEmployeeModal" class="edit" data-toggle="modal"><i class="material-icons" data-toggle="tooltip" title="Edit">&#xE254;</i></a>
-                            <a href="#deleteEmployeeModal" class="delete" data-toggle="modal"><i class="material-icons" data-toggle="tooltip" title="Delete">&#xE872;</i></a>
-                        </td>
-                    </tr>
-                    <tr>
-                        <td><img src="img2.jpg" ></td>
-                        <td>Product 2</td>
-                        <td>200Bs</td>
-                        <td>Categoria 2</td>
-                        <td>20</td>
-                        <td>Tjvnskjdvnskjvnksj</td>
-                        <td>
-                            <a href="#editEmployeeModal" class="edit" data-toggle="modal"><i class="material-icons" data-toggle="tooltip" title="Edit">&#xE254;</i></a>
-                            <a href="#deleteEmployeeModal" class="delete" data-toggle="modal"><i class="material-icons" data-toggle="tooltip" title="Delete">&#xE872;</i></a>
-                        </td>
-                    </tr>
+                <tbody id="tablaPRO">
                 </tbody>
             </table>
 			<div class="clearfix">

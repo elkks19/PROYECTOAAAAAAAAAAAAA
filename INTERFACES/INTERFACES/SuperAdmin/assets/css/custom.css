@@ -389,7 +389,7 @@ table.table .avatar {
 }
 /* Modal styles */
 .modal .modal-dialog {
-    max-width: 400px;
+    max-width: 50%;
 }
 .modal-header{
     background: #BF9004;

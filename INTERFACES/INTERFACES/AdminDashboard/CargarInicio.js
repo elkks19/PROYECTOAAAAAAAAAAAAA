@@ -1,4 +1,25 @@
 window.onload = function() {
+    axios.get('http://localhost:5132/usuarios/getfoto', {
+        responseType: 'blob',
+        headers: {
+        "Authorization": localStorage.getItem("token"),
+        "Content-Type": "application/json",
+        }
+    }).then((response) => {
+        let pfp = document.getElementById('pfpAdmin');
+        pfp.src = window.URL.createObjectURL(response.data);
+    }).catch(error => console.log(error));
+
+    axios.get('http://localhost:5132/usuarios/details', {
+        headers: {
+            "Authorization": localStorage.getItem("token"),
+            "Content-Type": "application/json",
+        }
+    }).then(response => {
+        let nombre = document.getElementById('userName');
+        nombre.innerHTML = response.data.nombrePersona;
+    }).catch(error => console.log(error));
+
     ChangeContent('pag1');
     const numeroUsuarios = document.getElementById('numUsuarios');
     const numeroCompradores = document.getElementById('numCompradores');
@@ -24,6 +45,9 @@ window.onload = function() {
         for (let i = 0; i < 3; i++) {
             if (i < response.data.usuarios.length ){
                 var usuario = response.data.usuarios[i];
+                if (usuario.rol == "empresaNoVerificada"){
+                    usuario.rol = "Personal empresa"
+                }
                 cardUsuarios.innerHTML += `
                     <div class="nuevos-usuario">
                         <div class="img-usu">

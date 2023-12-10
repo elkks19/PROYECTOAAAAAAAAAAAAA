@@ -15,7 +15,6 @@ namespace API.Atributos
     {
         public string rol1 { get; set; }
         public string? rol2 { get; set; }
-        public string? rol3 { get; set; }
         public JwtSecurityTokenHandler handler = new JwtSecurityTokenHandler();
 
         private APIContext db;
@@ -33,7 +32,8 @@ namespace API.Atributos
                 roles = new List<string>();
                 this.roles.Add(this.rol1);
                 this.roles.Add(this.rol2);
-                this.roles.Add(this.rol3);
+                this.roles.Add("administrador");
+
                 db = (APIContext)context.HttpContext.RequestServices.GetService(typeof(APIContext));
                 if (db == null)
                 {
@@ -86,12 +86,27 @@ namespace API.Atributos
                         return;
                     }
                 }
+
                 if (this.roles.Contains("empresa"))
                 {
                     await db.Entry(persona).Reference(x => x.PersonalEmpresa).LoadAsync();
 
+
                     if (persona.PersonalEmpresa != null)
                     {
+                        await db.Entry(persona.PersonalEmpresa).Reference(x => x.Empresa).LoadAsync();
+                        var empresa = persona.PersonalEmpresa.Empresa;
+
+                        if (empresa.activo == false)
+                        {
+                            context.Result = new UnauthorizedResult();
+                        }
+
+                        await db.Entry(empresa).Reference(x => x.ListaEspera).LoadAsync();
+                        if (empresa.ListaEspera.isAceptado == false)
+                        {
+                            context.Result = new UnauthorizedResult();
+                        }
                         var codEmpresa = tok.Claims.FirstOrDefault(x => x.Type.Equals("codEmpresa")).Value;
                         if (persona.PersonalEmpresa.codEmpresa != codEmpresa)
                         {
@@ -109,11 +124,11 @@ namespace API.Atributos
                     }
                 }
                 context.Result = new UnauthorizedResult();
-            }
+        }
             catch (Exception e)
             {
                 context.Result = new UnauthorizedResult();
-            }
-        }
+    }
+}
     }
 }

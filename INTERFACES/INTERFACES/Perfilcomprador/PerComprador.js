@@ -37,12 +37,12 @@ function cargarDatosUsuario(){
             "Content-Type": "application/json",
         }
     }).then((response)=>{
+        localStorage.setItem("celular", response.data.celularPersona);
+        localStorage.setItem("direccion", response.data.direccionPersona);
         document.getElementById("user").value = response.data.userPersona;
         document.getElementById("nombres").value = response.data.nombrePersona;
         document.getElementById("mail").value = response.data.mailPersona;
         document.getElementById("fechaNac").value = response.data.fechaNacPersona;
-        localStorage.setItem("direccion", response.data.direccionPersona);
-        localStorage.setItem("celular", response.data.celularPersona);
         console.log(response.data);
     }).catch((error)=>{
         console.log(error);
@@ -67,6 +67,10 @@ function actualizarDatosUsuario(){
 function actualizarRecibo(){
     axios.patch('http://localhost:5132/Usuarios/Edit',
     {
+        userPersona: document.getElementById("user").value,
+        nombrePersona: document.getElementById("nombres").value,
+        fechaNacPersona: document.getElementById("fechaNac").value,
+        mailPersona: document.getElementById("mail").value,
         direccionPersona: document.getElementById("direccion").value,
         celularPersona: document.getElementById("celular").value
     },
@@ -77,10 +81,14 @@ function actualizarRecibo(){
         }
     }).then((response)=>{
         console.log(response.data);
-        cargarDatosUsuario();
+            cargarDatosUsuario();
     }).catch((error)=>{
         console.log(error);
     });
+}
+
+function sleep(ms) {
+  return new Promise(resolve => setTimeout(resolve, ms));
 }
 
 
@@ -111,6 +119,8 @@ function actualizarCuenta(){
         nombrePersona: document.getElementById("nombres").value,
         fechaNacPersona: document.getElementById("fechaNac").value,
         mailPersona: document.getElementById("mail").value,
+        direccionPersona: document.getElementById("direccion").value,
+        celularPersona: document.getElementById("celular").value
     },
     {
         headers:{

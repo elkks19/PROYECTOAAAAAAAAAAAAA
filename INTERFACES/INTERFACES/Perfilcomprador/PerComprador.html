@@ -40,7 +40,7 @@
                             <a class="list-group-item list-group-item-action" data-toggle="list"
                                href="#account-change-password" onclick="setToPassword()">Cambiar contraseña</a>
                             <a class="list-group-item list-group-item-action" data-toggle="list"
-                               href="#account-info" onclick="setToRecibo()">Datos de recibo</a>
+                               href="#account-info" onclick="setToRecibo()">Datos de contacto</a>
                         </div>
                     </div>
                     <!--OPCIONES FIN-->
@@ -55,7 +55,7 @@
                                     <div class="media-body ml-4">
                                         <label style="border-color: #2A2A2A; background: #BF9004 " class="btn btn-outline">
                                             Cambia tu foto
-                                                <input type="file" class="account-settings-fileinput" id="imagen" onchange="nombreArchivo()">
+                                                <input type="file" class="account-settings-fileinput" id="imagen">
                                         </label>
 
                                         <div class="text-dark small mt-1 text">Permite archivos JPG y PNG</div>
@@ -84,7 +84,7 @@
                                     </div>
                                     <div class="form-group">
                                         <label style="font-family:'Genera Grotesk';color:#BF9004" class="form-label">Fecha de cumpleaños</label>
-                                        <input type="date" class="form-control" id="fechaNac">
+                                        <input class="form-control" id="fechaNac" onfocus="this.type = 'date'" onblur="this.type = 'text'">
                                     </div>
 
                                 </div>
@@ -111,36 +111,17 @@
                             <!--DATOS DE RECIBO INICIO-->
                             <div class="tab-pane fade" id="account-info">
                                 <div class="card-body pb-2">
-                                    <!-- <div class="form-group">
-                                        <label style="font-family:'Genera Grotesk';color:#BF9004" class="form-label">NIT</label>
-                                        <input type="text" class="form-control" value="">
-                                    </div> -->
-
                                     <div class="form-group">
                                         <label style="font-family:'Genera Grotesk';color:#BF9004" class="form-label">Dirección</label>
                                         <input type="text" class="form-control" id="direccion">
                                     </div>
-                                    <!-- <div class="form-group">
-                                        <label style="font-family:'Genera Grotesk';color:#BF9004" class="form-label">Departamento</label>
-                                        <select class="custom-select">
-                                            <option selected>La Paz</option>
-                                            <option>Cochabamba</option>
-                                            <option>Santa Cruz</option>
-                                            <option>Oruro</option>
-                                            <option>Potosí</option>
-                                            <option>Chuquisaca</option>
-                                            <option>Tarija</option>
-                                            <option>Beni</option>
-                                            <option>Pando</option>
-                                        </select>
-                                    </div> -->
                                 </div>
                                 <hr class="border-light m-0">
                                 <div class="card-body pb-2">
                                     <h6 style="font-family:'Genera Grotesk';color:#2A2A2A; font-size:25px" class="mb-4">Contactos</h6>
                                     <div class="form-group">
                                         <label style="font-family:'Genera Grotesk';color:#BF9004" class="form-label">Celular</label>
-                                        <input id="celular" type="text" class="form-control" value="+591 60577712">
+                                        <input id="celular" type="number" step="1" class="form-control">
                                     </div>
 
                                 </div>

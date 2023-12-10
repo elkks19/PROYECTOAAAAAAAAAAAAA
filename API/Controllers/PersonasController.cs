@@ -94,9 +94,9 @@ namespace API.Controllers
                     }
                     personaExists.mailPersona = request.mailPersona; 
                 }
-                if (request.direccionPersona != null) { personaExists.direccionPersona = request.direccionPersona; }
+                if (request.direccionPersona != "") { personaExists.direccionPersona = request.direccionPersona; }
                 if (request.userPersona != null) { personaExists.userPersona = request.userPersona; }
-                if (request.celularPersona != null) { personaExists.celularPersona = request.celularPersona; }
+                if (request.celularPersona != "") { personaExists.celularPersona = request.celularPersona; }
 
                 db.Persona.Update(personaExists);
                 personaExists.Update();

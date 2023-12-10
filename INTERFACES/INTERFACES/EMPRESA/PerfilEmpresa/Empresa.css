@@ -36,6 +36,9 @@ a {
 li {
 	list-style: none;
 }
+li:hover{
+	cursor: pointer;
+}
 /*Definir colores y tipografia*/
 :root {
 	--hanken: 'hanken-book', sans-serif;
@@ -177,6 +180,13 @@ INICIO*/
 #sidebar .side-menu.top li a:hover {
 	color: var(--mostaza);
 }
+#sidebar .side-menu li a:hover {
+	color: var(--mostaza);
+}
+#sidebar .side-menu li a.logout:hover {
+	color: var(--red);
+}
+
 #sidebar .side-menu li a .bx {
 	min-width: calc(60px  - ((4px + 6px) * 2));
 	display: flex;

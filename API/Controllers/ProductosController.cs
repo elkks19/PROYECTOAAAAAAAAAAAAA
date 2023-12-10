@@ -18,106 +18,77 @@ namespace API.Controllers
     {
         private readonly APIContext db;
         private readonly IWebHostEnvironment env;
+        private readonly UsuariosController usuariosC;
+        private readonly AuthController authC;
 
-        public ProductosController(APIContext context, IWebHostEnvironment env)
+        public ProductosController(APIContext context, IWebHostEnvironment env, UsuariosController usuariosController, AuthController authC)
         {
             db = context;
             this.env = env;
+            usuariosC = usuariosController;
+            this.authC = authC;
         }
-
-
-        public async Task<IActionResult> Dummy()
-        {
-            var productos = new List<Producto>()
-            {
-                new Producto()
-                {
-                    codProducto = "PRO-001",
-                    codEmpresa = "EMP-001",
-                    nombreProducto = "BodyRojo",
-                    descProducto = "Body rojo para mujer talla xs, hasta s",
-                    precioProducto = 50,
-                    precioEnvioProducto = 40,
-                    pathFotoProducto = env.ContentRootPath + "\\ImagenesProducto\\bodyRojo.jpg",
-                    cantidadRestante = 5,
-                    createdAt = DateTime.Now,
-                    lastUpdate = DateTime.Now
-                },
-                new Producto()
-                {
-                    codProducto = "PRO-002",
-                    codEmpresa = "EMP-001",
-                    nombreProducto = "Faldas de tonos café",
-                    descProducto = "Faldas de tonos café",
-                    precioProducto = 70,
-                    precioEnvioProducto = 10,
-                    pathFotoProducto = env.ContentRootPath + "\\ImagenesProducto\\faldas.jpg",
-                    cantidadRestante = 4,
-                    createdAt = DateTime.Now,
-                    lastUpdate = DateTime.Now
-                },
-                new Producto()
-                {
-                    codProducto = "PRO-003",
-                    codEmpresa = "EMP-001",
-                    nombreProducto = "Jeans",
-                    descProducto = "Jeans para mujer",
-                    precioProducto = 70,
-                    precioEnvioProducto = 20,
-                    pathFotoProducto = env.ContentRootPath + "\\ImagenesProducto\\jeans.jpg",
-                    cantidadRestante = 10,
-                    createdAt = DateTime.Now,
-                    lastUpdate = DateTime.Now
-                },
-                new Producto()
-                {
-                    codProducto = "PRO-004",
-                    codEmpresa = "EMP-001",
-                    nombreProducto = "Camisas a cuadros",
-                    descProducto = "Camisas a cuadros para mujer",
-                    precioProducto = 20,
-                    precioEnvioProducto = 5,
-                    pathFotoProducto = env.ContentRootPath + "\\ImagenesProducto\\camisas.jpg",
-                    cantidadRestante = 15,
-                    createdAt = DateTime.Now,
-                    lastUpdate = DateTime.Now
-                }
-            };
-
-            foreach(var producto in productos)
-            {
-                await db.Producto.AddAsync(producto);
-            }
-            await db.SaveChangesAsync();
-            return Ok("Se añadieron los productos");
-        }
-
-
-
 
 
         [HttpGet]
+        [Autorizado("usuario")]
         public async Task<IActionResult> Index()
         {
-            var prods = await db.Producto.Select(x => new
-            {
-                x.codProducto,
-                x.codEmpresa,
-                x.nombreProducto,
-                x.precioProducto,
-                x.descProducto,
-                x.precioEnvioProducto,
-                x.pathFotoProducto,
-                createdAt = x.createdAt.ToString("dd/MM/yyyy HH:mm:ss"),
-                lastUpdate = x.lastUpdate.ToString("dd/MM/yyyy HH:mm:ss")
-            }).ToListAsync();
+            var token = Request.Headers["Authorization"];
+            var persona = await usuariosC.getUsuario(token);
 
-            return Ok(prods);
+            var rol = authC.verificarRol(persona.userPersona);
+
+            if (rol == "usuario")
+            {
+                var prods = await db.Producto.Select(x => new
+                {
+                    x.activo,
+                    x.codProducto,
+                    x.codEmpresa,
+                    x.nombreProducto,
+                    x.precioProducto,
+                    x.descProducto,
+                    x.precioEnvioProducto,
+                    x.pathFotoProducto,
+                    createdAt = x.createdAt.ToString("dd/MM/yyyy HH:mm:ss"),
+                    lastUpdate = x.lastUpdate.ToString("dd/MM/yyyy HH:mm:ss")
+                }).Where(x => x.activo.Equals(true)).ToListAsync();
+                return Ok(prods);
+            }
+            else if (rol == "empresa")
+            {
+                await db.Entry(persona).Reference(x => x.PersonalEmpresa).LoadAsync();
+                await db.Entry(persona.PersonalEmpresa).Reference(x => x.Empresa).LoadAsync();
+                var cod = persona.PersonalEmpresa.Empresa.codEmpresa;
+
+                var prods = await db.Producto.Select(x => new
+                {
+                    x.activo,
+                    x.codProducto,
+                    x.codEmpresa,
+                    x.nombreProducto,
+                    x.precioProducto,
+                    x.descProducto,
+                    x.precioEnvioProducto,
+                    x.pathFotoProducto,
+                    createdAt = x.createdAt.ToString("dd/MM/yyyy HH:mm:ss"),
+                    lastUpdate = x.lastUpdate.ToString("dd/MM/yyyy HH:mm:ss")
+                }).Where(x => x.activo.Equals(true) && x.codEmpresa.Equals(cod)).ToListAsync();
+
+                return Ok(prods);
+            }
+            else
+            {
+                return BadRequest("Ingrese un token de empresa activa");
+            }
+
         }
 
 
         [HttpPost]
-        public async Task<IActionResult> Create([FromBody]Producto request, [FromRoute]string cod)
+        [Autorizado("empresa")]
+        public async Task<IActionResult> Create(Producto request, [FromRoute]string cod)
         {
             var empresa = await db.Empresa.FirstOrDefaultAsync(x => x.codEmpresa.Equals(cod));
             if (empresa == null)
@@ -126,6 +97,10 @@ namespace API.Controllers
             }
 
             IFormFile img = Request.Form.Files.FirstOrDefault();
+            if (img == null)
+            {
+                return BadRequest("Ingrese una foto");
+            }
 
             var path = $"{env.ContentRootPath}\\ImagenesProductos";
             if (!Directory.Exists($"{path}\\{empresa.nombreEmpresa}"))
@@ -138,7 +113,7 @@ namespace API.Controllers
                 return BadRequest("Ingrese un archivo valido");
             }
 
-            var file = $"{path}\\{empresa.nombreEmpresa}\\{img.FileName}";
+            var file = $"{path}\\{img.FileName}";
 
             if (!System.IO.File.Exists(file))
             {
@@ -157,14 +132,14 @@ namespace API.Controllers
             var cantProductos = await db.Producto.CountAsync() + 1;
             var producto = new Producto()
             {
-                codProducto = "PROD-" + cantProductos.ToString("000"),
+                codProducto = "PRO-" + cantProductos.ToString("000"),
                 Empresa = empresa,
                 nombreProducto = request.nombreProducto,
                 descProducto = request.descProducto,
                 precioProducto = request.precioProducto,
                 precioEnvioProducto = request.precioEnvioProducto,
                 cantidadRestante = request.cantidadRestante,
-                pathFotoProducto = env.ContentRootPath + "\\Imagenes\\perrito.jpg"
+                pathFotoProducto = file
             };
 
             await db.Producto.AddAsync(producto);
@@ -175,6 +150,7 @@ namespace API.Controllers
 
 
         [HttpGet]
+        [Autorizado("empresa")]
         public async Task<IActionResult> Details([FromRoute]string cod)
         {
             var prod = await db.Producto.FirstOrDefaultAsync(x => x.codProducto.Equals(cod));
@@ -220,7 +196,7 @@ namespace API.Controllers
                 var prod = await db.Producto.ToListAsync();
                 return Ok(prod);
             }
-            var prods = await db.Producto.Where(x => x.nombreProducto.Contains(request.search) || x.descProducto.Contains(request.search)).ToListAsync();
+            var prods = await db.Producto.Where(x => x.nombreProducto.Contains(request.search) || x.descProducto.Contains(request.search) || x.codEmpresa.Contains(request.search)).ToListAsync();
             if (prods.Count == 0)
             {
                 return BadRequest("No se encontro ningun producto");
@@ -229,6 +205,7 @@ namespace API.Controllers
         }
 
         [HttpPost]
+        [Autorizado("empresa")]
         public async Task<IActionResult> Edit([FromBody]Producto request, [FromRoute]string cod)
         {
             var producto = await db.Producto.FirstOrDefaultAsync(x => x.codProducto.Equals(cod));
@@ -247,6 +224,7 @@ namespace API.Controllers
         }
 
         [HttpPost]
+        [Autorizado("empresa")]
         public async Task<IActionResult> Delete([FromRoute]string cod)
         {
             var producto = await db.Producto.FirstOrDefaultAsync(x => x.codProducto.Equals(cod));
@@ -254,11 +232,58 @@ namespace API.Controllers
             {
                 return BadRequest("No se encontró el producto");
             }
-            db.Producto.Remove(producto);
+
+            producto.Desactivar();
+
             await db.SaveChangesAsync();
             return Ok("Se eliminó correctamente el producto");
         }
 
 
+        [HttpPost]
+        [Autorizado("empresa")]
+        public async Task<IActionResult> ChangeFoto([FromRoute]string cod)
+        {
+            var producto = await db.Producto.FirstOrDefaultAsync(x => x.codProducto.Equals(cod));
+            
+            var img = Request.Form.Files.FirstOrDefault();
+
+            if (img == null)
+            {
+                return BadRequest("suba una imagen");
+            }
+
+            // CREA EL DIRECTORIO IMAGENES SI NO EXISTE
+            string dir = env.ContentRootPath + "\\ImagenesProductos";
+            if (!Directory.Exists(dir)) { Directory.CreateDirectory(dir); }
+
+            // CREA EL DIRECTORIO CON EL NOMBRE DEL USUARIO Y LA FOTO DE PERFIL
+            string path = $"{dir}\\{producto.codProducto}\\{img.FileName}";
+            if (!Directory.Exists($"{dir}\\{producto.codProducto}")) { Directory.CreateDirectory($"{dir}\\{producto.codProducto}"); }
+
+            if (img.Length > 0)
+            {
+                if (!System.IO.File.Exists(path))
+                {
+                    var diskImg = System.IO.File.Create(path);
+                    await img.CopyToAsync(diskImg);
+                    producto.pathFotoProducto = path;
+                    diskImg.Close();
+                }
+                else
+                {
+                    var diskImg = System.IO.File.Open(path, FileMode.Open);
+                    await img.CopyToAsync(diskImg);
+                    producto.pathFotoProducto = path;
+                    diskImg.Close();
+                }
+            }
+
+            db.Producto.Update(producto);
+            producto.Update();
+
+            await db.SaveChangesAsync();
+            return Ok("Se guardo correctamente la foto");
+        }
     }
 }

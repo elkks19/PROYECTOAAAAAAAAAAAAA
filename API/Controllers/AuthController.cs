@@ -69,7 +69,7 @@ namespace API.Controllers
 
 
                 case "personal":
-                    per = await db.Persona.Include(x => x.PersonalEmpresa).FirstOrDefaultAsync(b => b.userPersona.Equals(persona.userPersona));
+                    per = await db.Persona.Include(x => x.PersonalEmpresa).ThenInclude(x => x.Empresa).FirstOrDefaultAsync(b => b.userPersona.Equals(persona.userPersona));
                     var personal = per.PersonalEmpresa;
                     usuarioExists = Crypto.VerifyHashedPassword(per.passwordPersona, persona.passwordPersona);
                     if (usuarioExists)
@@ -84,6 +84,7 @@ namespace API.Controllers
 
                         return Ok(new
                         {
+                            codEmpresa = per.PersonalEmpresa.Empresa.codEmpresa,
                             rol = rol,
                             token = tok,
                         });
@@ -92,6 +93,18 @@ namespace API.Controllers
                     {
                         return BadRequest("Contraseña incorrecta");
                     }
+
+                case "empresaNoVerificada":
+                    per = await db.Persona.Include(x => x.PersonalEmpresa).FirstOrDefaultAsync(b => b.userPersona.Equals(persona.userPersona));
+                    usuarioExists = Crypto.VerifyHashedPassword(per.passwordPersona, persona.passwordPersona);
+
+                    personal = per.PersonalEmpresa;
+
+                    return Ok(new
+                    {
+                        rol = rol
+                    });
+
 
                 case "usuario":
                     per = await db.Persona.Include(x => x.Usuario).FirstOrDefaultAsync(b => b.userPersona.Equals(persona.userPersona));
@@ -166,7 +179,7 @@ namespace API.Controllers
 
 
         [HttpPost]
-        [Autorizado(rol2 = "administrador", rol3 = "empresa")]
+        [Autorizado(rol2 = "empresa")]
         public async Task<IActionResult> Logout()
         {
             var tok = Request.Headers["Authorization"];
@@ -188,11 +201,11 @@ namespace API.Controllers
 
 
 
-        public string verificarRol(string codPersona)
+        public string verificarRol(string userPersona)
         {
-            var usuario = db.Usuarios.Include(x => x.Persona).FirstOrDefault(x => x.Persona.userPersona.Equals(codPersona));
-            var administrador = db.Administradores.Include(x => x.Persona).FirstOrDefault(x => x.Persona.userPersona.Equals(codPersona));
-            var personal = db.PersonalEmpresa.Include(x => x.Persona).FirstOrDefault(x => x.Persona.userPersona.Equals(codPersona));
+            var usuario = db.Usuarios.Include(x => x.Persona).FirstOrDefault(x => x.Persona.userPersona.Equals(userPersona));
+            var administrador = db.Administradores.Include(x => x.Persona).FirstOrDefault(x => x.Persona.userPersona.Equals(userPersona));
+            var personal = db.PersonalEmpresa.Include(x => x.Persona).FirstOrDefault(x => x.Persona.userPersona.Equals(userPersona));
 
             if (administrador != null)
             {
@@ -204,6 +217,12 @@ namespace API.Controllers
             }
             else if (personal != null)
             {
+                db.Entry(personal).Reference(x => x.Empresa).Load();
+                db.Entry(personal.Empresa).Reference(x => x.ListaEspera).Load();
+                if (personal.Empresa.ListaEspera.isAceptado == false)
+                {
+                    return "empresaNoVerificada";
+                }
                 return "personal";
             }
             else

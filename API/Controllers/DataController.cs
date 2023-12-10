@@ -4,6 +4,7 @@ using API.Data;
 using Newtonsoft.Json;
 using Newtonsoft.Json.Converters;
 using System.Web.Helpers;
+using Microsoft.EntityFrameworkCore;
 
 namespace API.Controllers
 {
@@ -11,12 +12,14 @@ namespace API.Controllers
     {
         public readonly APIContext db;
         public readonly IWebHostEnvironment env;
-        public DataController(APIContext context, IWebHostEnvironment environment)
+        public readonly ListaEsperaController listaC;
+        public DataController(APIContext context, IWebHostEnvironment environment, ListaEsperaController listaEsperaController)
         {
             db = context;
             env = environment;
+            listaC = listaEsperaController;
         }
-          
+
         [HttpGet]
         public async Task<IActionResult> Seed()
         {
@@ -26,7 +29,7 @@ namespace API.Controllers
 
             List<Persona> personas = JsonConvert.DeserializeObject<List<Persona>>(jsonPersonas, new IsoDateTimeConverter() { DateTimeFormat = "dd/MM/yyyy" });
 
-            foreach(var persona in personas)
+            foreach (var persona in personas)
             {
                 persona.pathFotoPersona = env.ContentRootPath + "/Imagenes/perrito.jpg";
                 persona.passwordPersona = Crypto.HashPassword(persona.passwordPersona);
@@ -65,6 +68,20 @@ namespace API.Controllers
 
             foreach (var empresa in empresas)
             {
+                Random rnd = new Random();
+                int randomAdmin = rnd.Next(admins.Count);
+                if (admins.Count == 0)
+                {
+                    return BadRequest("No se reconocen los admins xd");
+                }
+
+                ListaEsperaEmpresa listaEspera = new ListaEsperaEmpresa()
+                {
+                    Empresa = empresa,
+                    codAdmin = admins[randomAdmin].codAdmin
+                };
+                await db.ListaEsperaEmpresa.AddAsync(listaEspera);
+
                 empresa.archivoVerificacionEmpresa = env.ContentRootPath + "/ArchivosVerificacion/rafa/1.png";
                 await db.Empresa.AddAsync(empresa);
             }
@@ -124,10 +141,31 @@ namespace API.Controllers
 
             foreach (var producto in productos)
             {
-                producto.pathFotoProducto =  env.ContentRootPath + "/ImagenesProductos/" + producto.pathFotoProducto;
+                producto.pathFotoProducto = env.ContentRootPath + "/ImagenesProductos/" + producto.pathFotoProducto;
                 await db.Producto.AddAsync(producto);
             }
 
+            //CATEGORIAS POR PRODUCTO
+            StreamReader rCatsProds = new StreamReader(env.ContentRootPath + "/datos/categoriaporproducto.json");
+            string jsonCaPro = rCatsProds.ReadToEnd();
+
+            List<CategoriasPorProducto> cpp = JsonConvert.DeserializeObject<List<CategoriasPorProducto>>(jsonCaPro);
+
+            foreach (var catpro in cpp)
+            {
+                await db.CategoriasPorProducto.AddAsync(catpro);
+            }
+
+            //RECLAMOS
+            StreamReader rReclamos = new StreamReader(env.ContentRootPath + "/datos/reclamosempresa.json");
+            string jsonReclamos = rReclamos.ReadToEnd();
+
+            List<ReclamosEmpresa> reclamos = JsonConvert.DeserializeObject<List<ReclamosEmpresa>>(jsonReclamos);
+
+            foreach (var reclamo in reclamos)
+            {
+                await db.ReclamosEmpresa.AddAsync(reclamo);
+            }
 
             await db.SaveChangesAsync();
             return Ok();

@@ -18,7 +18,7 @@ function detalles(cod){
 
 let productos = [];
 
-axios.get("http://localhost:5132/productos/getall",{
+axios.get("http://localhost:5132/productos/index",{
     headers: {
         "Authorization": localStorage.getItem("token"),
         "content-type": "application/json",
@@ -118,7 +118,7 @@ function cargarProductos(productosElegidos) {
                         <div class="imgBx">
                             <img class="producto-imagen" src="${img}" alt="${producto.nombre}">
                             <ul class="action">
-                                                <li>
+                                                <li onclick="addWishlist('${producto.id}')">
                                                     <i class='bx bxs-star'></i>
                                                     <span>Agregar a Wishlist</span></a>
                                                 </li>
@@ -240,4 +240,18 @@ function agregarAlCarrito(e) {
 function actualizarNumerito() {
     let nuevoNumerito = productosEnCarrito.reduce((acc, producto) => acc + producto.cantidad, 0);
     numerito.innerText = nuevoNumerito;
+}
+
+function addWishlist(codProducto){
+    axios.post("http://localhost:5132/wishlists/add/" + codProducto, {},
+    {
+        headers:{
+            "Authorization": localStorage.getItem("token"),
+            "content-type": "application/json",
+        }
+    }).then((response) => {
+        console.log(response.data);
+    }).catch((error) => {
+        console.log(error)
+    });
 }

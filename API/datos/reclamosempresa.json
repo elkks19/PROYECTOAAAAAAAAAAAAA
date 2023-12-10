@@ -1,0 +1,106 @@
+[
+ {
+  "codReclamo": "REC-001",
+  "codProducto": "PRO-010",
+  "codUsuario": "USU-005",
+  "contenidoReclamo": "Adquirí recientemente un Conjunto Deportivo Moderno y me siento decepcionado\/a por la calidad del producto. Desde el principio, noté problemas evidentes como costuras deficientes, material de baja calidad",
+  "codAdmin": "ADM-003",
+  "isRevisado": 1,
+  "fechaCreacionReclamo": "12\/04\/2023 08:54",
+  "fechaRevisionReclamo": "12\/04\/2023 08:54",
+  "respuestaReclamo": "Se tomara en cuenta su respuesta y se comunicara a la empresa"
+ },
+ {
+  "codReclamo": "REC-002",
+  "codProducto": "PRO-011",
+  "codUsuario": "USU-005",
+  "codAdmin":  "ADM-001",
+  "contenidoReclamo": "Pedi la blusa en talla S  y me llego en talla l ",
+  "isRevisado": 0,
+  "fechaCreacionReclamo": "12\/04\/2023 08:54"
+ },
+ {
+  "codReclamo": "REC-003",
+  "codProducto": "PRO-012",
+  "codUsuario": "USU-001",
+  "contenidoReclamo": "adquiri los jeans y me llego con un estampado quisiera un rembolso",
+  "codAdmin": "ADM-001",
+  "isRevisado": 1,
+  "fechaCreacionReclamo": "12\/04\/2023 08:54",
+  "fechaRevisionReclamo": "12\/04\/2023 08:54",
+  "respuestaReclamo": "Se tomara en cuenta su respuesta y se comunicara a la empresa"
+ },
+ {
+  "codReclamo": "REC-004",
+  "codProducto": "PRO-013",
+  "codUsuario": "USU-003",
+  "contenidoReclamo": "una parte del vestido estaba rota",
+  "codAdmin": "ADM-002",
+  "isRevisado": 1,
+  "fechaCreacionReclamo": "12\/04\/2023 08:54",
+  "fechaRevisionReclamo": "12\/04\/2023 08:54",
+  "respuestaReclamo": "Se tomara en cuenta su respuesta y se comunicara a la empresa"
+ },
+ {
+  "codReclamo": "REC-005",
+  "codProducto": "PRO-014",
+  "codUsuario": "USU-002",
+  "contenidoReclamo": "el jersey no es de cuello alto",
+  "isRevisado": 0,
+  "codAdmin":  "ADM-002",
+  "fechaCreacionReclamo": "12\/04\/2023 08:54"
+ },
+ {
+  "codReclamo": "REC-006",
+  "codProducto": "PRO-006",
+  "codUsuario": "USU-007",
+  "contenidoReclamo": "la chaqueta suena mucho al movimiento de rose",
+  "codAdmin": "ADM-001",
+  "isRevisado": 1,
+  "fechaCreacionReclamo": "12\/04\/2023 08:54",
+  "fechaRevisionReclamo": "12\/04\/2023 08:54",
+  "respuestaReclamo": "Se tomara en cuenta su respuesta y se comunicara a la empresa"
+ },
+ {
+  "codReclamo": "REC-007",
+  "codProducto": "PRO-007",
+  "codUsuario": "USU-007",
+  "contenidoReclamo": "La talla que pedi del blazer es s sin embargo se siente como una xs",
+  "codAdmin": "ADM-002",
+  "isRevisado": 1,
+  "fechaCreacionReclamo": "12\/04\/2023 08:54",
+  "fechaRevisionReclamo": "12\/04\/2023 08:54",
+  "respuestaReclamo": "Se tomara en cuenta su respuesta y se comunicara a la empresa"
+ },
+ {
+  "codReclamo": "REC-008",
+  "codProducto": "PRO-008",
+  "codUsuario": "USU-001",
+  "contenidoReclamo": "El sueter se siente  de muy mala calidad",
+  "codAdmin": "ADM-001",
+  "isRevisado": 1,
+  "fechaCreacionReclamo": "12\/04\/2023 08:54",
+  "fechaRevisionReclamo": "12\/04\/2023 08:54",
+  "respuestaReclamo": "Se tomara en cuenta su respuesta y se comunicara a la empresa"
+ },
+ {
+  "codReclamo": "REC-009",
+  "codProducto": "PRO-011",
+  "codUsuario": "USU-007",
+  "contenidoReclamo": "la blusa me llego en una talla diferente a la que pedi",
+  "codAdmin": "ADM-003",
+  "isRevisado": 1,
+  "fechaCreacionReclamo": "12\/04\/2023 08:54",
+  "fechaRevisionReclamo": "12\/04\/2023 08:54",
+  "respuestaReclamo": "Se tomara en cuenta su respuesta y se comunicara a la empresa"
+ },
+ {
+  "codReclamo": "REC-010",
+  "codProducto": "PRO-025",
+  "codUsuario": "USU-001",
+  "contenidoReclamo": "los estampados se ven muy desgastados",
+  "isRevisado": 0,
+  "codAdmin": "ADM-001",
+  "fechaCreacionReclamo": "12\/04\/2023 08:54"
+ }
+]

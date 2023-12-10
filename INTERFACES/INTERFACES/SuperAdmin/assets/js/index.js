@@ -1,29 +1,9 @@
-function detalleOrden(){
-  fetch("./DetallesOrden.html")
-  .then(function(response){
-    return response.text();
-  })
-  .then(function(text){
-    let container = document.getElementById("page-inner");
-    container.innerHTML = text;
-  });
-}
+window.onload = categoria();
 
 function categoria(){
   fetch("./Categorias.html")
   .then(function(response){
-    return response.text();
-  })
-  .then(function(text){
-    let container = document.getElementById("page-inner");
-    container.innerHTML = text;
-  });
-  cargarCategorias();
-}
-
-function detalleWishlist(){
-  fetch("./Detallewishlist.html")
-  .then(function(response){
+    cargarCategorias();
     return response.text();
   })
   .then(function(text){
@@ -41,17 +21,7 @@ function empresa(){
     let container = document.getElementById("page-inner");
     container.innerHTML = text;
   });
-}
-
-function listaEspera(){
-  fetch("./ListEmpre.html")
-  .then(function(response){
-    return response.text();
-  })
-  .then(function(text){
-    let container = document.getElementById("page-inner");
-    container.innerHTML = text;
-  });
+  cargarEmpresas();
 }
 
 function orden(){
@@ -63,6 +33,7 @@ function orden(){
     let container = document.getElementById("page-inner");
     container.innerHTML = text;
   });
+  cargarOrdenes();
 }
 
 function persona(){
@@ -90,17 +61,6 @@ function producto(){
 
 function reclamo(){
   fetch("./ReclamosEmpresa.html")
-  .then(function(response){
-    return response.text();
-  })
-  .then(function(text){
-    let container = document.getElementById("page-inner");
-    container.innerHTML = text;
-  });
-}
-
-function wishlist(){
-  fetch("./Wishlist.html")
   .then(function(response){
     return response.text();
   })

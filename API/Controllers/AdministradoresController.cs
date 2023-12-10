@@ -59,6 +59,24 @@ namespace API.Controllers
             public bool isRevisado { get; set; }
         }
 
+        [HttpGet]
+        public async Task<IActionResult> Reclamos()
+        {
+            var token = Request.Headers["Authorization"];
+
+            var persona = await usuariosC.getUsuario(token);
+            if (persona == null) 
+            {
+                return BadRequest("Hubo un error al buscar la persona");
+            }
+
+            await db.Entry(persona).Reference(x => x.Administrador).LoadAsync();
+
+            var reclamos = await db.ReclamosEmpresa.Where(x => x.codAdmin.Equals(persona.Administrador.codAdmin)).ToListAsync();
+
+            return Ok(reclamos);
+        }
+
 
         [HttpGet]
         public async Task<IActionResult> RevisionesPendientes()
@@ -70,8 +88,11 @@ namespace API.Controllers
             {
                 return BadRequest("Hubo un error al buscar la persona");
             }
+
             await db.Entry(persona).Reference(x => x.Administrador).LoadAsync();
+
             var listaEmpresas = await listaEsperaC.Index(persona.Administrador.codAdmin);
+
             if (listaEmpresas.Count == 0)
             {
                 return Ok("El administrador no tiene ninguna empresa en espera");
@@ -81,6 +102,7 @@ namespace API.Controllers
         }
 
         [HttpGet]
+        [Autorizado("administrador")]
         public async Task<IActionResult> UltimoMes()
         {
             var usuarios = await db.Persona.Select(x => new
@@ -106,6 +128,7 @@ namespace API.Controllers
                     total += orden.precioTotal;
                 }
             }
+
             return Ok(new
             {
                 usuarios = usuarios,
@@ -113,6 +136,54 @@ namespace API.Controllers
                 compradores = compradores,
                 ventasTotales = total
             });
+        }
+
+
+        public class Razon
+        {
+            public string razon { get; set; }
+        }
+        [HttpPost]
+        public async Task<IActionResult> AceptarEmpresa([FromRoute]string cod, [FromBody]Razon razon)
+        {
+            var empresa = await db.Empresa.FirstOrDefaultAsync(x => x.codEmpresa.Equals(cod));
+            if (empresa == null)
+            {
+                return BadRequest("No es un codigo valido de empresa");
+            }
+
+            await db.Entry(empresa).Reference(x => x.ListaEspera).LoadAsync();
+
+            empresa.ListaEspera.razonRevision = razon.razon;
+            empresa.ListaEspera.Aceptar();
+
+            db.ListaEsperaEmpresa.Update(empresa.ListaEspera);
+            empresa.Update();
+
+            await db.SaveChangesAsync();
+            return Ok();
+        }
+
+        [HttpPost]
+        public async Task<IActionResult> DenegarEmpresa([FromRoute]string cod, [FromBody]Razon razon)
+        {
+            var empresa = await db.Empresa.FirstOrDefaultAsync(x => x.codEmpresa.Equals(cod));
+            if (empresa == null)
+            {
+                return BadRequest("No es un codigo valido de empresa");
+            }
+
+            await db.Entry(empresa).Reference(x => x.ListaEspera).LoadAsync();
+
+            empresa.ListaEspera.razonRevision = razon.razon;
+            empresa.ListaEspera.Denegar();
+
+            db.ListaEsperaEmpresa.Update(empresa.ListaEspera);
+            empresa.Update();
+
+            await db.SaveChangesAsync();
+
+            return Ok();
         }
     }
 }

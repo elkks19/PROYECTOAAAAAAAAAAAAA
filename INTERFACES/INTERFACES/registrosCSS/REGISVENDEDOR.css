@@ -299,6 +299,7 @@ a {
         transform: translate(-0.25rem,-0.25rem);
         background: var(--hover-bg);
         box-shadow: 0.25rem 0.25rem #2A2A2A;
+        cursor: pointer;
     }
 
  .button:active {

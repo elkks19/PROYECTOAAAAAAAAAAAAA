@@ -6,43 +6,31 @@
     <title>Empresa</title>
     <!-- Boxicons -->
 	<script src="https://kit.fontawesome.com/7c61ac1c1a.js" crossorigin="anonymous"></script>
-     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+	<link rel="stylesheet" href="./bootstrap.css">
 	<link href='https://unpkg.com/boxicons@2.0.9/css/boxicons.min.css' rel='stylesheet'>
     <link rel="stylesheet" href="Empresa.css">
 	<!--jquery-->
 	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
 	<script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
 	<script src="./ProductosRequest.js"></script>
+	<script src="./bootstrap.min.js"></script>
 </head>
 <body>
     <!--Menu izquierda inicio-->
     <section id="sidebar">
-	    <!--	<div class="logo-y-config">
-            <a href="#" class="logo">
-                <img src="../../../RECURSOS/LOGO NEGRO.png" />
-            </a> -->
-                         
-            </div>
-            <div class="perfil">
-                <img src="../../../INTERFACES/AdminDashboard/imagenes/Damaroli.jpg">
-                <h1>Damaroli</h1>
-                <div class="estrellas">
-                    <i class="fa-solid fa-star"></i>
-                    <i class="fa-solid fa-star"></i>
-                    <i class="fa-solid fa-star"></i>
-                    <i class="fa-solid fa-star"></i>
-                    <i class="fa-solid fa-star"></i>
-                </div>
-                <ul class="redes-sociales">
-                    <li><a href=""><i class="fab fa-facebook"></i></a></li>
-                    <li><a href=""><i class="fab fa-instagram"></i></a></li>
-                    <li><a href=""><i class="fa-solid fa-envelope"></i></a></li>
-                </ul>
-                <ul class="seguidores">
-                    <li><span>10</span>Productos</li>
-                    <li><span>20</span>Seguidores</li>
-                </ul>
-            </div>
+		<div class="perfil">
+			<img src="../../../INTERFACES/AdminDashboard/imagenes/Damaroli.jpg">
+			<h1>Damaroli</h1>
+			<ul class="redes-sociales">
+				<li><a><i class="fab fa-facebook"></i></a></li>
+				<li><a><i class="fab fa-instagram"></i></a></li>
+				<li><a><i class="fa-solid fa-envelope"></i></a></li>
+			</ul>
+			<ul class="seguidores">
+				<li><span id="cantProductos">0</span>Productos</li>
+			</ul>
+		</div>
 		<!--MENU OPCIONES-->	
         </div class="sidebar">
 		<ul class="side-menu top">
@@ -67,7 +55,7 @@
 
 
 			<li>
-				<a href="#" onclick="ChangeContent('pag4')">
+				<a onclick="ChangeContent('pag4')">
 					<i class='bx bx-glasses' ></i>
 					<span class="text">Accesorios</span>
 				</a>
@@ -75,7 +63,6 @@
 
 		</ul>
 		<ul class="side-menu">
-						
 			<li>
 				<a href="../Estadisticas/estadisticas_generales.html" >
 					<i class='bx bxs-doughnut-chart'></i>
@@ -89,8 +76,8 @@
 					<span class="text">Reclamos</span>
 				</a>
 			</li>		
-			<li>
-				<a href="#" class="logout">
+			<li onclick="logout()">
+				<a class="logout">
 					<i class='bx bxs-log-in-circle' ></i>
 					<span class="text">Cerrar Sesión</span>
 				</a>
@@ -115,14 +102,13 @@
 			<a href="../../Perfilvendedor/PerVendedor.html"><i class='bx bx-cog'></i></a>
 			</div>
 
-
 			<!--Agregar boton-->
-		<button class="comic-button">
-			<a href="../../EMPRESA/Productos/opciones.html"></a>Agregar Producto</button>		
-		
-
+		<button type="button" data-toggle="modal" data-target="#addEmployeeModal" class="comic-button">
+			Agregar Producto
+		</button>		
 		</nav>
     <main>
+		<script src="Empresa.js"></script>
 		<div class="main-content">
 			<!--todo INICIO-->
 			<div id="pag1" class="head-titulo">
@@ -139,6 +125,7 @@
 					</ul>
 				</div>
 				<div id="contenedor-cards">
+
 					<!--SE ESTA RELLENANDO CON JS-->
 				</div>
 			</div>	
@@ -168,17 +155,7 @@
 							<option value="blusa">Blusa</option>
 							</select>
 						</div>
-						<!--<select id="tipo_tallas">
-							<option value="todas">Todas</option>
-							<option value="pantalon">X</option>
-							<option value="short">S</option>
-							<option value="blusa">M</option>
-							<option value="blusa">L</option>
-							<option value="blusa">XL</option>
-							</select>
-							-->	
 					</div>	
-
 				</div>	
 				<div class="content pantalon">
 					
@@ -210,56 +187,47 @@
 							<option value="blusa">Tenis</option>
 							</select>
 						</div>
-						
 					</div>
 					<!--FILTROS-->
-
 				</div>	
-
-				
 			</div>			
 			<!--Zapatos FIN-->
 			
 
 			<!--Accesorios INICIO-->
-			<div id="pag4" class="head-titulo">
-				<div class="left">
-					<h1>Accesorios</h1>
-					<ul class="subti">
-						<li>
-							<a href="#">Accesorios</a>
-						</li>
-						<li><i class='bx bx-chevron-right' ></i></li>
-						<li>
-							<a class="active" href="#">Inicio</a>
-						</li>
-					</ul>	
-					<!--FILTROS-->
-					<div class="Filtros">
-						<div class="cat">
-							<h3>Filtrar por categoria</h3>
-							<select id="tipo_categorias">
-							<option value="todo">Todo</option>
-							<option value="pantalon">Collares</option>
-							<option value="short">Anillos</option>
-							<option value="blusa">Manillas</option>
-							</select>
+				<div id="pag4" class="head-titulo">
+					<div class="left">
+						<h1>Accesorios</h1>
+						<ul class="subti">
+							<li>
+								<a href="#">Accesorios</a>
+							</li>
+							<li><i class='bx bx-chevron-right' ></i></li>
+							<li>
+								<a class="active" href="#">Inicio</a>
+							</li>
+						</ul>	
+						<!--FILTROS-->
+						<div class="Filtros">
+							<div class="cat">
+								<h3>Filtrar por categoria</h3>
+								<select id="tipo_categorias">
+								<option value="todo">Todo</option>
+								<option value="pantalon">Collares</option>
+								<option value="short">Anillos</option>
+								<option value="blusa">Manillas</option>
+								</select>
+							</div>
+							
 						</div>
-						
-					</div>
-					<!--FILTROS-->	
-				</div>	
-								
-			</div>			
-
+						<!--FILTROS-->	
+					</div>	
+									
+				</div>			
 			<!--Accesorios FIN-->
 
-
-		</div>
-		
-		
+			</div>
+		</main>
 	</section>
-
-    <script src="Empresa.js"></script>
 </body>
 </html>

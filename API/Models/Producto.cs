@@ -57,7 +57,7 @@ namespace API.Models
         [JsonIgnore]
         public ICollection<DetalleOrden> Ordenes { get; set; }
         [JsonIgnore]
-        public ICollection<DetalleWishlist> Wishlists { get; set; }
+        public ICollection<Wishlist> Wishlists { get; set; }
 
         public Producto()
         {

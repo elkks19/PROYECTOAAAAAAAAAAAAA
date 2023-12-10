@@ -48,7 +48,7 @@ namespace API.Controllers
 
         protected internal async Task<List<ResponseEmpresa>> Index(string cod)
         {
-            var empresas = await db.ListaEsperaEmpresa.Include(x => x.Empresa).Include(x => x.Administrador.Persona).Where(x => x.codAdmin.Equals(cod)).ToListAsync();
+            var empresas = await db.ListaEsperaEmpresa.Include(x => x.Empresa).Include(x => x.Administrador.Persona).Where(x => x.codAdmin.Equals(cod) && x.isAceptado.Equals(false)).ToListAsync();
             if (empresas != null)
             {
                 List<ResponseEmpresa> response = new List<ResponseEmpresa>();

@@ -82,21 +82,13 @@
                 </div>
                 <div class="modal-body">					
                     <div class="form-group">
-                        <label>Cod Empresa</label>
-                        <input type="text" class="form-control" id="codEmpresaEdit">
-                    </div>
-                    <div class="form-group">
                         <label>Cod Usuario</label>
-                        <input type="number" class="form-control" id="codUsuarioEdit">
+                        <input type="text" class="form-control" id="codUsuarioEdit">
                     </div>
                     <div class="form-group">
                         <label>Direccion Entrega Orden</label>
-                        <input type="number" class="form-control" id="direccionEntregaOrdenEdit">
+                        <input type="text" class="form-control" id="direccionEntregaOrdenEdit">
                     </div>
-                    <div class="form-group">
-                        <label>Fecha Entrega Edit</label>
-                        <input type="date" class="form-control" id="fechaEntregaOrdenEdit">
-                    </div>	
                     <div class="form-group">
                         <label>Fecha Pago Orden</label>
                         <input type="date" class="form-control" id="fechaPagoOrdenEdit">
@@ -130,6 +122,87 @@
                 <div class="modal-footer">
                     <input type="button" class="btn btn-default" data-dismiss="modal" value="Cancelar">
                     <input type="button" class="btn btn-danger" data-dismiss="modal" value="Eliminar" onclick="eliminarOrden()">
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+
+
+<div id="detalleOrdenModal" class="modal fade">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <form>
+                <div class="modal-header">						
+                    <h4 class="modal-title">Detalles de la orden</h4>
+                    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                </div>
+                <div class="modal-body">					
+                    <table class="table table-striped table-hover">
+                        <thead>
+                            <tr>
+                                <th>Cod Producto</th>
+                                <th>Cantidad</th>
+                                <th>Precio Unitario</th>
+                                <th>Total</th>
+                            </tr>
+                        </thead>
+                        <tbody id="tablaDetallesOR">
+
+                        </tbody>
+                    </table>
+                </div>
+                <div class="modal-footer">
+                    <input type="button" class="btn btn-default" data-dismiss="modal" value="Cancelar">
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+
+
+<div id="deleteDetalleOrdenModal" class="modal fade">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <form>
+                <div class="modal-header">						
+                    <h4 class="modal-title">Eliminar detalle</h4>
+                    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                </div>
+                <div class="modal-body">					
+                    <p>Esta seguro que desea eliminar este detalle de la orden?</p>
+                    <p class="text-warning"><small>Esta acción no se podra Restaurar</small></p>
+                </div>
+                <div class="modal-footer">
+                    <input type="button" class="btn btn-default" data-dismiss="modal" value="Cancelar">
+                    <input type="button" class="btn btn-danger" data-dismiss="modal" value="Eliminar" onclick="eliminarDetalleOrden()">
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+
+<div id="editDetalleOrdenModal" class="modal fade">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <form>
+                <div class="modal-header">						
+                    <h4 class="modal-title">Editar detalles de la orden</h4>
+                    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                </div>
+                <div class="modal-body">					
+                    <div class="form-group">
+                        <label>Cod Producto</label>
+                        <input type="text" class="form-control" id="codProductoEdit">
+                    </div>
+                    <div class="form-group">
+                        <label>Cantidad</label>
+                        <input type="number" min="0" step="1" id="cantidadEdit" class="form-control">
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <input type="button" class="btn btn-default" data-dismiss="modal" value="Cancelar">
+                    <input type="button" class="btn btn-success" data-dismiss="modal" value="Editar" onclick="guardarDetalleOrden()">
                 </div>
             </form>
         </div>

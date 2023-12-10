@@ -29,10 +29,14 @@ function prueba(){
                 window.location.href = "../Feed/resultado-final/index.html";
                 break;
             case "personal":
-                window.location.href = "../Feed/resultado-final/index.html";
+                localStorage.setItem("codEmpresa", response.data.codEmpresa);
+                window.location.href = "../EMPRESA/PerfilEmpresa/Empresa.html";
                 break;
             case "administrador":
                 window.location.href = "../AdminDashboard/AdminDash.html";
+                break;
+            case "empresaNoVerificada":
+                empresaNoVerificada();
                 break;
         }
     }).catch((error)=>{
@@ -40,6 +44,21 @@ function prueba(){
         errorUser.innerHTML = "Usuario o contraseña incorrectos";
     });
 }
+
+//POPUP BIENVENIDA
+  window.onload = function() {
+      document.getElementById('welcomePopup').style.display = 'none';
+    }
+
+  function closePopup() {
+    window.location.href = "../INICIO.html";
+  }
+
+  function empresaNoVerificada() {
+      document.getElementById('welcomePopup').style.display = 'flex';
+      return;
+  }
+//ojito
 
 
 // function prueba(){

@@ -14,13 +14,14 @@
 	<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
 	<link href='https://unpkg.com/boxicons@2.0.9/css/boxicons.min.css' rel='stylesheet'>
 	<script src="https://kit.fontawesome.com/7c61ac1c1a.js" crossorigin="anonymous"></script>
+	<script src="./reportes.js"></script>
     <link rel="stylesheet" href="AdminDash.css">
 
 </head>
 <body>
     <!--Menu izquierda inicio-->
     <section id="sidebar">
-		<a href="#" class="logo">
+		<a class="logo">
             <img src="../../RECURSOS/LOGO NEGRO.png" />
 		</a>
         <div class="admintext">
@@ -28,53 +29,39 @@
         </div class="sidebar">
 		<ul class="side-menu top">
 			<li class="active">
-				<a href="#" onclick="ChangeContent('pag1')">
+				<a onclick="ChangeContent('pag1')">
 					<i class='bx bxs-dashboard' ></i>
 					<span class="text">Dashboard</span>
 				</a>
 			</li>
 			<li>
-				<a href="#" onclick="ChangeContent('pag2')">
+				<a onclick="ChangeContent('pag2')">
 					<i class='bx bxs-doughnut-chart' ></i>
 					<span class="text">Reportes</span>
 				</a>
 			</li>            
 			<li>
-				<a onclick="ChangeContent('pag3')">
+				<a onclick="ChangeContent('pag3'); llenarReclamos();">
 					<i class='bx bxs-shopping-bag-alt' ></i>
 					<span class="text">Empresas reportadas</span>
 				</a>
 			</li>
-
-
 			<li>
-				<a href="#" onclick="ChangeContent('pag4')">
+				<a onclick="ChangeContent('pag4'); llenarSolicitudes();">
 					<i class='bx bxs-group' ></i>
 					<span class="text">Solicitudes de empresas</span>
 				</a>
 			</li>
 			<li>
-				<a href="#" onclick="ChangeContent('pag5')">
-					<i class='bx bxs-message-dots' ></i>
-					<span class="text">Solicitudes de soporte</span>
-				</a>
-			</li>
-			<li>
-				<a href="#" onclick="window.location.href = '../SuperAdmin/index.html'">
+				<a onclick="window.location.href = '../SuperAdmin/index.html'">
 					<i class='bx bx-server' ></i>
 					<span class="text">Editar Datos</span>
 				</a>
 			</li>
 		</ul>
 		<ul class="side-menu">
-			<li>
-				<a href="#" >
-					<i class='bx bxs-cog' ></i>
-					<span class="text">Configuraciones</span>
-				</a>
-			</li>
-			<li>
-				<a href="#" class="logout">
+			<li onclick="logout()">
+				<a class="logout">
 					<i class='bx bxs-log-out-circle' ></i>
 					<span class="text">Cerrar Sesión</span>
 				</a>
@@ -89,24 +76,15 @@
 	<section id="content">
 		<!-- NAVBAR -->
 		<nav>
-			<form action="#">
-				<div class="form-input">
-					<input type="search" placeholder="Buscar...">
-					<button type="submit" class="search-btn"><i class='bx bx-search' ></i></button>
-				</div>
-			</form>
-			<!--Campanita notificaciones
-			<a href="#" class="notificacion">
-				<i class='bx bxs-bell' ></i>
-				<span class="num">8</span>
-			</a>
-		-->
+			<div style="width: 85%;">
+
+			</div>
 			<div class="profileButton" onclick="window.location.href = '../PerfilComprador/PerComprador.html'">
 				<a class="profile">
-					<img src="imagenes/limonagrio.jpg">
+					<img id="pfpAdmin">
 				</a>
 				<div class="username_admin">
-					<h1>Llajuas</h1>
+					<h1 id="userName"></h1>
 				</div>
 			</div>
 
@@ -127,7 +105,7 @@
 						</li>
 					</ul>
 				</div>
-				<a href="#" class="btn-descargar">
+				<a class="btn-descargar" onclick="descargarVentas()">
 					<i class='bx bxs-cloud-download' ></i>
 					<span class="text">Descargar PDF</span>
 				</a>
@@ -181,7 +159,7 @@
 						<div class="regis-tipo">
 							<div class="card-nom1">Nuevos</div>
 							<div class="card-nom2">Usuarios</div>
-							<button><a href="#">Ver todo</a></button>
+							<button><a onclick="descargarUsuarios()">Ver todo</a></button>
 						</div>
 						<div class="divider"></div>						
 					</div>	
@@ -190,7 +168,7 @@
 						<div class="regis-tipo">
 							<div class="card-nom1">Nuevos</div>
 							<div class="card-nom2">Compradores</div>
-							<button><a href="#">Ver todo</a></button>
+							<button><a onclick="descargarUsuarios()">Ver todo</a></button>
 						</div>	
 						<div class="divider"></div>						
 					</div>
@@ -198,7 +176,7 @@
 						<div class="regis-tipo">
 							<div class="card-nom1">Nuevas</div>
 							<div class="card-nom2">Empresas</div>
-							<button><a href="#">Ver todo</a></button>
+							<button><a onclick="descargarEmpresas()">Ver todo</a></button>
 						</div>	
 						<div class="divider"></div>						
 					</div>																
@@ -233,7 +211,7 @@
 						</div>
 						
 						<div class="cardbutton">
-							<button>Descargar PDF</button>
+							<button onclick="descargarVisitas()">Descargar PDF</button>
 						</div>
 					</div>
 
@@ -242,7 +220,7 @@
 							<div class="card-nombre">Reporte de Productos guardados en Wishlist</div>
 						</div>
 						<div class="cardbutton">
-							<button>Descargar PDF</button>
+							<button onclick="descargarGuardados()">Descargar PDF</button>
 						</div>
 					</div>
 
@@ -272,10 +250,8 @@
 					<div class="Rrecientes">
 						<div class="titulo">
 							<h2>Reportes recientes</h2>
-							
 						</div>
-
-						<table id="reclamosEmpresas">
+						<table>
 							<thead>
 								<tr>
 									<td>Empresa</td>
@@ -284,203 +260,7 @@
 									<td>Analizar</td>
 								</tr>
 							</thead>
-
-							<tbody>
-<!-- EMPRESA 1 -->
-
-								<tr class="row-empresa">
-									<td class="empresa"><img src="imagenes/Damaroli.jpg"><a href="#">Damaroli</a></td>
-
-									<td class="report" >1</td>
-									<!--Pendiente o completado-->
-									<td>
-										<label class="switch">
-										<input type="checkbox" id="myToggle">
-										<span class="slider round"></span>
-										</label>
-										<p id="status"></p>
-									</td>
-									<!--revisar-->
-									<td><button class="btn-revisar" data-modal-target="#modal1">Revisar</button>
-										<div class="modal" id="modal1">
-											<div class="modal-header">
-											<div class="empresa"><img src="imagenes/Damaroli.jpg"><h1>Damaroli</h1></div>
-											<button data-close-button class="close-button">&times;</button>
-											</div>
-											<div class="modal-body">
-												<!--popup-->
-												
-												<a  href="#">Ver Reportes de usuarios</a>
-												
-												<div class="baja">
-													<button class="btn-baja">Dar de baja</button>
-													<button class="btn-baja">Suspender</button>
-												</div>
-
-											
-											</div>
-										</div>
-										<div id="overlay"></div>
-									</td>
-									<!--revisar-->
-									<!--Pendiente o completado-->
-								</tr>
-
-
-<!--EMPRESA 2-->
-
-								<tr class="row-empresa">
-									<td class="empresa"><img src="imagenes/Bella Dona.jpg"><a href="#">Bella Dona</a></td>
-
-									<td class="report">5</td>
-								<!--Pendiente o completado-->
-								<td>
-									<label class="switch">
-									<input type="checkbox" id="myToggle">
-									<span class="slider round"></span>
-									</label>
-									<p id="status"></p>
-								</td>
-								<!--revisar-->
-									<td><button class="btn-revisar" data-modal-target="#modal2">Revisar</button>
-										<div class="modal" id="modal2">
-											<div class="modal-header">
-											<div class="empresa"><img src="imagenes/Bella Dona.jpg"><h1>Bella Dona</h1></div>
-											<button data-close-button class="close-button">&times;</button>
-											</div>
-											<div class="modal-body">
-												<!--popup-->
-												
-												<a  href="#">Ver Reportes de usuarios</a>
-												
-												<div class="baja">
-													<button class="btn-baja">Dar de baja</button>
-													<button class="btn-baja">Suspender</button>
-												</div>									
-											
-											</div>
-										</div>
-										<div id="overlay"></div>
-									</td>
-									<!--revisar-->
-								
-								<!--Pendiente o completado-->
-								</tr>
-<!--EMPRESA 3-->								
-								<tr class="row-empresa">
-									<td class="empresa"><img src="imagenes/somos.jpg"><a href="#">Somos</a></td>
-
-									<td class="report">2</td>
-								<!--Pendiente o completado-->
-								<td>
-									<label class="switch">
-									<input type="checkbox" id="myToggle">
-									<span class="slider round"></span>
-									</label>
-									<p id="status"></p>
-								</td>
-								<!--revisar-->
-									<td><button class="btn-revisar" data-modal-target="#modal3">Revisar</button>
-										<div class="modal" id="modal3">
-											<div class="modal-header">
-											<div class="empresa"><img src="imagenes/somos.jpg"><h1>Somos</h1></div>
-											<button data-close-button class="close-button">&times;</button>
-											</div>
-											<div class="modal-body">
-												<!--popup-->
-												
-												<a  href="#">Ver Reportes de usuarios</a>
-												
-												<div class="baja">
-													<button class="btn-baja">Dar de baja</button>
-													<button class="btn-baja">Suspender</button>
-												</div>
-
-											
-											</div>
-										</div>
-										<div id="overlay"></div>
-									</td>
-									<!--revisar-->
-								
-								<!--Pendiente o completado-->
-								</tr>
-<!--EMPRESA 4-->
-								<tr class="row-empresa">
-									<td class="empresa"><img src="imagenes/aymara.jpg"><a href="#">Aymara Tender</a></td>
-
-									<td class="report">5</td>
-								<!--Pendiente o completado-->
-								<td>
-									<label class="switch">
-									<input type="checkbox" id="myToggle">
-									<span class="slider round"></span>
-									</label>
-									<p id="status"></p>
-								</td>
-								<!--revisar-->
-									<td><button class="btn-revisar" data-modal-target="#modal4">Revisar</button>
-										<div class="modal" id="modal4">
-											<div class="modal-header">
-											<div class="empresa"><img src="imagenes/aymara.jpg"><h1>Aymara Tender</h1></div>
-											<button data-close-button class="close-button">&times;</button>
-											</div>
-											<div class="modal-body">
-												<!--popup-->
-												
-												<a  href="#">Ver Reportes de usuarios</a>
-												
-												<div class="baja">
-													<button class="btn-baja">Dar de baja</button>
-													<button class="btn-baja">Suspender</button>
-												</div>
-
-											
-											</div>
-										</div>
-										<div id="overlay"></div>
-									</td>
-									<!--revisar-->
-								<!--Pendiente o completado-->
-								</tr>
-<!--EMPRESA 5-->
-								<tr class="row-empresa">
-									<td class="empresa"><img src="imagenes/meow.jpg"><a href="#">MEOW</a></td>
-
-									<td class="report">5</td>
-								<!--Pendiente o completado-->
-								<td>
-									<label class="switch">
-									<input type="checkbox" id="myToggle">
-									<span class="slider round"></span>
-									</label>
-									<p id="status"></p>
-								</td>
-								<!--revisar-->
-									<td><button class="btn-revisar" data-modal-target="#modal5">Revisar</button>
-										<div class="modal" id="modal5">
-											<div class="modal-header">
-											<div class="empresa"><img src="imagenes/meow.jpg"><h1>MEOW</h1></div>
-											<button data-close-button class="close-button">&times;</button>
-											</div>
-											<div class="modal-body">
-											<!--popup-->
-												
-												<a  href="#">Ver Reportes de usuarios</a>
-												
-												<div class="baja">
-													<button class="btn-baja">Dar de baja</button>
-													<button class="btn-baja">Suspender</button>
-												</div>
-
-											
-											</div>
-										</div>
-										<div id="overlay"></div>
-									</td>
-									<!--revisar-->
-								<!--Pendiente o completado-->
-								</tr>
+							<tbody id="reclamosEmpresas">
 								
 							</tbody>
 						</table>
@@ -510,24 +290,16 @@
 					<div class="Rrecientes">
 						<div class="titulo">
 							<h2>Solicitudes</h2>
-							
 						</div>
-
 						<table>
 							<thead>
 								<tr>
 									<td>Empresa</td>
-									<td>Estado</td>
 									<td>Analizar</td>
 								</tr>
 							</thead>
 
 							<tbody id="solicitudesEmpresas">
-<!--EMPRESA 1-->
-								<!--Pendiente o completado-->
-
-									<!--revisar-->
-									<!--Pendiente o completado-->
 								
 							</tbody>
 						</table>
@@ -537,24 +309,6 @@
 			</div>			
 
 			<!--Solicitudes de empresas FIN-->
-
-			<!--Solicitudes de soporte INICIO-->
-			<div id="pag5" class="head-titulo">
-				<div class="left">
-					<h1>Solicitudes de soporte</h1>
-					<ul class="subti">
-						<li>
-							<a href="#">Solicitudes de soporte</a>
-						</li>
-						<li><i class='bx bx-chevron-right' ></i></li>
-						<li>
-							<a class="active" href="#">Inicio</a>
-						</li>
-					</ul>
-				</div>				
-			</div>				
-
-			<!--Solicitudes de soporte FIIIIN-->
 
 		</div>
 		

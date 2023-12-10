@@ -111,26 +111,6 @@ namespace API.Migrations
                     b.ToTable("DetalleOrden");
                 });
 
-            modelBuilder.Entity("API.Models.DetalleWishlist", b =>
-                {
-                    b.Property<string>("codWishlist")
-                        .HasMaxLength(10)
-                        .HasColumnType("nvarchar(10)");
-
-                    b.Property<string>("codProducto")
-                        .HasMaxLength(10)
-                        .HasColumnType("nvarchar(10)");
-
-                    b.Property<DateTime>("fechaAnadido")
-                        .HasColumnType("datetime2");
-
-                    b.HasKey("codWishlist", "codProducto");
-
-                    b.HasIndex("codProducto");
-
-                    b.ToTable("DetalleWishlist");
-                });
-
             modelBuilder.Entity("API.Models.Empresa", b =>
                 {
                     b.Property<string>("codEmpresa")
@@ -465,8 +445,7 @@ namespace API.Migrations
 
                     b.Property<string>("descProducto")
                         .IsRequired()
-                        .HasMaxLength(100)
-                        .HasColumnType("nvarchar(100)");
+                        .HasColumnType("nvarchar(max)");
 
                     b.Property<DateTime>("lastUpdate")
                         .HasColumnType("datetime2");
@@ -626,18 +605,20 @@ namespace API.Migrations
 
             modelBuilder.Entity("API.Models.Wishlist", b =>
                 {
-                    b.Property<string>("codWishlist")
-                        .HasMaxLength(10)
-                        .HasColumnType("nvarchar(10)");
-
                     b.Property<string>("codUsuario")
-                        .IsRequired()
                         .HasMaxLength(10)
                         .HasColumnType("nvarchar(10)");
 
-                    b.HasKey("codWishlist");
+                    b.Property<string>("codProducto")
+                        .HasMaxLength(10)
+                        .HasColumnType("nvarchar(10)");
 
-                    b.HasIndex("codUsuario");
+                    b.Property<DateTime>("fechaAnadido")
+                        .HasColumnType("datetime2");
+
+                    b.HasKey("codUsuario", "codProducto");
+
+                    b.HasIndex("codProducto");
 
                     b.ToTable("Wishlist");
                 });
@@ -689,25 +670,6 @@ namespace API.Migrations
                     b.Navigation("Orden");
 
                     b.Navigation("Producto");
-                });
-
-            modelBuilder.Entity("API.Models.DetalleWishlist", b =>
-                {
-                    b.HasOne("API.Models.Producto", "Producto")
-                        .WithMany("Wishlists")
-                        .HasForeignKey("codProducto")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.HasOne("API.Models.Wishlist", "Wishlist")
-                        .WithMany("Wishlists")
-                        .HasForeignKey("codWishlist")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.Navigation("Producto");
-
-                    b.Navigation("Wishlist");
                 });
 
             modelBuilder.Entity("API.Models.GuardadoCarrito", b =>
@@ -908,11 +870,19 @@ namespace API.Migrations
 
             modelBuilder.Entity("API.Models.Wishlist", b =>
                 {
+                    b.HasOne("API.Models.Producto", "Producto")
+                        .WithMany("Wishlists")
+                        .HasForeignKey("codProducto")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
                     b.HasOne("API.Models.Usuario", "Usuario")
-                        .WithMany()
+                        .WithMany("Wishlist")
                         .HasForeignKey("codUsuario")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
+
+                    b.Navigation("Producto");
 
                     b.Navigation("Usuario");
                 });
@@ -989,11 +959,8 @@ namespace API.Migrations
                     b.Navigation("Reclamos");
 
                     b.Navigation("VisitasEmpresa");
-                });
 
-            modelBuilder.Entity("API.Models.Wishlist", b =>
-                {
-                    b.Navigation("Wishlists");
+                    b.Navigation("Wishlist");
                 });
 #pragma warning restore 612, 618
         }

@@ -1,72 +1,212 @@
 [
  {
-  "codDetalleOrden":  "DETO-001",
+  "codDetalleOrden": "DETO-001",
   "codOrden": "ORD-001",
   "codProducto": "PRO-006",
   "cantidadProducto": 1,
   "precioTotal": 35
  },
  {
-  "codDetalleOrden":  "DETO-002",
-  "codOrden": "ORD-002",
+  "codDetalleOrden": "DETO-002",
+  "codOrden": "ORD-001",
   "codProducto": "PRO-001",
   "cantidadProducto": 2,
   "precioTotal": 100
  },
  {
-  "codDetalleOrden":  "DETO-003",
-  "codOrden":"ORD-003",
+  "codDetalleOrden": "DETO-003",
+  "codOrden":"ORD-001",
   "codProducto": "PRO-010",
   "cantidadProducto": 1,
   "precioTotal": 35
  },
  {
-  "codDetalleOrden":  "DETO-004",
-  "codOrden":"ORD-004",
+  "codDetalleOrden": "DETO-004",
+  "codOrden":"ORD-002",
   "codProducto": "PRO-014",
   "cantidadProducto": 1,
   "precioTotal": 55
  },
  {
-  "codDetalleOrden":  "DETO-005",
-  "codOrden":"ORD-005",
+  "codDetalleOrden": "DETO-005",
+  "codOrden":"ORD-002",
   "codProducto":"PRO-015",
   "cantidadProducto": 2,
   "precioTotal": 60
  },
  {
-  "codDetalleOrden":  "DETO-006",
-  "codOrden":"ORD-006",
+  "codDetalleOrden": "DETO-006",
+  "codOrden":"ORD-003",
   "codProducto": "PRO-029",
   "cantidadProducto": 2,
   "precioTotal": 40
  },
  {
-  "codDetalleOrden":  "DETO-007",
-  "codOrden": "ORD-007",
+  "codDetalleOrden": "DETO-007",
+  "codOrden": "ORD-004",
   "codProducto": "PRO-019",
   "cantidadProducto": 2,
   "precioTotal": 90
  },
  {
-  "codDetalleOrden":  "DETO-008",
-  "codOrden": "ORD-008",
+  "codDetalleOrden": "DETO-008",
+  "codOrden": "ORD-004",
   "codProducto": "PRO-020",
   "cantidadProducto": 3,
   "precioTotal": 120
  },
  {
-  "codDetalleOrden":  "DETO-009",
-  "codOrden": "ORD-009",
+  "codDetalleOrden": "DETO-009",
+  "codOrden": "ORD-004",
   "codProducto": "PRO-025",
   "cantidadProducto": 2,
   "precioTotal": 100
  },
- {
-  "codDetalleOrden":  "DETO-010",
-  "codOrden": "ORD-010",
-  "codProducto": "PRO-028",
-  "cantidadProducto": 1,
-  "precioTotal": 55
- }
+  {
+    "codDetalleOrden": "DETO-010",
+    "codOrden": "ORD-005",
+    "codProducto": "PRO-028",
+    "cantidadProducto": 1,
+    "precioTotal": 55
+  },
+  {
+    "codDetalleOrden": "DETO-011",
+    "codOrden": "ORD-005",
+    "codProducto": "PRO-002",
+    "cantidadProducto": 1,
+    "precioTotal": 50
+  },
+  {
+    "codDetalleOrden": "DETO-012",
+    "codOrden": "ORD-005",
+    "codProducto": "PRO-017",
+    "cantidadProducto": 3,
+    "precioTotal": 135
+  },
+  {
+    "codDetalleOrden": "DETO-013",
+    "codOrden": "ORD-005",
+    "codProducto": "PRO-029",
+    "cantidadProducto": 1,
+    "precioTotal": 20    
+  },
+  {
+  "codDetalleOrden": "DETO-014",
+    "codOrden": "ORD-006",
+    "codProducto": "PRO-030",
+    "cantidadProducto": 1,
+    "precioTotal": 45
+  },
+  {
+  "codDetalleOrden": "DETO-015",
+    "codOrden": "ORD-006",
+    "codProducto": "PRO-021",
+    "cantidadProducto": 2,
+    "precioTotal": 50
+  },
+  {
+    "codDetalleOrden": "DETO-016",
+    "codOrden": "ORD-006",
+    "codProducto": "PRO-027",
+    "cantidadProducto": 3,
+    "precioTotal": 105
+  },
+  {
+    "codDetalleOrden": "DETO-017",
+    "codOrden": "ORD-006",
+    "codProducto": "PRO-028",
+    "cantidadProducto": 2,
+    "precioTotal": 110
+  },
+  {
+    "codDetalleOrden": "DETO-018",
+    "codOrden": "ORD-007",
+    "codProducto": "PRO-005",
+    "cantidadProducto": 1,
+    "precioTotal": 55
+  },
+  {
+    "codDetalleOrden": "DETO-019",
+    "codOrden": "ORD-007",
+    "codProducto": "PRO-020",
+    "cantidadProducto": 2,
+    "precioTotal": 80
+  },
+  {
+    "codDetalleOrden": "DETO-020",
+    "codOrden": "ORD-007",
+    "codProducto": "PRO-023",
+    "cantidadProducto": 4,
+    "precioTotal": 120
+  },
+  {
+    "codDetalleOrden": "DETO-021",
+    "codOrden": "ORD-008",
+    "codProducto": "PRO-015",
+    "cantidadProducto": 1,
+    "precioTotal": 55
+  },
+  {
+    "codDetalleOrden": "DETO-022",
+    "codOrden": "ORD-008",
+    "codProducto": "PRO-014",
+    "cantidadProducto": 2,
+    "precioTotal": 70
+  },
+  {
+    "codDetalleOrden": "DETO-023",
+    "codOrden": "ORD-009",
+    "codProducto": "PRO-025",
+    "cantidadProducto": 2,
+    "precioTotal": 100
+  },
+  {
+    "codDetalleOrden": "DETO-024",
+    "codOrden": "ORD-009",
+    "codProducto": "PRO-001",
+    "cantidadProducto": 2,
+    "precioTotal": 100
+  },
+  {
+    "codDetalleOrden": "DETO-025",
+    "codOrden": "ORD-009",
+    "codProducto": "PRO-003",
+    "cantidadProducto": 1,
+    "precioTotal": 60
+  },
+  {
+    "codDetalleOrden": "DETO-026",
+    "codOrden": "ORD-009",
+    "codProducto": "PRO-005",
+    "cantidadProducto": 1,
+    "precioTotal": 90
+  },
+  {
+    "codDetalleOrden": "DETO-027",
+    "codOrden": "ORD-009",
+    "codProducto": "PRO-010",
+    "cantidadProducto": 3,
+    "precioTotal": 165
+  },
+  {
+    "codDetalleOrden": "DETO-028",
+    "codOrden": "ORD-010",
+    "codProducto": "PRO-028",
+    "cantidadProducto": 1,
+    "precioTotal": 55
+  },
+  {
+    "codDetalleOrden": "DETO-029",
+    "codOrden": "ORD-010",
+    "codProducto": "PRO-006",
+    "cantidadProducto": 1,
+    "precioTotal": 35
+  },
+  {
+    "codDetalleOrden": "DETO-030",
+    "codOrden": "ORD-010",
+    "codProducto": "PRO-010",
+    "cantidadProducto": 2,
+    "precioTotal": 110
+  }
 ]

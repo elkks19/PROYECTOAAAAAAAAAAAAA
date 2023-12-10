@@ -25,7 +25,6 @@ namespace API.Data
         public DbSet<API.Models.Orden> Orden { get; set; } = default!;
         public DbSet<API.Models.Producto> Producto { get; set; } = default!;
         public DbSet<API.Models.Empresa> Empresa { get; set; } = default!;
-        public DbSet<API.Models.DetalleWishlist> DetalleWishlist { get; set; } = default!;
         public DbSet<API.Models.CategoriasPorProducto> CategoriasPorProducto { get; set; } = default!;
         public DbSet<API.Models.DetalleOrden> DetalleOrden { get; set; } = default!;
         public DbSet<API.Models.ReclamosEmpresa> ReclamosEmpresa { get; set; } = default!;
@@ -60,8 +59,8 @@ namespace API.Data
             // claves compuestas
             modelBuilder.Entity<CategoriasPorProducto>()
                 .HasKey(x => new { x.codCategoria, x.codProducto });
-            modelBuilder.Entity<DetalleWishlist>()
-                .HasKey(x => new { x.codWishlist, x.codProducto });
+            modelBuilder.Entity<Wishlist>()
+                .HasKey(x => new { x.codUsuario, x.codProducto });
             modelBuilder.Entity<ListaEsperaEmpresa>()
                 .HasKey(x => new { x.codEmpresa, x.codAdmin });
 
@@ -106,6 +105,7 @@ namespace API.Data
             modelBuilder.Entity<Producto>()
                 .HasMany(x => x.Reclamos)
                 .WithOne(x => x.Producto);
+
             // Relaciones Empresa
             // PERSONAL
             modelBuilder.Entity<Empresa>()
@@ -152,8 +152,15 @@ namespace API.Data
                 .WithOne(x => x.Usuario);
 
 
-
-
+            // RELACIONES WISHLIST
+            // USUARIO
+            modelBuilder.Entity<Wishlist>()
+                .HasOne(x => x.Usuario)
+                .WithMany(x => x.Wishlist);
+            // PRODUCTO
+            modelBuilder.Entity<Wishlist>()
+                .HasOne(x => x.Producto)
+                .WithMany(x => x.Wishlists);
 
 
 
@@ -177,18 +184,6 @@ namespace API.Data
                 .HasMany(x => x.Ordenes)
                 .WithOne(x => x.Orden);
 
-            // M:N Producto - DetalleWishlist
-            // ORDEN
-            modelBuilder.Entity<Wishlist>()
-                .HasMany(x => x.Wishlists)
-                .WithOne(x => x.Wishlist);
-            // PRODUCTO
-            modelBuilder.Entity<Producto>()
-                .HasMany(x => x.Wishlists)
-                .WithOne(x => x.Producto);
-
         }
-
-
     }
 }

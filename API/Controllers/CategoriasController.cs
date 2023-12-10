@@ -16,7 +16,7 @@ namespace API.Controllers
         }
 
         [HttpGet]
-        //[Autorizado("administrador")]
+        [Autorizado("administrador")]
         public async Task<IActionResult> Index()
         {
             var categorias = await db.Categorias.Select(x => new
@@ -30,6 +30,7 @@ namespace API.Controllers
         }
 
         [HttpPost]
+        [Autorizado("administrador")]
         public async Task<IActionResult> Create([FromBody]Categoria request)
         {
             var categoriaExists = await db.Categorias.FirstOrDefaultAsync(x => x.nombreCategoria.Equals(request.nombreCategoria));
@@ -54,6 +55,7 @@ namespace API.Controllers
         }
 
         [HttpPatch]
+        [Autorizado("administrador")]
         public async Task<IActionResult> Edit([FromBody]Categoria request, [FromRoute]string cod)
         {
             var categoria = await db.Categorias.FirstOrDefaultAsync(x => x.codCategoria.Equals(cod));
@@ -79,6 +81,7 @@ namespace API.Controllers
         }
 
         [HttpGet]
+        [Autorizado("administrador")]
         public async Task<IActionResult> Details([FromRoute]string cod)
         {
             var categoria = await db.Categorias.FirstOrDefaultAsync(x => x.codCategoria.Equals(cod));
@@ -92,6 +95,7 @@ namespace API.Controllers
         }
 
         [HttpDelete]
+        [Autorizado("administrador")]
         public async Task<IActionResult> Delete([FromRoute]string cod)
         {
             var categoria = await db.Categorias.FirstOrDefaultAsync(x => x.codCategoria.Equals(cod));

@@ -53,7 +53,7 @@ namespace API.Controllers
             public DateTime fechaReclamo { get; set; }
         }
         [HttpGet]
-        public async Task<IActionResult> GetReclamos([FromRoute] string cod)
+        public async Task<IActionResult> Index([FromRoute] string cod)
         {
             var reclamos = await db.ReclamosEmpresa.Include(x => x.Producto.Empresa).Include(x => x.Administrador.Persona).Include(x => x.Usuario.Persona).Include(x => x.Producto).Where(x => x.codAdmin.Equals(cod)).ToListAsync();
             if (reclamos.Count > 0)

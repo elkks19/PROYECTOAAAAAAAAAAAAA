@@ -1,0 +1,134 @@
+[
+ {
+  "codCategoria": "CAT-001",
+  "codProducto": "PRO-018"
+ },
+ {
+  "codCategoria": "CAT-002",
+  "codProducto": "PRO-004"
+ },
+ {
+  "codCategoria": "CAT-003",
+  "codProducto": "PRO-009"
+ },
+ {
+  "codCategoria": "CAT-004",
+  "codProducto": "PRO-021"
+ },
+ {
+  "codCategoria": "CAT-004",
+  "codProducto": "PRO-006"
+ },
+ {
+  "codCategoria": "CAT-004",
+  "codProducto": "PRO-026"
+ },
+ {
+  "codCategoria": "CAT-005",
+  "codProducto": "PRO-005"
+ },
+ {
+  "codCategoria": "CAT-006",
+  "codProducto": "PRO-003"
+ },
+ {
+  "codCategoria": "CAT-006",
+  "codProducto": "PRO-012"
+ },
+ {
+  "codCategoria": "CAT-006",
+  "codProducto": "PRO-019"
+ },
+ {
+  "codCategoria": "CAT-006",
+  "codProducto": "PRO-022"
+ },
+ {
+  "codCategoria": "CAT-006",
+  "codProducto": "PRO-028"
+ },
+ {
+  "codCategoria": "CAT-007",
+  "codProducto": "PRO-001"
+ },
+ {
+  "codCategoria": "CAT-007",
+  "codProducto": "PRO-011"
+ },
+ {
+  "codCategoria": "CAT-008",
+  "codProducto": "PRO-015"
+ },
+ {
+  "codCategoria": "CAT-009",
+  "codProducto":  "PRO-027"
+ },
+ {
+  "codCategoria": "CAT-009",
+  "codProducto": "PRO-020"
+ },
+ {
+  "codCategoria": "CAT-010",
+  "codProducto": "PRO-029"
+ },
+ {
+  "codCategoria": "CAT-011",
+  "codProducto": "PRO-029"
+ },
+ {
+  "codCategoria": "CAT-012",
+  "codProducto": "PRO-020"
+ },
+ {
+  "codCategoria": "CAT-013",
+  "codProducto": "PRO-010"
+ },
+ {
+  "codCategoria": "CAT-014",
+  "codProducto": "PRO-011"
+ },
+ {
+  "codCategoria": "CAT-015",
+  "codProducto": "PRO-013"
+ },
+ {
+  "codCategoria": "CAT-016",
+  "codProducto": "PRO-012"
+ },
+ {
+  "codCategoria": "CAT-017",
+  "codProducto": "PRO-011"
+ },
+ {
+  "codCategoria": "CAT-018",
+  "codProducto": "PRO-005"
+ },
+ {
+  "codCategoria": "CAT-019",
+  "codProducto": "PRO-003"
+ },
+ {
+  "codCategoria": "CAT-020",
+  "codProducto": "PRO-002"
+ },
+ {
+  "codCategoria": "CAT-021",
+  "codProducto": "PRO-001"
+ },
+ {
+  "codCategoria": "CAT-022",
+  "codProducto": "PRO-007"
+ },
+ {
+  "codCategoria": "CAT-023",
+  "codProducto": "PRO-026"
+ },
+ {
+  "codCategoria": "CAT-024",
+  "codProducto": "PRO-012"
+ },
+ {
+  "codCategoria": "CAT-025",
+  "codProducto": "PRO-021"
+ }
+]

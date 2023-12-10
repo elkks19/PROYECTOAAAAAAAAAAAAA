@@ -12,163 +12,27 @@ namespace API.Controllers
 {
     public class GuardadoWishlistsController : Controller
     {
-        private readonly APIContext _context;
+        private readonly APIContext db;
 
         public GuardadoWishlistsController(APIContext context)
         {
-            _context = context;
+            db = context;
         }
 
-        // GET: GuardadoWishlists
-        public async Task<IActionResult> Index()
+        protected internal async Task<GuardadoWishlist> Create(Producto prod, Usuario usu)
         {
-            var aPIContext = _context.GuardadoWishlist.Include(g => g.Producto).Include(g => g.Usuario);
-            return View(await aPIContext.ToListAsync());
-        }
-
-        // GET: GuardadoWishlists/Details/5
-        public async Task<IActionResult> Details(string id)
-        {
-            if (id == null || _context.GuardadoWishlist == null)
+            var cantG = await db.GuardadoWishlist.CountAsync() + 1;
+            var a = new GuardadoWishlist()
             {
-                return NotFound();
-            }
+                codGuardadoWishlist = "GWI-" + cantG.ToString("000"),
+                Producto = prod,
+                Usuario = usu,
+                fechaGuardado = DateTime.Now
+            };
 
-            var guardadoWishlist = await _context.GuardadoWishlist
-                .Include(g => g.Producto)
-                .Include(g => g.Usuario)
-                .FirstOrDefaultAsync(m => m.codGuardadoWishlist == id);
-            if (guardadoWishlist == null)
-            {
-                return NotFound();
-            }
-
-            return View(guardadoWishlist);
-        }
-
-        // GET: GuardadoWishlists/Create
-        public IActionResult Create()
-        {
-            ViewData["codProducto"] = new SelectList(_context.Producto, "codProducto", "codProducto");
-            ViewData["codUsuario"] = new SelectList(_context.Usuarios, "codUsuario", "codUsuario");
-            return View();
-        }
-
-        // POST: GuardadoWishlists/Create
-        // To protect from overposting attacks, enable the specific properties you want to bind to.
-        // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
-        [HttpPost]
-        [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create([Bind("codGuardadoWishlist,codUsuario,codProducto,fechaGuardado")] GuardadoWishlist guardadoWishlist)
-        {
-            if (ModelState.IsValid)
-            {
-                _context.Add(guardadoWishlist);
-                await _context.SaveChangesAsync();
-                return RedirectToAction(nameof(Index));
-            }
-            ViewData["codProducto"] = new SelectList(_context.Producto, "codProducto", "codProducto", guardadoWishlist.codProducto);
-            ViewData["codUsuario"] = new SelectList(_context.Usuarios, "codUsuario", "codUsuario", guardadoWishlist.codUsuario);
-            return View(guardadoWishlist);
-        }
-
-        // GET: GuardadoWishlists/Edit/5
-        public async Task<IActionResult> Edit(string id)
-        {
-            if (id == null || _context.GuardadoWishlist == null)
-            {
-                return NotFound();
-            }
-
-            var guardadoWishlist = await _context.GuardadoWishlist.FindAsync(id);
-            if (guardadoWishlist == null)
-            {
-                return NotFound();
-            }
-            ViewData["codProducto"] = new SelectList(_context.Producto, "codProducto", "codProducto", guardadoWishlist.codProducto);
-            ViewData["codUsuario"] = new SelectList(_context.Usuarios, "codUsuario", "codUsuario", guardadoWishlist.codUsuario);
-            return View(guardadoWishlist);
-        }
-
-        // POST: GuardadoWishlists/Edit/5
-        // To protect from overposting attacks, enable the specific properties you want to bind to.
-        // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
-        [HttpPost]
-        [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Edit(string id, [Bind("codGuardadoWishlist,codUsuario,codProducto,fechaGuardado")] GuardadoWishlist guardadoWishlist)
-        {
-            if (id != guardadoWishlist.codGuardadoWishlist)
-            {
-                return NotFound();
-            }
-
-            if (ModelState.IsValid)
-            {
-                try
-                {
-                    _context.Update(guardadoWishlist);
-                    await _context.SaveChangesAsync();
-                }
-                catch (DbUpdateConcurrencyException)
-                {
-                    if (!GuardadoWishlistExists(guardadoWishlist.codGuardadoWishlist))
-                    {
-                        return NotFound();
-                    }
-                    else
-                    {
-                        throw;
-                    }
-                }
-                return RedirectToAction(nameof(Index));
-            }
-            ViewData["codProducto"] = new SelectList(_context.Producto, "codProducto", "codProducto", guardadoWishlist.codProducto);
-            ViewData["codUsuario"] = new SelectList(_context.Usuarios, "codUsuario", "codUsuario", guardadoWishlist.codUsuario);
-            return View(guardadoWishlist);
-        }
-
-        // GET: GuardadoWishlists/Delete/5
-        public async Task<IActionResult> Delete(string id)
-        {
-            if (id == null || _context.GuardadoWishlist == null)
-            {
-                return NotFound();
-            }
-
-            var guardadoWishlist = await _context.GuardadoWishlist
-                .Include(g => g.Producto)
-                .Include(g => g.Usuario)
-                .FirstOrDefaultAsync(m => m.codGuardadoWishlist == id);
-            if (guardadoWishlist == null)
-            {
-                return NotFound();
-            }
-
-            return View(guardadoWishlist);
-        }
-
-        // POST: GuardadoWishlists/Delete/5
-        [HttpPost, ActionName("Delete")]
-        [ValidateAntiForgeryToken]
-        public async Task<IActionResult> DeleteConfirmed(string id)
-        {
-            if (_context.GuardadoWishlist == null)
-            {
-                return Problem("Entity set 'APIContext.GuardadoWishlist'  is null.");
-            }
-            var guardadoWishlist = await _context.GuardadoWishlist.FindAsync(id);
-            if (guardadoWishlist != null)
-            {
-                _context.GuardadoWishlist.Remove(guardadoWishlist);
-            }
-            
-            await _context.SaveChangesAsync();
-            return RedirectToAction(nameof(Index));
-        }
-
-        private bool GuardadoWishlistExists(string id)
-        {
-          return (_context.GuardadoWishlist?.Any(e => e.codGuardadoWishlist == id)).GetValueOrDefault();
+            await db.GuardadoWishlist.AddAsync(a);
+            await db.SaveChangesAsync();
+            return a;
         }
     }
 }

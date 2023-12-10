@@ -13,8 +13,8 @@ allSideMenu.forEach(item=> {
 
 
 
+
 function ChangeContent(pageId) {
-  
   const mainContentDivs = document.querySelectorAll('.main-content > div');
   mainContentDivs.forEach(div => {
     div.style.display = 'none';
@@ -30,42 +30,45 @@ function ChangeContent(pageId) {
 
 //ESTITO ES PARA EL POP UP ME CAGOOOOOOOOOOOOOOOOO
 
-const openModalButtons = document.querySelectorAll('[data-modal-target]')
-const closeModalButtons = document.querySelectorAll('[data-close-button]')
-const overlay = document.getElementById('overlay')
 
-openModalButtons.forEach(button => {
-  button.addEventListener('click', () => {
-    //const modal = document.querySelector(button.dataset.modalTarget)
-    openModal (button.dataset.modalTarget)//(modal)
-  })
-})
+function botones() {
+    const openModalButtons = document.querySelectorAll('[data-modal-target]')
+    const closeModalButtons = document.querySelectorAll('[data-close-button]')
+    const overlay = document.getElementById('overlay')
+    openModalButtons.forEach(button => {
+      button.addEventListener('click', () => {
+        openModal (button.dataset.modalTarget)//(modal)
+      })
+    })
 
-overlay.addEventListener('click', () => {
-  const modals = document.querySelectorAll('.modal.active')
-  modals.forEach(modal => {
-    closeModal(modal)
-  })
-})
+    overlay.addEventListener('click', () => {
+      const modals = document.querySelectorAll('.modal.active')
+      modals.forEach(modal => {
+        closeModal(modal)
+      })
+    })
 
-closeModalButtons.forEach(button => {
-  button.addEventListener('click', () => {
-    const modal = button.closest('.modal')
-    closeModal(modal)
-  })
-})
+    closeModalButtons.forEach(button => {
+      button.addEventListener('click', () => {
+        const modal = button.closest('.modal')
+        closeModal(modal)
+      })
+    })
+}
 
 function openModal(modalId) {
-  const modal = document.querySelector(modalId)
-  if (modal == null) return
-  modal.classList.add('active')
-  overlay.classList.add('active')
+    const overlay = document.getElementById('overlay')
+    const modal = document.querySelector(modalId)
+    if (modal == null) return
+    modal.classList.add('active')
+    overlay.classList.add('active')
 }
 
 function closeModal(modal) {
-  if (modal == null) return
-  modal.classList.remove('active')
-  overlay.classList.remove('active')
+    const overlay = document.getElementById('overlay')
+    if (modal == null) return
+    modal.classList.remove('active')
+    overlay.classList.remove('active')
 }
 
 //CARDS NUMERO
@@ -75,69 +78,19 @@ let imgElements = document.querySelectorAll('.img-usu img');
 let nameElements = document.querySelectorAll('.nombre');
 let typeElements = document.querySelectorAll('.tipo-usuario');
 
-// users.forEach((user, index) => {
-//  imgElements[index].src = user.img;
-//  nameElements[index].textContent = user.name;
-//  if (typeElements[index]) {
-//    typeElements[index].textContent = user.type;
-//  }
-// });
 
 
-//categorias
-let data = [
- {
-  categoria: 'Ropa',
- categoryList: ['Category 1', 'Category 2', 'Category 3', 'Category 4',
-  'Category 5', 'Category 6', 'Category 7', 'Category 8', 'Category 9', 'Category 10',
-  'Category 11', 'Category 12', 'Category 13', 'Category 14', 'Category 15', 'Category 16', 
-  'Category 17', 'Category 18', 'Category 19', 'Category 20']
-
- },
- {
- categoria: 'Zapatos',
- categoryList: ['Category 1', 'Category 2', 'Category 3', 'Category 4',
-  'Category 5', 'Category 6', 'Category 7', 'Category 8', 'Category 9', 'Category 10',
-  'Category 11', 'Category 12', 'Category 13', 'Category 14', 'Category 15', 'Category 16', 
-  'Category 17', 'Category 18', 'Category 19', 'Category 20']
- },
-  {
- categoria: 'Accesorios',
- categoryList: ['Category 1', 'Category 2', 'Category 3', 'Category 4',
-  'Category 5', 'Category 6', 'Category 7', 'Category 8', 'Category 9', 'Category 10',
-  'Category 11', 'Category 12', 'Category 13', 'Category 14', 'Category 15', 'Category 16', 
-  'Category 17', 'Category 18', 'Category 19', 'Category 20']
- }
- 
-];
-
-let categoriaDivs = document.querySelectorAll('.categoria');
-let categoryLists = document.querySelectorAll('#category-list');
-
-categoriaDivs.forEach((categoriaDiv, index) => {
- categoriaDiv.textContent = data[index].categoria;
-
- let categoryList = categoryLists[index];
- categoryList.innerHTML = ''; 
-
- data[index].categoryList.forEach(category => {
-   let listItem = document.createElement('li');
-   listItem.textContent = category;
-   categoryList.appendChild(listItem);
- });
-});
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+function logout(){
+  axios.post('http://localhost:5132/auth/logout', {}, {
+    headers: {
+      "Content-Type": "application/json",
+      "Authorization": localStorage.getItem("token")
+    }
+  }).then((response) => {
+    console.log(response.data);
+    localStorage.removeItem("token");
+    window.location.href = "../INICIO.html";
+  }).catch((error) => { 
+    console.log(error); 
+  });
+}

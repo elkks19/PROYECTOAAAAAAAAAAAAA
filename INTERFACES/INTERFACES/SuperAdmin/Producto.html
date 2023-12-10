@@ -48,7 +48,7 @@
                     </div>
                     <div class="form-group">
                         <label>Desc Producto</label>
-                        <input type="text" class="form-control" required id="nombreProductoCrear">
+                        <input type="text" class="form-control" required id="descProductoCrear">
                     </div>
                     <div class="form-group">
                         <label>Precio Producto</label>
@@ -56,17 +56,17 @@
                     </div>	
                     <div class="form-group">
                         <label>Precio Envio Producto</label>
-                        <input type="number" class="form-control" required id="precioEnvioProducto">
+                        <input type="number" class="form-control" required id="precioEnvioProductoCrear">
                     </div>	
                     <div id="drop-area">
-                        <input type="file" id="fotoProducto" multiple accept="image/*" onchange="handleFiles(this.files)">
+                        <input type="file" id="fotoProducto" accept="image/*">
                         <label class="button" for="fileElem">Subir foto</label>
                         <!--<img id="preview" width=200px height=200px />-->
                         </div>				
                 </div>
                 <div class="modal-footer">
                     <input type="button" class="btn btn-default" data-dismiss="modal" value="Cancel">
-                    <input type="button" class="btn btn-success" value="Agregar" onclick="crear()">
+                    <input type="button" class="btn btn-success" data-dismiss="modal" value="Agregar" onclick="crear()">
                 </div>
             </form>
         </div>
@@ -131,6 +131,26 @@
                 <div class="modal-footer">
                     <input type="button" class="btn btn-default" data-dismiss="modal" value="Cancelar">
                     <input type="button" class="btn btn-danger" value="Eliminar" onclick="confirmarEliminar()" data-dismiss="modal">
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+
+<div id="categoriasModal" class="modal fade">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <form>
+                <div class="modal-header">						
+                    <h4 class="modal-title">Categorias del producto</h4>
+                    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                </div>
+                <div class="modal-body" id="categoriasBody">
+                    <button type="button" class="btn btn-primary form-control" onclick="agregarCategoria()">Agregar</button>
+                </div>
+                <div class="modal-footer">
+                    <input type="button" class="btn btn-default" data-dismiss="modal" value="Cancelar">
+                    <input type="button" class="btn btn-success" data-dismiss="modal" value="Guardar" onclick="guardarCategorias()">
                 </div>
             </form>
         </div>
